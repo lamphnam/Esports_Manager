@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "v1.0.0",
+  "notes": "PROTOTYPE values; not official esports rules. Update only with version bump + tests. v2.2: thêm rng.subSeedScheme, series.decisionPolicy, scoutCommonMinOvr.",
+  "rarity": {
+    "COMMON": {
+      "minBaseOvr": 55,
+      "maxBaseOvr": 69
+    },
+    "RARE": {
+      "minBaseOvr": 70,
+      "maxBaseOvr": 79
+    },
+    "EPIC": {
+      "minBaseOvr": 80,
+      "maxBaseOvr": 89
+    },
+    "LEGENDARY": {
+      "minBaseOvr": 90,
+      "maxBaseOvr": 96
+    }
+  },
+  "packs": {
+    "WELCOME": {
+      "COMMON": 0,
+      "RARE": 80,
+      "EPIC": 18,
+      "LEGENDARY": 2,
+      "pity": null
+    },
+    "SCOUT": {
+      "COMMON": 55,
+      "RARE": 35,
+      "EPIC": 9,
+      "LEGENDARY": 1,
+      "pityEpicPlusAt": 8,
+      "pityNote": "misses toi da 7 lan lien tiep; lan mo thu 8 buoc Epic+",
+      "scoutCommonMinOvr": 62
+    },
+    "ELITE": {
+      "COMMON": 0,
+      "RARE": 55,
+      "EPIC": 40,
+      "LEGENDARY": 5,
+      "pity": null
+    },
+    "CHAMPION": {
+      "COMMON": 0,
+      "RARE": 0,
+      "EPIC": 85,
+      "LEGENDARY": 15,
+      "pity": null
+    }
+  },
+  "sim": {
+    "phaseOrder": [
+      "EARLY",
+      "MID",
+      "LATE"
+    ],
+    "phaseActions": {
+      "EARLY": [
+        "GANK_TOP",
+        "PLAY_MID",
+        "SAFE_FARM"
+      ],
+      "MID": [
+        "CONTEST_OBJECTIVE",
+        "SPLIT_PUSH",
+        "TRADE_MAP"
+      ],
+      "LATE": [
+        "FORCE_TEAMFIGHT",
+        "PROTECT_CARRY",
+        "PICK_OFF"
+      ]
+    },
+    "synergyBonusAbsCap": 8,
+    "tacticBonusAbsCap": 5,
+    "decisionBonusAbsCap": 6,
+    "winChanceClamp": [
+      0.08,
+      0.92
+    ],
+    "rng": {
+      "subSeedScheme": "hash(seed,gameIndex,phase,eventSlot)",
+      "sharedSequentialStream": false
+    },
+    "offScriptChance": 0.2,
+    "series": {
+      "BO1": {
+        "decisionPolicy": "MANUAL_ALL_3"
+      },
+      "BO3": {
+        "decisionPolicy": "GAME1_ALL_3_THEN_FOCUS_1",
+        "manualAllOptional": true
+      },
+      "BO5": {
+        "decisionPolicy": "GAME1_ALL_3_THEN_FOCUS_1",
+        "manualAllOptional": true
+      }
+    }
+  },
+  "initialWallet": {
+    "credits": 500,
+    "trainingMaterials": 0,
+    "scoutTickets": 0
+  },
+  "starterTeamSize": 5,
+  "roles": [
+    "TOP",
+    "JUNGLE",
+    "MID",
+    "BOT",
+    "SUPPORT"
+  ]
+}

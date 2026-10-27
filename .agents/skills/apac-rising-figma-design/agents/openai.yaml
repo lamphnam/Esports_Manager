@@ -1,0 +1,15 @@
+interface:
+  display_name: "APAC Rising Figma Design"
+  short_description: "Design game UI and player cards in Figma from the project docs"
+  default_prompt: "Use $apac-rising-figma-design to design the Player Card component set in the linked Figma file, following docs/07_FRONTEND_UX_ART.md."
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "figma"
+      description: "Figma remote MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.figma.com/mcp"

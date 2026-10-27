@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "v1.0.0",
+  "notes": "PROTOTYPE decisionFit per phase (points, cap +-6). Not official. Hiệu chỉnh bằng mô phỏng 10k seeds. Xem docs/13_MATCH_DECISION_SPEC.md.",
+  "archetypes": [
+    "EARLY_AGGRO",
+    "OBJECTIVE_CONTROL",
+    "LATE_SCALING",
+    "SPLIT_PRESSURE",
+    "BALANCED"
+  ],
+  "decisionFit": {
+    "EARLY": {
+      "GANK_TOP": {
+        "EARLY_AGGRO": -2,
+        "OBJECTIVE_CONTROL": 0,
+        "LATE_SCALING": 4,
+        "SPLIT_PRESSURE": 2,
+        "BALANCED": 0
+      },
+      "PLAY_MID": {
+        "EARLY_AGGRO": 0,
+        "OBJECTIVE_CONTROL": 4,
+        "LATE_SCALING": 2,
+        "SPLIT_PRESSURE": -2,
+        "BALANCED": 1
+      },
+      "SAFE_FARM": {
+        "EARLY_AGGRO": 4,
+        "OBJECTIVE_CONTROL": -2,
+        "LATE_SCALING": -2,
+        "SPLIT_PRESSURE": 2,
+        "BALANCED": 1
+      }
+    },
+    "MID": {
+      "CONTEST_OBJECTIVE": {
+        "EARLY_AGGRO": 2,
+        "OBJECTIVE_CONTROL": -2,
+        "LATE_SCALING": 0,
+        "SPLIT_PRESSURE": 4,
+        "BALANCED": 1
+      },
+      "SPLIT_PUSH": {
+        "EARLY_AGGRO": -2,
+        "OBJECTIVE_CONTROL": 4,
+        "LATE_SCALING": 2,
+        "SPLIT_PRESSURE": -2,
+        "BALANCED": 0
+      },
+      "TRADE_MAP": {
+        "EARLY_AGGRO": 0,
+        "OBJECTIVE_CONTROL": 0,
+        "LATE_SCALING": 4,
+        "SPLIT_PRESSURE": 2,
+        "BALANCED": 1
+      }
+    },
+    "LATE": {
+      "FORCE_TEAMFIGHT": {
+        "EARLY_AGGRO": 2,
+        "OBJECTIVE_CONTROL": 0,
+        "LATE_SCALING": -2,
+        "SPLIT_PRESSURE": 4,
+        "BALANCED": 1
+      },
+      "PROTECT_CARRY": {
+        "EARLY_AGGRO": 2,
+        "OBJECTIVE_CONTROL": -2,
+        "LATE_SCALING": 4,
+        "SPLIT_PRESSURE": 0,
+        "BALANCED": 1
+      },
+      "PICK_OFF": {
+        "EARLY_AGGRO": -2,
+        "OBJECTIVE_CONTROL": 4,
+        "LATE_SCALING": 0,
+        "SPLIT_PRESSURE": 2,
+        "BALANCED": 0
+      }
+    }
+  }
+}
