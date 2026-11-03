@@ -18,10 +18,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { AudioSynth } from '../lib/audioSynth';
 import { ARCHETYPE_LABELS } from '../lib/labels';
+import {useDialog} from '../lib/useDialog';
+import {GameRecap} from './GameRecap';
 import { recommendTactics, seriesFinished, simulateNextGame, summarizeSeries } from '../lib/simulator';
 import { PHASE_TACTICS, TACTIC_METADATA } from '../lib/tacticsMatrix';
 import {
   Chapter,
+  CareerMatchSave,
   EarlyTactic,
   LateTactic,
   MatchSimulationResult,
@@ -42,14 +45,16 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
   onClose,
   onVictoryClaim,
 }) => {
-  const { club, getTeamSnapshot } = useGame();
-  const playerSnapshot = useRef(getTeamSnapshot()).current;
-  const seedRef=useRef(Date.now());
-  const [focusPhase,setFocusPhase]=useState<'EARLY'|'MID'|'LATE'>('MID');
-  const [manualAll,setManualAll]=useState(false);
+  const { club, getTeamSnapshot, activeMatch, saveActiveMatch } = useGame();
+  const saved=activeMatch?.chapterId===chapter.id?activeMatch:null;
+  const dialog=useDialog(onClose);
+  const playerSnapshot = useRef(saved?.playerSnapshot || getTeamSnapshot()).current;
+  const seedRef=useRef(saved?.seed ?? Date.now());
+  const [focusPhase,setFocusPhase]=useState<'EARLY'|'MID'|'LATE'>(saved?.focusPhase || 'MID');
+  const [manualAll,setManualAll]=useState(saved?.manualAll || false);
 
   // Create opponent snapshot from chapter
-  const opponentSnapshot: TeamSnapshot = chapter.opponent.snapshot || {
+  const opponentSnapshot = useRef<TeamSnapshot>(saved?.opponentSnapshot || chapter.opponent.snapshot || {
     teamName: chapter.opponent.name,
     logoKey: chapter.opponent.logoKey,
     teamOvr: chapter.opponent.ovr,
@@ -72,20 +77,23 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
       },
       archetype: 'Flexible',
     })),
-  };
+  }).current;
 
   // Tactical selections for the match
-  const [selectedEarly, setSelectedEarly] = useState<EarlyTactic>('SAFE_FARM');
-  const [selectedMid, setSelectedMid] = useState<MidTactic>('CONTEST_OBJECTIVE');
-  const [selectedLate, setSelectedLate] = useState<LateTactic>('FORCE_TEAMFIGHT');
+  const [selectedEarly, setSelectedEarly] = useState<EarlyTactic>(saved?.selectedEarly || 'SAFE_FARM');
+  const [selectedMid, setSelectedMid] = useState<MidTactic>(saved?.selectedMid || 'CONTEST_OBJECTIVE');
+  const [selectedLate, setSelectedLate] = useState<LateTactic>(saved?.selectedLate || 'FORCE_TEAMFIGHT');
 
   // Match progression state
-  const [matchState, setMatchState] = useState<'PREVIEW' | 'PLAYING' | 'RESOLVED'>('PREVIEW');
-  const [activeGameIndex, setActiveGameIndex] = useState(0);
-  const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
-  const [simulationResult, setSimulationResult] = useState<MatchSimulationResult | null>(null);
+  const [matchState, setMatchState] = useState<CareerMatchSave['matchState']>(saved?.matchState || 'PREVIEW');
+  const [activeGameIndex, setActiveGameIndex] = useState(saved?.activeGameIndex || 0);
+  const [currentPhaseIndex, setCurrentPhaseIndex] = useState(saved?.currentPhaseIndex || 0);
+  const [simulationResult, setSimulationResult] = useState<MatchSimulationResult | null>(saved?.simulationResult || null);
   const [isFastMode, setIsFastMode] = useState(false);
   const [isRewardClaimed, setIsRewardClaimed] = useState(false);
+  useEffect(()=>{
+    saveActiveMatch({chapterId:chapter.id,seed:seedRef.current,playerSnapshot,opponentSnapshot,matchState,activeGameIndex,currentPhaseIndex,simulationResult,selectedEarly,selectedMid,selectedLate,focusPhase,manualAll});
+  },[matchState,activeGameIndex,currentPhaseIndex,simulationResult,selectedEarly,selectedMid,selectedLate,focusPhase,manualAll]);
 
   // Auto-step simulation timer during PLAYING
   useEffect(() => {
@@ -101,12 +109,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
         setCurrentPhaseIndex((prev) => prev + 1);
       } else {
         // Game finished
-        if (!seriesFinished(chapter.format, simulationResult.games)) {
-          const auto = recommendTactics(playerSnapshot, chapter.opponent.archetype);
-          setSelectedEarly(auto.early as EarlyTactic);
-          setSelectedMid(auto.mid as MidTactic);
-          setSelectedLate(auto.late as LateTactic);
-          setMatchState('PREVIEW');
+        if (chapter.format !== 'BO1') {
+          setMatchState('GAME_RECAP');
         } else {
           setMatchState('RESOLVED');
           if (simulationResult.winner === 'PLAYER') AudioSynth.playVictory();
@@ -151,13 +155,24 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
   const isPlayerWon = simulationResult?.winner === 'PLAYER';
   const currentGame = simulationResult?.games[activeGameIndex];
   const currentPhaseOutcome = currentGame?.phases[currentPhaseIndex];
+  const resetAutomaticTactics = () => {
+    const auto=recommendTactics(playerSnapshot,chapter.opponent.archetype);
+    setSelectedEarly(auto.early as EarlyTactic);setSelectedMid(auto.mid as MidTactic);setSelectedLate(auto.late as LateTactic);
+  };
+  const continueSeries = () => {
+    if(!simulationResult)return;
+    if(seriesFinished(chapter.format,simulationResult.games)){
+      setMatchState('RESOLVED');
+      if(simulationResult.winner==='PLAYER')AudioSynth.playVictory();else AudioSynth.playDefeat();
+    }else{resetAutomaticTactics();setMatchState('PREVIEW');}
+  };
   const finishedGames = simulationResult?.games.slice(0, activeGameIndex) || [];
   const livePlayerWins = finishedGames.filter(g => g.winner === 'PLAYER').length;
   const liveOpponentWins = finishedGames.length - livePlayerWins;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto">
-      <div className="relative w-full max-w-4xl max-h-[90dvh] bg-[#111827] border border-slate-800 rounded-2xl shadow-2xl p-5 lg:p-7 overflow-y-auto my-6">
+      <div ref={dialog} role="dialog" aria-modal="true" aria-label="Trung Tâm Trận Đấu" tabIndex={-1} className="relative w-full max-w-4xl max-h-[90dvh] bg-[#111827] border border-slate-800 rounded-2xl shadow-2xl p-5 lg:p-7 overflow-y-auto my-6">
         {/* Header Bar */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
@@ -173,6 +188,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
           </div>
 
           <button
+            aria-label="Đóng trận đấu"
             onClick={onClose}
             className="p-1.5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
           >
@@ -186,8 +202,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             <div className="rounded-lg border border-cyan-900 p-3 text-sm space-y-2">
               <p>Ván {(simulationResult?.games.length || 0)+1} · {simulationResult ? 'FOCUS_1: chọn một pha can thiệp, hai pha còn lại dùng gợi ý đã hiển thị.' : 'Chọn đủ 3 pha cho ván đầu.'}</p>
               {simulationResult && <>
-                <label className="flex gap-2 items-center"><input type="checkbox" checked={manualAll} onChange={e=>setManualAll(e.target.checked)}/>Chơi thủ công cả 3 pha</label>
-                {!manualAll && <div className="flex gap-2">{(['EARLY','MID','LATE'] as const).map(phase=><button key={phase} aria-pressed={focusPhase===phase} className={`min-h-11 px-3 border rounded ${focusPhase===phase?'border-amber-400':'border-slate-600'}`} onClick={()=>setFocusPhase(phase)}>Can thiệp {phase}</button>)}</div>}
+                <label className="flex gap-2 items-center"><input type="checkbox" checked={manualAll} onChange={e=>{setManualAll(e.target.checked);if(!e.target.checked)resetAutomaticTactics();}}/>Chơi thủ công cả 3 pha</label>
+                {!manualAll && <div className="flex gap-2">{(['EARLY','MID','LATE'] as const).map(phase=><button key={phase} aria-pressed={focusPhase===phase} className={`min-h-11 px-3 border rounded ${focusPhase===phase?'border-amber-400':'border-slate-600'}`} onClick={()=>{resetAutomaticTactics();setFocusPhase(phase);}}>Can thiệp {phase}</button>)}</div>}
               </>}
             </div>
             {/* Versus Banner */}
@@ -535,6 +551,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             </div>
           </div>
         )}
+
+        {matchState==='GAME_RECAP'&&currentGame&&simulationResult&&<GameRecap game={currentGame} playerTeamName={playerSnapshot.teamName} opponentTeamName={opponentSnapshot.teamName} playerWins={simulationResult.playerWins} opponentWins={simulationResult.opponentWins} onNext={continueSeries} nextLabel={seriesFinished(chapter.format,simulationResult.games)?'Xem Tổng Kết Chuỗi':'Ván Tiếp Theo'}/>}
 
         {/* ================= STAGE 3: POST-MATCH BREAKDOWN & REWARD ================= */}
         {matchState === 'RESOLVED' && simulationResult && (

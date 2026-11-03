@@ -1,0 +1,17 @@
+# Fill verified values, run nginx -t, and deploy only to the isolated game vhost.
+server {
+    listen 443 ssl;
+    server_name GAME_HOST_HERE;
+    ssl_certificate /etc/letsencrypt/live/GAME_HOST_HERE/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/GAME_HOST_HERE/privkey.pem;
+    root /var/www/apac-rising/current;
+    index index.html;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://VERIFIED_PORTAL_HOST_HERE" always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+    # Do not add X-Frame-Options. Audit inherited headers before using this vhost.
+    location = /api/v1/health { default_type application/json; return 200 '{"status":"ok","architecture":"B"}'; }
+    location ~* \.(?:md|map|env)$ { deny all; }
+    location /assets/ { try_files $uri =404; expires 1y; }
+    location / { try_files $uri $uri/ /index.html; }
+}

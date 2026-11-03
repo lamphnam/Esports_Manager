@@ -1,0 +1,96 @@
+$ bun install --frozen-lockfile
+bun install v1.4.3 (c6da4a4d3)
+
+Checked 61 installs across 122 packages (no changes) [10.00ms]
+exit=0
+$ bun run typecheck
+$ tsc --noEmit
+exit=0
+$ bun run test
+
+ RUN  v5.1.0 D:/BachKhoa/hk261/APAC_Rising_Esports_Manager_Docs_v2_2
+
+
+ Test Files  5 passed (5)
+      Tests  31 passed (31)
+   Start at  13:31:33
+   Duration  6.16s (tests 80%, import 15%, transform 4%)
+
+$ vitest run
+exit=0
+$ bun run build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1705 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   1.30 kB │ gzip:   0.58 kB
+dist/assets/index-CTIwVCkV.css   53.17 kB │ gzip:   9.54 kB
+dist/assets/index-CZa5jdum.js   973.26 kB │ gzip: 156.33 kB
+
+✓ built in 893ms
+$ vite build
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+exit=0
+$ bun scripts/balance-sim.ts
+Fixed seeds 0..3999; 4000 series/cell; default tactics SAFE_FARM / CONTEST_OBJECTIVE / FORCE_TEAMFIGHT
+Chapter | Format | Starter | +1 Rare (Welcome fixture, TOP) | All Rare
+1 | BO1 | 68.70% | 73.53% | 85.40%
+2 | BO3 | 45.35% | 54.23% | 77.72%
+3 | BO3 | 33.52% | 41.63% | 67.38%
+4 | BO3 | 26.57% | 34.08% | 59.90%
+5 | BO5 | 8.30% | 12.95% | 36.90%
+6 | BO5 | 16.30% | 22.80% | 52.80%
+7 | BO5 | 13.97% | 20.70% | 48.63%
+8 | BO5 | 16.30% | 22.80% | 52.80%
+9 | BO5 | 14.90% | 20.93% | 50.40%
+10 | BO5 | 3.30% | 5.55% | 21.75%
+11 | BO5 | 1.98% | 3.42% | 14.88%
+12 | BO5 | 12.65% | 18.00% | 46.60%
+DEC-5 acceptance (default tactics, 4000 series/cell):
+Ch1: 68.70% target 65-72% PASS
+Ch2: 54.23% target 50-60% PASS
+Ch3: 48.63% target 45-55% PASS
+Ch4: 49.52% target 45-55% PASS
+Ch5: 49.30% target 45-55% PASS
+exit=0
+$ bun scripts/import-golden-road.ts --check
+{
+  "datasetVersion": "golden-road-43e63c0fe522",
+  "importedAt": "2026-11-03T00:00:00.000Z",
+  "sourcePath": "docs/ref/golden_road/data.js",
+  "sourceSha256": "43e63c0fe52262ab876292671a05ad51e59595432746f86e0c5b77816dfd9a7f",
+  "teams": 73,
+  "teamYears": 129,
+  "editions": 649,
+  "identities": 374,
+  "distribution": {
+    "COMMON": 81,
+    "RARE": 365,
+    "EPIC": 166,
+    "LEGENDARY": 37
+  },
+  "outputSha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f",
+  "outputs": {
+    "legacyEditions.json": {
+      "bytes": 530197,
+      "sha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f"
+    },
+    "legacyPlayers.json": {
+      "bytes": 138289,
+      "sha256": "fc2c0584aa68432734fe38db9a6479fad0408b358ac1fa6cbdb6222f6548a832"
+    },
+    "legacyTeams.json": {
+      "bytes": 60499,
+      "sha256": "bc9e3d3d42ed057b3b49f1c267a951b6d8c25078f2a336c36235eace6f61c79a"
+    }
+  }
+}
+exit=0
+$ bun scripts/release-audit.ts
+PASS: no internal specs/reference code, unused runtime dependencies, forbidden colours, emoji or Math.random in src/lib.
+exit=0

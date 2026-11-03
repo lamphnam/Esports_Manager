@@ -27,6 +27,7 @@ import {
   Role,
   TeamSnapshot,
   TransferOffer,
+  CareerMatchSave,
 } from '../types';
 
 import { emptySave, GameSave, SAVE_KEY, saveReducer, validateSave } from '../lib/saveState';
@@ -64,6 +65,10 @@ interface GameContextType {
   resetGame: () => void;
   claimSponsorship: () => boolean;
   claimDraftReward: (draft:DraftSession) => boolean;
+  activeMatch:CareerMatchSave|null;
+  pendingReveal:{instanceId:string;wasPityTriggered:boolean}|null;
+  saveActiveMatch:(match:CareerMatchSave|null)=>void;
+  clearPackReveal:()=>void;
   restoreFromRecoveryCode: (code: string) => Promise<boolean>;
   exportRecoveryCode: () => Promise<string>;
   storageBlocked: boolean;
@@ -212,7 +217,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!player) return false;
 
     // Check role eligibility
-    if (player.primaryRole !== role && player.secondaryRole !== role) {
+    if ((edition?.role || player.primaryRole) !== role && player.primaryRole !== role && player.secondaryRole !== role) {
       return false;
     }
     if (Object.entries(club.lineup).some(([slot, id]) => slot !== role && id === cardInstanceId)) return false;
@@ -304,6 +309,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       packs: updatedPacks,
       scoutPityMisses: result.newPityMisses,
     });
+    commit({pendingReveal:{instanceId:result.ownedCard.instanceId,wasPityTriggered:result.wasPityTriggered}});
 
     AudioSynth.playCardReveal(result.edition.rarity);
     return result;
@@ -531,7 +537,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
       if (card && edition && player) {
         const { stats, ovr } = getEffectiveCardStats(card, edition);
-        const rolePenalty = player.primaryRole === r ? 0 : player.secondaryRole === r ? 3 : 15;
+        const rolePenalty = (edition.role || player.primaryRole) === r ? 0 : player.primaryRole === r || player.secondaryRole === r ? 3 : 15;
         const effectiveStats = Object.fromEntries(Object.entries(stats).map(([key,value]) => [key,Math.max(0,value-rolePenalty)])) as unknown as PlayerStats;
         totalOvr += ovr - rolePenalty;
         roster.push({
@@ -643,6 +649,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         resetGame,
         claimSponsorship,
         claimDraftReward,
+        activeMatch:save.activeMatch || null,
+        pendingReveal:save.pendingReveal || null,
+        saveActiveMatch:(match)=>commit({activeMatch:match}),
+        clearPackReveal:()=>commit({pendingReveal:null}),
         restoreFromRecoveryCode,
         exportRecoveryCode,
         storageBlocked,

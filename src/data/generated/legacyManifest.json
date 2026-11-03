@@ -13,5 +13,19 @@
     "EPIC": 166,
     "LEGENDARY": 37
   },
-  "outputSha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f"
+  "outputSha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f",
+  "outputs": {
+    "legacyEditions.json": {
+      "bytes": 530197,
+      "sha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f"
+    },
+    "legacyPlayers.json": {
+      "bytes": 138289,
+      "sha256": "fc2c0584aa68432734fe38db9a6479fad0408b358ac1fa6cbdb6222f6548a832"
+    },
+    "legacyTeams.json": {
+      "bytes": 60499,
+      "sha256": "bc9e3d3d42ed057b3b49f1c267a951b6d8c25078f2a336c36235eace6f61c79a"
+    }
+  }
 }

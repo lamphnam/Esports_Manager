@@ -1,5 +1,5 @@
 import { getEditionById } from '../data/cardCatalog';
-import { ClubState, CurrencyLedgerEntry, OwnedCard, TransferOffer } from '../types';
+import { ClubState, CurrencyLedgerEntry, OwnedCard, TransferOffer, CareerMatchSave } from '../types';
 
 export interface GameSave {
   version: 1;
@@ -11,9 +11,11 @@ export interface GameSave {
   marketDay?:string;
   purchasedOfferIds?:string[];
   draftRewards?:{claimedSeeds:number[];day:string;count:number};
+  activeMatch?:CareerMatchSave|null;
+  pendingReveal?:{instanceId:string;wasPityTriggered:boolean}|null;
 }
 export const SAVE_KEY = 'apac_rising_save_v3';
-export const emptySave = (): GameSave => ({version:1,club:null,ownedCards:[],ledger:[],transferOffers:[],ledgerArchive:undefined,marketDay:undefined,purchasedOfferIds:undefined,draftRewards:undefined});
+export const emptySave = (): GameSave => ({version:1,club:null,ownedCards:[],ledger:[],transferOffers:[],ledgerArchive:undefined,marketDay:undefined,purchasedOfferIds:undefined,draftRewards:undefined,activeMatch:null,pendingReveal:null});
 export function saveReducer(state: GameSave, patch: Partial<GameSave>): GameSave {
   const next:GameSave={...state,...patch,version:1};
   if(next.ledger.length>500){
@@ -31,6 +33,16 @@ const integer=(x:unknown,min=0,max=Number.MAX_SAFE_INTEGER):x is number=>typeof 
 const roles=['TOP','JUNGLE','MID','BOT','SUPPORT'];
 const families=['WELCOME','SCOUT','ELITE','CHAMPION'];
 const stats=['mechanics','macro','teamwork','mental','championPool'];
+const tacticCodes=['GANK_TOP','PLAY_MID','SAFE_FARM','CONTEST_OBJECTIVE','SPLIT_PUSH','TRADE_MAP','FORCE_TEAMFIGHT','PROTECT_CARRY','PICK_OFF'];
+const finite=(x:unknown,min=-200,max=200)=>typeof x==='number'&&Number.isFinite(x)&&x>=min&&x<=max;
+function validTeam(team:unknown):boolean{
+  if(!record(team)||!text(team.teamName)||!text(team.logoKey)||!integer(team.teamOvr,0,100)||!finite(team.synergyBonus,-8,8)||!record(team.ratings)||!['lane','macro','teamfight'].every(key=>finite((team.ratings as Record<string,unknown>)[key],0,100))||!Array.isArray(team.roster)||team.roster.length!==5)return false;
+  return team.roster.every(player=>record(player)&&roles.includes(String(player.role))&&text(player.displayName)&&finite(player.ovr,0,100)&&record(player.effectiveStats)&&stats.every(key=>finite((player.effectiveStats as Record<string,unknown>)[key],0,100)));
+}
+function validResult(result:unknown):boolean{
+  if(!record(result)||!text(result.matchId)||!integer(result.seed)||!['BO1','BO3','BO5'].includes(String(result.seriesFormat))||!integer(result.playerWins,0,3)||!integer(result.opponentWins,0,3)||!['PLAYER','OPPONENT'].includes(String(result.winner))||!record(result.breakdown)||!['rosterDiff','synergyAdvantage','tacticSuitability','decisionQuality'].every(key=>finite((result.breakdown as Record<string,unknown>)[key]))||!text(result.coachingAdvice,1500)||!Array.isArray(result.counterfactual)||result.counterfactual.length>30||!result.counterfactual.every(c=>record(c)&&text(c.explanation,1500))||!Array.isArray(result.games)||result.games.length<1||result.games.length>5)return false;
+  return result.games.every(game=>record(game)&&integer(game.gameIndex,1,5)&&text(game.mvpName)&&roles.includes(String(game.mvpRole))&&['PLAYER','OPPONENT'].includes(String(game.winner))&&integer(game.gameDurationMinutes,0,200)&&integer(game.killsPlayer,0,100)&&integer(game.killsOpponent,0,100)&&Array.isArray(game.phases)&&game.phases.length===3&&game.phases.every(phase=>record(phase)&&['EARLY','MID','LATE'].includes(String(phase.phase))&&tacticCodes.includes(String(phase.playerTactic))&&tacticCodes.includes(String(phase.opponentTactic))&&text(phase.opponentArchetypeActual)&&finite(phase.winProbability,.08,.92)&&finite(phase.goldDelta,-10000,10000)&&text(phase.keyMoment,1500)&&Array.isArray(phase.events)&&phase.events.length<=15&&phase.events.every(event=>text(event,1500))));
+}
 
 // Recovery is user-controlled input. Reject broken references and unbounded arrays before replacing a save.
 export function validateSave(value: unknown): GameSave {
@@ -51,6 +63,16 @@ export function validateSave(value: unknown): GameSave {
     ids.add(card.instanceId);
   }
   if(!record(club.lineup)||!roles.every(r=>club.lineup && (club.lineup as Record<string,unknown>)[r]===null || record(club.lineup)&&typeof club.lineup[r]==='string'&&ids.has(club.lineup[r] as string))) throw new Error('Đội hình chứa thẻ không tồn tại.');
+  if(value.pendingReveal && (!record(value.pendingReveal)||!text(value.pendingReveal.instanceId)||!ids.has(value.pendingReveal.instanceId)||typeof value.pendingReveal.wasPityTriggered!=='boolean'))throw new Error('Reveal không hợp lệ.');
+  if(value.activeMatch){
+    const match=value.activeMatch;
+    if(!record(match)||!integer(match.chapterId,1,12)||!integer(match.seed)||!integer(match.activeGameIndex,0,4)||!integer(match.currentPhaseIndex,0,2)||!['PREVIEW','PLAYING','GAME_RECAP','RESOLVED'].includes(String(match.matchState))||!['EARLY','MID','LATE'].includes(String(match.focusPhase))||typeof match.manualAll!=='boolean')throw new Error('Tiến trình trận không hợp lệ.');
+    if(!['GANK_TOP','PLAY_MID','SAFE_FARM'].includes(String(match.selectedEarly))||!['CONTEST_OBJECTIVE','SPLIT_PUSH','TRADE_MAP'].includes(String(match.selectedMid))||!['FORCE_TEAMFIGHT','PROTECT_CARRY','PICK_OFF'].includes(String(match.selectedLate)))throw new Error('Tactic lưu không hợp lệ.');
+    for(const team of [match.playerSnapshot,match.opponentSnapshot])if(!validTeam(team))throw new Error('Snapshot trận không hợp lệ.');
+    if(match.simulationResult!==null && !validResult(match.simulationResult))throw new Error('Kết quả lưu không hợp lệ.');
+    if(match.matchState!=='PREVIEW'&&match.simulationResult===null)throw new Error('Thiếu kết quả trận đang diễn ra.');
+    if(record(match.simulationResult)&&Array.isArray(match.simulationResult.games)&&(match.activeGameIndex>=match.simulationResult.games.length||match.simulationResult.seed!==match.seed))throw new Error('Vị trí replay không hợp lệ.');
+  }
   if(!Array.isArray(club.packs)||club.packs.length>10000||!club.packs.every(p=>record(p)&&text(p.id)&&families.includes(String(p.family))&&text(p.obtainedReason)&&integer(p.obtainedAt))) throw new Error('Kho pack không hợp lệ.');
   for(const entry of ledger) if(!record(entry)||!text(entry.id)||!text(entry.reason)||!['MILESTONE','PACK_BUY','TRAINING','TRANSFER','FACILITY','SPONSOR'].includes(String(entry.sourceType))||!integer(entry.timestamp)||!['deltaCredits','deltaMaterials','deltaTickets'].every(k=>integer(entry[k],-1e12))) throw new Error('Ledger không hợp lệ.');
   for(const offer of transferOffers) if(!record(offer)||!text(offer.id)||!text(offer.editionId)||!getEditionById(offer.editionId)||!integer(offer.priceCredits)||!integer(offer.expiresInSeconds)||!text(offer.sourceClub)) throw new Error('Thị trường không hợp lệ.');

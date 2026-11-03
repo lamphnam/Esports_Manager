@@ -19,6 +19,7 @@ async (page) => {
     await b.getByRole('button',{name:'Nhập Recovery Code',exact:true}).click();
     await b.getByRole('textbox',{name:'Nhập Recovery Code',exact:true}).fill(code);
     await b.getByRole('button',{name:'Khôi Phục Save',exact:true}).click();
+    await b.getByRole('button',{name:'Đóng trận đấu',exact:true}).click();
     await b.getByRole('alert').filter({hasText:'Không thể lưu'}).waitFor();
     await b.getByRole('button',{name:'Mở sao lưu',exact:true}).click();
     await b.waitForFunction(()=>document.querySelector('textarea[aria-label="Recovery Code hiện tại"]')?.value.startsWith('AR1.'));

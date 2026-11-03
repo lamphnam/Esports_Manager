@@ -56,6 +56,8 @@ Các câu trả lời dưới đây là lời chủ dự án trong phiên làm v
 
 ## Nhật ký thay đổi của file này
 
+Kết quả Phase 3/4 (03/11): G0→G1→G2→G4→G3 đã triển khai, flag G3 giữ tắt. QA local 31 tests/14 browser results; public host/portal và browser/playtest còn thiếu. Benchmark prototype phụ uniform65: gap adaptive-random3.51pp, +10 power76.09%, chưa đủ mục tiêu; DEC-5 đủ dải. Q4–Q6 giữ mở. Chủ dự án yêu cầu dừng ở kết quả từng ván BO3/BO5 để đọc logs rồi bấm Next; đã thêm GameRecap, lưu được khi reload, không đổi luật/RNG/odds. Evidence `evidence/PHASE_4.md`.
+
 Kết quả G0 (03/11): mapping mặc định triển khai theo neo integer 76→55, 80→69, 81→70, 86→79, 87→80, 91→89, 92→90, 98→96; đơn điệu cả input thập phân. Phân bố đo được 81/365/166/37. Đây là mặc định kỹ thuật theo DEC-4, không thay trạng thái đề xuất. Ba edition 2026 hiện tại trước đây gắn nhầm LEGACY được phân loại CHAMPION, giữ nguyên id/stats/odds; LEGACY sinh từ dataset không vào pack. RatingSource của edition remap là adjusted, giữ rawRating và ratingNote. Bằng chứng checksum tại `src/data/generated/legacyManifest.json`.
 
 Kết quả Phase 2 (03/11): dùng mặc định Q4/DEC-5, OVR đối thủ Ch1–5 = 55/62/66/72/77, win-rate 4000 seed/ô = 68.70/54.23/48.63/49.52/49.30%. Không chốt thay chủ dự án. Tài trợ phục hồi 100 credits/ngày khi ví dưới 100, giao hữu/thử lại miễn phí; Champion Pool tạm không huấn luyện. `evidence/PHASE_2.md`.

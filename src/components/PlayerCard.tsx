@@ -6,6 +6,7 @@ import {
 } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
 import { OwnedCard, PlayerCardEdition, PlayerIdentity, Role } from '../types';
+import {RoleIcon} from './RoleIcon';
 
 interface PlayerCardProps {
   edition: PlayerCardEdition;
@@ -19,12 +20,12 @@ interface PlayerCardProps {
   showActions?: boolean;
 }
 
-export const ROLE_LABELS: Record<Role, { name: string; icon: string; color: string }> = {
-  TOP: { name: 'TOP', icon: '⚔️', color: 'text-rose-300 bg-rose-950/60 border-rose-700/50' },
-  JUNGLE: { name: 'JNG', icon: '🌲', color: 'text-emerald-300 bg-emerald-950/60 border-emerald-700/50' },
-  MID: { name: 'MID', icon: '⚡', color: 'text-amber-300 bg-amber-950/60 border-amber-700/50' },
-  BOT: { name: 'BOT', icon: '🏹', color: 'text-blue-300 bg-blue-950/60 border-blue-700/50' },
-  SUPPORT: { name: 'SUP', icon: '🛡️', color: 'text-teal-300 bg-teal-950/60 border-teal-700/50' },
+export const ROLE_LABELS: Record<Role, { name: string; color: string }> = {
+  TOP: { name: 'TOP', color: 'text-rose-300 bg-rose-950/60 border-rose-700/50' },
+  JUNGLE: { name: 'JNG', color: 'text-emerald-300 bg-emerald-950/60 border-emerald-700/50' },
+  MID: { name: 'MID', color: 'text-amber-300 bg-amber-950/60 border-amber-700/50' },
+  BOT: { name: 'BOT', color: 'text-blue-300 bg-blue-950/60 border-blue-700/50' },
+  SUPPORT: { name: 'SUP', color: 'text-teal-300 bg-teal-950/60 border-teal-700/50' },
 };
 
 export const RARITY_CONFIG = {
@@ -74,7 +75,8 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 }) => {
   const player = propPlayer || getPlayerById(edition.playerId);
   const rarity = RARITY_CONFIG[edition.rarity];
-  const roleInfo = ROLE_LABELS[player?.primaryRole || 'MID'];
+  const role = edition.role || player?.primaryRole || 'MID';
+  const roleInfo = ROLE_LABELS[role];
 
   const statsAndOvr = ownedCard
     ? getEffectiveCardStats(ownedCard, edition)
@@ -105,7 +107,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
           <span
             className={`px-2 py-0.5 text-xs font-bold rounded flex items-center gap-1 border ${roleInfo.color}`}
           >
-            <span>{roleInfo.icon}</span>
+            <RoleIcon role={role}/>
             <span>{roleInfo.name}</span>
           </span>
           {isEquipped && (

@@ -75,6 +75,21 @@
     "sha256": "19a9e122bb7509f1d3c3abf79548823d82c791b9e2681170273a2cf3ddaba2be"
   },
   {
+    "path": "docs/CHANGELOG.md",
+    "bytes": 5967,
+    "sha256": "ea78bdf32b943e8182186fd05e36261ba52537e6e396da2afdc262ac764eada7"
+  },
+  {
+    "path": "docs/CLAUDE.md",
+    "bytes": 9964,
+    "sha256": "d7573d4e6368b54a5c35c899e362f6a4d4f4f519ca23525827d94a1ca4ebeca0"
+  },
+  {
+    "path": "docs/DECISIONS.md",
+    "bytes": 10660,
+    "sha256": "2b69970997976704bf1ced4733a2ba7325df3032357de4956deaeb2e878196d1"
+  },
+  {
     "path": "docs/agents/IMPLEMENTATION_PROMPT.md",
     "bytes": 5956,
     "sha256": "892be28eebdb9a39c8b11d46caaeb6f47008c3b0fdd0ac417bf4333f728187e7"
@@ -85,19 +100,9 @@
     "sha256": "00b237b49bb6c6b37215ff6bbf6ca16cdb5e4d27617006f5237fd7b5cbc6e903"
   },
   {
-    "path": "docs/CHANGELOG.md",
-    "bytes": 4190,
-    "sha256": "51762a8b7cfd525170171006a6915daf94f850c27211862422cad321648ea6df"
-  },
-  {
-    "path": "docs/CLAUDE.md",
-    "bytes": 9964,
-    "sha256": "d7573d4e6368b54a5c35c899e362f6a4d4f4f519ca23525827d94a1ca4ebeca0"
-  },
-  {
     "path": "docs/config/balance.initial.json",
-    "bytes": 2321,
-    "sha256": "bfd4865d57b8949a1452b5401d32a7e4c3e2aa135c5fbb3025f37e78e9680a3e"
+    "bytes": 2322,
+    "sha256": "f5a2b139ab89adb98b69b7539ef50c4308cd2b980a377c191deccfafbee54779"
   },
   {
     "path": "docs/config/competition.domestic.example.json",
@@ -115,18 +120,73 @@
     "sha256": "726c1b7a6951ee620d03bbf5bc4b45301697c91060f111b5157881560e94c98a"
   },
   {
-    "path": "docs/DECISIONS.md",
-    "bytes": 8694,
-    "sha256": "f6dc615356653ea803ebdb5b66c871369fb8fdc4fc0608b34d59ddd2ffb8ce2b"
+    "path": "docs/evidence/PHASE_0.md",
+    "bytes": 1685,
+    "sha256": "43939bbaa0f1a7c863e81b77b376316df7de68f3151303e635d962e4391ae8c5"
+  },
+  {
+    "path": "docs/evidence/PHASE_1.md",
+    "bytes": 3260,
+    "sha256": "d2724e975f538b89da061bd165b0bac2765bdec93249c349ba2a0e9e31c0f958"
+  },
+  {
+    "path": "docs/evidence/PHASE_2.md",
+    "bytes": 4920,
+    "sha256": "f5e6cfd6cfd2b3f03ae0b50e54bc745db256b24001702ef1bfd0c4ec2bca54ab"
+  },
+  {
+    "path": "docs/evidence/PHASE_3.md",
+    "bytes": 4462,
+    "sha256": "2c05156691856f69308e936356987bc757662f594324fab3fe2a6220f81f2105"
+  },
+  {
+    "path": "docs/evidence/PHASE_4.md",
+    "bytes": 8709,
+    "sha256": "dcefedc6e68af13de61270b4f42fd06253f146c8d81f26f871de4ef246b3f59f"
+  },
+  {
+    "path": "docs/evidence/phase-0-balance.txt",
+    "bytes": 1180,
+    "sha256": "0e4a49401b199ca66488104b72446be01a40d9f1a1c32ab6f3f57974b5910d0b"
+  },
+  {
+    "path": "docs/evidence/phase-0-test.txt",
+    "bytes": 1086,
+    "sha256": "b67ec14addf26ac2021e63ed42639a6308a03fd574829fbc8e5552463dc9a8bf"
+  },
+  {
+    "path": "docs/evidence/phase-0-typecheck.txt",
+    "bytes": 668,
+    "sha256": "1c212024a9e5bf0a8117472b51110cbe8a4823ad8668a3c08974838377846b57"
+  },
+  {
+    "path": "docs/evidence/phase-1-red.txt",
+    "bytes": 317,
+    "sha256": "7786feb9d10f805b680fdd15b088a6f74e04006434f59bd2025175c9bc8fab41"
+  },
+  {
+    "path": "docs/evidence/phase-4-commands.txt",
+    "bytes": 3140,
+    "sha256": "5b71acbb77bfcb9d5f205a32f57e4b657266f3e4e4e7723f799806b8e6f0d6af"
+  },
+  {
+    "path": "docs/evidence/phase-4-e2e.json",
+    "bytes": 4122,
+    "sha256": "bcc2680ec7b395848b138cfd606d4485af65108c5d040683361d0d097b424234"
   },
   {
     "path": "docs/index.md",
-    "bytes": 13658,
-    "sha256": "d58983bdab4d943fbfdad29fba324d4c2cd5901fa19e560a4e46cfdc66467fbc"
+    "bytes": 16415,
+    "sha256": "11b05d1f08cae023b4da3c1557fa958dccb1f457d6c2506d85f48d2800a81e90"
+  },
+  {
+    "path": "docs/research/LEGACY_DRAFT_BEHAVIOR.md",
+    "bytes": 2217,
+    "sha256": "087687fc76a14738369afa91ccba35ca6102689a184462dfeb3dd222d965a7ed"
   },
   {
     "path": "docs/research/LINKS_AND_FACT_CHECK.md",
-    "bytes": 5463,
-    "sha256": "08e312a548d1ae013322f92b71639bc6912b9af148772e2468400b7fd20a4f65"
+    "bytes": 7359,
+    "sha256": "47ad957037289dba9963f746c72c851f595684a94d80934803507a8f67946068"
   }
 ]

@@ -49,8 +49,18 @@ for(const [id,player] of identities){
   player.primaryRole=primary;if(secondary)player.secondaryRole=secondary;
 }
 mkdirSync('src/data/generated',{recursive:true});
-for(const [filename,value] of Object.entries({legacyEditions:editions,legacyPlayers:[...identities.values()],legacyTeams:teams}))writeFileSync(`src/data/generated/${filename}.json`,JSON.stringify(value,null,2)+'\n');
+const outputs:Record<string,{bytes:number;sha256:string}>={};
+const emit=(filename:string,content:string)=>{
+ const path=`src/data/generated/${filename}`;
+ if(process.argv.includes('--check')){if(readFileSync(path,'utf8')!==content)throw new Error(`Generated output stale: ${path}`);}
+ else writeFileSync(path,content);
+};
+for(const [filename,value] of Object.entries({legacyEditions:editions,legacyPlayers:[...identities.values()],legacyTeams:teams})){
+ const content=JSON.stringify(value,null,2)+'\n';
+ outputs[`${filename}.json`]={bytes:Buffer.byteLength(content),sha256:createHash('sha256').update(content).digest('hex')};
+ emit(`${filename}.json`,content);
+}
 const distribution=Object.fromEntries(['COMMON','RARE','EPIC','LEGENDARY'].map(r=>[r,editions.filter(e=>e.rarity===r).length]));
-const manifest={datasetVersion,importedAt,sourcePath,sourceSha256:checksum,teams:teams.length,teamYears:teams.reduce((n,t)=>n+Object.keys(t.rosters).length,0),editions:editions.length,identities:identities.size,distribution,outputSha256:createHash('sha256').update(JSON.stringify(editions,null,2)+'\n').digest('hex')};
-writeFileSync('src/data/generated/legacyManifest.json',JSON.stringify(manifest,null,2)+'\n');
+const manifest={datasetVersion,importedAt,sourcePath,sourceSha256:checksum,teams:teams.length,teamYears:teams.reduce((n,t)=>n+Object.keys(t.rosters).length,0),editions:editions.length,identities:identities.size,distribution,outputSha256:createHash('sha256').update(JSON.stringify(editions,null,2)+'\n').digest('hex'),outputs};
+emit('legacyManifest.json',JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify(manifest,null,2));

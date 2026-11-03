@@ -8,8 +8,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 
 ## Now
 
-- **Build status:** an Architecture-B build exists at the repo root (`src/`, React + TS + Vite). The 03/11 audit found **2 P0** (Welcome Pack never opens after Chapter 1; Recovery Code is a stub) and **13 P1** issues. M3 items below stay unchecked until the fixes have test or E2E evidence.
-- **Next action:** run `docs/agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`, starting at Phase 0 (test safety net) and Phase 1 (P0 fixes). Tracked as **M9** below.
+- **Build status:** Architecture B audit fixes and G0→G1→G2→G4→G3 implemented; 31 tests and 14 browser QA results xanh. F0 touch/desktop, deep reload, manual per-game recap and local cross-origin iframe verified. Evidence: `evidence/PHASE_0.md` → `PHASE_4.md`.
+- **Next action:** close public HTTPS/portal + browser/playtest gates and remaining prototype balance targets. G3 stays off; this is not yet submission-ready. D1/D4 supply the production host/origin, Q5 supplies the new date.
 - **Answered by the owner on 03/11:** Q1 (the Golden Road ratings may be used and adjusted), Q2 (the Riot email covers everything, no limits), Q3 (no schedule slip; deadline extended).
 - **Waiting on the owner:** Q5 (new submission date), Q4 (win-rate targets), Q6 (credit line). Defaults are recorded in `DECISIONS.md`, so work is not blocked.
 - **Freeze:** once Q5 is answered, set the feature-freeze date at least 2 working days before the submission date. The dates in M1-M8 below assume the original 15/11 deadline and need re-dating then.
@@ -120,9 +120,11 @@ Phase 3 — legacy data (starts only after Phase 1 and 2 are green)
 - [x] G3 Draft mode behind `FEATURE_GOLDEN_ROAD` — built and QA with flag **off**; 1000-seed property, 6 brackets, reward caps + 1080×1350 PNG. Submission enable gate remains unmet; [evidence](evidence/PHASE_3.md).
 
 Phase 4 — release
-- [ ] Typecheck, test, build and `balance-sim` outputs captured; Playwright F0 + reload + iframe harness
-- [ ] Internal specs removed from the public bundle; unused deps removed; README rewritten
-- [ ] `CHANGELOG.md` entry and `FILE_MANIFEST.json` regenerated
+- [x] Typecheck, test, build and `balance-sim` outputs captured; Playwright F0 + reload + iframe harness — [Phase 4 evidence](evidence/PHASE_4.md), `phase-4-commands.txt`, `phase-4-e2e.json`.
+- [x] Internal specs removed from the public bundle; unused deps removed; README rewritten — release-audit PASS.
+- [x] `CHANGELOG.md` entry and `FILE_MANIFEST.json` regenerated — `scripts/generate-manifest.ts` + --check.
+- [!] Public HTTPS/real portal, Safari/Firefox, playtest and remaining prototype balance gates — see Phase 4 limits; G3 remains off.
+- [x] Owner feedback: pause after each BO3/BO5 game for verdict/series score/logs; explicit Next; recap survives reload — `scripts/e2e-game-recap.js`.
 
 ## Scope priority
 
@@ -136,15 +138,15 @@ Phase 4 — release
 ## Required test invariants (track as they get written)
 
 **Simulator** (`05` §8, `13` §6)
-- [ ] Same seed → same output over ≥ 1,000 runs; golden vectors for `SeededRng`
-- [ ] Golden test: changing the EARLY decision doesn't change MID/LATE draws
+- [x] Same seed → same output over ≥ 1,000 runs; golden vectors for `SeededRng` — invariants.test.ts
+- [x] Golden test: changing the EARLY decision doesn't change MID/LATE draws — invariants.test.ts
 - [ ] 10k seeds: +10 team power wins 60–75% (calibrate); optimal vs random decisions ≥ 5 pts apart
-- [ ] 10k seeds: a "always same tactic" policy doesn't beat the adaptive policy
-- [ ] Tactic matrix property tests in CI (no dominant tactic, each tactic best somewhere, means within 1.5, values in ±6)
+- [x] 10k seeds: a "always same tactic" policy doesn't beat the adaptive policy — simulator-bench: 51.76% vs55.27% (other margin targets still open).
+- [x] Tactic matrix property tests wired into CI (no dominated tactic, each tactic best somewhere, means within 1.5, values in ±6) — .github/workflows/verify.yml; local test run green, remote CI not run.
 - [ ] BO3/BO5 terminate at the right wins; no NaN or negative ratings; BO5 p95 < 200 ms
 
 **Economy / data** (`06` §9, `04`)
-- [ ] 100k pack opens: no miss streak > 7; `misses` resets after Epic+
+- [x] 100k pack opens: no miss streak > 7; `misses` resets after Epic+ — invariants.test.ts
 - [ ] Replayed `claim` writes one ledger row; insufficient funds rolls everything back
 - [ ] One card can't hold two slots; equipped cards can't be sold; a match needs 5 valid roles
 - [ ] Idempotency-key reuse with a different body → `409 IDEMPOTENCY_CONFLICT`
@@ -185,6 +187,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Phase 4 local: 31 tests, 14 E2E results, mandatory CLI commands exit0; specs/deps cleanup, accessible modals, deep match/pack reload, explicit per-game recap per owner. Manifest regenerated. Public/cross-browser/playtest/prototype margins remain open; G3 off. `evidence/PHASE_4.md`. |
 | 03/11 | Phase 3 G0→G1→G2→G4→G3: 30 tests, 649 Legacy editions, sourced TSW layer, demo no writes, Draft property/QA with flag off. `evidence/PHASE_3.md`. |
 | 03/11 | Phase 2 xanh: 19 tests, F0/reload/recovery, incremental BO3, Skip fake clock, header/font/lang. DEC-5 4000 seeds/ô: 68.70/54.23/48.63/49.52/49.30%, đủ dải. `evidence/PHASE_2.md`; bắt đầu G0 sau gate này. |
 | 03/11 | Phase 1 P0 xanh: Playwright F0 390×844 + reload/recovery + blocked storage/clipboard; 11 tests và build xanh. Chi tiết `evidence/PHASE_1.md`. Đã báo cáo trước khi bắt đầu Phase 2; chưa bắt đầu mục G. |

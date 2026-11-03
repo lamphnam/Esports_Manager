@@ -1,0 +1,3 @@
+# Keep generated checksums reproducible on Windows and Linux checkouts.
+src/data/generated/*.json text eol=lf
+docs/ref/golden_road/data.js text eol=crlf

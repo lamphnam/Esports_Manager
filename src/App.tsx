@@ -10,6 +10,7 @@ import {FEATURE_GOLDEN_ROAD} from './data/featureFlags';
 import { GameProvider, useGame } from './context/GameContext';
 import { CAMPAIGN_CHAPTERS } from './data/campaignData';
 import { PackDrawResult } from './lib/economyEngine';
+import {getEditionById} from './data/cardCatalog';
 import { CampaignView } from './views/CampaignView';
 import { CollectionView } from './views/CollectionView';
 import { FacilitiesView } from './views/FacilitiesView';
@@ -20,7 +21,7 @@ import { TrainingView } from './views/TrainingView';
 import { TransfersView } from './views/TransfersView';
 
 function MainApp() {
-  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward } = useGame();
+  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward, activeMatch, saveActiveMatch, pendingReveal,clearPackReveal,ownedCards } = useGame();
 
   const [currentTab, setCurrentTab] = useState('hub');
   const [activeMatchChapterId, setActiveMatchChapterId] = useState<number | null>(null);
@@ -36,6 +37,12 @@ function MainApp() {
       if (result) { setOpenedPackResult(result); setPendingWelcome(false); }
     }
   }, [pendingWelcome, club?.packs]);
+  useEffect(()=>{if(!isLoading&&activeMatch)setActiveMatchChapterId(activeMatch.chapterId);},[isLoading,activeMatch?.chapterId]);
+  useEffect(()=>{
+    if(!pendingReveal)return;
+    const owned=ownedCards.find(card=>card.instanceId===pendingReveal.instanceId),edition=owned?getEditionById(owned.editionId):null;
+    if(owned&&edition)setOpenedPackResult({ownedCard:owned,edition,wasPityTriggered:pendingReveal.wasPityTriggered,newPityMisses:club?.scoutPityMisses || 0});
+  },[pendingReveal?.instanceId,isLoading]);
 
   if (isLoading) return <div role="status" className="p-6 text-slate-200">Đang tải dữ liệu...</div>;
 
@@ -58,6 +65,7 @@ function MainApp() {
     : null;
 
   const handleVictoryClaim = (chapterId: number) => {
+    saveActiveMatch(null);
     const claimed = claimChapterReward(chapterId);
     setActiveMatchChapterId(null);
 
@@ -106,12 +114,16 @@ function MainApp() {
 
         {currentTab === 'facilities' && <FacilitiesView />}
       </main>
+      <footer className="px-4 py-5 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+        <p>Trò chơi mô phỏng sự nghiệp esports, sử dụng quy tắc và chỉ số giải trí. Lịch, thể thức và điều kiện tham dự được giản lược; không phản ánh đầy đủ hệ thống thi đấu chính thức. Đây không phải sản phẩm chính thức của Riot/Acer.</p>
+        <p>Dữ liệu rating lịch sử tham khảo Golden Road, được dùng và điều chỉnh theo quyền chủ dự án đã có. Mã nguồn, giao diện và tài sản hình ảnh được phát triển độc lập. Save lưu trên thiết bị; hãy xuất Recovery Code sau khi chơi.</p>
+      </footer>
 
       {/* Modals & Dialogs */}
       {activeMatchChapter && (
         <MatchCenterModal
           chapter={activeMatchChapter}
-          onClose={() => setActiveMatchChapterId(null)}
+          onClose={() => {saveActiveMatch(null);setActiveMatchChapterId(null);}}
           onVictoryClaim={handleVictoryClaim}
         />
       )}
@@ -119,7 +131,7 @@ function MainApp() {
       {openedPackResult && (
         <PackOpeningModal
           packResult={openedPackResult}
-          onClose={() => setOpenedPackResult(null)}
+          onClose={() => {clearPackReveal();setOpenedPackResult(null);}}
         />
       )}
 

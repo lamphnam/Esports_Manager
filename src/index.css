@@ -26,6 +26,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  button { min-height:44px; min-width:44px; }
+  :focus-visible { outline:2px solid #FFB800; outline-offset:3px; }
 
   h1, h2, h3, h4, .font-display {
     font-family: 'Barlow', 'Be Vietnam Pro', sans-serif;
@@ -54,7 +56,7 @@
   background: #FFB800;
 }
 
-/* Card rarity border & surface treatments - Zero Purple */
+/* Card rarity border & surface treatments */
 .card-glow-common {
   box-shadow: 0 2px 12px -2px rgba(148, 163, 184, 0.12);
   border-color: rgba(148, 163, 184, 0.35);
@@ -92,4 +94,8 @@
   );
   transform: rotate(25deg);
   pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  .holo-card-shine { display:none; }
 }

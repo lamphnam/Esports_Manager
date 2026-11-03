@@ -4,12 +4,14 @@ import { PlayerCard } from '../components/PlayerCard';
 import { useGame } from '../context/GameContext';
 import { getEditionById, getPlayerById } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
+import {useDialog} from '../lib/useDialog';
 
 export const CollectionView: React.FC = () => {
   const { ownedCards, getOwnedCardWithDetails, club } = useGame();
   const [selectedRole, setSelectedRole] = useState<string>('ALL');
   const [selectedRarity, setSelectedRarity] = useState<string>('ALL');
   const [inspectCardId, setInspectCardId] = useState<string | null>(null);
+  const inspection=useDialog(()=>setInspectCardId(null),!!inspectCardId);
 
   // Filter owned cards
   const filteredCards = ownedCards.filter((c) => {
@@ -120,7 +122,7 @@ export const CollectionView: React.FC = () => {
       {/* Detailed Card Inspection Modal */}
       {inspectedDetails && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
-          <div className="relative w-full max-w-lg bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 overflow-hidden">
+          <div ref={inspection} role="dialog" aria-modal="true" aria-label="Chi Tiết Thẻ" tabIndex={-1} className="relative w-full max-w-lg max-h-[90dvh] bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 overflow-y-auto">
             <div className="flex justify-between items-start pb-3 border-b border-slate-800">
               <div>
                 <span className="text-xs font-mono font-bold text-[#FFB800] uppercase">
@@ -132,6 +134,7 @@ export const CollectionView: React.FC = () => {
                 <span className="text-xs text-slate-300">{inspectedDetails.player.region}</span>
               </div>
               <button
+                aria-label="Đóng chi tiết thẻ"
                 onClick={() => setInspectCardId(null)}
                 className="p-1.5 text-slate-300 hover:text-white bg-slate-800 border border-slate-700 rounded cursor-pointer"
               >

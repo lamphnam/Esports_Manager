@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.2.3 — 2026-11-03 (Phase 3/4, rulesVersion v1.2.0)
+- Thêm importer Legacy có provenance/checksum, historical demo không ghi career, đối thủ Ch6–12 và daily market; nguồn TSW 2026 có confidence, không dùng Low. Draft clean-room sau flag tắt, có cap thưởng và poster canvas mới.
+- Sửa reload giữa trận/recap/pack bằng persisted snapshot và reveal; sửa FOCUS_1 giữ lựa chọn pha cũ, role chính edition lịch sử và validation save.
+- Theo phản hồi chủ dự án: thêm kết quả từng ván BO3/BO5, tỷ số chuỗi và logs, dừng cho tới khi bấm Next; cả career và demo. Trạng thái recap career survive reload.
+- Modal semantics/Esc/focus trap/reduced motion, touch >=44px; SVG role tự vẽ thay emoji. Xóa tài liệu nội bộ khỏi public, gỡ dependency không dùng, clean Windows, README/CI/harness/template deploy và scripts kiểm chứng.
+- 31 tests, 14 browser results xanh; DEC-5 đủ dải. Public HTTPS/portal/browser thật/playtest và hai mục tiêu prototype phụ chưa hoàn tất; không bật G3 hoặc nhận là submission-ready. Chi tiết `evidence/PHASE_4.md`.
+
 ## v2.2.2 — 2026-11-03 (Phase 0–2, rulesVersion v1.1.0)
 - Thêm strict TypeScript, vitest, invariant/property tests và balance-sim.
 - Sửa Welcome Pack, Recovery Code nén và lưu một snapshot; F0 390×844/reload xanh.

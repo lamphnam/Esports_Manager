@@ -114,7 +114,7 @@ export const AudioSynth = {
         osc.stop(startTime + 0.5);
       });
     } else if (rarity === 'EPIC') {
-      // Mystical purple swell
+      // Synthesizer swell
       const notes = [392, 493.88, 587.33, 784];
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();

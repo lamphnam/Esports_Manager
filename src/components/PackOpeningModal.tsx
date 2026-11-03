@@ -7,6 +7,7 @@ import { AudioSynth } from '../lib/audioSynth';
 import { PackDrawResult } from '../lib/economyEngine';
 import { Role } from '../types';
 import { PlayerCard, RARITY_CONFIG } from './PlayerCard';
+import {useDialog} from '../lib/useDialog';
 
 interface PackOpeningModalProps {
   packResult: PackDrawResult;
@@ -18,6 +19,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
   onClose,
 }) => {
   const { club, equipCard, getOwnedCardWithDetails } = useGame();
+  const dialog=useDialog(onClose);
   const [animationStage, setAnimationStage] = useState<'SILHOUETTE' | 'BLOOM' | 'REVEALED'>('SILHOUETTE');
   const [isEquipped, setIsEquipped] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -37,6 +39,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
     : edition.baseOvr - 60;
 
   useEffect(() => {
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){handleSkip();return;}
     // Stage 1: Silhouette (0 - 800ms)
     const t1 = setTimeout(() => {
       if (revealed.current) return;
@@ -51,6 +54,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
       setAnimationStage('REVEALED');
       if (edition.rarity === 'LEGENDARY' || edition.rarity === 'EPIC') {
         confetti({
+          disableForReducedMotion:true,
           particleCount: edition.rarity === 'LEGENDARY' ? 80 : 45,
           spread: 70,
           origin: { y: 0.6 },
@@ -76,6 +80,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
     AudioSynth.playCardReveal(edition.rarity);
     if (edition.rarity === 'LEGENDARY' || edition.rarity === 'EPIC') {
       confetti({
+        disableForReducedMotion:true,
         particleCount: 50,
         spread: 60,
         origin: { y: 0.6 },
@@ -95,7 +100,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4">
-      <div className="relative w-full max-w-lg bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 overflow-hidden flex flex-col items-center">
+      <div ref={dialog} role="dialog" aria-modal="true" aria-label="Mở Thẻ Tuyển Thủ" tabIndex={-1} className="relative w-full max-w-lg max-h-[90dvh] bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 overflow-y-auto flex flex-col items-center">
         {/* Skip button available during reveal */}
         {animationStage !== 'REVEALED' && (
           <button
@@ -109,6 +114,7 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
         {/* Close Button once revealed */}
         {animationStage === 'REVEALED' && (
           <button
+            aria-label="Đóng mở thẻ"
             onClick={onClose}
             className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-white bg-slate-800 border border-slate-700 rounded transition-colors z-20 cursor-pointer"
           >

@@ -166,6 +166,13 @@ export interface MatchSimulationResult {
   counterfactual: CounterfactualComparison[];
   coachingAdvice: string;
 }
+export interface CareerMatchSave {
+  chapterId:number;seed:number;playerSnapshot:TeamSnapshot;opponentSnapshot:TeamSnapshot;
+  matchState:'PREVIEW'|'PLAYING'|'GAME_RECAP'|'RESOLVED';activeGameIndex:number;currentPhaseIndex:number;
+  simulationResult:MatchSimulationResult|null;
+  selectedEarly:EarlyTactic;selectedMid:MidTactic;selectedLate:LateTactic;
+  focusPhase:MatchPhase;manualAll:boolean;
+}
 
 export type PackFamily = 'WELCOME' | 'SCOUT' | 'ELITE' | 'CHAMPION';
 

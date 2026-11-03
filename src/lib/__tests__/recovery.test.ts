@@ -5,6 +5,11 @@ import { emptySave, GameSave, saveReducer, validateSave } from '../saveState';
 
 import {sampleSave} from './fixtures';
 describe('Recovery Code',()=>{
+  it('rejects malformed persisted match snapshots instead of importing a blank screen',()=>{
+    const save=sampleSave();
+    save.activeMatch={chapterId:1,seed:1,matchState:'PREVIEW',activeGameIndex:0,currentPhaseIndex:0,selectedEarly:'SAFE_FARM',selectedMid:'CONTEST_OBJECTIVE',selectedLate:'FORCE_TEAMFIGHT',focusPhase:'MID',manualAll:false,simulationResult:null,playerSnapshot:{teamName:'bad',ratings:{},roster:[{},{},{},{},{}]},opponentSnapshot:{teamName:'bad',ratings:{},roster:[{},{},{},{},{}]}} as unknown as NonNullable<GameSave['activeMatch']>;
+    expect(()=>validateSave(save)).toThrow();
+  });
   it('P1-13 bounds the hot ledger and archives old balances',()=>{
     const state=sampleSave();const ledger=Array.from({length:600},(_,i)=>({id:`id-${i}`,timestamp:1,deltaCredits:1,deltaMaterials:0,deltaTickets:0,reason:'test',sourceType:'SPONSOR' as const}));
     const save=saveReducer(state,{ledger});

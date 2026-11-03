@@ -44,6 +44,10 @@ async (driver) => {
       api.trainCard(initial.ownedCards[0].instanceId,'mechanics');api.trainCard(initial.ownedCards[1].instanceId,'mechanics');
       const ids=(await snapshot()).ledger.map(entry=>entry.id);
       checks['P1-13 IDs unique under same timestamp']=new Set(ids).size===ids.length;
+      const historical=catalog.EDITIONS_CATALOG.find(ed=>ed.editionCode==='LEGACY'&&ed.role!==catalog.getPlayerById(ed.playerId).primaryRole&&ed.role===catalog.getPlayerById(ed.playerId).secondaryRole);
+      const season=structuredClone(initial);season.ownedCards.push({instanceId:'historical-role',editionId:historical.id,playerId:historical.playerId,level:1,trainedStats:{},acquiredAt:1,acquiredFrom:'test'});
+      await api.restoreFromRecoveryCode(await encodeSave(season));api.equipCard(historical.role,'historical-role');
+      checks['edition primary role has no secondary penalty']=api.getTeamSnapshot().roster.find(p=>p.role===historical.role).effectiveStats.mechanics===historical.baseStats.mechanics;
       root.unmount();return checks;
     });
     if(Object.values(result).some(value=>!value))throw new Error(JSON.stringify(result));
