@@ -6,6 +6,7 @@ import { PlayerCard } from './PlayerCard';
 
 interface OnboardingModalProps {
   onComplete: (clubName: string, logoKey: string) => void;
+  onRecover: () => void;
 }
 
 const LOGO_PRESETS = [
@@ -23,7 +24,7 @@ const STARTER_EDITION_IDS = [
   'ed_mint_acad',
 ];
 
-export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onComplete }) => {
+export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onComplete, onRecover }) => {
   const [step, setStep] = useState<1 | 2>(1);
   const [clubName, setClubName] = useState('Saigon Rising Esports');
   const [selectedLogo, setSelectedLogo] = useState('gold_star');
@@ -38,6 +39,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onComplete }) 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4 overflow-y-auto">
       <div className="relative w-full max-w-4xl bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 lg:p-8 overflow-hidden my-8">
+        <button className="min-h-11 text-cyan-300 underline mb-3" onClick={onRecover}>Nhập Recovery Code</button>
         {step === 1 ? (
           <div>
             <div className="text-center max-w-xl mx-auto mb-8">

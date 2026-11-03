@@ -56,6 +56,8 @@ Các câu trả lời dưới đây là lời chủ dự án trong phiên làm v
 
 ## Nhật ký thay đổi của file này
 
+Kết quả triển khai Phase 1 (03/11): theo mặc định DEC-1, Recovery Code của Kiến trúc B là bản save nén deflate, version `AR1`, CRC32 và giới hạn kích thước. Mã là snapshot tiến trình, không phải danh tính server; xuất mã mới sau khi chơi. Trạng thái đề xuất của DEC-1 được giữ nguyên. E2E storage bị chặn và round-trip đã xanh, xem `evidence/PHASE_1.md`.
+
 | Ngày | Thay đổi |
 |---|---|
 | 03/11/2026 | Tạo file. Ghi nhận G0 = B. Thêm DEC-1..DEC-9 và Q1..Q4 sau audit mã nguồn và nghiên cứu dữ liệu Golden Road. |

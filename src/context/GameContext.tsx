@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useRef, useState } from 'react';
 import { CAMPAIGN_CHAPTERS } from '../data/campaignData';
 import {
   EDITIONS_CATALOG,
@@ -28,7 +28,9 @@ import {
   TransferOffer,
 } from '../types';
 
-const SAVE_KEY = 'apac_rising_save_v2';
+import { emptySave, GameSave, SAVE_KEY, saveReducer, validateSave } from '../lib/saveState';
+import { encodeSave, decodeSave } from '../lib/recoveryCode';
+const LEGACY_SAVE_KEY = 'apac_rising_save_v2';
 const LEDGER_KEY = 'apac_rising_ledger_v2';
 const CARDS_KEY = 'apac_rising_cards_v2';
 
@@ -56,49 +58,51 @@ interface GameContextType {
     effectiveOvr: number;
   } | null;
   resetGame: () => void;
-  restoreFromRecoveryCode: (code: string) => boolean;
+  restoreFromRecoveryCode: (code: string) => Promise<boolean>;
+  exportRecoveryCode: () => Promise<string>;
+  storageBlocked: boolean;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
-  const [club, setClub] = useState<ClubState | null>(null);
-  const [ownedCards, setOwnedCards] = useState<OwnedCard[]>([]);
-  const [ledger, setLedger] = useState<CurrencyLedgerEntry[]>([]);
-  const [transferOffers, setTransferOffers] = useState<TransferOffer[]>([]);
+  const [save, dispatch] = useReducer(saveReducer, undefined, emptySave);
+  const saveRef = useRef(save);
+  const {club, ownedCards, ledger, transferOffers} = save;
   const [isLoading, setIsLoading] = useState(true);
+  const [storageBlocked, setStorageBlocked] = useState(false);
+  const commit = (patch: Partial<GameSave>) => {
+    saveRef.current = saveReducer(saveRef.current, patch);
+    dispatch(patch);
+  };
+  const setClub = (club: ClubState | null) => commit({club});
+  const setOwnedCards = (value: OwnedCard[] | ((prev: OwnedCard[]) => OwnedCard[])) => commit({ownedCards: typeof value === 'function' ? value(saveRef.current.ownedCards) : value});
+  const setLedger = (value: CurrencyLedgerEntry[] | ((prev: CurrencyLedgerEntry[]) => CurrencyLedgerEntry[])) => commit({ledger: typeof value === 'function' ? value(saveRef.current.ledger) : value});
+  const setTransferOffers = (value: TransferOffer[] | ((prev: TransferOffer[]) => TransferOffer[])) => commit({transferOffers: typeof value === 'function' ? value(saveRef.current.transferOffers) : value});
 
-  // Load from local storage
   useEffect(() => {
     try {
-      const savedClub = localStorage.getItem(SAVE_KEY);
-      const savedCards = localStorage.getItem(CARDS_KEY);
-      const savedLedger = localStorage.getItem(LEDGER_KEY);
-
-      if (savedClub && savedCards) {
-        setClub(JSON.parse(savedClub));
-        setOwnedCards(JSON.parse(savedCards));
-        if (savedLedger) setLedger(JSON.parse(savedLedger));
+      const saved = localStorage.getItem(SAVE_KEY);
+      const legacyClub = localStorage.getItem(LEGACY_SAVE_KEY);
+      const legacyCards = localStorage.getItem(CARDS_KEY);
+      if (saved) commit(validateSave(JSON.parse(saved)));
+      else if (legacyClub && legacyCards) {
+        const oldClub = JSON.parse(legacyClub);
+        oldClub.recoveryCode = '';
+        commit(validateSave({...emptySave(), club:oldClub, ownedCards:JSON.parse(legacyCards), ledger:JSON.parse(localStorage.getItem(LEDGER_KEY) || '[]')}));
       }
-    } catch (e) {
-      console.error('Failed to load save state:', e);
-    } finally {
-      setIsLoading(false);
-    }
+      localStorage.setItem('apac_storage_probe', '1');
+      localStorage.removeItem('apac_storage_probe');
+    } catch { setStorageBlocked(true); }
+    finally { setIsLoading(false); }
   }, []);
 
-  // Save changes
   useEffect(() => {
     if (!isLoading && club) {
-      try {
-        localStorage.setItem(SAVE_KEY, JSON.stringify(club));
-        localStorage.setItem(CARDS_KEY, JSON.stringify(ownedCards));
-        localStorage.setItem(LEDGER_KEY, JSON.stringify(ledger));
-      } catch (e) {
-        console.error('Failed to persist game state:', e);
-      }
+      try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
+      catch { setStorageBlocked(true); }
     }
-  }, [club, ownedCards, ledger, isLoading]);
+  }, [save, isLoading]);
 
   // Initial transfer offers
   useEffect(() => {
@@ -152,7 +156,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       SUPPORT: initialCards[4].instanceId,
     };
 
-    const recoveryCode = `AR-${Math.random().toString(36).substring(2, 8).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+    const recoveryCode = ''; // Exported on demand from the current save.
 
     const newClub: ClubState = {
       id: `club_${Date.now()}`,
@@ -201,6 +205,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Equip a card into a role slot
    */
   const equipCard = (role: Role, cardInstanceId: string): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const card = ownedCards.find((c) => c.instanceId === cardInstanceId);
     if (!card) return false;
@@ -224,6 +229,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Train card stat (+1 stat)
    */
   const trainCard = (cardInstanceId: string, statKey: keyof PlayerStats): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const card = ownedCards.find((c) => c.instanceId === cardInstanceId);
     if (!card) return false;
@@ -278,6 +284,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Opens an available pack instance from inventory
    */
   const openPack = (family: PackFamily): PackDrawResult | null => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return null;
     const packIndex = club.packs.findIndex((p) => p.family === family);
     if (packIndex === -1) return null;
@@ -303,6 +310,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Purchase a pack using credits
    */
   const buyPackWithCredits = (family: PackFamily): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const packDef = PACK_DEFINITIONS[family];
     if (club.wallet.credits < packDef.priceCredits) return false;
@@ -345,6 +353,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Buy transfer offer from NPC market
    */
   const buyTransferOffer = (offerId: string): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const offer = transferOffers.find((o) => o.id === offerId);
     if (!offer) return false;
@@ -397,6 +406,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Upgrade club facility
    */
   const upgradeFacility = (code: string): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const currentTier = club.facilities[code] || 0;
     if (currentTier >= 3) return false;
@@ -438,6 +448,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Claim chapter first-clear rewards
    */
   const claimChapterReward = (chapterId: number): boolean => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     if (club.completedChapterIds.includes(chapterId)) return false;
 
@@ -489,6 +500,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * Assembles the active 5-player team snapshot
    */
   const getTeamSnapshot = (): TeamSnapshot => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) {
       return {
         teamName: 'Đội Chưa Thành Lập',
@@ -552,6 +564,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   };
 
   const getOwnedCardWithDetails = (instanceId: string) => {
+    const {club, ownedCards, transferOffers} = saveRef.current;
     const owned = ownedCards.find((c) => c.instanceId === instanceId);
     if (!owned) return null;
     const edition = getEditionById(owned.editionId);
@@ -570,23 +583,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetGame = () => {
+    commit(emptySave());
     try {
-      localStorage.removeItem(SAVE_KEY);
-      localStorage.removeItem(CARDS_KEY);
-      localStorage.removeItem(LEDGER_KEY);
-      setClub(null);
-      setOwnedCards([]);
-      setLedger([]);
-    } catch {}
+      for (const key of [SAVE_KEY, LEGACY_SAVE_KEY, CARDS_KEY, LEDGER_KEY]) localStorage.removeItem(key);
+    } catch { setStorageBlocked(true); }
   };
 
-  const restoreFromRecoveryCode = (code: string): boolean => {
-    // For demo/offline mode, valid format verification
-    if (code && code.startsWith('AR-')) {
-      // Create mock restore or alert
+  const exportRecoveryCode = () => encodeSave(saveRef.current);
+  const restoreFromRecoveryCode = async (code: string): Promise<boolean> => {
+    try {
+      const restored = await decodeSave(code);
+      commit(restored);
       return true;
-    }
-    return false;
+    } catch { return false; }
   };
 
   return (
@@ -610,6 +619,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         getOwnedCardWithDetails,
         resetGame,
         restoreFromRecoveryCode,
+        exportRecoveryCode,
+        storageBlocked,
       }}
     >
       {children}

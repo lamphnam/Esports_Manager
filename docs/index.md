@@ -97,8 +97,8 @@ Phase 0
 - [x] `vitest` + `strict` TypeScript; tests for matrix, sub-seed golden, pity boundary, probability bounds; `scripts/balance-sim.ts` — [Phase 0 evidence](evidence/PHASE_0.md): 6 tests, 100k pack opens, 15k series, 4000 series/balance cell.
 
 Phase 1 — P0 · *Gate: the full F0 loop passes in an E2E at 390×844*
-- [ ] P0-1 Welcome Pack opens right after the Chapter 1 win (state moved to a reducer; no `setTimeout` orchestration)
-- [ ] P0-2 Recovery Code carries a compressed save; import UI; storage-blocked banner (`DECISIONS.md` DEC-1)
+- [x] P0-1 Welcome Pack opens right after the Chapter 1 win (state moved to a reducer; no `setTimeout` orchestration) — [Phase 1 evidence](evidence/PHASE_1.md), Playwright F0 390×844, 6 cards / 1000 credits / equip + reload.
+- [x] P0-2 Recovery Code carries a compressed save; import UI; storage-blocked banner (`DECISIONS.md` DEC-1) — `recovery.test.ts` (5 tests), `scripts/e2e-storage.js`, [red/green + evidence](evidence/PHASE_1.md).
 
 Phase 2 — P1 and polish
 - [ ] `equipCard` cannot put one card in two slots
@@ -182,6 +182,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Phase 1 P0 xanh: Playwright F0 390×844 + reload/recovery + blocked storage/clipboard; 11 tests và build xanh. Chi tiết `evidence/PHASE_1.md`. Đã báo cáo trước khi bắt đầu Phase 2; chưa bắt đầu mục G. |
 | 03/11 | Phase 0 xanh: strict typecheck + 6 invariant tests; balance baseline đã ghi trong `evidence/PHASE_0.md`. Baseline nguyên trạng `ca12d39`; nhánh `fix/audit-and-golden-road`, không push. |
 | 27/10 | Spec pack v2.2 reviewed; `CLAUDE.md` and `index.md` created. G0 pending. |
 | 03/11 | Code audit of the existing build (Architecture B): 2 P0, 13 P1. Checked by simulation: sub-seed independence, matrix properties, pity boundary, probability bounds all pass. Starter-team win rates measured: Ch1 66-69%, Ch2 46%, Ch3 26%, Ch4 20%, Ch5 5%. |
