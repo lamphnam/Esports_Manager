@@ -231,6 +231,7 @@ export interface Chapter {
     archetype: OpponentArchetype;
     description: string;
     difficultyBonus?: number; // season/difficulty adjustment already applied to the displayed OVR
+    isFinalBoss?: boolean; // the Worlds final opponent
     rosterPreview: {
       role: Role;
       displayName: string;

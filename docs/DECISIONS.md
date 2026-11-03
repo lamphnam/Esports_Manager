@@ -30,6 +30,7 @@ Agent không được tự đổi trạng thái "Đề xuất" thành "Đã ch�
 | DEC-13 | **Pack mở thẻ từ cả `CURRENT_EDITIONS` và `LEGACY`** (`PACK_POOL`). Odds, pity và ràng buộc Common ≥ 62 không đổi. | Pool 30 thẻ làm các tuyển thủ lặp lại liên tục dù dataset có 649 thẻ Legacy. Chủ dự án nêu ngày 03/11/2026. | **Đã ghi nhận** (chủ dự án, 03/11/2026, chờ xác nhận văn bản) |
 | DEC-14 | **Độ khó Ch6–12 theo đường cong:** OVR mục tiêu 80/84/86/88/90/93/95, đội thật gần mục tiêu, mỗi đội một lần, `difficultyBonus` ≤ 16 hiển thị cho người chơi; hiệu chỉnh bằng `progression-sim` (mục tiêu win rate của người chơi *engaged* 45–62% Ch6–9, 42–60% Ch10, 40–58% Ch11, 38–55% Ch12). | Đối thủ rút ngẫu nhiên (OVR 70–82) trong khi đội người chơi đạt 87–90 ở cuối game nên thắng ~90%. Các con số mục tiêu là đề xuất của agent theo yêu cầu "game quá dễ" của chủ dự án. | Đề xuất |
 | DEC-15 | **Vòng lặp mùa giải + bracket:** sau Worlds (Ch12) sang mùa mới (năm +1, giữ đội/thẻ/ví, +1000 credits, bắt đầu từ Ch3, đối thủ lịch sử mạnh hơn, trần 97). 12 chương gom thành 7 bracket hiển thị; **chưa thêm trận mới** vào bracket. | Chủ dự án báo game dừng mãi ở chương cuối và chỉ có nút "Thi đấu ngay". Mục tiêu độ khó mùa mới là đề xuất của agent. | Đề xuất |
+| DEC-16 | **Thiên vị Chovy và Gen.G:** trọng số khi chọn thẻ trong cùng độ hiếm (Chovy ×5, Gen.G ×2, không đổi odds/pity), ngôi sao cạnh tên, và **Gen.G là trùm cuối Chapter 12 ở mọi mùa** (không xuất hiện chương khác). | Chủ dự án là fan Gen.G và Chovy, yêu cầu 03/11/2026. Trọng số và việc chọn Gen.G làm trùm là cách agent hiện thực hóa yêu cầu. | **Đã ghi nhận** (chủ dự án, 03/11/2026, chờ xác nhận văn bản) |
 
 ---
 
@@ -85,6 +86,7 @@ Việc cần xác nhận với BTC (origin trang nhúng, thuộc tính iframe, t
 | 03/11/2026 | Tạo file. Ghi nhận G0 = B. Thêm DEC-1..DEC-9 và Q1..Q4 sau audit mã nguồn và nghiên cứu dữ liệu Golden Road. |
 | 03/11/2026 | Chủ dự án trả lời Q1-Q3; cập nhật DEC-3, DEC-4, DEC-7, DEC-9; thêm Q5 và Q6. |
 | 03/11/2026 | Gộp tài liệu. Chủ dự án chốt: hạn 15/11 (Q5 đóng, Q3 bị thay thế), host Vercel (DEC-10), khai AI ở ô riêng khi nộp (DEC-11). Agent thêm DEC-12. Tách các mục đã chốt khỏi "Đề xuất"; giữ nguyên trạng thái các mục DEC-1, 2, 4 (mapping), 5–9. G0 vẫn "Đã ghi nhận". |
+| 03/11/2026 | Chủ dự án yêu cầu thiên vị Chovy/Gen.G và Gen.G làm trùm cuối: DEC-16. |
 | 03/11/2026 | Chủ dự án yêu cầu UI trận kiểu Worlds Mayhem, bracket mùa giải, hiển thị đội hình hai bên và qua mùa mới: DEC-15. |
 | 03/11/2026 | Chủ dự án báo game quá dễ từ Ch6 và pack lặp: DEC-13 (pool pack gồm Legacy, thay DEC-2), DEC-14 (đường cong độ khó Ch6–12). |
 | 03/11/2026 | Chủ dự án yêu cầu triển khai DEC-12 → **Đã chốt** và đã triển khai. Dọn `docs/ref/golden_road/`: chỉ còn `data.js` (nguồn importer). |

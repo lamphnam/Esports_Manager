@@ -17,6 +17,7 @@ import {
 import { newId, vietnamDay } from './identity';
 import {murmurHash3} from './seededRng';
 import {CURRENT_EDITIONS} from '../data/currentCatalog';
+import {favoriteWeight} from '../data/favorites';
 import { SeededRng } from './seededRng';
 
 // Packs draw from the current editions plus the historical (LEGACY) editions, so the same few cards do not repeat.
@@ -25,6 +26,9 @@ export const PACK_POOL: PlayerCardEdition[] = [
   ...CURRENT_EDITIONS,
   ...EDITIONS_CATALOG.filter((e) => e.editionCode === 'LEGACY'),
 ];
+
+// Chance of each card among cards of the same rarity; favourites (see data/favorites.ts) weigh more.
+export const PACK_WEIGHT=new Map<string,number>(PACK_POOL.map((e)=>[e.id,favoriteWeight(e,getPlayerById(e.playerId)?.displayName)]));
 
 export const PACK_DEFINITIONS: Record<PackFamily, PackDefinition> = {
   WELCOME: {
@@ -143,7 +147,7 @@ export function openPackInstance(
     throw new Error(`Missing pack pool for ${chosenRarity}`);
   }
 
-  const chosenEdition = rng.choice(eligibleEditions);
+  const chosenEdition = rng.weightedChoice(eligibleEditions, eligibleEditions.map((e) => PACK_WEIGHT.get(e.id) ?? 1));
 
   // Update pity counter
   let newPityMisses = currentPityMisses;

@@ -71,7 +71,10 @@ export const SeasonBracket: React.FC<BracketProps> = ({ chapters, completedIds, 
                           {status === 'locked' && <Lock className="h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true" />}
                           {status === 'current' && <ArrowRight className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />}
                         </span>
-                        <span className="text-label font-semibold text-fg [overflow-wrap:anywhere]">{chapter.opponent.name}</span>
+                        <span className="text-label font-semibold text-fg [overflow-wrap:anywhere]">
+                          {chapter.opponent.name}
+                          {chapter.opponent.isFinalBoss && <span className="badge badge-danger ml-2 align-middle">Trùm cuối</span>}
+                        </span>
                         <span className="flex flex-wrap items-center gap-x-2 text-caption text-fg-muted">
                           <span className="font-mono-nums">{chapter.format}</span>
                           <span aria-hidden="true">·</span>

@@ -2,6 +2,17 @@
 
 `rulesVersion` hiện tại: **v1.2.0** (`docs/config/balance.initial.json`). Đổi luật gameplay phải tăng `rulesVersion`, ghi một mục ở đây và kiểm tra các nơi lặp số (pack odds/pity: `ECONOMY.md` + `balance.initial.json`; giới hạn simulator và chính sách quyết định: `MATCH_SIMULATOR.md` + `balance.initial.json` + `tactics.matrix.json`).
 
+## 2026-11-03 — thiên vị Chovy/Gen.G, Gen.G là trùm cuối (rulesVersion v1.5.0)
+
+- `favorites.ts`: trọng số chọn thẻ trong cùng độ hiếm (Chovy ×5, Gen.G ×2); odds độ hiếm và pity không đổi. Ngôi sao cạnh tên thẻ; ghi chú ở màn Pack.
+- Chapter 12 luôn là Gen.G (`FINAL_BOSS`), loại Gen.G khỏi các chương khác; nhãn "Trùm cuối" ở bracket, Hub và màn trước trận.
+- Test: `favorites.test.ts`, `season.test.ts` mở rộng; `progression-sim` vẫn đạt mọi dải (Ch12 Gen.G thắng 46–51%).
+
+## 2026-11-03 — minimap thật và icon vai trò trên bản đồ trận
+
+- `LaneMap` dùng minimap Summoner's Rift (`src/assets/map/summoners-rift-minimap.png`, 512px, 73 KB) làm nền; đường đi và vị trí jungle căn lại theo ảnh. Token hiển thị bằng icon vị trí (`roleIconSrc`) thay cho chữ viết tắt; thiếu icon thì hiện nhãn TOP/JNG/MID/BOT/SUP.
+- Đổi tên file bản đồ bỏ dấu nháy. Ghi `asset_license` (Riot, theo email của chủ dự án).
+
 ## 2026-11-03 — logo game
 
 - Logo do Gemini tạo (chữ A vàng, đôi cánh xanh, nền navy) thay ô cúp trong navbar; favicon 32/64px và apple-touch-icon 180px trong `public/`. Bản gốc 2048px (3.7 MB) giữ ở `src/assets/brand/logo-master.png` và **không** vào bundle; chỉ bản 128px (33 KB) được đóng gói. Nền logo là navy đặc, chưa có bản nền trong suốt.

@@ -17,6 +17,8 @@ export const SEASON_STEP=2;
 export const MAX_TEAM_OVR=97;
 export const targetOvr=(chapter:number,season:number)=>season<=1?OPPONENT_TARGET_OVR[chapter]:Math.min(MAX_TEAM_OVR,SEASON2_TARGET_OVR[chapter]+(season-2)*SEASON_STEP);
 export const MAX_DIFFICULTY_BONUS=16;
+// The Worlds final is always against this team (owner's pick); it never appears in any other chapter.
+export const FINAL_BOSS={chapter:12,teamId:'geng'};
 const APAC_REGIONS=['VCS','PCS','LMS','LJL'];
 const CLUSTER=1; // teams within this many OVR of the best match are interchangeable
 const ARCHETYPES:OpponentArchetype[]=['EARLY_AGGRO','OBJECTIVE_CONTROL','LATE_SCALING','SPLIT_PRESSURE','BALANCED'];
@@ -45,7 +47,8 @@ export function withDifficultyBonus(snapshot:TeamSnapshot,bonus:number):TeamSnap
 function pick(chapter:number,seed:number,usedTeams:Set<string>,season:number):TeamYear {
  const target=targetOvr(chapter,season);
  const apac=season<=1&&chapter===6;
- const pool=allTeamYears().filter(t=>(!apac||APAC_REGIONS.includes(t.region))&&!usedTeams.has(t.teamId));
+ const boss=chapter===FINAL_BOSS.chapter;
+ const pool=allTeamYears().filter(t=>(boss?t.teamId===FINAL_BOSS.teamId:t.teamId!==FINAL_BOSS.teamId)&&(!apac||APAC_REGIONS.includes(t.region))&&!usedTeams.has(t.teamId));
  const ranked=[...pool].sort((a,b)=>Math.abs(a.ovr-target)-Math.abs(b.ovr-target));
  const best=Math.abs(ranked[0].ovr-target);
  // Prefer the strongest real team when the pool cannot reach the target, so the difficulty bonus stays minimal.
@@ -62,5 +65,5 @@ export function legacyOpponent(chapter:number,seed:number,season=1):Chapter['opp
  const snapshot=withDifficultyBonus(historicalTeam(chosen.teamId,chosen.year),Math.min(MAX_DIFFICULTY_BONUS,Math.max(0,target-chosen.ovr)));
  const rng=new SeededRng(murmurHash3(`archetype-${chapter}-${seed}`));
  const bonus=snapshot.difficultyBonus;
- return {snapshot,name:snapshot.teamName,shortTag:chosen.teamId.toUpperCase().slice(0,4),logoKey:snapshot.logoKey,ovr:snapshot.teamOvr,archetype:rng.choice(ARCHETYPES),description:'Đội hình Legacy trong nhánh loại trực tiếp hư cấu; không phải đội hình hay thể thức mùa hiện tại.',difficultyBonus:bonus,rosterPreview:snapshot.roster.map(p=>({role:p.role,displayName:p.displayName,ovr:p.ovr}))};
+ return {snapshot,name:snapshot.teamName,shortTag:chosen.teamId.toUpperCase().slice(0,4),logoKey:snapshot.logoKey,ovr:snapshot.teamOvr,archetype:rng.choice(ARCHETYPES),description:chapter===FINAL_BOSS.chapter?'Trùm cuối của mùa giải: Gen.G, đội hình lịch sử mạnh nhất trong game. Hư cấu, không phải đội hình hay thể thức mùa hiện tại.':'Đội hình Legacy trong nhánh loại trực tiếp hư cấu; không phải đội hình hay thể thức mùa hiện tại.',isFinalBoss:chapter===FINAL_BOSS.chapter||undefined,difficultyBonus:bonus,rosterPreview:snapshot.roster.map(p=>({role:p.role,displayName:p.displayName,ovr:p.ovr}))};
 }

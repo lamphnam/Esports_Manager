@@ -18,7 +18,7 @@ async (page) => {
     // 2. Opening the Worlds final shows both line-ups
     await p.getByRole('button',{name:/Chung Kết Thế Giới \(Worlds\), Chung kết, chương 12/}).click();
     const dialog=p.getByRole('dialog',{name:'Trung Tâm Trận Đấu'});await dialog.waitFor();
-    const opponentCards=await dialog.locator('section[aria-label^="Đối thủ"] li').count();
+    const opponentCards=await dialog.locator('section[aria-label^="Trùm cuối"] li').count();
     const yourCards=await dialog.locator('section[aria-label^="Đội của bạn"] li').count();
     if(opponentCards!==5||yourCards!==5)throw new Error(`line-ups wrong: ${opponentCards} / ${yourCards}`);
     const header=await dialog.getByText(/Chung Kết Thế Giới \(Worlds\) · Chung kết/).count();

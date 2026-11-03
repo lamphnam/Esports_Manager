@@ -50,7 +50,7 @@ Tab trong `App.tsx`: Hub, Campaign, Lineup, Collection, Packs, Training, Transfe
 | 9 | 3 | Tấm Vé Cuối Cùng | BO5 | Đội Legacy (mọi khu vực) | 3500 cr, Champion, rep 750 |
 | 10 | 3 | Đối Đầu Cả Thế Giới | BO5 | Đội Legacy (mọi khu vực) | 4000 cr, Champion, rep 900 |
 | 11 | 3 | Bán Kết Sinh Tử | BO5 | Đội Legacy (mọi khu vực) | 5000 cr, 2 Champion, rep 1200 |
-| 12 | 3 | Khắc Tên Vào Lịch Sử | BO5 | Đội Legacy (mọi khu vực) | 10000 cr, 2 Champion, rep 2500 |
+| 12 | 3 | Khắc Tên Vào Lịch Sử | BO5 | **Gen.G (trùm cuối, mọi mùa)** | 10000 cr, 2 Champion, rep 2500 |
 
 - **Bracket mùa giải (DEC-15):** 12 chương được gom thành 7 giải để dễ nhìn (`COMPETITIONS` trong `src/data/season.ts`): Giải Sinh Viên (Ch1–2), Road to VCS (Ch3), VCS (Ch4–5), LCP (Ch6, Ch9), First Stand (Ch7), MSI (Ch8), Worlds (Ch10 Vòng bảng, Ch11 Bán kết, Ch12 Chung kết). **Mỗi vòng vẫn là một series của một chương**: bracket là cách hiển thị và đặt tên, chưa thêm trận mới.
 - **Qua mùa:** thắng Ch12 → màn "Vô địch thế giới" → bước sang mùa sau (năm +1, giữ đội hình/thẻ/ví, +1000 credits, bắt đầu lại từ Ch3 với đối thủ mạnh hơn). Chi tiết số liệu ở [ECONOMY.md](ECONOMY.md) §8.

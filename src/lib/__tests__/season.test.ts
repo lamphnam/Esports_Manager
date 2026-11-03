@@ -58,4 +58,17 @@ describe('seasons', () => {
     // season 1 chapters can be cleared again for rewards in the new season (guard is per season)
     expect(next.completedChapterIds.includes(3)).toBe(false);
   });
+
+  it('Gen.G is the final boss of every season and appears nowhere else', () => {
+    for (const season of [1, 2, 3, 4]) {
+      const chapters = chaptersForSeason(season);
+      const boss = chapters.find((c) => c.id === 12)!;
+      expect(boss.opponent.name.startsWith('Gen.G')).toBe(true);
+      expect(boss.opponent.isFinalBoss).toBe(true);
+      for (const chapter of chapters.filter((c) => c.id !== 12)) {
+        expect(chapter.opponent.name.startsWith('Gen.G'), `season ${season} chapter ${chapter.id}`).toBe(false);
+        expect(chapter.opponent.isFinalBoss).toBeFalsy();
+      }
+    }
+  });
 });

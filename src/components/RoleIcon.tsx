@@ -11,6 +11,9 @@ const PATTERN:Record<Role,RegExp>={TOP:/^top/i,JUNGLE:/^jungle/i,MID:/^(mid|midd
 const fileFor=(role:Role)=>Object.entries(FILES).find(([path])=>PATTERN[role].test(path.split('/').pop()!))?.[1];
 const paths:Record<Role,string>={TOP:'M3 17 8 6l4 7 4-7 5 11H3Z',JUNGLE:'m4 18 4-12 4 12M8 12h4m1 6 4-12 4 12',MID:'m12 3 8 9-8 9-8-9 8-9Zm0 5v8',BOT:'M4 12h16m-6-6 6 6-6 6M4 6v12',SUPPORT:'m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Zm0 5v8m-4-4h8'};
 
+/** URL of the bundled position icon, or undefined when the PNG is missing (callers then draw their own fallback). */
+export const roleIconSrc=(role:Role):string|undefined=>fileFor(role);
+
 export function RoleIcon({role,size=18}:{role:Role;size?:number}){
  const src=fileFor(role);
  if(src)return <img src={src} alt="" aria-hidden="true" width={size} height={size} draggable={false} className="shrink-0 object-contain"/>;

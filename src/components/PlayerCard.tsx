@@ -5,6 +5,8 @@ import {
   getPlayerById,
 } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
+import { Star } from 'lucide-react';
+import { isFavoriteEdition } from '../data/favorites';
 import { OwnedCard, PlayerCardEdition, PlayerIdentity } from '../types';
 import { RarityBadge, RoleBadge, StatBar } from './ui';
 
@@ -68,6 +70,9 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
         <div className="min-w-0 flex-1">
           <h3 className="font-display text-card font-bold leading-tight text-fg [overflow-wrap:anywhere]" title={name}>
             {name}
+            {isFavoriteEdition(edition, name) && (
+              <Star className="ml-1 inline h-3.5 w-3.5 -translate-y-px fill-gold text-gold" role="img" aria-label="Tuyển thủ hoặc đội yêu thích" />
+            )}
           </h3>
           <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
             <RoleBadge role={role} />

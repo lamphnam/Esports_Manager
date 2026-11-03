@@ -75,6 +75,10 @@ export const PacksView: React.FC<PacksViewProps> = ({ onOpenPackSuccess }) => {
         </div>
       </div>
 
+      <p className="text-label text-fg-muted">
+        Tuyển thủ yêu thích: <strong className="text-fg">Chovy</strong> và các thẻ <strong className="text-fg">Gen.G</strong> có cơ hội xuất hiện cao hơn trong cùng độ hiếm. Tỷ lệ độ hiếm ở bảng dưới và cơ chế bảo hiểm không thay đổi.
+      </p>
+
       {/* Pity Status Banner */}
       <div className="p-4 rounded-xl bg-surface border border-line flex items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">

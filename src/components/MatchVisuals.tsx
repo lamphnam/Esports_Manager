@@ -1,6 +1,8 @@
 import React from 'react';
 import { GameSimulationResult, MatchPhase, Role, SeriesFormat } from '../types';
-import { RoleBadge } from './ui';
+import minimap from '../assets/map/summoners-rift-minimap.png';
+import { roleIconSrc } from './RoleIcon';
+import { ROLE_LABELS, RoleBadge } from './ui';
 
 export interface Fielder {
   role: Role;
@@ -82,12 +84,13 @@ const TeamRow: React.FC<TeamRowProps> = ({ side, label, name, ovr, players, rati
 interface VersusProps {
   opponent: Omit<TeamRowProps, 'side' | 'label'>;
   you: Omit<TeamRowProps, 'side' | 'label'>;
+  opponentLabel?: string;
 }
 
 /** Opponent on top, VS, your team underneath: both line-ups visible before the match. */
-export const VersusRosters: React.FC<VersusProps> = ({ opponent, you }) => (
+export const VersusRosters: React.FC<VersusProps> = ({ opponent, you, opponentLabel = 'Đối thủ' }) => (
   <div className="space-y-3">
-    <TeamRow side="opponent" label="Đối thủ" {...opponent} />
+    <TeamRow side="opponent" label={opponentLabel} {...opponent} />
     <div className="flex items-center gap-3" aria-hidden="true">
       <span className="h-px flex-1 bg-line" />
       <span className="font-display text-heading font-extrabold tracking-widest text-gold">VS</span>
@@ -146,14 +149,16 @@ export const SeriesTracker: React.FC<TrackerProps> = ({ format, finished, curren
 
 /* ---------------------------------------------------------------- lane map */
 
+// Coordinates follow the 512x512 minimap image: blue base bottom-left, red base top-right.
 type Point = [number, number];
+const MAP_SIZE = 512;
 const LANES: Record<'TOP' | 'MID' | 'BOT', Point[]> = {
-  TOP: [[28, 272], [28, 28], [272, 28]],
-  MID: [[28, 272], [272, 28]],
-  BOT: [[28, 272], [272, 272], [272, 28]],
+  TOP: [[95, 400], [55, 345], [55, 80], [100, 52], [335, 52]],
+  MID: [[145, 368], [368, 145]],
+  BOT: [[120, 448], [440, 448], [458, 425], [458, 190]],
 };
-const JUNGLE_OWN: Point[] = [[55, 170], [170, 55]];
-const JUNGLE_FOE: Point[] = [[130, 245], [245, 130]];
+const JUNGLE_OWN: Point[] = [[115, 285], [195, 345]];
+const JUNGLE_FOE: Point[] = [[320, 230], [395, 172]];
 
 function along(path: Point[], t: number): Point {
   const lengths = path.slice(1).map((p, i) => Math.hypot(p[0] - path[i][0], p[1] - path[i][1]));
@@ -182,7 +187,7 @@ export function tokenPosition(role: Role, side: 'player' | 'opponent', phase: Ma
   }
   if (role === 'SUPPORT') {
     const [x, y] = along(LANES.BOT, clamp(t + (side === 'player' ? -0.06 : 0.06)));
-    return [x, y - 12];
+    return [x, y - 22];
   }
   return along(LANES[role], t);
 }
@@ -194,29 +199,28 @@ interface MapProps {
   playerWinsPhase: boolean;
 }
 
-/** Stylised lane map. Tokens use initials, never photos; they slide as the phase result changes. */
+/** Summoner's Rift minimap with each fielder shown by the position icon; tokens slide as the phase result changes. */
 export const LaneMap: React.FC<MapProps> = ({ player, opponent, phase, playerWinsPhase }) => {
   const summary = `Bản đồ pha ${phase}: ${playerWinsPhase ? 'đội bạn đang chiếm ưu thế' : 'đối thủ đang chiếm ưu thế'}.`;
   const token = (p: Fielder, side: 'player' | 'opponent') => {
     const [x, y] = tokenPosition(p.role, side, phase, playerWinsPhase);
     const colour = side === 'player' ? 'var(--color-info)' : 'var(--color-danger)';
+    const icon = roleIconSrc(p.role);
     return (
       <g key={`${side}-${p.role}`} style={{ transform: `translate(${x}px, ${y}px)`, transition: 'transform 1100ms ease-in-out' }}>
         <title>{`${p.displayName} (${p.role}) OVR ${p.ovr}`}</title>
-        <circle r="15" fill="var(--color-surface)" stroke={colour} strokeWidth="2.5" />
-        <text textAnchor="middle" dy="4" fontSize="11" fontWeight="700" fill="var(--color-fg)">{initials(p.displayName)}</text>
+        <circle r="25" fill="var(--color-bg)" fillOpacity="0.88" stroke={colour} strokeWidth="4.5" />
+        {icon ? (
+          <image href={icon} x="-16" y="-16" width="32" height="32" />
+        ) : (
+          <text textAnchor="middle" dy="5" fontSize="15" fontWeight="700" fill="var(--color-fg)">{ROLE_LABELS[p.role].name}</text>
+        )}
       </g>
     );
   };
   return (
-    <svg viewBox="0 0 300 300" role="img" aria-label={summary} className="h-auto w-full rounded-xl border border-line bg-bg">
-      <rect x="10" y="10" width="280" height="280" rx="20" fill="var(--color-surface)" opacity="0.6" />
-      <line x1="28" y1="28" x2="272" y2="272" stroke="var(--color-info)" strokeOpacity="0.16" strokeWidth="26" strokeLinecap="round" />
-      {(Object.keys(LANES) as (keyof typeof LANES)[]).map((lane) => (
-        <polyline key={lane} points={LANES[lane].map((pt) => pt.join(',')).join(' ')} fill="none" stroke="var(--color-line)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
-      ))}
-      <circle cx="28" cy="272" r="22" fill="var(--color-info)" fillOpacity="0.2" stroke="var(--color-info)" strokeWidth="2" />
-      <circle cx="272" cy="28" r="22" fill="var(--color-danger)" fillOpacity="0.2" stroke="var(--color-danger)" strokeWidth="2" />
+    <svg viewBox={`0 0 ${MAP_SIZE} ${MAP_SIZE}`} role="img" aria-label={summary} className="h-auto w-full rounded-xl border border-line bg-bg">
+      <image href={minimap} x="0" y="0" width={MAP_SIZE} height={MAP_SIZE} />
       {opponent.map((p) => token(p, 'opponent'))}
       {player.map((p) => token(p, 'player'))}
     </svg>

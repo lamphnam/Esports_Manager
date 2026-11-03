@@ -91,7 +91,7 @@ export const HubView: React.FC<HubViewProps> = ({
 
             <dl className="grid grid-cols-1 gap-x-8 gap-y-2 pt-1 text-label sm:grid-cols-[auto_auto_auto] sm:justify-start">
               <div>
-                <dt className="text-fg-subtle">Đối thủ</dt>
+                <dt className="text-fg-subtle">{currentChapter.opponent.isFinalBoss ? 'Trùm cuối' : 'Đối thủ'}</dt>
                 <dd className="font-semibold text-fg">
                   {currentChapter.opponent.name} <span className="font-mono-nums text-fg-muted">(OVR {currentChapter.opponent.ovr})</span>
                 </dd>

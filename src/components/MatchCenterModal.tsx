@@ -214,6 +214,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             </div>
             {/* Both line-ups, opponent first (Worlds Mayhem style) */}
             <VersusRosters
+              opponentLabel={chapter.opponent.isFinalBoss ? 'Trùm cuối' : undefined}
               opponent={{
                 name: chapter.opponent.name,
                 ovr: opponentSnapshot.teamOvr,

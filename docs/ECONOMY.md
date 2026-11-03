@@ -23,6 +23,8 @@ Tất cả xác suất là **giá trị cân bằng nguyên mẫu**, hiển th�
 
 **Định nghĩa pity chốt (v2.2):** `misses` = số lần mở liên tiếp của cùng pack family không ra Epic+. `pityEpicPlusAt = 8` nghĩa là **tối đa 7 lần liên tiếp không Epic+**; khi `misses == 7`, **lần mở thứ 8 buộc ra Epic+** (loại Common/Rare khỏi bảng trọng số của lần đó). Test biên bắt buộc: lần 7 vẫn có thể hụt, lần 8 không bao giờ hụt, `misses` reset về 0 sau Epic+ (kể cả Epic+ tự nhiên), và chạy 100k lần mở không bao giờ có chuỗi hụt > 7.
 
+**Thẻ yêu thích (DEC-16):** `src/data/favorites.ts` đặt trọng số khi chọn thẻ **trong cùng độ hiếm đã rút**: mọi thẻ của Chovy ×5, thẻ khác của Gen.G ×2, còn lại ×1. Bảng tỷ lệ độ hiếm và pity không đổi (kiểm bằng test). Tần suất đo trên 60k lần mở: Chovy ra ở ~1.2% Welcome, 0.6% Scout, 2.8% Elite, 7.6% Champion mỗi pack; thẻ Gen.G khác ~4.3% / 2.1% / 5.6% / 8.7%. Thẻ có ngôi sao vàng cạnh tên, và màn Pack ghi rõ việc này.
+
 **Chất lượng Common (v2.2):** Common rơi từ Scout pack có `baseOvr >= scoutCommonMinOvr (62)` để tránh pack "hụt hoàn toàn" so với starter 55–65. Giá trị là giả thuyết cân bằng.
 
 **Pool và giao dịch [Đã có]:**
@@ -89,6 +91,7 @@ Bảng dưới là **giả thuyết thiết kế**, chưa được engine kiểm
 Cách sửa (`src/data/legacyOpponents.ts`):
 
 - Mỗi chương có OVR mục tiêu: **Ch6 80 · Ch7 84 · Ch8 86 · Ch9 88 · Ch10 90 · Ch11 93 · Ch12 95** (`OPPONENT_TARGET_OVR`).
+- **Trùm cuối (DEC-16):** Chapter 12 luôn là **Gen.G** (năm gần mục tiêu nhất, thường 2024/2025), ở mọi mùa; Gen.G không xuất hiện ở chương nào khác.
 - Đối thủ là đội-năm thật gần mục tiêu nhất (cụm sai khác ≤ 1 OVR, chọn bằng seed), **mỗi đội chỉ xuất hiện một lần** trong chiến dịch. Ch6 vẫn giới hạn khu vực APAC (VCS/PCS/LMS/LJL); Ch9 không còn giới hạn vì APAC chỉ có đội ≤ 73 OVR.
 - Khi pool không có đội đủ mạnh, cộng một mức **cân chỉnh độ khó** `difficultyBonus` (tối đa 16) vào mọi chỉ số của roster. Mức này lưu trên snapshot và hiển thị cho người chơi trong màn đội hình đối thủ.
 

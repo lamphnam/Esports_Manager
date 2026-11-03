@@ -6,28 +6,28 @@
   },
   {
     "path": "docs/CHANGELOG.md",
-    "bytes": 11020,
-    "sha256": "8fc6d397c48f52a508febfcd8c1897b00a24e16ac38329842fab79a101bcf4c8"
+    "bytes": 12079,
+    "sha256": "6052dd0ef34184c91adffef0142f25a4b09a3a7ac204e3ce9d1f7c8e66087e1c"
   },
   {
     "path": "docs/CONTEST_AND_RIGHTS.md",
-    "bytes": 16282,
-    "sha256": "8ac8211d8be6b3b7bb6b42b6983b65094799d3757f686397b3d509f792a1fefc"
+    "bytes": 16718,
+    "sha256": "a2721ff2682f1ba77cca158edbf14eebf55104269ea311936473601dc281fbcb"
   },
   {
     "path": "docs/DECISIONS.md",
-    "bytes": 13539,
-    "sha256": "dce98134d72a07f0151c6894fc4f9fa3a6c5e5e84b78c49c9bb193006c52628f"
+    "bytes": 14063,
+    "sha256": "e25b0ebe4eb6a1fed14311278bea08c809a32d5584c4d32d2375a3342bfe1f24"
   },
   {
     "path": "docs/ECONOMY.md",
-    "bytes": 12267,
-    "sha256": "03509a21b69446f48bda66a5fbf797208fa8270ed85ae7603551a0e34f8d8443"
+    "bytes": 12852,
+    "sha256": "e1f140b5ea23ae8e65539febcb39de245ba20caab0478fadcc1ca237d0b8e5ff"
   },
   {
     "path": "docs/GAME_DESIGN.md",
-    "bytes": 16564,
-    "sha256": "e6d78ccc33f121cbb021ab1c097edcc97c80d549cd31e0af3ce294118c443e23"
+    "bytes": 16438,
+    "sha256": "225e3dc371db93d02d4def6f56b6b24bf470a4bdc8db3557c6513fd850596aae"
   },
   {
     "path": "docs/MATCH_SIMULATOR.md",
@@ -46,13 +46,13 @@
   },
   {
     "path": "docs/UX_AND_ART.md",
-    "bytes": 9715,
-    "sha256": "b9d52468e3ab61e617d3bc79c75a9e2d6a25ab6e20294f62571e0db76292ddbb"
+    "bytes": 9867,
+    "sha256": "4632a85e170cd5cc929c89d640bfcd7a94782afe7e79fbee4da77718ca58efb8"
   },
   {
     "path": "docs/config/balance.initial.json",
-    "bytes": 2439,
-    "sha256": "815b453d7cdc7488e1b147a7bb20f7a64ed2c36446dddfabb7f701a5d0506df9"
+    "bytes": 2322,
+    "sha256": "1ef995e4f1bef4be96bb6b69922fe06d85ae979167599ec3eb354ec9001042c7"
   },
   {
     "path": "docs/config/tactics.matrix.json",
