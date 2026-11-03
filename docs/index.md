@@ -94,7 +94,7 @@ Acceptance (`09` §A):
 
 ### M9 — Audit fixes + legacy data (from 03/11; dates follow the new deadline) · *Source: `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`*
 Phase 0
-- [ ] `vitest` + `strict` TypeScript; tests for matrix, sub-seed golden, pity boundary, probability bounds; `scripts/balance-sim.ts`
+- [x] `vitest` + `strict` TypeScript; tests for matrix, sub-seed golden, pity boundary, probability bounds; `scripts/balance-sim.ts` — [Phase 0 evidence](evidence/PHASE_0.md): 6 tests, 100k pack opens, 15k series, 4000 series/balance cell.
 
 Phase 1 — P0 · *Gate: the full F0 loop passes in an E2E at 390×844*
 - [ ] P0-1 Welcome Pack opens right after the Chapter 1 win (state moved to a reducer; no `setTimeout` orchestration)
@@ -182,6 +182,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Phase 0 xanh: strict typecheck + 6 invariant tests; balance baseline đã ghi trong `evidence/PHASE_0.md`. Baseline nguyên trạng `ca12d39`; nhánh `fix/audit-and-golden-road`, không push. |
 | 27/10 | Spec pack v2.2 reviewed; `CLAUDE.md` and `index.md` created. G0 pending. |
 | 03/11 | Code audit of the existing build (Architecture B): 2 P0, 13 P1. Checked by simulation: sub-seed independence, matrix properties, pity boundary, probability bounds all pass. Starter-team win rates measured: Ch1 66-69%, Ch2 46%, Ch3 26%, Ch4 20%, Ch5 5%. |
 | 03/11 | `docs/ref/golden_road/` analysed (73 teams, 649 player-seasons, 374 players, 2011-2025; VCS only GAM 2017, no LCP). Web research on LCP 2026, MSI 2026 and Worlds 2026 added to `research/LINKS_AND_FACT_CHECK.md`. Liquipedia and Leaguepedia blocked the fetch tool, so VCS rosters are **not** verified. |
