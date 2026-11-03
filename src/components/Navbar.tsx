@@ -5,13 +5,13 @@ import {
   KeyRound,
   Menu,
   Package,
-  Trophy,
   Volume2,
   VolumeX,
   X,
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useGame } from '../context/GameContext';
+import logo from '../assets/brand/logo-128.png';
 import { AudioSynth } from '../lib/audioSynth';
 
 interface NavbarProps {
@@ -112,9 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="group flex shrink-0 items-center gap-2"
           aria-label="APAC Rising: về Tổng Quan"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gold text-bg">
-            <Trophy className="h-4 w-4 stroke-[2.5]" />
-          </span>
+          <img src={logo} alt="" aria-hidden="true" width={40} height={40} draggable={false} className="h-10 w-10 shrink-0 rounded-lg border border-line object-cover" />
           <span className="hidden whitespace-nowrap font-display text-heading font-extrabold tracking-wide text-fg sm:inline">
             APAC RISING
           </span>

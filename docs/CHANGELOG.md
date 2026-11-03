@@ -2,6 +2,10 @@
 
 `rulesVersion` hiện tại: **v1.2.0** (`docs/config/balance.initial.json`). Đổi luật gameplay phải tăng `rulesVersion`, ghi một mục ở đây và kiểm tra các nơi lặp số (pack odds/pity: `ECONOMY.md` + `balance.initial.json`; giới hạn simulator và chính sách quyết định: `MATCH_SIMULATOR.md` + `balance.initial.json` + `tactics.matrix.json`).
 
+## 2026-11-03 — logo game
+
+- Logo do Gemini tạo (chữ A vàng, đôi cánh xanh, nền navy) thay ô cúp trong navbar; favicon 32/64px và apple-touch-icon 180px trong `public/`. Bản gốc 2048px (3.7 MB) giữ ở `src/assets/brand/logo-master.png` và **không** vào bundle; chỉ bản 128px (33 KB) được đóng gói. Nền logo là navy đặc, chưa có bản nền trong suốt.
+
 ## 2026-11-03 — icon vị trí từ LoL Wiki (chờ file)
 
 - `RoleIcon` dùng 5 PNG trong `src/assets/roles/` (top, jungle, mid, bot, support) nếu có, đóng gói cùng build; không có thì dùng SVG cũ nên build không phụ thuộc. Kích thước mặc định 18px. Đã kiểm bằng 5 PNG thử (đã xóa): Hub nạp 10 icon, Training 6 icon, đều tải được.

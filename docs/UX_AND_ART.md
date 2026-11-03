@@ -48,6 +48,8 @@ Tooltip bối cảnh và mở dần tính năng trong Chapter 1–5. Mục khóa
 
 Role badge, năm và loại edition, tên hiển thị, OVR, rarity, chân dung (hiện là placeholder hình học), lối chơi, 3 thanh stat nổi bật; chạm/hover mở 5 chỉ số. Phải đọc được không dựa vào màu. Lưới CSS responsive, tránh khóa scroll trên mobile.
 
+**Logo:** `src/assets/brand/logo-128.png` trong navbar (40px, bo góc, viền `line`), favicon và apple-touch-icon ở `public/`; bản gốc `logo-master.png` chỉ để tái sinh các kích thước (sinh bằng canvas, không có công cụ trong repo).
+
 **Icon vị trí:** `RoleIcon` dùng PNG trong `src/assets/roles/` khi có (xem [CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §5), nếu không thì SVG tự vẽ.
 
 **Quy tắc tài sản:** dev dùng avatar hình học trừu tượng. Ảnh người thật hoặc tên chỉ khi phạm vi quyền đã được xác nhận; không tải ảnh bên thứ ba từ tìm kiếm và tự cho là có quyền; logo đội/skin/splash art cần quyền riêng. Mỗi file ảnh/logo thêm vào phải có `asset_license` ([CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §5).
