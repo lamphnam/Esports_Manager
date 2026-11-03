@@ -21,7 +21,7 @@ import { TrainingView } from './views/TrainingView';
 import { TransfersView } from './views/TransfersView';
 
 function MainApp() {
-  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward, activeMatch, saveActiveMatch, pendingReveal,clearPackReveal,ownedCards } = useGame();
+  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward, activeMatch, saveActiveMatch, pendingReveal,clearPackReveal,ownedCards,backup } = useGame();
 
   const [currentTab, setCurrentTab] = useState('hub');
   const [activeMatchChapterId, setActiveMatchChapterId] = useState<number | null>(null);
@@ -86,6 +86,7 @@ function MainApp() {
 
       {/* Main Screen Router */}
       {storageBlocked && <div role="alert" className="p-3 bg-amber-950 text-amber-100 text-sm">Không thể lưu trên trình duyệt này. Hãy sao lưu Recovery Code trước khi rời trang. <button className="underline min-h-11" onClick={() => setShowRecoveryModal(true)}>Mở sao lưu</button></div>}
+      {backup.nudge && <div role="status" className="p-3 bg-slate-900 border-b border-amber-500/60 text-slate-100 text-sm flex flex-wrap items-center gap-x-3 gap-y-1">Tiến trình mới chưa được sao lưu. Save nằm trên thiết bị này và có thể mất khi trình duyệt xóa dữ liệu.<button className="underline min-h-11 text-amber-300" onClick={() => { backup.dismissNudge(); setShowRecoveryModal(true); }}>Sao lưu ngay</button><button className="min-h-11 text-slate-300" onClick={backup.dismissNudge}>Để sau</button></div>}
       <main className="flex-1 pb-16">
         {currentTab === 'hub' && (
           <HubView

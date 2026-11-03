@@ -32,6 +32,7 @@ import {
 
 import { emptySave, GameSave, SAVE_KEY, saveReducer, validateSave } from '../lib/saveState';
 import { encodeSave, decodeSave } from '../lib/recoveryCode';
+import {BackupMeta,emptyBackupMeta,isDirty,progressScore,readBackupMeta,shouldNudge,unsavedChanges,withBackup,withNudge,writeBackupMeta} from '../lib/backupMeta';
 import {DraftSession} from '../lib/legacyDraft/engine';
 import {rewardDraft} from '../lib/legacyDraft/reward';
 import { newId, vietnamDay } from '../lib/identity';
@@ -72,6 +73,14 @@ interface GameContextType {
   restoreFromRecoveryCode: (code: string) => Promise<boolean>;
   exportRecoveryCode: () => Promise<string>;
   storageBlocked: boolean;
+  backup: {
+    unsaved: number;
+    dirty: boolean;
+    lastBackupAt: number | null;
+    nudge: boolean;
+    markBackedUp: () => void;
+    dismissNudge: () => void;
+  };
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -82,6 +91,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const {club, ownedCards, ledger, transferOffers} = save;
   const [isLoading, setIsLoading] = useState(true);
   const [storageBlocked, setStorageBlocked] = useState(false);
+  const [backupMeta, setBackupMeta] = useState<BackupMeta>(() => readBackupMeta());
+  const [nudge, setNudge] = useState(false);
+  const metaRef = useRef(backupMeta);
+  const lastScore = useRef<number | null>(null);
+  const persistRequested = useRef(false);
+  const score = progressScore(save);
+  const setMeta = (next: BackupMeta) => {
+    metaRef.current = next;
+    setBackupMeta(next);
+    writeBackupMeta(next);
+  };
   const commit = (patch: Partial<GameSave>) => {
     saveRef.current = saveReducer(saveRef.current, patch);
     dispatch(patch);
@@ -103,17 +123,43 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         commit(validateSave({...emptySave(), club:oldClub, ownedCards:JSON.parse(legacyCards), ledger:JSON.parse(localStorage.getItem(LEDGER_KEY) || '[]')}));
       }
       localStorage.setItem('apac_storage_probe', '1');
+      const readBack = localStorage.getItem('apac_storage_probe') === '1';
       localStorage.removeItem('apac_storage_probe');
+      if (!readBack) throw new Error('storage did not read back');
     } catch { setStorageBlocked(true); }
     finally { setIsLoading(false); }
   }, []);
 
   useEffect(() => {
     if (!isLoading && club) {
-      try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
+      try {
+        const json = JSON.stringify(save);
+        localStorage.setItem(SAVE_KEY, json);
+        // Some browsers accept writes they will not keep: only a read-back proves the save landed.
+        if (localStorage.getItem(SAVE_KEY) !== json) throw new Error('save did not read back');
+        if (!persistRequested.current) {
+          persistRequested.current = true;
+          try { void navigator.storage?.persist?.()?.catch(() => {}); } catch { /* best effort only */ }
+        }
+      }
       catch { setStorageBlocked(true); }
     }
   }, [save, isLoading]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    const previous = lastScore.current;
+    lastScore.current = score;
+    if (!club) {
+      if (metaRef.current.lastBackupAt !== null || metaRef.current.scoreAtBackup !== 0) setMeta(emptyBackupMeta());
+      setNudge(false);
+      return;
+    }
+    if (previous !== null && shouldNudge(metaRef.current, previous, score, Date.now())) {
+      setMeta(withNudge(metaRef.current, Date.now()));
+      setNudge(true);
+    }
+  }, [score, isLoading, club?.id]);
 
   useEffect(() => {
     if(isLoading||!club)return;
@@ -188,6 +234,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setOwnedCards(initialCards);
     setClub(newClub);
+    // The starter squad is not worth a backup nudge yet.
+    setMeta({ ...emptyBackupMeta(), scoreAtBackup: progressScore({ club: newClub, ownedCards: initialCards }) });
     setLedger([
       {
         id: newId('ledger'),
@@ -599,6 +647,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const resetGame = () => {
     commit(emptySave());
+    setMeta(emptyBackupMeta());
+    setNudge(false);
     try {
       for (const key of [SAVE_KEY, LEGACY_SAVE_KEY, CARDS_KEY, LEDGER_KEY]) localStorage.removeItem(key);
     } catch { setStorageBlocked(true); }
@@ -613,7 +663,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return true;
   };
 
-  const exportRecoveryCode = () => encodeSave(saveRef.current);
+  const exportRecoveryCode = () => encodeSave(saveRef.current, { compact: true });
+  const markBackedUp = () => {
+    setMeta(withBackup(metaRef.current, progressScore(saveRef.current), Date.now()));
+    setNudge(false);
+  };
   const claimDraftReward = (draft:DraftSession):boolean => {
     const current=saveRef.current,next=rewardDraft(current,draft,vietnamDay(),Date.now(),newId('legacy'));
     if(current===next)return false;
@@ -623,6 +677,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     try {
       const restored = await decodeSave(code);
       commit({...emptySave(),...restored});
+      // A freshly imported code is, by definition, backed up.
+      const restoredScore = progressScore(restored);
+      lastScore.current = restoredScore;
+      setMeta(withBackup(emptyBackupMeta(), restoredScore, Date.now()));
+      setNudge(false);
       return true;
     } catch { return false; }
   };
@@ -656,6 +715,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         restoreFromRecoveryCode,
         exportRecoveryCode,
         storageBlocked,
+        backup: {
+          unsaved: unsavedChanges(backupMeta, score),
+          dirty: !!club && isDirty(backupMeta, score),
+          lastBackupAt: backupMeta.lastBackupAt,
+          nudge: nudge && !!club,
+          markBackedUp,
+          dismissNudge: () => setNudge(false),
+        },
       }}
     >
       {children}

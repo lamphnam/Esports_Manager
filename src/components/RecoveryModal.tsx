@@ -1,10 +1,12 @@
 ﻿import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useGame } from '../context/GameContext';
+import { backupAdvice, detectStorageContext } from '../lib/environment';
 import { useDialog } from '../lib/useDialog';
 
 export function RecoveryModal({onClose}:{onClose:()=>void}) {
-  const {club,resetGame,exportRecoveryCode,restoreFromRecoveryCode}=useGame();
+  const {club,resetGame,exportRecoveryCode,restoreFromRecoveryCode,backup}=useGame();
+  const advice=backupAdvice(detectStorageContext());
   const [code,setCode]=useState(''), [input,setInput]=useState(''), [status,setStatus]=useState('');
   const [busy,setBusy]=useState(false), [confirmReset,setConfirmReset]=useState(false);
   const field=useRef<HTMLTextAreaElement>(null);
@@ -15,10 +17,11 @@ export function RecoveryModal({onClose}:{onClose:()=>void}) {
     return()=>{active=false;};
   },[club]);
   const copy=async()=>{
-    try {await navigator.clipboard.writeText(code);setStatus('Đã Sao Chép');}
+    try {await navigator.clipboard.writeText(code);setStatus('Đã Sao Chép');backup.markBackedUp();}
     catch {
       field.current?.focus();field.current?.select();
       let copied=false;try{copied=document.execCommand('copy');}catch{}
+      if(copied)backup.markBackedUp();
       setStatus(copied?'Đã Sao Chép':'Không thể sao chép tự động. Mã đã được chọn; hãy dùng Sao chép hoặc Ctrl+C.');
     }
   };
@@ -32,7 +35,9 @@ export function RecoveryModal({onClose}:{onClose:()=>void}) {
     <div ref={dialog} role="dialog" aria-modal="true" aria-label="Sao Lưu & Khôi Phục Dữ Liệu" tabIndex={-1} className="w-full max-w-lg max-h-[90dvh] overflow-y-auto rounded-xl border border-slate-700 bg-[#111827] p-5 text-slate-100 space-y-4">
       <div className="flex justify-between items-center"><h2 className="font-bold">Sao Lưu & Khôi Phục Dữ Liệu</h2><button className="min-w-11 min-h-11" aria-label="Đóng khôi phục" onClick={onClose}><X/></button></div>
       <p className="text-sm text-slate-300">Recovery Code chứa bản save tại thời điểm sao lưu. Hãy tạo bản sao mới sau khi chơi; mã cũ chỉ khôi phục tiến trình cũ. Đây không phải tài khoản server.</p>
-      {club && <><label className="block text-sm">Bản save hiện tại<textarea ref={field} aria-label="Recovery Code hiện tại" className="mt-2 w-full h-28 bg-slate-950 p-3 font-mono text-xs break-all select-text" readOnly value={code}/></label><button className="min-h-11 px-4 rounded bg-cyan-900" disabled={!code} onClick={copy}>Sao Chép</button></>}
+      {club && <p role="status" className={`text-sm ${backup.dirty?'text-amber-200':'text-slate-300'}`}>{backup.lastBackupAt?`Sao lưu gần nhất: ${new Date(backup.lastBackupAt).toLocaleString('vi-VN')}. `:'Chưa sao lưu lần nào trên thiết bị này. '}{backup.dirty?'Có tiến trình mới chưa được sao lưu.':'Chưa có thay đổi đáng kể kể từ lần sao lưu.'}</p>}
+      {advice.map(line=><p key={line} className="text-xs text-slate-300">{line}</p>)}
+      {club && <><label className="block text-sm">Bản save hiện tại<textarea ref={field} aria-label="Recovery Code hiện tại" className="mt-2 w-full h-28 bg-slate-950 p-3 font-mono text-xs break-all select-text" readOnly value={code} onCopy={()=>backup.markBackedUp()}/></label><button className="min-h-11 px-4 rounded bg-cyan-900" disabled={!code} onClick={copy}>Sao Chép</button></>}
       <label className="block text-sm">Nhập mã đã lưu<textarea aria-label="Nhập Recovery Code" className="mt-2 w-full h-28 bg-slate-950 p-3 font-mono text-xs select-text" value={input} onChange={e=>setInput(e.target.value)} maxLength={500001}/></label>
       <p className="text-xs text-slate-300">Khôi phục sẽ thay thế tiến trình trên thiết bị này bằng bản save trong mã.</p>
       <button className="min-h-11 px-4 rounded bg-[#2563EB] disabled:opacity-50" disabled={busy||!input.trim()} onClick={restore}>Khôi Phục Save</button>

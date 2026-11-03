@@ -1,6 +1,6 @@
 # DECISIONS.md — Nhật ký quyết định
 
-Cập nhật lần cuối: 03/11/2026 (sau khi chủ dự án trả lời Q1-Q3). File này là điều kiện của Gate G0 (`agents/IMPLEMENTATION_PROMPT.md`, `10` §0).
+Cập nhật lần cuối: 03/11/2026. Điều kiện của Gate G0.
 Quy ước trạng thái: **Đã ghi nhận** (chủ dự án đã nêu, chờ xác nhận bằng văn bản) · **Đề xuất** (agent đề xuất, chưa ai duyệt) · **Đã chốt** (chủ dự án đã quyết rõ ràng, trong phiên làm việc hoặc bằng văn bản) · **Mở** (cần chủ dự án quyết).
 Agent không được tự đổi trạng thái "Đề xuất" thành "Đã chốt"; chỉ chủ dự án làm việc đó.
 
@@ -13,8 +13,20 @@ Agent không được tự đổi trạng thái "Đề xuất" thành "Đã ch�
 | Lựa chọn | **B: local-first** (simulator TypeScript chạy phía client, lưu bền bằng `localStorage`, Recovery Code dự phòng, host tĩnh) |
 | Trạng thái | **Đã ghi nhận** theo lời chủ dự án trong phiên làm việc 03/11/2026. Chủ dự án xác nhận bằng cách đổi trạng thái này thành "Đã chốt". |
 | Bằng chứng trong repo | `package.json`, `vite.config.ts`, `src/context/GameContext.tsx`, `src/lib/simulator.ts` (không có thư mục `backend/`) |
-| Hệ quả theo spec | `06` và `08` chỉ còn là tham chiếu cho phần tùy chọn (`CLAUDE.md`, mục Gate G0). Deploy skeleton (HTTPS + iframe harness + CSP) vẫn bắt buộc. |
-| Hạn chế đã biết | Client tự quyết định kết quả trận, pack và ví, nên **không chống được gian lận**. Chấp nhận cho bản contest và phải nói rõ trong README. Các bất biến phía server (idempotency, ledger giao dịch, `CHECK >= 0`) được thay bằng: mọi mutation đi qua một reducer duy nhất, ledger chỉ ghi thêm, và test property. |
+| Hệ quả | Phương án server-authoritative (Java/Spring Boot/Neon/Oracle) đã bị loại khỏi bộ tài liệu; nguyên tắc cần giữ nếu sau này có backend nằm ở [ARCHITECTURE.md](ARCHITECTURE.md) §11. Deploy skeleton (HTTPS + iframe + nhúng thật) vẫn bắt buộc. |
+| Hạn chế đã biết | Client tự quyết định kết quả trận, pack và ví, nên **không chống được gian lận**. Chấp nhận cho bản contest vì điểm thi do Portal bình chọn, không lấy từ game; phải nói rõ trong README. Các bất biến phía server được thay bằng: mọi mutation đi qua một reducer duy nhất, ledger chỉ ghi thêm, và test property. |
+
+---
+
+## Quyết định đã chốt bởi chủ dự án
+
+| ID | Quyết định | Lý do | Trạng thái |
+|---|---|---|---|
+| DEC-3 | **Được hiển thị tên CLB thật.** Cờ `ENABLE_REAL_CLUB_NAMES` mặc định `true`; giữ `teamAlias` (tên hư cấu) làm phương án tắt nhanh. Logo và ảnh được phép về nguyên tắc nhưng chưa có file asset được duyệt: dùng placeholder cho đến khi có `asset_license` từng asset. | Chủ dự án khẳng định email Riot bao phủ mọi thứ, không giới hạn (Q2). | **Đã chốt** (chủ dự án, 03/11/2026, trong phiên làm việc) |
+| DEC-4 (nguồn) | Được dùng điểm rating của Golden Road làm giá trị khởi đầu và được điều chỉnh (Q1). Mỗi edition mang `ratingSource` = `golden_road` / `adjusted` / `derived`. Người không có trong dataset dùng `deriveRating()`. | Q1. Quyền chỉ bao phủ rating, không bao phủ mã hay UI. | **Đã chốt** (chủ dự án, 03/11/2026) |
+| DEC-10 | **Host game trên Vercel** (static, từ `dist/`). URL nộp là domain production ổn định. Thay cho Oracle + Nginx + Cloudflare. | Đơn giản, miễn phí, có CDN và Instant Rollback; không có server để vận hành. Chi tiết [ARCHITECTURE.md](ARCHITECTURE.md) §8. | **Đã chốt** (chủ dự án, 03/11/2026, trong phiên làm việc) |
+| DEC-11 | **Không thêm đánh dấu dùng AI trong game**: chủ dự án khai ở **ô riêng khi nộp bài** trên Portal. | Điều lệ yêu cầu "game phải có đánh dấu sử dụng AI"; chủ dự án xác nhận form nộp có ô khai báo riêng. Nếu BTC yêu cầu hiển thị trong game, thêm một dòng ở footer `App.tsx`. | **Đã chốt** (chủ dự án, 03/11/2026, trong phiên làm việc) |
+| DEC-12 | **Kiến trúc lưu trữ chịu được storage không bền, không backend:** chỉ báo sao lưu (`apac_backup_meta`), nhắc nhẹ không chặn, thông điệp theo ngữ cảnh nhúng/Safari, đọc lại sau ghi, `storage.persist()` best-effort, mã xuất ngắn hơn (ledger gộp vào archive), URL production cố định và schema save chỉ đổi kèm migration. Không cloud save, không Storage Access API. | Portal không truyền danh tính nên backend không giải quyết mất save; storage trong iframe cross-origin có thể bị xóa mà không báo lỗi. Đã triển khai 03/11 (chi tiết [ARCHITECTURE.md](ARCHITECTURE.md) §7). | **Đã chốt** (chủ dự án, 03/11/2026, yêu cầu triển khai trong phiên làm việc) |
 
 ---
 
@@ -22,15 +34,14 @@ Agent không được tự đổi trạng thái "Đề xuất" thành "Đã ch�
 
 | ID | Đề xuất | Lý do | Trạng thái |
 |---|---|---|---|
-| DEC-1 | **Recovery Code = bản save nén** có version và checksum, dạng `AR1.<base64url>.<crc>`, kèm UI nhập mã và banner khi `localStorage` bị chặn. | Kiến trúc B không có server để tra mã. Bản cũ chỉ sinh mã ngẫu nhiên và `restoreFromRecoveryCode` luôn trả `true` (audit 03/11, mục P0-2). | Đề xuất |
-| DEC-2 | Thẻ **LEGACY** (từ dữ liệu lịch sử) **không** vào bảng pack hiện tại: không đổi `packTableVersion`, không đổi pity. Chỉ nhận qua mốc thưởng hoặc chế độ Golden Road. | Giữ nguyên các bất biến pack đã được kiểm chứng; tránh làm hỏng F0. | Đề xuất |
-| DEC-3 | **Được hiển thị tên CLB thật.** Cờ `ENABLE_REAL_CLUB_NAMES` mặc định `true`; giữ `teamAlias` (tên hư cấu) làm phương án tắt nhanh. Logo và ảnh được phép về nguyên tắc nhưng **chưa nằm trong work order hiện tại** (repo chưa có file asset được duyệt): dùng placeholder cho đến khi có `asset_license` từng asset. | Chủ dự án khẳng định email Riot bao phủ mọi thứ, không giới hạn (Q2). Thay cho đề xuất ban đầu (tên hư cấu theo `11` §1). | **Đã chốt** (chủ dự án, 03/11/2026, trong phiên làm việc) |
-| DEC-4 | **Nguồn rating**: được dùng điểm rating của Golden Road làm giá trị khởi đầu và được điều chỉnh (Q1). Mỗi edition mang `ratingSource` = `golden_road` / `adjusted` / `derived`. Người không có trong dataset (VCS/LCP 2026) dùng `deriveRating()`. **Mapping `rating -> baseOvr`** đơn điệu, từng khúc: 76-80 -> 55-69, 80-86 -> 70-79, 86-91 -> 80-89, 91-98 -> 90-96. | Đo ngày 03/11 trên `docs/ref/golden_road/data.js`: rating gốc 76-98 (TB 84.8); dùng thẳng sẽ cho 535/649 thẻ Epic và 80 thẻ Legendary. Mapping này cho 81 Common, 365 Rare, 166 Epic, 37 Legendary. | Nguồn rating: **Đã chốt** (chủ dự án). Mapping: Đề xuất |
-| DEC-5 | Bảng win-rate mục tiêu với chiến thuật mặc định: Ch1 BO1 65-72% (đội khởi đầu), Ch2 BO3 50-60% (+1 Rare), Ch3 BO3 45-55% (2 Rare), Ch4 BO3 45-55% (3 Rare), Ch5 BO5 45-55% (toàn Rare + 1 Epic). | Đo trước khi sửa với đội khởi đầu: 66-69% / 46% / 26% / 20% / 5%. Chương 3-5 quá khó, và việc cho đối thủ nhận synergy sẽ làm khó thêm. | Đề xuất |
-| DEC-6 | Tiểu sử tuyển thủ trong `cardCatalog.ts`: **mỗi câu phải có nguồn** trong `research/LINKS_AND_FACT_CHECK.md`, nếu không thì thay bằng mô tả lối chơi trung tính. Không đưa họ tên đời thực, tuổi, quê quán. | Hiện có họ tên đầy đủ và thành tích của người thật mà repo không dẫn nguồn. | Đề xuất |
-| DEC-7 | Chế độ "Golden Road Draft" là **P2, phát triển sau cờ `FEATURE_GOLDEN_ROAD`**. Hạn nộp đã giãn (Q3) nên được lên kế hoạch làm, nhưng chỉ **bật trong bản nộp** nếu toàn bộ acceptance F0/R1 đã xanh và QA 390x844 + iframe đạt. | Scope v2.2: tính năng chưa QA-ready phải nằm sau cờ. | Đề xuất |
-| DEC-8 | Facilities (P2): perk nào chưa có code thì **sửa mô tả UI cho đúng** hoặc ẩn cấp đó, không làm thêm tính năng. | Perk giảm 10% chi phí huấn luyện chỉ hiển thị, chưa trừ tiền (audit, mục 7). | Đề xuất |
-| DEC-9 | **Engine Golden Road phải viết lại từ đầu (clean-room)** theo luật chơi đã mô tả, không port mã nguồn. UI, văn bản, ảnh chia sẻ, CSS, icon đều làm mới. **Quyền ở Q1 chỉ bao phủ điểm rating, không bao phủ mã và giao diện.** | `agents/IMPLEMENTATION_PROMPT.md` dòng 16: "never ... copy existing game code/UI"; điều khoản cuộc thi cấm "copied commercial game assets" (`11` §2). Golden Road là site có Ko-fi và banner đồng ý quảng cáo (`style.css:75`, `game.js` `supportBlock`). | Đề xuất |
+| DEC-1 | **Recovery Code = bản save nén** có version và checksum, dạng `AR1.<base64url>.<crc>`, kèm UI nhập mã và banner khi `localStorage` bị chặn. | Kiến trúc B không có server để tra mã. Bản cũ chỉ sinh mã ngẫu nhiên và `restoreFromRecoveryCode` luôn trả `true` (audit 03/11, P0-2). Đã triển khai ở Phase 1. | Đề xuất |
+| DEC-2 | Thẻ **LEGACY** **không** vào bảng pack hiện tại: không đổi `packTableVersion`, không đổi pity. Chỉ nhận qua market, thưởng hoặc Draft. | Giữ nguyên các bất biến pack đã kiểm chứng; tránh làm hỏng F0. | Đề xuất |
+| DEC-4 (mapping) | **Mapping `rating -> baseOvr`** đơn điệu, từng khúc: 76-80 -> 55-69, 80-86 -> 70-79, 86-91 -> 80-89, 91-98 -> 90-96. Triển khai theo neo integer 76→55, 80→69, 81→70, 86→79, 87→80, 91→89, 92→90, 98→96 (đơn điệu cả input thập phân). | Rating gốc 76-98 (TB 84.8): dùng thẳng sẽ cho 535/649 thẻ Epic và 80 Legendary. Mapping cho 81 Common, 365 Rare, 166 Epic, 37 Legendary. | Đề xuất |
+| DEC-5 | Bảng win-rate mục tiêu với chiến thuật mặc định: Ch1 BO1 65-72% (đội khởi đầu), Ch2 BO3 50-60% (+1 Rare), Ch3 BO3 45-55% (2 Rare), Ch4 BO3 45-55% (3 Rare), Ch5 BO5 45-55% (toàn Rare + 1 Epic). | Đo trước khi sửa: 66-69% / 46% / 26% / 20% / 5%. Chương 3-5 quá khó. Sau Phase 2: OVR đối thủ Ch1–5 = 55/62/66/72/77, win-rate 68.70 / 54.23 / 48.63 / 49.52 / 49.30 % (4000 seed/ô), đủ dải. | Đề xuất |
+| DEC-6 | Tiểu sử tuyển thủ trong `cardCatalog.ts`: **mỗi câu phải có nguồn** ([CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §6), nếu không thì thay bằng mô tả lối chơi trung tính. Không đưa họ tên đời thực, tuổi, quê quán. | Trước đó có họ tên đầy đủ và thành tích người thật không dẫn nguồn. | Đề xuất |
+| DEC-7 | Chế độ "Golden Road Draft" là **P2, sau cờ `FEATURE_GOLDEN_ROAD`** (hiện `false`). Chỉ **bật trong bản nộp** nếu toàn bộ acceptance F0/R1 đã xanh và QA 390x844 + iframe đạt. | Tính năng chưa QA-ready phải nằm sau cờ. Đã phát triển và QA trực tiếp component. | Đề xuất |
+| DEC-8 | Facilities (P2): perk nào chưa có code thì **sửa mô tả UI cho đúng** hoặc ẩn cấp đó, không làm thêm tính năng. | Perk giảm 10% chi phí huấn luyện từng chỉ hiển thị, chưa trừ tiền. Đã áp dụng ở Phase 2. | Đề xuất |
+| DEC-9 | **Engine Golden Road phải viết lại từ đầu (clean-room)** theo luật đã mô tả, không port mã nguồn. UI, văn bản, ảnh chia sẻ, CSS, icon đều làm mới. Quyền ở Q1 **chỉ bao phủ điểm rating**. | Điều lệ cuộc thi cấm sao chép game thương mại ([CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §1); Golden Road có Ko-fi và banner đồng ý quảng cáo. | Đề xuất |
 
 ---
 
@@ -40,31 +51,35 @@ Các câu trả lời dưới đây là lời chủ dự án trong phiên làm v
 
 | ID | Câu hỏi | Trả lời | Hệ quả |
 |---|---|---|---|
-| Q1 | Có quyền dùng điểm rating trong `docs/ref/golden_road/data.js` không? | **Có.** Chủ dự án đã xin được quyền tham khảo điểm rating, được dùng và điều chỉnh cho phù hợp. | DEC-4: rating gốc dùng làm giá trị khởi đầu, có `ratingSource`. Quyền **chỉ bao phủ điểm rating**; mã và giao diện vẫn phải làm clean-room (DEC-9). |
-| Q2 | Email của Riot có bao phủ tên CLB thật và việc dùng trong game không? | **Có, bao phủ tất cả, không giới hạn.** | DEC-3: tên CLB thật được phép, cờ `ENABLE_REAL_CLUB_NAMES` mặc định `true`. Ghi chú sổ sách: khi thêm ảnh hoặc logo thật vẫn lập `asset_license` từng asset (`11` §1), vì bên giữ bản quyền ảnh/logo có thể là CLB hoặc nhiếp ảnh gia. |
-| Q3 | Có chấp nhận cắt G3 nếu trễ lịch? | **Không trễ lịch; hạn nộp đã được giãn.** | Bỏ thứ tự cắt phạm vi. G3 vào kế hoạch chính (DEC-7). Ngày mới xem Q5. |
+| Q1 | Có quyền dùng điểm rating trong `docs/ref/golden_road/data.js` không? | **Có.** Đã xin được quyền tham khảo, dùng và điều chỉnh. | DEC-4. Quyền **chỉ bao phủ điểm rating**; mã và giao diện vẫn clean-room (DEC-9). |
+| Q2 | Email của Riot có bao phủ tên CLB thật và việc dùng trong game không? | **Có, bao phủ tất cả, không giới hạn.** | DEC-3. Ảnh/logo thật vẫn lập `asset_license` từng asset vì bên giữ bản quyền có thể là CLB hoặc nhiếp ảnh gia. |
+| Q3 | Có chấp nhận cắt G3 nếu trễ lịch? | Trả lời lúc đó: không trễ lịch, hạn đã được giãn. **Thay thế bởi Q5.** | G3 nằm trong kế hoạch chính (DEC-7), vẫn chỉ bật khi đạt gate. |
+| Q5 | Ngày nộp mới sau khi giãn hạn là khi nào? | **Không có giãn hạn: nộp hết 15/11/2026, bình chọn đến hết 22/11/2026** (chủ dự án xác nhận 03/11, khớp trang điều lệ). | Lịch tuyệt đối ở [PROJECT_STATUS.md](PROJECT_STATUS.md) §2: đóng băng tính năng 10/11, mục tiêu nộp 13/11. |
 
 ## Câu hỏi còn mở cho chủ dự án
 
 | ID | Câu hỏi | Mặc định nếu chưa có trả lời | Chặn việc gì |
 |---|---|---|---|
 | Q4 | Bảng win-rate DEC-5 có phù hợp với cảm giác chơi bạn muốn? | Dùng DEC-5; chỉnh sau playtest. | Hiệu chỉnh đối thủ |
-| Q5 | **Ngày nộp mới** sau khi giãn hạn là khi nào? (Điều khoản cuộc thi hiện hành cũng cần đối chiếu: `11` §2.) | Giữ thứ tự ở `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md` mục 6 không gắn ngày; đặt ngày đóng băng tính năng cách ngày nộp tối thiểu 2 ngày làm việc khi biết ngày. | Lịch tuyệt đối trong `index.md` M9 |
-| Q6 | Bên cấp quyền rating Golden Road có yêu cầu **ghi công** (credit) không? | Thêm một dòng ghi nguồn dữ liệu trong màn hình Credits/README, không ảnh hưởng gameplay. | Màn hình Credits |
+| Q6 | Bên cấp quyền rating Golden Road có yêu cầu **ghi công** không? | Đã thêm một dòng ghi nguồn dữ liệu ở footer game và README, không ảnh hưởng gameplay. | Màn hình Credits |
+
+Việc cần xác nhận với BTC (origin trang nhúng, thuộc tính iframe, thời gian duyệt) ghi ở [CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §3. Quyết định liên quan tới deploy: domain production (D4) và `frame-ancestors` (D1) chờ có URL và xác nhận BTC.
 
 ---
 
+## Ghi chú triển khai (03/11/2026)
+
+- Recovery Code của Kiến trúc B là bản save nén deflate, version `AR1`, CRC32 và giới hạn kích thước; là snapshot tiến trình, không phải danh tính server; xuất mã mới sau khi chơi.
+- Ba edition 2026 trước đây gắn nhầm LEGACY được phân loại CHAMPION, giữ nguyên id/stats/odds; LEGACY sinh từ dataset không vào pack. `ratingSource` của edition remap là `adjusted`, giữ `rawRating` và `ratingNote`. Checksum tại `src/data/generated/legacyManifest.json`.
+- Training/sponsorship: tài trợ phục hồi 100 credits/ngày khi ví dưới 100; giao hữu và thử lại miễn phí; `CHAMPION_POOL` tạm không huấn luyện.
+- Theo yêu cầu chủ dự án, BO3/BO5 dừng ở kết quả từng ván để đọc logs rồi bấm Next (`GameRecap`), lưu được khi reload; không đổi luật/RNG/odds.
+- Benchmark prototype phụ chưa đạt (adaptive–random gap 3.51 điểm %, +10 power 76.09%); DEC-5 đủ dải.
+
 ## Nhật ký thay đổi của file này
-
-Kết quả Phase 3/4 (03/11): G0→G1→G2→G4→G3 đã triển khai, flag G3 giữ tắt. QA local 31 tests/14 browser results; public host/portal và browser/playtest còn thiếu. Benchmark prototype phụ uniform65: gap adaptive-random3.51pp, +10 power76.09%, chưa đủ mục tiêu; DEC-5 đủ dải. Q4–Q6 giữ mở. Chủ dự án yêu cầu dừng ở kết quả từng ván BO3/BO5 để đọc logs rồi bấm Next; đã thêm GameRecap, lưu được khi reload, không đổi luật/RNG/odds. Evidence `evidence/PHASE_4.md`.
-
-Kết quả G0 (03/11): mapping mặc định triển khai theo neo integer 76→55, 80→69, 81→70, 86→79, 87→80, 91→89, 92→90, 98→96; đơn điệu cả input thập phân. Phân bố đo được 81/365/166/37. Đây là mặc định kỹ thuật theo DEC-4, không thay trạng thái đề xuất. Ba edition 2026 hiện tại trước đây gắn nhầm LEGACY được phân loại CHAMPION, giữ nguyên id/stats/odds; LEGACY sinh từ dataset không vào pack. RatingSource của edition remap là adjusted, giữ rawRating và ratingNote. Bằng chứng checksum tại `src/data/generated/legacyManifest.json`.
-
-Kết quả Phase 2 (03/11): dùng mặc định Q4/DEC-5, OVR đối thủ Ch1–5 = 55/62/66/72/77, win-rate 4000 seed/ô = 68.70/54.23/48.63/49.52/49.30%. Không chốt thay chủ dự án. Tài trợ phục hồi 100 credits/ngày khi ví dưới 100, giao hữu/thử lại miễn phí; Champion Pool tạm không huấn luyện. `evidence/PHASE_2.md`.
-
-Kết quả triển khai Phase 1 (03/11): theo mặc định DEC-1, Recovery Code của Kiến trúc B là bản save nén deflate, version `AR1`, CRC32 và giới hạn kích thước. Mã là snapshot tiến trình, không phải danh tính server; xuất mã mới sau khi chơi. Trạng thái đề xuất của DEC-1 được giữ nguyên. E2E storage bị chặn và round-trip đã xanh, xem `evidence/PHASE_1.md`.
 
 | Ngày | Thay đổi |
 |---|---|
 | 03/11/2026 | Tạo file. Ghi nhận G0 = B. Thêm DEC-1..DEC-9 và Q1..Q4 sau audit mã nguồn và nghiên cứu dữ liệu Golden Road. |
-| 03/11/2026 | Chủ dự án trả lời Q1-Q3: có quyền dùng/điều chỉnh rating Golden Road; email Riot bao phủ mọi thứ; hạn nộp được giãn. Cập nhật DEC-3, DEC-4, DEC-7, DEC-9; thêm Q5 (ngày nộp mới) và Q6 (ghi công). |
+| 03/11/2026 | Chủ dự án trả lời Q1-Q3; cập nhật DEC-3, DEC-4, DEC-7, DEC-9; thêm Q5 và Q6. |
+| 03/11/2026 | Gộp tài liệu. Chủ dự án chốt: hạn 15/11 (Q5 đóng, Q3 bị thay thế), host Vercel (DEC-10), khai AI ở ô riêng khi nộp (DEC-11). Agent thêm DEC-12. Tách các mục đã chốt khỏi "Đề xuất"; giữ nguyên trạng thái các mục DEC-1, 2, 4 (mapping), 5–9. G0 vẫn "Đã ghi nhận". |
+| 03/11/2026 | Chủ dự án yêu cầu triển khai DEC-12 → **Đã chốt** và đã triển khai. Dọn `docs/ref/golden_road/`: chỉ còn `data.js` (nguồn importer). |

@@ -1,64 +1,49 @@
 # CHANGELOG
 
-## 2026-11-03 — đồng bộ tài liệu sau phản hồi recap (không đổi rulesVersion)
-- Đồng bộ spec simulator/UX/decision/QA với `GAME_RECAP`: kết quả từng ván BO3/BO5, logs, explicit Next và career reload; demo không ghi save.
-- Ghi contract Architecture B/localStorage/Recovery Code, palette và catalog/pool thực tế; phân biệt thiết kế A/tương lai, kế hoạch ngày cũ và hạn đã giãn chưa có ngày mới. Bổ sung trạng thái vào CLAUDE, START HERE và prompt khởi tạo.
-- Giữ rõ các gate chưa đạt: qualification/next split đầy đủ, mô phỏng wallet theo chính sách, balance prototype, public/portal, cross-browser và playtest. M9/evidence là nguồn tiến độ hiện tại; G3 vẫn tắt. Không đổi odds/pity/matrix hoặc DECISIONS.
-- Bằng chứng kiểm tra docs/manifest: `evidence/DOC_SYNC.md`; kết quả test code 31/14 thuộc lượt Phase 4 trước, không báo là vừa chạy lại trong lượt chỉ sửa tài liệu.
+`rulesVersion` hiện tại: **v1.2.0** (`docs/config/balance.initial.json`). Đổi luật gameplay phải tăng `rulesVersion`, ghi một mục ở đây và kiểm tra các nơi lặp số (pack odds/pity: `ECONOMY.md` + `balance.initial.json`; giới hạn simulator và chính sách quyết định: `MATCH_SIMULATOR.md` + `balance.initial.json` + `tactics.matrix.json`).
+
+## 2026-11-03 — DEC-12: lưu trữ chịu được storage không bền (không đổi rulesVersion, không đổi luật)
+
+- Thêm `src/lib/backupMeta.ts` (điểm tiến trình, chấm báo/nhắc sao lưu, key `apac_backup_meta`) và `src/lib/environment.ts` (phát hiện nhúng iframe và Safari/iOS để chọn lời khuyên).
+- `GameContext`: đọc lại sau mỗi lần ghi save và trong probe lúc tải, `navigator.storage.persist()` best-effort, theo dõi sao lưu; Navbar có chấm báo; banner nhắc không chặn; màn Sao lưu hiện lần sao lưu gần nhất và lời khuyên theo ngữ cảnh.
+- Mã Recovery Code xuất ra gộp ledger nóng vào `ledgerArchive` (`compactSave`); `encodeSave` mặc định vẫn nguyên bản.
+- Test: `backup.test.ts` (9 test, tổng 40); thêm `scripts/e2e-backup.js`; `e2e-f0.js` cập nhật phép so sánh round-trip.
+- Dọn `docs/ref/golden_road/`: xóa `engine.js`, `game.js`, `style.css`, `index.html` (mã bên thứ ba không dùng) và cấu hình công cụ cục bộ; giữ `data.js` (importer, checksum không đổi).
+
+## 2026-11-03 — gộp tài liệu (không đổi rulesVersion, không đổi gameplay)
+
+- Gộp 22 file markdown đánh số (`00`–`14`, `index`, `CLAUDE`), hai prompt agent, ba file `research/`, `evidence/PHASE_*.md` và `DOC_SYNC.md` thành 9 tài liệu có tên: `GAME_DESIGN`, `ECONOMY`, `MATCH_SIMULATOR`, `UX_AND_ART`, `ARCHITECTURE`, `QA_AND_RELEASE`, `CONTEST_AND_RIGHTS`, `PROJECT_STATUS`, `DECISIONS`. `CLAUDE.md` chuyển ra thư mục gốc và viết lại ngắn.
+- Loại nội dung Architecture A (Java/Spring Boot/Neon/Oracle, schema/API/idempotency) và deploy Oracle/Nginx; deploy chuyển sang Vercel. Bản cũ còn trong git (commit `242aa11`).
+- Xóa `docs/config/competition.domestic.example.json` và `player-card.example.json` (ví dụ cho API cũ, không được dùng). Giữ `balance.initial.json` và `tactics.matrix.json` (test đọc), `ref/golden_road/` (importer đọc).
+- Đổi tên artifact kiểm chứng: `evidence/phase-4-commands.txt` → `verify-output.txt` (do `scripts/verify-release.ts` ghi), `phase-4-e2e.json` → `e2e-results.json`; bỏ các file xuất của Phase 0–1 (đã tóm tắt trong `QA_AND_RELEASE.md` §7).
+- Cập nhật theo chủ dự án: hạn nộp 15/11/2026 không giãn, bình chọn đến 22/11; host Vercel; khai AI ở form nộp (`DECISIONS.md` DEC-10, DEC-11). Thêm đề xuất lưu trữ DEC-12.
+- Ghi điều lệ phần thi Công nghệ đọc ngày 03/11 vào `CONTEST_AND_RIGHTS.md`; `/portal/technology` cần đăng nhập nên chưa đọc.
 
 ## v2.2.3 — 2026-11-03 (Phase 3/4, rulesVersion v1.2.0)
-- Thêm importer Legacy có provenance/checksum, historical demo không ghi career, đối thủ Ch6–12 và daily market; nguồn TSW 2026 có confidence, không dùng Low. Draft clean-room sau flag tắt, có cap thưởng và poster canvas mới.
-- Sửa reload giữa trận/recap/pack bằng persisted snapshot và reveal; sửa FOCUS_1 giữ lựa chọn pha cũ, role chính edition lịch sử và validation save.
-- Theo phản hồi chủ dự án: thêm kết quả từng ván BO3/BO5, tỷ số chuỗi và logs, dừng cho tới khi bấm Next; cả career và demo. Trạng thái recap career survive reload.
-- Modal semantics/Esc/focus trap/reduced motion, touch >=44px; SVG role tự vẽ thay emoji. Xóa tài liệu nội bộ khỏi public, gỡ dependency không dùng, clean Windows, README/CI/harness/template deploy và scripts kiểm chứng.
-- 31 tests, 14 browser results xanh; DEC-5 đủ dải. Public HTTPS/portal/browser thật/playtest và hai mục tiêu prototype phụ chưa hoàn tất; không bật G3 hoặc nhận là submission-ready. Chi tiết `evidence/PHASE_4.md`.
+
+- Importer Legacy có provenance/checksum, demo lịch sử không ghi career, đối thủ Ch6–12 và market hằng ngày; nguồn Team Secret Whales 2026 có confidence, không dùng Low. Draft clean-room sau cờ tắt, có cap thưởng và poster canvas.
+- Reload giữa trận/recap/pack bằng persisted snapshot và reveal; FOCUS_1 giữ lựa chọn pha cũ đã sửa; role chính theo edition; validation save.
+- Theo phản hồi chủ dự án: kết quả từng ván BO3/BO5, tỷ số chuỗi và logs, dừng tới khi bấm Next (career và demo). Recap career sống sót qua reload.
+- Modal semantics/Esc/focus trap/reduced motion, touch ≥ 44px, SVG role thay emoji. Gỡ spec nội bộ khỏi public, gỡ dependency không dùng, clean tương thích Windows, README/CI/harness/scripts kiểm chứng.
+- 31 test, 14 E2E xanh; DEC-5 đủ dải. Public HTTPS/Portal/browser thật/playtest và hai mục prototype phụ chưa hoàn tất.
 
 ## v2.2.2 — 2026-11-03 (Phase 0–2, rulesVersion v1.1.0)
-- Thêm strict TypeScript, vitest, invariant/property tests và balance-sim.
+
+- Thêm strict TypeScript, Vitest, test bất biến/property, `balance-sim`.
 - Sửa Welcome Pack, Recovery Code nén và lưu một snapshot; F0 390×844/reload xanh.
-- Sửa 14 mục P1: equip unique, tactic fit, synergy đối thủ/cân bằng Ch1–5, discount, từng ván FOCUS_1, scoreboard, Skip timer, mobile header, giao hữu, counterfactual, training OVR/cap, tài trợ phục hồi/UUID/ledger archive, font/lang.
-- Không đổi odds, pity hoặc decision matrix. Bằng chứng: `evidence/PHASE_0.md`, `PHASE_1.md`, `PHASE_2.md`.
+- Sửa 14 mục P1: equip unique, tactic fit, synergy đối thủ và cân bằng Ch1–5, discount, từng ván FOCUS_1, scoreboard, Skip timer, header mobile, giao hữu, counterfactual, training OVR/cap, tài trợ phục hồi/UUID/ledger archive, font/lang.
+- Không đổi odds, pity hay decision matrix.
 
-## v2.2.1 — 2026-11-03 (chỉ tài liệu, **không đổi `rulesVersion`**)
-Sau khi audit bản build Kiến trúc B hiện có và phân tích `docs/ref/golden_road/`.
+## v2.2.1 — 2026-11-03 (chỉ tài liệu)
 
-**Quyết định & quy trình**
-- Thêm `DECISIONS.md`: ghi nhận Gate G0 = B theo lời chủ dự án (chờ xác nhận văn bản), 9 quyết định đề xuất (DEC-1..9) và 4 câu hỏi mở (Q1..Q4).
-- Thêm `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`: prompt sửa 2 lỗi P0, 13 lỗi P1 và tích hợp dữ liệu lịch sử, chia Phase 0-4 theo lịch 03-14/11.
-- `index.md`: thêm milestone **M9**, decision D5-D7, ba dòng Log; không tick mục M3/M4 vì chưa có bằng chứng test.
-
-**Dữ liệu & quyền**
-- `ref/golden_road/` là tài liệu tham khảo (fan game bên thứ ba, có quảng cáo và Ko-fi); **không** đưa vào bundle, **không** sao chép mã/giao diện (`IMPLEMENTATION_PROMPT` dòng 16). Chủ dự án xác nhận (Q1) đã có quyền tham khảo, dùng và điều chỉnh **điểm rating**; quyền này không bao phủ mã hay giao diện.
-- Chủ dự án khẳng định email của Riot bao phủ mọi thứ, không giới hạn (Q2): tên CLB thật được phép (`ENABLE_REAL_CLUB_NAMES` mặc định `true`). Ảnh/logo thật vẫn cần `asset_license` từng asset và nằm ngoài work order hiện tại.
-- Hạn nộp được giãn (Q3), ngày mới chưa ghi (Q5): bỏ thứ tự cắt phạm vi theo lịch; mốc ngày trong `index.md` M1-M8 sẽ được dời khi có ngày mới.
-- `11_RIGHTS_SOURCES.md` §6: ghi chú về dữ liệu bên thứ ba và điều khoản fan-project của Riot (bản 08/2018, đọc 03/11/2026).
-- `research/LINKS_AND_FACT_CHECK.md`: thêm bảng kiểm tra thực tế 03/11/2026 (LCP 2026, MSI 2026, First Stand 2026, Worlds 2026) kèm độ tin cậy. Liquipedia và Leaguepedia chặn công cụ fetch, nên **đội hình VCS chưa được xác minh**.
-- Phân loại thẻ `LEGACY` không đổi bảng pack: `packTableVersion` và định nghĩa pity v2.2 giữ nguyên.
-
-**Chưa thay đổi**
-- Các "verified facts" ở `02`/`11` (mục 3-4) vẫn **chưa được kiểm chứng lại**.
-- Thể thức và số suất Worlds 2026 chỉ mới có từ một blog bên thứ ba; đối chiếu với primer chính thức của Riot trước khi dùng.
+- Thêm `DECISIONS.md` (G0 = B, DEC-1..9, Q1..Q4) sau audit bản build B và phân tích dataset Golden Road.
+- Chủ dự án xác nhận: có quyền dùng/điều chỉnh rating (Q1), email Riot bao phủ mọi thứ (Q2), tên CLB thật được phép (`ENABLE_REAL_CLUB_NAMES=true`).
+- Thêm bảng kiểm tra thực tế 2026 (LCP, MSI, First Stand, Worlds) kèm độ tin cậy; roster VCS chưa xác minh (Liquipedia và Leaguepedia chặn công cụ fetch).
 
 ## v2.2 — 2026-10-27
-Dựa trên đánh giá ý tưởng và tài liệu v2.1.
 
-**Phạm vi & lịch**
-- Cắt phạm vi: ưu tiên Campus → VCS (Ch1–5); LCP/FST/MSI/Worlds mặc định knockout đơn hư cấu; Swiss/double elim thành P2 (`00`, `03` §4).
-- Thêm `demoScenario` "Chung kết thế giới" (P1) (`03` §11).
-- Roadmap viết lại: Gate G0 (chọn kiến trúc A/B), deploy skeleton trước 30/10, playtest F0 vào 31/10, nên nộp 14/11 (`10`).
-- Giảm mục tiêu nội dung: ~30 edition, ưu tiên khung thẻ/hiệu ứng (`12` §8).
-
-**Gameplay**
-- Thêm `13_MATCH_DECISION_SPEC.md` + `config/tactics.matrix.json`: thông tin hiển thị cho người chơi, ma trận tactic × archetype không có tactic thống trị, đối thủ off-script 20%, số quyết định BO3/BO5 giảm còn 5/7.
-- Sub-seed RNG theo (seed, gameIndex, phase, eventSlot) để giải thích counterfactual trung thực (`05` §3).
-- Thêm `14_ECONOMY_SIM_TABLE.md`: bảng nguồn/sink và chỉ tiêu kiểm chứng.
-- Pity chốt: tối đa 7 lần hụt, lần 8 buộc Epic+; Common từ Scout pack có OVR ≥ 62 (`04`, `balance.initial.json`).
-
-**Kỹ thuật**
-- `milestone_claim.career_year` NOT NULL DEFAULT 0 (UNIQUE với NULL không chặn trùng trong PostgreSQL); CHECK số dư `>= 0` (`06`).
-- Flyway chạy qua direct endpoint của Neon, tách `FLYWAY_URL` / `DB_URL` (`06` §8, `08` §6).
-- `08` §1b: deploy skeleton và kiểm tra storage trong iframe trên Chrome/Safari/Firefox từ sớm.
-
-**Chưa thay đổi**
-- Các "verified facts" ở `02`/`11` giữ nguyên, **chưa được kiểm chứng lại** trong lần cập nhật này. Đối chiếu với nguồn chính thức trước khi nộp.
-- Quyết định cuối giữa kiến trúc A và B thuộc về chủ dự án (Gate G0).
+- Cắt phạm vi: ưu tiên Campus → VCS (Ch1–5); LCP/First Stand/MSI/Worlds mặc định knockout đơn hư cấu; Swiss/double elimination là P2. Thêm `demoScenario` "Chung kết thế giới".
+- Thêm đặc tả quyết định trong trận và `tactics.matrix.json` (ma trận không có tactic thống trị, đối thủ off-script 20%, số quyết định BO3/BO5 là 5/7).
+- Sub-seed RNG theo `(seed, gameIndex, phase, eventSlot)` để counterfactual trung thực.
+- Pity chốt: tối đa 7 lần hụt, lần 8 buộc Epic+; Common từ Scout có OVR ≥ 62.
+- Bảng kinh tế nguồn/sink và chỉ tiêu kiểm chứng (giả thuyết, chưa mô phỏng ví).

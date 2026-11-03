@@ -13,11 +13,19 @@ async function readLimited(stream:ReadableStream<Uint8Array>):Promise<Uint8Array
   finally {await reader.cancel();reader.releaseLock();}
   const result=new Uint8Array(size);let offset=0;for(const chunk of chunks){result.set(chunk,offset);offset+=chunk.length;}return result;
 }
-export async function encodeSave(save:GameSave):Promise<string> {
+// Fold the hot ledger into ledgerArchive so exported codes stay short enough to copy on a phone.
+// Wallet balances live in club.wallet, so no balance changes.
+export function compactSave(save:GameSave):GameSave {
+  const archive={...(save.ledgerArchive||{credits:0,materials:0,tickets:0,count:0})};
+  for(const entry of save.ledger){archive.credits+=entry.deltaCredits;archive.materials+=entry.deltaMaterials;archive.tickets+=entry.deltaTickets;archive.count++;}
+  return {...save,ledger:[],ledgerArchive:archive};
+}
+export async function encodeSave(save:GameSave,options:{compact?:boolean}={}):Promise<string> {
   const validated=validateSave(save);
   // Never recursively embed a previous Recovery Code.
   validated.club!.recoveryCode='';
-  const raw=new TextEncoder().encode(JSON.stringify(validated));
+  const body=options.compact?compactSave(validated):validated;
+  const raw=new TextEncoder().encode(JSON.stringify(body));
   if(raw.length>MAX_BYTES)throw new Error('Save vượt giới hạn kích thước.');
   const compressed=await readLimited(new Blob([raw]).stream().pipeThrough(new CompressionStream('deflate')));
   let binary='';for(const byte of compressed)binary+=String.fromCharCode(byte);

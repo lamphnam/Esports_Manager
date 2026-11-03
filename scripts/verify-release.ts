@@ -7,5 +7,5 @@ for(const args of commands){
  const output=`$ bun ${args.join(' ')}\n${result.stdout||''}${result.stderr||''}exit=${result.status}\n`;
  report+=output;console.log(output);if(result.status!==0)failed=true;
 }
-writeFileSync('docs/evidence/phase-4-commands.txt',report);
+writeFileSync('docs/evidence/verify-output.txt',report);
 if(failed)process.exitCode=1;

@@ -1,4 +1,0 @@
-Playwright at 390x844, original GameProvider, before production edits:
-createClub -> same-render claimChapterReward(1) -> openPack('WELCOME')
-{"claimed":true,"welcomeOpens":false,"expectedWelcomeOpens":true,"fakeRestore":true,"expectedFakeRestore":false}
-Repro persisted as scripts/e2e-p0.js (asserts both failures).

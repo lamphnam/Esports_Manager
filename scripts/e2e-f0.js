@@ -31,8 +31,13 @@ async (page) => {
     await p.getByRole('textbox',{name:'Nhập Recovery Code',exact:true}).fill(code);
     await p.getByRole('button',{name:'Khôi Phục Save',exact:true}).tap();
     await p.getByRole('dialog').waitFor({state:'hidden'});
+    // Exported codes fold the ledger, so the restore has landed once the stored ledger is empty (WebKit reports the dialog hidden early).
+    await p.waitForFunction(()=>JSON.parse(localStorage.getItem('apac_rising_save_v3')).ledger.length===0);
     const restored=await p.evaluate(()=>JSON.parse(localStorage.getItem('apac_rising_save_v3')));
-    if(JSON.stringify(restored)!==JSON.stringify(equipped))throw new Error('Recovery round-trip differs');
+    // DEC-12: exported codes fold the hot ledger into ledgerArchive, so compare everything else exactly and the ledger by totals.
+    const canon=value=>JSON.stringify(value,(key,item)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a<b?-1:1)):item);
+    const folded={...equipped,ledger:[],ledgerArchive:equipped.ledger.reduce((sum,entry)=>({credits:sum.credits+entry.deltaCredits,materials:sum.materials+entry.deltaMaterials,tickets:sum.tickets+entry.deltaTickets,count:sum.count+1}),equipped.ledgerArchive||{credits:0,materials:0,tickets:0,count:0})};
+    if(canon(restored)!==canon(folded))throw new Error('Recovery round-trip differs');
     if(errors.length)throw new Error(errors.join('\n'));
     return {viewport:`${viewport.width}x${viewport.height}`,touch,cards:restored.ownedCards.length,credits:restored.club.wallet.credits,completed:restored.club.completedChapterIds,equipped:true,reload:true,recovery:true,pageErrors:errors};
   } finally {await context.close();}

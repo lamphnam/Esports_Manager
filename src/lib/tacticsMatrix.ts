@@ -98,7 +98,7 @@ export const TACTIC_METADATA: Record<TacticCode, TacticMeta> = {
 };
 
 /**
- * Exact decisionFit matrix from 13_MATCH_DECISION_SPEC.md (±6 points)
+ * Exact decisionFit matrix from docs/MATCH_SIMULATOR.md §6 (±6 points)
  */
 export const DECISION_FIT_MATRIX: Record<
   TacticCode,

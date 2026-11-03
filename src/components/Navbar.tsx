@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRecoveryModal,
   onOpenWorldDemo,
 }) => {
-  const { club } = useGame();
+  const { club, backup } = useGame();
   const [muted, setMuted] = useState(AudioSynth.isMuted());
 
   const navLinks = [
@@ -133,10 +133,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               AudioSynth.playClick();
               onOpenRecoveryModal();
             }}
-            className="p-2 min-w-11 min-h-11 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
+            className="relative flex items-center justify-center gap-1.5 p-2 min-w-11 min-h-11 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
             title="Mã sao lưu / khôi phục dữ liệu"
+            aria-label={backup.dirty ? 'Sao lưu: có tiến trình chưa sao lưu' : 'Sao lưu và khôi phục dữ liệu'}
           >
             <KeyRound className="w-4 h-4" />
+            <span className="hidden lg:inline text-xs font-semibold">Sao lưu</span>
+            {backup.dirty && <span aria-hidden="true" className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#FFB800] border-2 border-[#090D16]" />}
           </button>
 
           {/* Audio Mute Toggle */}
