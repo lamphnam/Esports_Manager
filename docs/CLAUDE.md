@@ -4,15 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this directory is
 
-This is the **documentation/spec pack (v2.2, 2026-10-27)** for *APAC Rising: Esports Manager*, a web MOBA esports-manager game with collectible player cards, packs, a career campaign and a seeded match simulator. It is meant to be dropped in as `docs/` at the root of a future monorepo (`frontend/`, `backend/`, `infra/`, `tools/` — see `08_ARCHITECTURE_DEPLOY.md` §2). **There is no application code, build, lint or test setup here, and the directory is not a git repo.** Don't invent commands for it.
+This is the **documentation/spec pack (v2.2, 2026-10-27)** for *APAC Rising: Esports Manager*, a web MOBA esports-manager game with collectible player cards, packs, a career campaign and a seeded match simulator. It is meant to be dropped in as `docs/` at the root of a future monorepo (`frontend/`, `backend/`, `infra/`, `tools/` — see `08_ARCHITECTURE_DEPLOY.md` §2). **There is no application code, build, lint or test setup inside `docs/`.** Don't invent commands for it. The git root is the parent of `docs/`, and as of 03/11/2026 it also holds the Architecture-B app (`src/`, `package.json`, `vite.config.ts`) alongside `.agents/skills/`.
 
-Context: solo developer + coding agents, contest submission deadline **15/11/2026** (aim to submit 14/11). The docs are written in **Vietnamese** with English identifiers; keep that convention when editing them.
+Context: solo developer + coding agents, contest submission deadline originally **15/11/2026** (aim 14/11); the owner reported on 03/11/2026 that it has been extended, new date not yet recorded (`DECISIONS.md` Q5). The docs are written in **Vietnamese** with English identifiers; keep that convention when editing them.
 
 ## Planned stack and commands (for the future codebase, not runnable here)
 
 From `08_ARCHITECTURE_DEPLOY.md` §4 and `agents/IMPLEMENTATION_PROMPT.md`:
 - Frontend: React + TypeScript + Vite, **Bun**. `bun install --frozen-lockfile` → `bun run typecheck` → `bun run test` → `bun run build`.
-- Backend: Java 21 + Spring Boot 3.x, Maven wrapper, Flyway, JUnit 5 (+ Testcontainers), Neon PostgreSQL. `./mvnw test` → `./mvnw package`.
+- Backend (**optional under Architecture B**, see `DECISIONS.md`): Java 21 + Spring Boot 3.x, Maven wrapper, Flyway, JUnit 5 (+ Testcontainers), Neon PostgreSQL. `./mvnw test` → `./mvnw package`.
 - E2E: Playwright (onboarding F0, reload, pack-open retry, deep links via Nginx SPA fallback, cross-origin iframe harness).
 - Deploy: Oracle Cloud Ubuntu ARM64 + Nginx + Cloudflare; game is embedded in a third-party contest portal iframe.
 
@@ -34,7 +34,7 @@ Several older passages are superseded by v2.2 additions and were not rewritten, 
 
 ## Gate G0 — do this before writing gameplay code
 
-The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the owner records an architecture choice in **`docs/DECISIONS.md`**: **A** server-authoritative (Spring Boot + Neon) vs **B** local-first (TypeScript simulator, IndexedDB, static host). That file does not exist yet. If it's still missing, stop and ask the owner. If B is chosen, `06` and `08` become reference for optional parts only. The deploy skeleton (HTTPS + iframe harness + CSP + health + token-storage test in Chrome/Safari/Firefox) must be working before F0 gameplay.
+The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the owner records an architecture choice in **`docs/DECISIONS.md`**: **A** server-authoritative (Spring Boot + Neon) vs **B** local-first (TypeScript simulator, IndexedDB, static host). That file now exists and records **G0 = B** (03/11/2026, taken from the owner's statement; the owner's written confirmation is pending). It also holds the proposed decisions (DEC-1..9) and the open questions (Q1..Q4); an agent may append to it but must not change "Đề xuất" to "Đã chốt". Because B is chosen, `06` and `08` are reference for optional parts only. The deploy skeleton (HTTPS + iframe harness + CSP + health + token-storage test in Chrome/Safari/Firefox) must be working before F0 gameplay.
 
 ## Cross-cutting rules (these span several files)
 
@@ -63,7 +63,11 @@ The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the 
 
 ## Rights and contest constraints
 
-The owner says Riot approved use of **player names and photos** by email. That doesn't cover team logos, Riot/League/LCP/VCS marks, champion art, or Acer/Predator marks. Use fictional flat-art placeholders unless an `asset_license` record exists per asset (`11` §1). No Portal login/credential collection, camera, microphone or external redirects. Guest identity is a random bearer token (stored hashed) plus a recovery code if iframe storage is blocked, and it must never appear in URLs or logs. `frame-ancestors` must list only the verified portal origin and the owned domain; don't guess the portal host. The contest's current terms at submission time override the snapshot in `11` §2.
+The owner says Riot approved use of **player names and photos** by email and, as of 03/11/2026, that the grant covers everything with no limits (`DECISIONS.md` Q2), so real club names are allowed. Acer/Predator marks are not Riot's to grant. No cleared image or logo files exist yet: keep fictional flat-art placeholders unless an `asset_license` record exists per asset (`11` §1). No Portal login/credential collection, camera, microphone or external redirects. Guest identity is a random bearer token (stored hashed) plus a recovery code if iframe storage is blocked, and it must never appear in URLs or logs. `frame-ancestors` must list only the verified portal origin and the owned domain; don't guess the portal host. The contest's current terms at submission time override the snapshot in `11` §2.
+
+## Reference material (`ref/`) and the current work order
+
+`ref/golden_road/` is a third-party fan game (ads and a Ko-fi button) kept **for reference only**. Never bundle it, and never copy its code, UI text, CSS, icons or share-card layout (`agents/IMPLEMENTATION_PROMPT.md` line 16, `11` §6). Its roster facts and rating values may seed `LEGACY` card editions (the owner has permission to use and adjust the ratings, `DECISIONS.md` Q1); record `ratingSource` on each edition. The permission covers ratings only. The current work order is `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`, tracked as **M9** in `index.md`. Fact snapshots for 2026 events carry a confidence per row in `research/LINKS_AND_FACT_CHECK.md`; don't promote a Low row into game data.
 
 ## Definition of first playable (F0, non-negotiable)
 

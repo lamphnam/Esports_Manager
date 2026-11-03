@@ -1,0 +1,127 @@
+[
+  {
+    "path": "docs/00_START_HERE.md",
+    "bytes": 6326,
+    "sha256": "082ac0de5fe374168e9f5c75c3d98161bc5fe072c57bba51110e29c561ea3039"
+  },
+  {
+    "path": "docs/01_PRODUCT_VISION_GDD.md",
+    "bytes": 6211,
+    "sha256": "5e974f453e43d3b9901fc32a84cbca8ba3e7f48c4ab9e6d248f1fdccba817967"
+  },
+  {
+    "path": "docs/02_CAMPAIGN_RESEARCH_REALITY.md",
+    "bytes": 4332,
+    "sha256": "22d93282a0310595f9473d7c34e5cbc65323230a8862d885fd78c6092f2f3f8b"
+  },
+  {
+    "path": "docs/03_CAMPAIGN_DESIGN.md",
+    "bytes": 8852,
+    "sha256": "884df6ac77eb163b9c0d58c8a700ed447d15f01516639f3303305b2eee67e136"
+  },
+  {
+    "path": "docs/04_COLLECTION_PACKS_ECONOMY.md",
+    "bytes": 6682,
+    "sha256": "155c7ad868a8ae6c379821c5ed417b33402740bc8be72cbbd8a5b2f23d60e9aa"
+  },
+  {
+    "path": "docs/05_MATCH_SIMULATOR.md",
+    "bytes": 6701,
+    "sha256": "a322d2e38fc7d6ea76e1fac0db58a281eaaffc8adc80ef3ac5e946461f8632e6"
+  },
+  {
+    "path": "docs/06_DATA_MODEL_API.md",
+    "bytes": 9898,
+    "sha256": "2eab595465569f88a33e9e35efe9156fa16371337452495dc01a914027ccdd5f"
+  },
+  {
+    "path": "docs/07_FRONTEND_UX_ART.md",
+    "bytes": 5182,
+    "sha256": "4f636c7976ad0560d2954f7dfa77c8471716f9217e1e1ee05603cffa8f57a6e1"
+  },
+  {
+    "path": "docs/08_ARCHITECTURE_DEPLOY.md",
+    "bytes": 5772,
+    "sha256": "f5a6dd22e25d537efa8e7ef5620f819b2f22751a7a6ec047f071e6e29c090ff7"
+  },
+  {
+    "path": "docs/09_ACCEPTANCE_QA.md",
+    "bytes": 4236,
+    "sha256": "f34a8f9ca3db2e2c2d494aa6bf82ce823596ec8e8441ca8dace2e23eaf74a3a2"
+  },
+  {
+    "path": "docs/10_ROADMAP_AGENT_WORKFLOW.md",
+    "bytes": 5567,
+    "sha256": "72941ac863f8e11dfa0b123bdc8ab3809fbd1994ceb74fb758cb7ab741922258"
+  },
+  {
+    "path": "docs/11_RIGHTS_SOURCES.md",
+    "bytes": 4540,
+    "sha256": "5256b91612b566c690a318fd20da7753b2e80e0c7a899b92bfb4f52a2e1449f8"
+  },
+  {
+    "path": "docs/12_CONTENT_BLUEPRINT.md",
+    "bytes": 4789,
+    "sha256": "4aba6b58c7e24dc7df9ae0cc21068b9b1a9e1b68568367699711db0a1f037275"
+  },
+  {
+    "path": "docs/13_MATCH_DECISION_SPEC.md",
+    "bytes": 4726,
+    "sha256": "d574f75dcee2a61a21a5f65475cb68a0b4b358b4e59d7e6a995482e4fe0fd66b"
+  },
+  {
+    "path": "docs/14_ECONOMY_SIM_TABLE.md",
+    "bytes": 2115,
+    "sha256": "19a9e122bb7509f1d3c3abf79548823d82c791b9e2681170273a2cf3ddaba2be"
+  },
+  {
+    "path": "docs/agents/IMPLEMENTATION_PROMPT.md",
+    "bytes": 5956,
+    "sha256": "892be28eebdb9a39c8b11d46caaeb6f47008c3b0fdd0ac417bf4333f728187e7"
+  },
+  {
+    "path": "docs/CHANGELOG.md",
+    "bytes": 1843,
+    "sha256": "e5e0a905e692f63c8ed62f2f75898a2da054f48bdd8bec0bd789dec9f9de7313"
+  },
+  {
+    "path": "docs/CLAUDE.md",
+    "bytes": 9146,
+    "sha256": "8fd90c38bb9e924ba1bdd220a954bdd2cdc183b0fe285d2c374aa1b050083758"
+  },
+  {
+    "path": "docs/config/balance.initial.json",
+    "bytes": 2321,
+    "sha256": "bfd4865d57b8949a1452b5401d32a7e4c3e2aa135c5fbb3025f37e78e9680a3e"
+  },
+  {
+    "path": "docs/config/competition.domestic.example.json",
+    "bytes": 784,
+    "sha256": "a42804821033a5560f2babb1799efc4fc2135b2fa0ea3e2170ce981951ebcf63"
+  },
+  {
+    "path": "docs/config/player-card.example.json",
+    "bytes": 1314,
+    "sha256": "a4447f8624d5b82f1dae43056a481638b91438cfa896101fd87ce4cb1f59a34c"
+  },
+  {
+    "path": "docs/config/tactics.matrix.json",
+    "bytes": 1943,
+    "sha256": "726c1b7a6951ee620d03bbf5bc4b45301697c91060f111b5157881560e94c98a"
+  },
+  {
+    "path": "docs/design/FIGMA_INDEX.md",
+    "bytes": 18973,
+    "sha256": "affb4a6004a55866b766fab9623a367cda8459a684c21aec99d9d5b2a64a1f4c"
+  },
+  {
+    "path": "docs/index.md",
+    "bytes": 8785,
+    "sha256": "6ad69c29d1a0ddcb524f558e4643e97475c32bab2eab2f55fe378cbe0daff692"
+  },
+  {
+    "path": "docs/research/LINKS_AND_FACT_CHECK.md",
+    "bytes": 581,
+    "sha256": "3b63e4c9da6f853e787ec7004088b9081461cfc483222f4127d5b765c17d2451"
+  }
+]

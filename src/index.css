@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #090D16;
+    --panel-primary: #111827;
+    --panel-secondary: #1E293B;
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --accent-amber: #FFB800;
+    --accent-cobalt: #2563EB;
+    --rarity-common: #94A3B8;
+    --rarity-rare: #2563EB;
+    --rarity-epic: #E11D48;
+    --rarity-legendary: #FFB800;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: #F8FAFC;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Barlow', 'Be Vietnam Pro', sans-serif;
+    letter-spacing: 0.015em;
+  }
+
+  .font-mono-nums {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom scrollbar - Crisp Industrial */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090D16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFB800;
+}
+
+/* Card rarity border & surface treatments - Zero Purple */
+.card-glow-common {
+  box-shadow: 0 2px 12px -2px rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.card-glow-rare {
+  box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.28);
+  border-color: rgba(59, 130, 246, 0.65);
+}
+
+.card-glow-epic {
+  box-shadow: 0 4px 24px -2px rgba(225, 29, 72, 0.32);
+  border-color: rgba(244, 63, 94, 0.75);
+}
+
+.card-glow-legendary {
+  box-shadow: 0 0 28px 1px rgba(255, 184, 0, 0.35), inset 0 0 12px rgba(255, 184, 0, 0.15);
+  border-color: #FFB800;
+}
+
+/* Industrial metallic sheen */
+.holo-card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.1) 48%,
+    rgba(255, 184, 0, 0.18) 50%,
+    rgba(37, 99, 235, 0.15) 52%,
+    transparent 62%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}

@@ -2,20 +2,27 @@
 
 Living checklist for *APAC Rising: Esports Manager*. Derived from `10_ROADMAP_AGENT_WORKFLOW.md`, `09_ACCEPTANCE_QA.md` and `00_START_HERE.md` (v2.2). Dates are dd/mm/2026.
 
-**Deadline:** 15/11 (aim to submit **14/11**) · **Team:** 1 developer + coding agents · **Last updated:** 27/10
+**Deadline:** originally 15/11 (aim 14/11) — **extended by the owner on 03/11, new date not yet recorded** (`DECISIONS.md` Q5) · **Team:** 1 developer + coding agents · **Last updated:** 03/11
 
 Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 
 ## Now
 
-- **Next action:** write `docs/DECISIONS.md` (Gate G0). Nothing below can start until it exists.
-- **Blocked on:** the owner's architecture decision (A or B).
+- **Build status:** an Architecture-B build exists at the repo root (`src/`, React + TS + Vite). The 03/11 audit found **2 P0** (Welcome Pack never opens after Chapter 1; Recovery Code is a stub) and **13 P1** issues. M3 items below stay unchecked until the fixes have test or E2E evidence.
+- **Next action:** run `docs/agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`, starting at Phase 0 (test safety net) and Phase 1 (P0 fixes). Tracked as **M9** below.
+- **Answered by the owner on 03/11:** Q1 (the Golden Road ratings may be used and adjusted), Q2 (the Riot email covers everything, no limits), Q3 (no schedule slip; deadline extended).
+- **Waiting on the owner:** Q5 (new submission date), Q4 (win-rate targets), Q6 (credit line). Defaults are recorded in `DECISIONS.md`, so work is not blocked.
+- **Freeze:** once Q5 is answered, set the feature-freeze date at least 2 working days before the submission date. The dates in M1-M8 below assume the original 15/11 deadline and need re-dating then.
 
 ## Open decisions (owner)
 
 | # | Decision | Needed by | Status | Notes |
 |---|---|---|---|---|
-| G0 | Architecture: **A** server-authoritative (Spring Boot + Neon + Oracle) vs **B** local-first (TS simulator, IndexedDB, static host) | 28/10 | `[ ]` | Record choice and reason in `DECISIONS.md` (`10` §0) |
+| G0 | Architecture: **A** server-authoritative (Spring Boot + Neon + Oracle) vs **B** local-first (TS simulator, `localStorage`, static host) | 28/10 | `[~]` | **B** recorded in `DECISIONS.md` on 03/11 from the owner's statement; awaiting the owner's written confirmation |
+| D5 | Right to use the rating values in `docs/ref/golden_road/data.js` (`DECISIONS.md` Q1) | — | `[x]` | Answered 03/11: yes, may be used and adjusted. Covers ratings only, not code or UI (DEC-9) |
+| D6 | Does the Riot email cover real club names, and use inside a game (`DECISIONS.md` Q2)? | — | `[x]` | Answered 03/11: covers everything, no limits. Real club names allowed (DEC-3). Image/logo files still need an `asset_license` row each |
+| D7 | Cut order if the schedule slips (`DECISIONS.md` Q3) | — | `[x]` | Answered 03/11: no slip, deadline extended. Cut order dropped; new date is open (Q5) |
+| D8 | New submission date after the extension (`DECISIONS.md` Q5) | now | `[ ]` | Also re-check the current contest terms (`11` §2) |
 | D1 | Exact portal parent origin for CSP `frame-ancestors` | before 11/11 | `[ ]` | Don't guess the host (`08` §5). Use a harness hostname until known |
 | D2 | Scope of Riot's email grant (names/photos only?) and which assets it covers | before enabling `collection.realAssets` | `[ ]` | Placeholders until `asset_license` rows exist (`11` §1) |
 | D3 | Predator side cup: keep behind flag, or rename "APAC Invitational" | P2 | `[ ]` | Depends on Acer brand rights |
@@ -26,7 +33,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 ### M1 — Gate G0 + repo skeleton (27–28/10)
 - [x] Spec pack v2.2 delivered (`00`–`14`, `config/`, `agents/`)
 - [x] `CLAUDE.md` created
-- [ ] `DECISIONS.md` written (G0)
+- [x] `DECISIONS.md` written (G0 = B recorded 03/11; owner confirmation pending)
 - [ ] Repo created with `docs/` at root; `frontend/`, `backend/`, `infra/`, `tools/` per `08` §2
 - [ ] Health endpoint / static page up locally
 
@@ -85,13 +92,43 @@ Acceptance (`09` §A):
 - [ ] Screenshots / video, logo, README listing fictional adaptations
 - [ ] **Submit 14/11** (15/11 is for emergencies only)
 
+### M9 — Audit fixes + legacy data (from 03/11; dates follow the new deadline) · *Source: `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`*
+Phase 0
+- [ ] `vitest` + `strict` TypeScript; tests for matrix, sub-seed golden, pity boundary, probability bounds; `scripts/balance-sim.ts`
+
+Phase 1 — P0 · *Gate: the full F0 loop passes in an E2E at 390×844*
+- [ ] P0-1 Welcome Pack opens right after the Chapter 1 win (state moved to a reducer; no `setTimeout` orchestration)
+- [ ] P0-2 Recovery Code carries a compressed save; import UI; storage-blocked banner (`DECISIONS.md` DEC-1)
+
+Phase 2 — P1 and polish
+- [ ] `equipCard` cannot put one card in two slots
+- [ ] TRADE_MAP operator precedence fixed; `getTacticRosterFit` clamped to [-5, 5]
+- [ ] Opponent receives synergy; opponent OVRs recalibrated to the win-rate targets (`DECISIONS.md` DEC-5)
+- [ ] Training Center discount applied; unimplemented facility perks hidden or described honestly
+- [ ] BO3/BO5 played game by game with the `FOCUS_1` policy; off-script and key-moment data shown
+- [ ] Live score no longer spoils the result; counterfactual picks the largest-gap alternative
+- [ ] Pack Skip cancels its timers; header fits 390 px; replay of a cleared chapter no longer promises a reward
+- [ ] Training: displayed OVR equals simulated OVR; stat cap respected; no soft-lock at 0 credits
+
+Phase 3 — legacy data (starts only after Phase 1 and 2 are green)
+- [ ] G0 importer: Golden Road facts + ratings (`ratingSource`: `golden_road` / `adjusted` / `derived`); `LEGACY` editions generated with provenance
+- [ ] G1 `demoScenario` rebuilt from historical rosters; symmetric opponent; no career writes (localStorage snapshot identical before and after)
+- [ ] G2 opponents and market generated deterministically from the legacy pool
+- [ ] G3 Draft mode behind `FEATURE_GOLDEN_ROAD`: built with the flag off, switched on for submission only if F0/R1 acceptance and 390×844 + iframe QA are green
+
+Phase 4 — release
+- [ ] Typecheck, test, build and `balance-sim` outputs captured; Playwright F0 + reload + iframe harness
+- [ ] Internal specs removed from the public bundle; unused deps removed; README rewritten
+- [ ] `CHANGELOG.md` entry and `FILE_MANIFEST.json` regenerated
+
 ## Scope priority
 
 | Tier | Item |
 |---|---|
 | P1 (must) | Ch1–5 (Campus → Road to VCS → VCS), packs/training/ledger, `demoScenario` |
 | Data-only | LCP, First Stand, MSI, Worlds: single-elim BO3/BO5, fictional labels |
-| P2 (only if time) | Swiss, double elimination, Play-In, NPC Transfer, Facilities, full Hall of Fame, Predator side cup |
+| Data-only (03/11) | `LEGACY` card editions from historical rosters; not in the current pack tables (`DECISIONS.md` DEC-2) |
+| P2 (only if time) | Swiss, double elimination, Play-In, NPC Transfer, Facilities, full Hall of Fame, Predator side cup, Golden Road Draft mode (flag, default off) |
 
 ## Required test invariants (track as they get written)
 
@@ -146,3 +183,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 | Date | Entry |
 |---|---|
 | 27/10 | Spec pack v2.2 reviewed; `CLAUDE.md` and `index.md` created. G0 pending. |
+| 03/11 | Code audit of the existing build (Architecture B): 2 P0, 13 P1. Checked by simulation: sub-seed independence, matrix properties, pity boundary, probability bounds all pass. Starter-team win rates measured: Ch1 66-69%, Ch2 46%, Ch3 26%, Ch4 20%, Ch5 5%. |
+| 03/11 | `docs/ref/golden_road/` analysed (73 teams, 649 player-seasons, 374 players, 2011-2025; VCS only GAM 2017, no LCP). Web research on LCP 2026, MSI 2026 and Worlds 2026 added to `research/LINKS_AND_FACT_CHECK.md`. Liquipedia and Leaguepedia blocked the fetch tool, so VCS rosters are **not** verified. |
+| 03/11 | Created `DECISIONS.md` (G0 = B recorded; DEC-1..9, Q1..Q4) and `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`. Added M9. No M3/M4 item checked: none has test evidence yet. |
+| 03/11 | Owner answered Q1-Q3: may use and adjust the Golden Road ratings; Riot email covers everything with no limits; no schedule slip and the deadline is extended. Updated DEC-3, DEC-4, DEC-7, D5-D7; opened D8/Q5 (new date) and Q6 (credit line). |

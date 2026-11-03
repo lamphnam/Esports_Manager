@@ -1,0 +1,6 @@
+{
+  "name": "APAC Rising: Esports Manager",
+  "description": "MOBA esports manager card game: lead your student squad from Vietnam campus tournaments to VCS, LCP, and World Championship glory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
