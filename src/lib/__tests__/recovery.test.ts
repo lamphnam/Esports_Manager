@@ -8,6 +8,12 @@ export function sampleSave():GameSave {
   return {...emptySave(),ownedCards:cards,club:{id:'club-test',name:'CLB Việt Nam',logoKey:'gold_star',homeRegion:'Vietnam',reputation:0,careerYear:2026,currentChapterId:1,completedChapterIds:[],recoveryCode:'',wallet:{credits:500,trainingMaterials:0,scoutTickets:0},scoutPityMisses:0,packs:[],lineup:{TOP:cards[0].instanceId,JUNGLE:cards[1].instanceId,MID:cards[2].instanceId,BOT:cards[3].instanceId,SUPPORT:cards[4].instanceId},facilities:{TRAINING_CENTER:0,SCOUT_OFFICE:0,STRATEGY_LAB:0},createdAt:1}};
 }
 describe('Recovery Code',()=>{
+  it('P1-13 bounds the hot ledger and archives old balances',()=>{
+    const state=sampleSave();const ledger=Array.from({length:600},(_,i)=>({id:`id-${i}`,timestamp:1,deltaCredits:1,deltaMaterials:0,deltaTickets:0,reason:'test',sourceType:'SPONSOR' as const}));
+    const save=saveReducer(state,{ledger});
+    expect(save.ledger.length).toBeLessThanOrEqual(500);
+    expect(save.ledger.reduce((sum,e)=>sum+e.deltaCredits,0)+((save as GameSave & {ledgerArchive?:{credits:number}}).ledgerArchive?.credits||0)).toBe(600);
+  });
   it('accepts real millisecond timestamps in 2026',async()=>{
     const save=sampleSave();save.club!.createdAt=1793679600000;
     expect(await decodeSave(await encodeSave(save))).toEqual(save);

@@ -30,6 +30,7 @@ import {
 
 import { emptySave, GameSave, SAVE_KEY, saveReducer, validateSave } from '../lib/saveState';
 import { encodeSave, decodeSave } from '../lib/recoveryCode';
+import { newId, vietnamDay } from '../lib/identity';
 const LEGACY_SAVE_KEY = 'apac_rising_save_v2';
 const LEDGER_KEY = 'apac_rising_ledger_v2';
 const CARDS_KEY = 'apac_rising_cards_v2';
@@ -58,6 +59,7 @@ interface GameContextType {
     effectiveOvr: number;
   } | null;
   resetGame: () => void;
+  claimSponsorship: () => boolean;
   restoreFromRecoveryCode: (code: string) => Promise<boolean>;
   exportRecoveryCode: () => Promise<string>;
   storageBlocked: boolean;
@@ -137,7 +139,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const initialCards: OwnedCard[] = starterEditions.map((edId, index) => {
       const ed = getEditionById(edId)!;
       return {
-        instanceId: `starter_${index}_${Date.now()}`,
+        instanceId: newId('starter'),
         editionId: ed.id,
         playerId: ed.playerId,
         level: 1,
@@ -159,7 +161,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const recoveryCode = ''; // Exported on demand from the current save.
 
     const newClub: ClubState = {
-      id: `club_${Date.now()}`,
+      id: newId('club'),
       name: name.trim() || 'Saigon Phoenix',
       logoKey: logoKey || 'gold_star',
       homeRegion: 'Vietnam',
@@ -188,7 +190,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setClub(newClub);
     setLedger([
       {
-        id: `ledger_init_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: 500,
         deltaMaterials: 0,
@@ -218,6 +220,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (player.primaryRole !== role && player.secondaryRole !== role) {
       return false;
     }
+    if (Object.entries(club.lineup).some(([slot, id]) => slot !== role && id === cardInstanceId)) return false;
 
     const newLineup: Lineup = { ...club.lineup, [role]: cardInstanceId };
     setClub({ ...club, lineup: newLineup });
@@ -235,7 +238,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!card) return false;
 
     if (card.level >= 10) return false;
-    const cost = getTrainingCost(card.level);
+    if (statKey === 'championPool') return false;
+    const edition = getEditionById(card.editionId);
+    if (!edition) return false;
+    const currentStat = getEffectiveCardStats(card,edition).stats[statKey];
+    if (currentStat >= 99) return false;
+    const cost = getTrainingCost(card.level, club.facilities.TRAINING_CENTER);
     if (club.wallet.credits < cost) return false;
 
     const currentStatBonus = card.trainedStats[statKey] || 0;
@@ -246,7 +254,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           level: c.level + 1,
           trainedStats: {
             ...c.trainedStats,
-            [statKey]: currentStatBonus + 2,
+            [statKey]: currentStatBonus + Math.min(2,99-currentStat),
           },
         };
       }
@@ -265,7 +273,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setLedger((prev) => [
       {
-        id: `ledger_train_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: -cost,
         deltaMaterials: 0,
@@ -312,12 +320,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const buyPackWithCredits = (family: PackFamily): boolean => {
     const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
+    if (family === 'WELCOME') return false;
     const packDef = PACK_DEFINITIONS[family];
     if (club.wallet.credits < packDef.priceCredits) return false;
 
     const newCredits = club.wallet.credits - packDef.priceCredits;
     const newPack: PackInstance = {
-      id: `pack_${Date.now()}`,
+      id: newId('pack'),
       family,
       obtainedReason: 'Mua từ Cửa Hàng Pack',
       obtainedAt: Date.now(),
@@ -334,7 +343,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setLedger((prev) => [
       {
-        id: `ledger_buy_pack_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: -packDef.priceCredits,
         deltaMaterials: 0,
@@ -364,7 +373,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!edition) return false;
 
     const newCard: OwnedCard = {
-      instanceId: `card_transfer_${Date.now()}`,
+      instanceId: newId('card'),
       editionId: edition.id,
       playerId: edition.playerId,
       level: 1,
@@ -387,7 +396,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setLedger((prev) => [
       {
-        id: `ledger_transfer_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: -offer.priceCredits,
         deltaMaterials: 0,
@@ -409,7 +418,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const currentTier = club.facilities[code] || 0;
-    if (currentTier >= 3) return false;
+    const maxTier = code === 'TRAINING_CENTER' ? 1 : code === 'STRATEGY_LAB' ? 3 : 0;
+    if (currentTier >= maxTier) return false;
 
     const costs = [1000, 2500, 5000];
     const cost = costs[currentTier];
@@ -429,7 +439,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setLedger((prev) => [
       {
-        id: `ledger_facility_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: -cost,
         deltaMaterials: 0,
@@ -457,7 +467,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     const rew = chapter.milestoneRewards;
     const packsToAdd: PackInstance[] = (rew.packs || []).map((family, idx) => ({
-      id: `pack_reward_${chapterId}_${idx}_${Date.now()}`,
+      id: newId('pack'),
       family,
       obtainedReason: `Phần thưởng ${chapter.title}`,
       obtainedAt: Date.now(),
@@ -481,7 +491,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     setLedger((prev) => [
       {
-        id: `ledger_ch_${chapterId}_${Date.now()}`,
+        id: newId('ledger'),
         timestamp: Date.now(),
         deltaCredits: rew.credits,
         deltaMaterials: rew.materials || 0,
@@ -524,12 +534,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
       if (card && edition && player) {
         const { stats, ovr } = getEffectiveCardStats(card, edition);
-        totalOvr += ovr;
+        const rolePenalty = player.primaryRole === r ? 0 : player.secondaryRole === r ? 3 : 15;
+        const effectiveStats = Object.fromEntries(Object.entries(stats).map(([key,value]) => [key,Math.max(0,value-rolePenalty)])) as unknown as PlayerStats;
+        totalOvr += ovr - rolePenalty;
         roster.push({
           role: r,
           displayName: player.displayName,
-          ovr,
-          effectiveStats: stats,
+          ovr: Math.max(0, ovr - rolePenalty),
+          effectiveStats,
           archetype: player.playstyle,
           isStarter: card.isLocked,
         });
@@ -589,11 +601,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     } catch { setStorageBlocked(true); }
   };
 
+  const claimSponsorship = (): boolean => {
+    const {club,ledger}=saveRef.current;
+    if(!club || club.wallet.credits>=100)return false;
+    const id=`sponsor_${vietnamDay()}`;
+    if(club.sponsorshipDay===vietnamDay() || ledger.some(entry=>entry.id===id))return false;
+    commit({club:{...club,sponsorshipDay:vietnamDay(),wallet:{...club.wallet,credits:club.wallet.credits+100}},ledger:[{id,timestamp:Date.now(),deltaCredits:100,deltaMaterials:0,deltaTickets:0,reason:'Tài trợ phục hồi hàng ngày',sourceType:'SPONSOR'},...ledger]});
+    return true;
+  };
+
   const exportRecoveryCode = () => encodeSave(saveRef.current);
   const restoreFromRecoveryCode = async (code: string): Promise<boolean> => {
     try {
       const restored = await decodeSave(code);
-      commit(restored);
+      commit({...emptySave(),...restored});
       return true;
     } catch { return false; }
   };
@@ -618,6 +639,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         getTeamSnapshot,
         getOwnedCardWithDetails,
         resetGame,
+        claimSponsorship,
         restoreFromRecoveryCode,
         exportRecoveryCode,
         storageBlocked,

@@ -14,10 +14,11 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { AudioSynth } from '../lib/audioSynth';
-import { simulateSeries } from '../lib/simulator';
+import { ARCHETYPE_LABELS } from '../lib/labels';
+import { recommendTactics, seriesFinished, simulateNextGame, summarizeSeries } from '../lib/simulator';
 import { PHASE_TACTICS, TACTIC_METADATA } from '../lib/tacticsMatrix';
 import {
   Chapter,
@@ -33,7 +34,7 @@ import {
 interface MatchCenterModalProps {
   chapter: Chapter;
   onClose: () => void;
-  onVictoryClaim: (chapterId: number) => void;
+  onVictoryClaim: (chapterId: number) => boolean;
 }
 
 export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
@@ -42,7 +43,10 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
   onVictoryClaim,
 }) => {
   const { club, getTeamSnapshot } = useGame();
-  const playerSnapshot = getTeamSnapshot();
+  const playerSnapshot = useRef(getTeamSnapshot()).current;
+  const seedRef=useRef(Date.now());
+  const [focusPhase,setFocusPhase]=useState<'EARLY'|'MID'|'LATE'>('MID');
+  const [manualAll,setManualAll]=useState(false);
 
   // Create opponent snapshot from chapter
   const opponentSnapshot: TeamSnapshot = {
@@ -97,17 +101,16 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
         setCurrentPhaseIndex((prev) => prev + 1);
       } else {
         // Game finished
-        if (activeGameIndex < simulationResult.games.length - 1) {
-          setActiveGameIndex((prev) => prev + 1);
-          setCurrentPhaseIndex(0);
+        if (!seriesFinished(chapter.format, simulationResult.games)) {
+          const auto = recommendTactics(playerSnapshot, chapter.opponent.archetype);
+          setSelectedEarly(auto.early as EarlyTactic);
+          setSelectedMid(auto.mid as MidTactic);
+          setSelectedLate(auto.late as LateTactic);
+          setMatchState('PREVIEW');
         } else {
-          // Entire match resolved
           setMatchState('RESOLVED');
-          if (simulationResult.winner === 'PLAYER') {
-            AudioSynth.playVictory();
-          } else {
-            AudioSynth.playDefeat();
-          }
+          if (simulationResult.winner === 'PLAYER') AudioSynth.playVictory();
+          else AudioSynth.playDefeat();
         }
       }
     }, delay);
@@ -117,29 +120,14 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
   const handleStartMatch = () => {
     AudioSynth.playClick();
-    const seed = Date.now();
-    const matchId = `match_${chapter.id}_${seed}`;
-
-    const tacticsList = [
-      {
-        early: selectedEarly,
-        mid: selectedMid,
-        late: selectedLate,
-      },
-    ];
-
-    const result = simulateSeries(
-      matchId,
-      seed,
-      chapter.format,
-      playerSnapshot,
-      opponentSnapshot,
-      tacticsList,
-      { archetype: chapter.opponent.archetype, offScriptChance: 0.2 }
-    );
-
-    setSimulationResult(result);
-    setActiveGameIndex(0);
+    const seed = seedRef.current;
+    const previous = simulationResult?.games || [];
+    const game = simulateNextGame(seed, chapter.format, playerSnapshot, opponentSnapshot, previous,
+      {early:selectedEarly,mid:selectedMid,late:selectedLate}, {archetype:chapter.opponent.archetype});
+    if(!game)return;
+    const games=[...previous,game];
+    setSimulationResult(summarizeSeries(`match_${chapter.id}_${seed}`,seed,chapter.format,playerSnapshot,opponentSnapshot,games,{archetype:chapter.opponent.archetype}));
+    setActiveGameIndex(games.length-1);
     setCurrentPhaseIndex(0);
     setMatchState('PLAYING');
   };
@@ -149,32 +137,27 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
     if (!simulationResult) {
       handleStartMatch();
     }
-    // Instantly jump to final state
-    if (simulationResult) {
-      setActiveGameIndex(simulationResult.games.length - 1);
-      setCurrentPhaseIndex(2);
-      setMatchState('RESOLVED');
-      if (simulationResult.winner === 'PLAYER') {
-        AudioSynth.playVictory();
-      } else {
-        AudioSynth.playDefeat();
-      }
-    }
+    // Skip only this game's replay; future games still require an explicit decision.
+    if (simulationResult) setCurrentPhaseIndex(2);
   };
 
   const handleClaim = () => {
     if (isRewardClaimed) return;
-    setIsRewardClaimed(true);
-    onVictoryClaim(chapter.id);
+    const claimed = onVictoryClaim(chapter.id);
+    setIsRewardClaimed(claimed);
   };
+  const isFriendly = club?.completedChapterIds.includes(chapter.id) || false;
 
   const isPlayerWon = simulationResult?.winner === 'PLAYER';
   const currentGame = simulationResult?.games[activeGameIndex];
   const currentPhaseOutcome = currentGame?.phases[currentPhaseIndex];
+  const finishedGames = simulationResult?.games.slice(0, activeGameIndex) || [];
+  const livePlayerWins = finishedGames.filter(g => g.winner === 'PLAYER').length;
+  const liveOpponentWins = finishedGames.length - livePlayerWins;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-[#111827] border border-slate-800 rounded-2xl shadow-2xl p-5 lg:p-7 overflow-hidden my-6">
+      <div className="relative w-full max-w-4xl max-h-[90dvh] bg-[#111827] border border-slate-800 rounded-2xl shadow-2xl p-5 lg:p-7 overflow-y-auto my-6">
         {/* Header Bar */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
@@ -200,6 +183,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
         {/* ================= STAGE 1: PRE-MATCH PREVIEW & TACTICAL CHOICES ================= */}
         {matchState === 'PREVIEW' && (
           <div className="space-y-6 pt-5">
+            <div className="rounded-lg border border-cyan-900 p-3 text-sm space-y-2">
+              <p>Ván {(simulationResult?.games.length || 0)+1} · {simulationResult ? 'FOCUS_1: chọn một pha can thiệp, hai pha còn lại dùng gợi ý đã hiển thị.' : 'Chọn đủ 3 pha cho ván đầu.'}</p>
+              {simulationResult && <>
+                <label className="flex gap-2 items-center"><input type="checkbox" checked={manualAll} onChange={e=>setManualAll(e.target.checked)}/>Chơi thủ công cả 3 pha</label>
+                {!manualAll && <div className="flex gap-2">{(['EARLY','MID','LATE'] as const).map(phase=><button key={phase} aria-pressed={focusPhase===phase} className={`min-h-11 px-3 border rounded ${focusPhase===phase?'border-amber-400':'border-slate-600'}`} onClick={()=>setFocusPhase(phase)}>Can thiệp {phase}</button>)}</div>}
+              </>}
+            </div>
             {/* Versus Banner */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Player Side */}
@@ -258,7 +248,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         {chapter.opponent.name}
                       </h3>
                       <span className="text-xs text-rose-400 font-semibold">
-                        Lối chơi: {chapter.opponent.archetype}
+                        Lối chơi: {ARCHETYPE_LABELS[chapter.opponent.archetype]}
                       </span>
                     </div>
                   </div>
@@ -303,6 +293,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                       <button
                         key={code}
                         type="button"
+                        disabled={!!simulationResult && !manualAll && focusPhase !== 'EARLY'}
                         onClick={() => {
                           AudioSynth.playClick();
                           setSelectedEarly(code as EarlyTactic);
@@ -335,6 +326,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                       <button
                         key={code}
                         type="button"
+                        disabled={!!simulationResult && !manualAll && focusPhase !== 'MID'}
                         onClick={() => {
                           AudioSynth.playClick();
                           setSelectedMid(code as MidTactic);
@@ -367,6 +359,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                       <button
                         key={code}
                         type="button"
+                        disabled={!!simulationResult && !manualAll && focusPhase !== 'LATE'}
                         onClick={() => {
                           AudioSynth.playClick();
                           setSelectedLate(code as LateTactic);
@@ -420,17 +413,17 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                     {playerSnapshot.teamName}
                   </h4>
                   <span className="text-xs text-cyan-400 font-mono">
-                    Hạ gục: {currentGame?.killsPlayer || 0}
+                    Hạ gục: {currentPhaseIndex === 2 ? currentGame?.killsPlayer : '—'}
                   </span>
                 </div>
               </div>
 
               <div className="text-center px-4 py-1.5 bg-slate-950 rounded-xl border border-slate-800">
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest">
-                  Ván {activeGameIndex + 1} / {simulationResult.games.length} ({chapter.format})
+                  Ván {activeGameIndex + 1} ({chapter.format})
                 </div>
-                <div className="text-2xl font-mono-nums font-black text-amber-400">
-                  {simulationResult.playerWins} - {simulationResult.opponentWins}
+                <div data-testid="live-score" className="text-2xl font-mono-nums font-black text-amber-400">
+                  {livePlayerWins} - {liveOpponentWins}
                 </div>
               </div>
 
@@ -440,7 +433,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                     {opponentSnapshot.teamName}
                   </h4>
                   <span className="text-xs text-rose-400 font-mono">
-                    Hạ gục: {currentGame?.killsOpponent || 0}
+                    Hạ gục: {currentPhaseIndex === 2 ? currentGame?.killsOpponent : '—'}
                   </span>
                 </div>
                 <div className="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center text-sm border border-rose-500/30">
@@ -474,6 +467,12 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                 </div>
 
                 {/* Commentary Stream */}
+                <div className="text-xs text-slate-200 space-y-1">
+                  <p>{currentPhaseOutcome.wasOffScript ? 'Lệch bài: ' : 'Đúng bài: '}{ARCHETYPE_LABELS[currentPhaseOutcome.opponentArchetypeActual]} · Đối thủ: {TACTIC_METADATA[currentPhaseOutcome.opponentTactic].name}</p>
+                  <p>Xác suất thắng pha: {Math.round(currentPhaseOutcome.winProbability*100)}%</p>
+                  <p>{currentPhaseOutcome.keyMoment}</p>
+                  {currentPhaseIndex === 2 && <p>MVP ván: {currentGame?.mvpName}</p>}
+                </div>
                 <div className="space-y-1.5 my-3 text-xs font-mono text-slate-300 bg-slate-950/70 p-3 rounded-lg border border-slate-900">
                   {currentPhaseOutcome.events.map((evt, idx) => (
                     <div key={idx} className="flex items-start gap-2">
@@ -638,7 +637,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
               {/* Coaching Advice */}
               <div className="mt-2 text-xs text-slate-400 italic">
-                💬 <strong>Lời khuyên HLV:</strong> {simulationResult.coachingAdvice}
+                <strong>Lời khuyên HLV:</strong> {simulationResult.coachingAdvice}
               </div>
             </div>
 
@@ -649,14 +648,14 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   <div className="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4" />
                     <span>
-                      Phần thưởng: +{chapter.milestoneRewards.credits} Credits{' '}
-                      {chapter.milestoneRewards.packs &&
+                      {isFriendly ? 'Giao hữu: không thưởng' : `Phần thưởng: +${chapter.milestoneRewards.credits} Credits `}
+                      {!isFriendly && chapter.milestoneRewards.packs &&
                         `+ ${chapter.milestoneRewards.packs.length} Gói Thẻ!`}
                     </span>
                   </div>
 
                   <button
-                    onClick={handleClaim}
+                    onClick={isFriendly ? onClose : handleClaim}
                     disabled={isRewardClaimed}
                     className={`w-full sm:w-auto px-6 py-3 font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer ${
                       isRewardClaimed
@@ -664,7 +663,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         : 'bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 shadow-lg shadow-emerald-500/20'
                     }`}
                   >
-                    {isRewardClaimed ? 'Đã Nhận Thưởng' : 'Nhận Thưởng & Hoàn Thành ➔'}
+                    {isFriendly ? 'Hoàn Tất Giao Hữu' : isRewardClaimed ? 'Đã Nhận Thưởng' : 'Nhận Thưởng & Hoàn Thành ➔'}
                   </button>
                 </>
               ) : (
@@ -678,6 +677,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                     <button
                       onClick={() => {
                         AudioSynth.playClick();
+                        setSimulationResult(null);
+                        seedRef.current=Date.now();
                         setMatchState('PREVIEW');
                       }}
                       className="flex-1 sm:flex-initial px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1 cursor-pointer"

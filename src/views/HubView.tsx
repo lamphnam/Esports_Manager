@@ -25,7 +25,7 @@ export const HubView: React.FC<HubViewProps> = ({
   onNavigateTab,
   onOpenWorldDemo,
 }) => {
-  const { club, getTeamSnapshot, getOwnedCardWithDetails } = useGame();
+  const { club, getTeamSnapshot, getOwnedCardWithDetails, claimSponsorship, ledger } = useGame();
   const teamSnapshot = getTeamSnapshot();
 
   const currentChapter =
@@ -36,6 +36,10 @@ export const HubView: React.FC<HubViewProps> = ({
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto px-4 lg:px-8 py-6">
+      <div className="p-3 border border-slate-700 rounded-lg text-sm text-slate-300">
+        Giao hữu và thử lại luôn miễn phí. Khi còn dưới 100 Credits, nhận tài trợ phục hồi 100 Credits, tối đa một lần mỗi ngày (giờ Việt Nam).
+        <button className="block min-h-11 text-amber-300 disabled:text-slate-500" onClick={claimSponsorship} disabled={(club?.wallet.credits || 0)>=100 || ledger.some(e=>e.id===`sponsor_${new Date(Date.now()+7*3600_000).toISOString().slice(0,10)}`)}>Nhận Tài Trợ Phục Hồi</button>
+      </div>
       {/* Hero Campaign Spotlight Banner - Crisp Industrial */}
       <div className="relative overflow-hidden rounded-xl bg-[#111827] border border-slate-700 p-6 lg:p-8 shadow-xl">
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -71,7 +75,7 @@ export const HubView: React.FC<HubViewProps> = ({
               <div>
                 Thưởng:{' '}
                 <strong className="text-emerald-400 font-mono-nums">
-                  +{currentChapter.milestoneRewards.credits} Credits
+                  {club?.completedChapterIds.includes(currentChapter.id) ? 'Giao hữu: không thưởng' : `+${currentChapter.milestoneRewards.credits} Credits`}
                 </strong>
               </div>
             </div>

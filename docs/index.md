@@ -101,14 +101,16 @@ Phase 1 — P0 · *Gate: the full F0 loop passes in an E2E at 390×844*
 - [x] P0-2 Recovery Code carries a compressed save; import UI; storage-blocked banner (`DECISIONS.md` DEC-1) — `recovery.test.ts` (5 tests), `scripts/e2e-storage.js`, [red/green + evidence](evidence/PHASE_1.md).
 
 Phase 2 — P1 and polish
-- [ ] `equipCard` cannot put one card in two slots
-- [ ] TRADE_MAP operator precedence fixed; `getTacticRosterFit` clamped to [-5, 5]
-- [ ] Opponent receives synergy; opponent OVRs recalibrated to the win-rate targets (`DECISIONS.md` DEC-5)
-- [ ] Training Center discount applied; unimplemented facility perks hidden or described honestly
-- [ ] BO3/BO5 played game by game with the `FOCUS_1` policy; off-script and key-moment data shown
-- [ ] Live score no longer spoils the result; counterfactual picks the largest-gap alternative
-- [ ] Pack Skip cancels its timers; header fits 390 px; replay of a cleared chapter no longer promises a reward
-- [ ] Training: displayed OVR equals simulated OVR; stat cap respected; no soft-lock at 0 credits
+- [x] `equipCard` cannot put one card in two slots
+- [x] TRADE_MAP operator precedence fixed; `getTacticRosterFit` clamped to [-5, 5]
+- [x] Opponent receives synergy; opponent OVRs recalibrated to the win-rate targets (`DECISIONS.md` DEC-5)
+- [x] Training Center discount applied; unimplemented facility perks hidden or described honestly
+- [x] BO3/BO5 played game by game with the `FOCUS_1` policy; off-script and key-moment data shown
+- [x] Live score no longer spoils the result; counterfactual picks the largest-gap alternative
+- [x] Pack Skip cancels its timers; header fits 390 px; replay of a cleared chapter no longer promises a reward
+- [x] Training: displayed OVR equals simulated OVR; stat cap respected; no soft-lock at 0 credits
+
+Evidence: [Phase 2 red/green, commands and measurements](evidence/PHASE_2.md).
 
 Phase 3 — legacy data (starts only after Phase 1 and 2 are green)
 - [ ] G0 importer: Golden Road facts + ratings (`ratingSource`: `golden_road` / `adjusted` / `derived`); `LEGACY` editions generated with provenance
@@ -182,6 +184,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Phase 2 xanh: 19 tests, F0/reload/recovery, incremental BO3, Skip fake clock, header/font/lang. DEC-5 4000 seeds/ô: 68.70/54.23/48.63/49.52/49.30%, đủ dải. `evidence/PHASE_2.md`; bắt đầu G0 sau gate này. |
 | 03/11 | Phase 1 P0 xanh: Playwright F0 390×844 + reload/recovery + blocked storage/clipboard; 11 tests và build xanh. Chi tiết `evidence/PHASE_1.md`. Đã báo cáo trước khi bắt đầu Phase 2; chưa bắt đầu mục G. |
 | 03/11 | Phase 0 xanh: strict typecheck + 6 invariant tests; balance baseline đã ghi trong `evidence/PHASE_0.md`. Baseline nguyên trạng `ca12d39`; nhánh `fix/audit-and-golden-road`, không push. |
 | 27/10 | Spec pack v2.2 reviewed; `CLAUDE.md` and `index.md` created. G0 pending. |

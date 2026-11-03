@@ -13,8 +13,6 @@ export const FacilitiesView: React.FC = () => {
       icon: Zap,
       perks: [
         'Cấp 1: Giảm 10% chi phí credits khi huấn luyện tuyển thủ',
-        'Cấp 2: Mở rộng giới hạn đào tạo kỹ năng chuyên sâu',
-        'Cấp 3: Tối đa hóa khả năng phát triển tiềm năng của thẻ Tân Binh (Academy)',
       ],
     },
     {
@@ -35,8 +33,8 @@ export const FacilitiesView: React.FC = () => {
       icon: ShieldCheck,
       perks: [
         'Cấp 1: +1 điểm gắn kết đội hình (Synergy) vĩnh viễn trong mọi trận đấu',
-        'Cấp 2: Cung cấp gợi ý đấu pháp tối ưu cho từng ván trong loạt BO3/BO5',
-        'Cấp 3: +2 điểm gắn kết đội hình và tăng sức đề kháng trước các pha cướp Baron',
+        'Cấp 2: +2 điểm gắn kết đội hình (tổng, vẫn chịu trần +8)',
+        'Cấp 3: +3 điểm gắn kết đội hình (tổng, vẫn chịu trần +8)',
       ],
     },
   ];
@@ -55,9 +53,9 @@ export const FacilitiesView: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {facilities.map((fac) => {
+        {facilities.filter(fac => fac.code !== 'SCOUT_OFFICE').map((fac) => {
           const currentTier = club?.facilities[fac.code] || 0;
-          const isMax = currentTier >= 3;
+          const isMax = currentTier >= fac.perks.length;
           const nextCost = costs[currentTier];
           const canAfford = (club?.wallet.credits || 0) >= nextCost;
           const Icon = fac.icon;
@@ -73,7 +71,7 @@ export const FacilitiesView: React.FC = () => {
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="px-2.5 py-1 text-xs font-mono font-bold bg-[#090D16] text-[#FFB800] rounded border border-slate-700">
-                    Cấp {currentTier} / 3
+                    Cấp {currentTier} / {Math.max(currentTier,fac.perks.length)}
                   </span>
                 </div>
 

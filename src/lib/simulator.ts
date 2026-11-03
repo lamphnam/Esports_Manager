@@ -11,6 +11,7 @@ import {
   TeamSnapshot,
 } from '../types';
 import { computeSubSeed, getPhaseRng, SeededRng } from './seededRng';
+import { ARCHETYPE_LABELS } from './labels';
 import {
   DECISION_FIT_MATRIX,
   getDecisionFit,
@@ -178,7 +179,7 @@ export function simulatePhase(
 
   const playerPower =
     playerBase + decisionFitBonus + tacticFitBonus + synergyBonus + formBonus;
-  const opponentPower = opponentBase;
+  const opponentPower = opponentBase + Math.max(-8, Math.min(8, opponentSnapshot.synergyBonus)) + eventRng.nextInt(-2, 2);
 
   const diff = playerPower - opponentPower;
   const winProbability = sigmoid(diff);
@@ -363,9 +364,9 @@ export function computeCounterfactuals(
 
       let explanation = '';
       if (diffPercent > 0) {
-        explanation = `Nếu chọn "${altMeta.name}", tỷ lệ thắng pha này đã tăng +${diffPercent}% do đối thủ sử dụng lối chơi ${phaseOutcome.opponentArchetypeActual}.`;
+        explanation = `Ván ${game.gameIndex}, pha ${phase}: "${chosenMeta.name}" (${phaseOutcome.decisionFitBonus}) so với "${altMeta.name}" (${altOutcome.decisionFitBonus}); đối thủ ${ARCHETYPE_LABELS[phaseOutcome.opponentArchetypeActual]}. Đổi lựa chọn làm xác suất thắng pha tăng ${diffPercent} điểm phần trăm. Hãy đối chiếu trinh sát và đội hình trước ván tiếp theo.`;
       } else {
-        explanation = `Lựa chọn "${chosenMeta.name}" của bạn tối ưu hơn "${altMeta.name}" (+${Math.abs(diffPercent)}% tỷ lệ thắng) khi đối đầu ${phaseOutcome.opponentArchetypeActual}.`;
+        explanation = `Ván ${game.gameIndex}, pha ${phase}: "${chosenMeta.name}" (${phaseOutcome.decisionFitBonus}) so với "${altMeta.name}" (${altOutcome.decisionFitBonus}); đối thủ ${ARCHETYPE_LABELS[phaseOutcome.opponentArchetypeActual]}. ${diffPercent < 0 ? `Đổi lựa chọn làm xác suất thắng pha giảm ${Math.abs(diffPercent)} điểm phần trăm.` : 'Hai lựa chọn có xác suất thắng pha gần tương đương.'} Hãy đối chiếu trinh sát và đội hình trước ván tiếp theo.`;
       }
 
       comparisons.push({
@@ -435,6 +436,25 @@ export function simulateSeries(
     }
   }
 
+  return summarizeSeries(matchId, seed, seriesFormat, playerSnapshot, opponentSnapshot, games, opponentPolicy);
+}
+
+export type GameTactics = {early:TacticCode;mid:TacticCode;late:TacticCode};
+export function seriesFinished(format:SeriesFormat, games:GameSimulationResult[]):boolean {
+  const needed=format==='BO1'?1:format==='BO3'?2:3;
+  return games.filter(g=>g.winner==='PLAYER').length>=needed || games.filter(g=>g.winner==='OPPONENT').length>=needed;
+}
+export function recommendTactics(snapshot:TeamSnapshot, archetype:OpponentArchetype):GameTactics {
+  const best=(phase:MatchPhase)=>[...PHASE_TACTICS[phase]].sort((a,b)=>(getDecisionFit(b,archetype)+getTacticRosterFit(b,snapshot))-(getDecisionFit(a,archetype)+getTacticRosterFit(a,snapshot)))[0];
+  return {early:best('EARLY'),mid:best('MID'),late:best('LATE')};
+}
+export function simulateNextGame(seed:number, format:SeriesFormat, player:TeamSnapshot, opponent:TeamSnapshot, games:GameSimulationResult[], tactics:GameTactics, policy:OpponentDecisionPolicy):GameSimulationResult|null {
+  if(seriesFinished(format,games))return null;
+  return simulateGame(seed,games.length+1,player,opponent,tactics,policy);
+}
+export function summarizeSeries(matchId:string, seed:number, seriesFormat:SeriesFormat, playerSnapshot:TeamSnapshot, opponentSnapshot:TeamSnapshot, games:GameSimulationResult[], opponentPolicy:OpponentDecisionPolicy):MatchSimulationResult {
+  const playerWins=games.filter(g=>g.winner==='PLAYER').length;
+  const opponentWins=games.length-playerWins;
   const seriesWinner = playerWins > opponentWins ? 'PLAYER' : 'OPPONENT';
 
   // Compute overall series breakdown
@@ -456,13 +476,8 @@ export function simulateSeries(
   );
 
   // Counterfactuals from Game 1
-  const counterfactual = computeCounterfactuals(
-    seed,
-    games[0],
-    playerSnapshot,
-    opponentSnapshot,
-    opponentPolicy
-  );
+  const counterfactual = games.flatMap(game => computeCounterfactuals(seed,game,playerSnapshot,opponentSnapshot,opponentPolicy))
+    .sort((a,b)=>Math.abs(b.probabilityDiffPercent)-Math.abs(a.probabilityDiffPercent));
 
   // Generate actionable coaching advice
   let coachingAdvice = '';

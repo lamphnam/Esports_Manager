@@ -159,8 +159,8 @@ export const CampaignView: React.FC<CampaignViewProps> = ({ onStartMatch }) => {
 
                 {/* Reward Preview */}
                 <div className="text-xs text-emerald-400 font-semibold">
-                  🎁 Thưởng: +{chapter.milestoneRewards.credits} Credits{' '}
-                  {chapter.milestoneRewards.packs &&
+                  {isCompleted ? 'Giao hữu: không thưởng' : `Thưởng: +${chapter.milestoneRewards.credits} Credits `}
+                  {!isCompleted && chapter.milestoneRewards.packs &&
                     `+ ${chapter.milestoneRewards.packs.join(', ')} Pack`}
                 </div>
               </div>

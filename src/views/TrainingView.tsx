@@ -14,9 +14,10 @@ export const TrainingView: React.FC = () => {
 
   const selectedDetails = selectedCardId ? getOwnedCardWithDetails(selectedCardId) : null;
   const currentLevel = selectedDetails?.owned.level || 1;
-  const cost = getTrainingCost(currentLevel);
+  const cost = getTrainingCost(currentLevel, club?.facilities.TRAINING_CENTER);
   const canAfford = (club?.wallet.credits || 0) >= cost;
   const isMaxLevel = currentLevel >= 10;
+  const isStatFull = (selectedDetails?.effectiveStats[selectedStat] || 0) >= 99;
 
   const handleTrain = () => {
     if (!selectedCardId || isMaxLevel || !canAfford) return;
@@ -28,7 +29,6 @@ export const TrainingView: React.FC = () => {
     { key: 'macro', label: 'Chiến Thuật (Macro)', desc: 'Cải thiện tầm nhìn sông, kiểm soát lính và tranh cướp bùa lợi' },
     { key: 'teamwork', label: 'Đồng Đội (Teamwork)', desc: 'Gắn kết đội hình trong các pha giao tranh tổng 5v5' },
     { key: 'mental', label: 'Tâm Lý (Mental)', desc: 'Bản lĩnh vững vàng khi bị dẫn trước hoặc tranh trừng phạt' },
-    { key: 'championPool', label: 'Bể Tướng (Champion Pool)', desc: 'Thích ứng linh hoạt với nhiều đội hình trong loạt trận BO5' },
   ];
 
   return (
@@ -41,6 +41,7 @@ export const TrainingView: React.FC = () => {
         <p className="text-sm text-slate-300 mt-1">
           Rèn luyện và phát triển chỉ số cá nhân của các tuyển thủ từ cấp 1 đến cấp 10
         </p>
+        <p className="text-xs text-slate-400">Vật liệu: {club?.wallet.trainingMaterials || 0} · Vé trinh sát: {club?.wallet.scoutTickets || 0}. Chi phí hiện tại chỉ dùng Credits.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -135,11 +136,12 @@ export const TrainingView: React.FC = () => {
                       <button
                         key={opt.key}
                         type="button"
+                        disabled={currentVal >= 99}
                         onClick={() => {
                           AudioSynth.playClick();
                           setSelectedStat(opt.key);
                         }}
-                        className={`p-3.5 text-left rounded-lg border transition-all cursor-pointer ${
+                        className={`p-3.5 text-left rounded-lg border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                           isSelected
                             ? 'border-[#FFB800] bg-slate-800/90 ring-1 ring-[#FFB800]'
                             : 'border-slate-800 bg-[#090D16] hover:border-slate-700'
@@ -148,7 +150,7 @@ export const TrainingView: React.FC = () => {
                         <div className="flex justify-between items-center mb-1">
                           <span className="font-bold text-sm text-white">{opt.label}</span>
                           <span className="font-mono-nums font-bold text-sm text-[#FFB800]">
-                            {currentVal} ➔ {currentVal + 2}
+                            {currentVal} ➔ {Math.min(99,currentVal + 2)}{currentVal >= 99 ? ' (Đầy)' : ''}
                           </span>
                         </div>
                         <p className="text-xs text-slate-300">{opt.desc}</p>
@@ -171,7 +173,7 @@ export const TrainingView: React.FC = () => {
 
               <button
                 onClick={handleTrain}
-                disabled={isMaxLevel || !canAfford}
+                disabled={isMaxLevel || isStatFull || !canAfford}
                 className={`w-full sm:w-auto px-8 py-3.5 font-display font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 ${
                   isMaxLevel
                     ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
@@ -182,7 +184,7 @@ export const TrainingView: React.FC = () => {
               >
                 <Zap className="w-4 h-4 fill-current" />
                 <span>
-                  {isMaxLevel
+                  {isStatFull ? 'Chỉ Số Đã Đầy (99)' : isMaxLevel
                     ? 'Đã Đạt Cấp 10 Tối Đa'
                     : canAfford
                     ? `Nâng Cấp Lên Cấp ${currentLevel + 1}`

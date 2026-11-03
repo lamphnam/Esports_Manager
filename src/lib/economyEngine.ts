@@ -14,6 +14,7 @@ import {
   Role,
   TransferOffer,
 } from '../types';
+import { newId } from './identity';
 import { SeededRng } from './seededRng';
 
 export const PACK_DEFINITIONS: Record<PackFamily, PackDefinition> = {
@@ -147,7 +148,7 @@ export function openPackInstance(
     }
   }
 
-  const instanceId = `card_${Date.now()}_${rng.nextInt(1000, 9999)}`;
+  const instanceId = newId('card');
   const ownedCard: OwnedCard = {
     instanceId,
     editionId: chosenEdition.id,
@@ -169,9 +170,9 @@ export function openPackInstance(
 /**
  * Calculates credit cost for training card
  */
-export function getTrainingCost(currentLevel: number): number {
+export function getTrainingCost(currentLevel: number, trainingCenterTier = 0): number {
   if (currentLevel >= 10) return 0;
-  return 100 + (currentLevel - 1) * 60; // 100, 160, 220, 280, 340, 400, 460, 520, 580
+  return Math.round((100 + (currentLevel - 1) * 60) * (trainingCenterTier >= 1 ? 0.9 : 1));
 }
 
 /**

@@ -56,6 +56,8 @@ Các câu trả lời dưới đây là lời chủ dự án trong phiên làm v
 
 ## Nhật ký thay đổi của file này
 
+Kết quả Phase 2 (03/11): dùng mặc định Q4/DEC-5, OVR đối thủ Ch1–5 = 55/62/66/72/77, win-rate 4000 seed/ô = 68.70/54.23/48.63/49.52/49.30%. Không chốt thay chủ dự án. Tài trợ phục hồi 100 credits/ngày khi ví dưới 100, giao hữu/thử lại miễn phí; Champion Pool tạm không huấn luyện. `evidence/PHASE_2.md`.
+
 Kết quả triển khai Phase 1 (03/11): theo mặc định DEC-1, Recovery Code của Kiến trúc B là bản save nén deflate, version `AR1`, CRC32 và giới hạn kích thước. Mã là snapshot tiến trình, không phải danh tính server; xuất mã mới sau khi chơi. Trạng thái đề xuất của DEC-1 được giữ nguyên. E2E storage bị chặn và round-trip đã xanh, xem `evidence/PHASE_1.md`.
 
 | Ngày | Thay đổi |

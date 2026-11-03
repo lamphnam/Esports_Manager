@@ -14,3 +14,13 @@ for(const chapter of CAMPAIGN_CHAPTERS) {
   });
   console.log(`${chapter.id} | ${chapter.format} | ${rates.join(' | ')}`);
 }
+console.log('DEC-5 acceptance (default tactics, 4000 series/cell):');
+const targets=[[65,72],[50,60],[45,55],[45,55],[45,55]];
+const targetTeams=[sampleTeam(),sampleTeam(1),sampleTeam(2),sampleTeam(3),sampleTeam(5,1)];
+for(let i=0;i<5;i++){
+  const chapter=CAMPAIGN_CHAPTERS[i];let wins=0;
+  for(let seed=0;seed<runs;seed++) if(simulateSeries('target',seed,chapter.format,targetTeams[i],chapterOpponent(chapter),[defaultTactics],{archetype:chapter.opponent.archetype}).winner==='PLAYER')wins++;
+  const rate=100*wins/runs, [min,max]=targets[i];
+  console.log(`Ch${i+1}: ${rate.toFixed(2)}% target ${min}-${max}% ${rate>=min&&rate<=max?'PASS':'FAIL'}`);
+  if(rate<min||rate>max)process.exitCode=1;
+}

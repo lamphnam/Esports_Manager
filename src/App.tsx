@@ -64,7 +64,7 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col font-sans selection:bg-[#FFB800] selection:text-slate-950">
+    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col selection:bg-[#FFB800] selection:text-slate-950">
       {/* Top Bar Navigation */}
       <Navbar
         currentTab={currentTab}

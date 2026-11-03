@@ -191,6 +191,10 @@ export function getDecisionFit(tactic: TacticCode, opponentActualArchetype: Oppo
  * Computes tactic fit with the player's current roster attributes [-5, 5]
  */
 export function getTacticRosterFit(tactic: TacticCode, snapshot: TeamSnapshot): number {
+  return Math.max(-5, Math.min(5, rawTacticRosterFit(tactic, snapshot)));
+}
+
+function rawTacticRosterFit(tactic: TacticCode, snapshot: TeamSnapshot): number {
   const top = snapshot.roster.find((p) => p.role === 'TOP');
   const jg = snapshot.roster.find((p) => p.role === 'JUNGLE');
   const mid = snapshot.roster.find((p) => p.role === 'MID');
@@ -228,7 +232,7 @@ export function getTacticRosterFit(tactic: TacticCode, snapshot: TeamSnapshot): 
     }
     case 'TRADE_MAP': {
       const teamMacro = snapshot.ratings.macro;
-      const teamMental = (top?.effectiveStats.mental ?? 60 + (bot?.effectiveStats.mental ?? 60)) / 2;
+      const teamMental = ((top?.effectiveStats.mental ?? 60) + (bot?.effectiveStats.mental ?? 60)) / 2;
       return Math.round((((teamMacro + teamMental) / 2 - 65) / 20) * 5);
     }
     case 'FORCE_TEAMFIGHT': {

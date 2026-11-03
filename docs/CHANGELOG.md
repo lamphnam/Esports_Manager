@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.2.2 — 2026-11-03 (Phase 0–2, rulesVersion v1.1.0)
+- Thêm strict TypeScript, vitest, invariant/property tests và balance-sim.
+- Sửa Welcome Pack, Recovery Code nén và lưu một snapshot; F0 390×844/reload xanh.
+- Sửa 14 mục P1: equip unique, tactic fit, synergy đối thủ/cân bằng Ch1–5, discount, từng ván FOCUS_1, scoreboard, Skip timer, mobile header, giao hữu, counterfactual, training OVR/cap, tài trợ phục hồi/UUID/ledger archive, font/lang.
+- Không đổi odds, pity hoặc decision matrix. Bằng chứng: `evidence/PHASE_0.md`, `PHASE_1.md`, `PHASE_2.md`.
+
 ## v2.2.1 — 2026-11-03 (chỉ tài liệu, **không đổi `rulesVersion`**)
 Sau khi audit bản build Kiến trúc B hiện có và phân tích `docs/ref/golden_road/`.
 

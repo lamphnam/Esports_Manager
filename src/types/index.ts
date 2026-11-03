@@ -240,6 +240,7 @@ export interface TransferOffer {
 }
 
 export interface ClubState {
+  sponsorshipDay?: string;
   id: string;
   name: string;
   logoKey: string;

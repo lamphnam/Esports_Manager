@@ -1,6 +1,6 @@
 import confetti from 'canvas-confetti';
 import { ArrowRight, Check, Sparkles, X } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { getPlayerById } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
@@ -20,6 +20,9 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
   const { club, equipCard, getOwnedCardWithDetails } = useGame();
   const [animationStage, setAnimationStage] = useState<'SILHOUETTE' | 'BLOOM' | 'REVEALED'>('SILHOUETTE');
   const [isEquipped, setIsEquipped] = useState(false);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const revealed = useRef(false);
+  const cancelTimers = () => { timers.current.forEach(clearTimeout); timers.current = []; };
 
   const { edition, ownedCard, wasPityTriggered } = packResult;
   const player = getPlayerById(edition.playerId);
@@ -36,12 +39,15 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
   useEffect(() => {
     // Stage 1: Silhouette (0 - 800ms)
     const t1 = setTimeout(() => {
+      if (revealed.current) return;
       setAnimationStage('BLOOM');
       AudioSynth.playCardReveal(edition.rarity);
     }, 800);
 
     // Stage 2: Bloom to Revealed (800ms - 2000ms)
     const t2 = setTimeout(() => {
+      if (revealed.current) return;
+      revealed.current = true;
       setAnimationStage('REVEALED');
       if (edition.rarity === 'LEGENDARY' || edition.rarity === 'EPIC') {
         confetti({
@@ -55,14 +61,17 @@ export const PackOpeningModal: React.FC<PackOpeningModalProps> = ({
         });
       }
     }, 2000);
+    timers.current = [t1,t2];
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+      cancelTimers();
     };
   }, [edition.rarity]);
 
   const handleSkip = () => {
+    if (revealed.current) return;
+    revealed.current = true;
+    cancelTimers();
     setAnimationStage('REVEALED');
     AudioSynth.playCardReveal(edition.rarity);
     if (edition.rarity === 'LEGENDARY' || edition.rarity === 'EPIC') {

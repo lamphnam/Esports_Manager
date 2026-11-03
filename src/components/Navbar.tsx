@@ -47,16 +47,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#090D16]/95 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3.5">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
         {/* Zone 1: Single text element wordmark */}
         <div
           onClick={() => onSelectTab('hub')}
-          className="flex items-center gap-2.5 cursor-pointer whitespace-nowrap shrink-0 group"
+          className="flex items-center gap-2 cursor-pointer whitespace-nowrap min-w-0 group"
         >
           <div className="w-8 h-8 rounded bg-[#FFB800] flex items-center justify-center text-slate-950 shadow-sm group-hover:scale-105 transition-transform">
             <Trophy className="w-4 h-4 text-slate-950 stroke-[2.5]" />
           </div>
-          <span className="text-xl font-display font-extrabold tracking-wider text-white">
+          <span className="hidden sm:inline text-xl font-display font-extrabold tracking-wider text-white">
             APAC RISING
           </span>
         </div>
@@ -85,9 +85,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Zone 3: Wallet cluster & Primary Action */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-3 min-w-0">
           {club && (
-            <div className="flex items-center gap-3.5 bg-[#111827] border border-slate-700 px-3.5 py-1.5 rounded text-xs">
+            <div className="flex items-center gap-2 bg-[#111827] border border-slate-700 px-2 py-1.5 rounded text-xs min-w-0">
               <div
                 className="flex items-center gap-1.5 text-[#FFB800] font-mono-nums font-bold text-sm"
                 title="Ngân quỹ Credits"
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               AudioSynth.playClick();
               onOpenRecoveryModal();
             }}
-            className="p-2 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
+            className="p-2 min-w-11 min-h-11 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
             title="Mã sao lưu / khôi phục dữ liệu"
           >
             <KeyRound className="w-4 h-4" />
@@ -142,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Audio Mute Toggle */}
           <button
             onClick={handleToggleMute}
-            className="p-2 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
+            className="p-2 min-w-11 min-h-11 text-slate-300 hover:text-white bg-[#111827] hover:bg-slate-800 border border-slate-700 rounded transition-colors cursor-pointer"
             title={muted ? 'Bật âm thanh' : 'Tắt âm thanh'}
           >
             {muted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-[#FFB800]" />}

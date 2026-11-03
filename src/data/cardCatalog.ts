@@ -665,13 +665,7 @@ export function getEffectiveCardStats(
     championPool: Math.min(99, edition.baseStats.championPool + (trained.championPool || 0)),
   };
 
-  const levelBonus = Math.floor((ownedCard.level - 1) * 0.7);
-  const ovr = Math.min(
-    99,
-    edition.baseOvr +
-      levelBonus +
-      Math.floor(Object.values(trained).reduce((a, b) => a + (b || 0), 0) / 3)
-  );
+  const ovr = computeCardOvr(stats);
 
   return { stats, ovr };
 }

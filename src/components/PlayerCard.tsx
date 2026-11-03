@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   getEffectiveCardStats,
+  computeCardOvr,
   getPlayerById,
 } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
@@ -77,7 +78,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 
   const statsAndOvr = ownedCard
     ? getEffectiveCardStats(ownedCard, edition)
-    : { stats: edition.baseStats, ovr: edition.baseOvr };
+    : { stats: edition.baseStats, ovr: computeCardOvr(edition.baseStats) };
 
   const { stats, ovr } = statsAndOvr;
 
