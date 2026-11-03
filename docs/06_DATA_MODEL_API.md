@@ -1,5 +1,15 @@
 # 06 — Backend Contract, Database & Domain Model
 
+## 0. Contract đang dùng — Architecture B (03/11/2026)
+
+Save hiện tại là `GameSave` schema `version: 1`, một localStorage key **`apac_rising_save_v3`**; số phiên bản schema và hậu tố key không đồng nghĩa. `saveState.ts` validate dữ liệu trước khi import/restore; `GameContext.tsx` dùng reducer và saveRef để các mutation liên tiếp đọc đúng snapshot mới nhất. Có chuyển đổi từ ba key v2 cũ.
+
+Snapshot gồm club/wallet/lineup/packs/pity, ownedCards, ledger, transferOffers; các trường mở rộng là `ledgerArchive`, `marketDay`, `purchasedOfferIds`, `draftRewards`, `activeMatch`, `pendingReveal`. Ledger nóng giữ 500 dòng, archive giữ tổng và count. `activeMatch` lưu seed, snapshots, decisions, replay/result và state (gồm `GAME_RECAP`) để career reload không rút lại kết quả. Pending reveal trỏ tới chính thẻ đã mint; không mở pack lần nữa.
+
+Recovery Code là **`AR1.base64url(deflate).crc32`** qua CompressionStream/DecompressionStream; giới hạn code 500.000 ký tự, dữ liệu giải nén 2 MB và validate schema trước khi thay save. CRC phát hiện hỏng dữ liệu, không phải chữ ký chống gian lận. UI có export/import, fallback chọn để copy khi clipboard bị chặn, và banner khi storage không ghi được. Đây là bản sao save do người chơi giữ, không phải token tra cứu tài khoản trên server. Không ghi save demo vào career.
+
+**Phạm vi phần 1–9 dưới đây:** logical schema/API/bearer token/Flyway của Architecture A tùy chọn, chưa được build B triển khai. Không báo Neon, auth, transaction đa request hoặc các endpoint này đã được nghiệm thu. Bằng chứng cho contract B: [Phase 1](evidence/PHASE_1.md), [Phase 4](evidence/PHASE_4.md).
+
 ## 1. Technology
 Java 21 + Spring Boot 3.x (pin tested compatible version), Spring Web, Validation, Spring Security (guest bearer only), JPA or JdbcTemplate (choose consistently), Flyway, PostgreSQL Neon, JUnit5 + Testcontainers when available. One deployable monolith initially, module-by-domain inside `backend/src/main/java/...`.
 

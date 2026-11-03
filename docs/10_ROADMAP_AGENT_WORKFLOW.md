@@ -1,11 +1,13 @@
 # 10 — Roadmap, Agent Workflow, Scope / Decision Gates
 
-**Date:** 27/10/2026. Deadline: 15/11/2026. Solo developer + AI agents. Goal ambitious yet testable; AI accelerates implementation, not unattended integration/QA.
+**Kế hoạch gốc:** 27/10/2026, hạn gốc 15/11/2026. **Cập nhật 03/11:** chủ dự án đã giãn hạn; ngày mới chưa ghi (`DECISIONS.md` Q5). Lịch phía dưới là kế hoạch lịch sử, chưa phải lịch mới. Chỉ đặt lại freeze sau khi có ngày nộp mới, chừa ít nhất 2 ngày làm việc. Solo developer + AI agents; QA vẫn cần bằng chứng thực tế.
+
+**Work order hiện tại:** `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`, trạng thái ở `index.md` M9 và `evidence/PHASE_0.md` → `PHASE_4.md`. Thứ tự Phase 0→4, sửa Phase 1/2 xanh trước G0→G1→G2→G4→G3; không coi hạn giãn là cho phép bỏ gate sửa lỗi. Phase numbering của kế hoạch khởi tạo ở §2 không thay thế work order này. Các gate public/browser/playtest/balance còn mở; G3 tiếp tục tắt.
 
 ## 0. Gate G0 — chọn kiến trúc (hạn 28/10)
 Game đơn người chơi, không tiền thật, không leaderboard công khai. Chọn có chủ ý:
 - **A. Server-authoritative (như tài liệu):** Spring Boot + Neon + Oracle. Giá trị trình diễn kỹ thuật cao, nhưng thêm chi phí (idempotency, ledger, concurrency test, CSP, vận hành) và thêm điểm có thể hỏng khi nhiều người vào cùng lúc bình chọn.
-- **B. Local-first:** simulator bằng TypeScript (PRNG seed + golden test), lưu IndexedDB, host tĩnh (Cloudflare Pages/Nginx), backend tùy chọn cho thứ thật sự cần. Ổn định và rẻ hơn nhiều; kém "authoritative".
+- **B. Local-first (đã ghi nhận):** simulator bằng TypeScript (PRNG seed + golden test), triển khai hiện tại lưu **localStorage**, host tĩnh, backend tùy chọn. IndexedDB là khả năng mở rộng, không phải storage đang dùng. Không có server authority.
 Ghi quyết định + lý do vào `docs/DECISIONS.md`. Nếu chọn A, giữ nguyên các tài liệu; nếu chọn B, tài liệu 06/08 chỉ còn là tham chiếu cho phần tùy chọn.
 
 ## 1. Milestone calendar (v2.2)

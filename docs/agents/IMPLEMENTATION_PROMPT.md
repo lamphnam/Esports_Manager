@@ -1,5 +1,7 @@
 # Implementation Prompt — Copy into your coding agent
 
+> **Cập nhật 03/11/2026, ghi đè các đoạn cũ bên dưới:** đây là prompt khởi tạo tham khảo. Work order hiện tại là [PROMPT_FIX_AND_GOLDEN_ROAD.md](PROMPT_FIX_AND_GOLDEN_ROAD.md), trạng thái/bằng chứng ở [M9](../index.md) và [Phase 4](../evidence/PHASE_4.md). G0 = B đã ghi nhận: simulator TS, localStorage, static host; Spring Boot/Neon/Java và API/server authority ở dưới chỉ thuộc phương án A tùy chọn. Hạn gốc 15/11 đã được giãn, ngày mới Q5 còn mở; không lấy ngày trong prompt cũ làm hạn hiện hành. Q1–Q3 đã trả lời, Q4–Q6 dùng mặc định trong DECISIONS, không tự chốt. Không làm lại phase đã có bằng chứng hoặc coi QA local là nghiệm thu public; G3 vẫn tắt.
+
 You are the lead engineer and game-systems designer implementing `APAC Rising: Esports Manager` for **one solo developer**, with submission deadline **15 November 2026**. Do not confuse this project with the previous `Deadline Rush` concept.
 
 ## v2.2 amendments (ghi đè mọi mục mâu thuẫn bên dưới)

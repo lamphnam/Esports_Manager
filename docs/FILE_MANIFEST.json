@@ -1,8 +1,8 @@
 [
   {
     "path": "docs/00_START_HERE.md",
-    "bytes": 7290,
-    "sha256": "d5f1e9abd0057503ddfb2038d054c053a1535422194d3c9792b32d42c70ba983"
+    "bytes": 8145,
+    "sha256": "b75f79b8e36b746027e0593b4880c664895a6c00e5f481034ac3d721e351d335"
   },
   {
     "path": "docs/01_PRODUCT_VISION_GDD.md",
@@ -16,73 +16,73 @@
   },
   {
     "path": "docs/03_CAMPAIGN_DESIGN.md",
-    "bytes": 8852,
-    "sha256": "884df6ac77eb163b9c0d58c8a700ed447d15f01516639f3303305b2eee67e136"
+    "bytes": 9569,
+    "sha256": "38e13841a5ea192b58b39ffcdda7f81a0234ad1fa207625f1a223bf2e540def8"
   },
   {
     "path": "docs/04_COLLECTION_PACKS_ECONOMY.md",
-    "bytes": 6682,
-    "sha256": "155c7ad868a8ae6c379821c5ed417b33402740bc8be72cbbd8a5b2f23d60e9aa"
+    "bytes": 8948,
+    "sha256": "6361c33453feca999f070cec657ceb1559bc4fca3340ca75f9f7a77cec2ab00e"
   },
   {
     "path": "docs/05_MATCH_SIMULATOR.md",
-    "bytes": 6701,
-    "sha256": "a322d2e38fc7d6ea76e1fac0db58a281eaaffc8adc80ef3ac5e946461f8632e6"
+    "bytes": 10391,
+    "sha256": "7144777285bd397bb6e7f47af7cdd84bcbe9c2e95d98a4bbb955ace5851b6fa1"
   },
   {
     "path": "docs/06_DATA_MODEL_API.md",
-    "bytes": 9898,
-    "sha256": "2eab595465569f88a33e9e35efe9156fa16371337452495dc01a914027ccdd5f"
+    "bytes": 11870,
+    "sha256": "f8e88416d7d93d93d1f26c42b3e32131529b157ee26a125f82b9e729914d7e32"
   },
   {
     "path": "docs/07_FRONTEND_UX_ART.md",
-    "bytes": 5182,
-    "sha256": "4f636c7976ad0560d2954f7dfa77c8471716f9217e1e1ee05603cffa8f57a6e1"
+    "bytes": 6843,
+    "sha256": "f5e60c45da63fd0d9a67753fca641ca780a0cc58eacfff239c4342e7a6f5ecad"
   },
   {
     "path": "docs/08_ARCHITECTURE_DEPLOY.md",
-    "bytes": 5772,
-    "sha256": "f5a6dd22e25d537efa8e7ef5620f819b2f22751a7a6ec047f071e6e29c090ff7"
+    "bytes": 7302,
+    "sha256": "ac85750816bc75bdf3da8760e65e0cdb890493eceabe3309878dde9fddc13e67"
   },
   {
     "path": "docs/09_ACCEPTANCE_QA.md",
-    "bytes": 4236,
-    "sha256": "f34a8f9ca3db2e2c2d494aa6bf82ce823596ec8e8441ca8dace2e23eaf74a3a2"
+    "bytes": 6768,
+    "sha256": "84367d85e9e94b4f0c7aa94d220925807b94cf8192788517f1140bb28c67bcef"
   },
   {
     "path": "docs/10_ROADMAP_AGENT_WORKFLOW.md",
-    "bytes": 5567,
-    "sha256": "72941ac863f8e11dfa0b123bdc8ab3809fbd1994ceb74fb758cb7ab741922258"
+    "bytes": 6365,
+    "sha256": "2557da630044ce108e46f371fdd41f25f0139de6a480145febb70b6ae5130b7d"
   },
   {
     "path": "docs/11_RIGHTS_SOURCES.md",
-    "bytes": 7656,
-    "sha256": "e5d927e6689ce297c5d5014751108469ea8a7df074d2be51f829708575f114f3"
+    "bytes": 8307,
+    "sha256": "65a4fb616582a5df9fceb7e1f6475fee186a6458ec7d754c612e0c303f2b22b4"
   },
   {
     "path": "docs/12_CONTENT_BLUEPRINT.md",
-    "bytes": 4789,
-    "sha256": "4aba6b58c7e24dc7df9ae0cc21068b9b1a9e1b68568367699711db0a1f037275"
+    "bytes": 6369,
+    "sha256": "bf29d4990c2eff91b9dd654331a7467c0946456135c4c9c126e1252545311726"
   },
   {
     "path": "docs/13_MATCH_DECISION_SPEC.md",
-    "bytes": 4726,
-    "sha256": "d574f75dcee2a61a21a5f65475cb68a0b4b358b4e59d7e6a995482e4fe0fd66b"
+    "bytes": 6981,
+    "sha256": "856cf119f1974bdee18e764c96c9c09af7acf19fcfdb59662ffd141d644d0d8c"
   },
   {
     "path": "docs/14_ECONOMY_SIM_TABLE.md",
-    "bytes": 2115,
-    "sha256": "19a9e122bb7509f1d3c3abf79548823d82c791b9e2681170273a2cf3ddaba2be"
+    "bytes": 2721,
+    "sha256": "0c3ab4da1fd582f16106839cb7d2e4d21a7804ca74104440e968bc36dcf85bdc"
   },
   {
     "path": "docs/CHANGELOG.md",
-    "bytes": 5967,
-    "sha256": "ea78bdf32b943e8182186fd05e36261ba52537e6e396da2afdc262ac764eada7"
+    "bytes": 7057,
+    "sha256": "43f253091282897a8a5f88924d43733b77b0651df3c65842d2bd4ca44aaca5a8"
   },
   {
     "path": "docs/CLAUDE.md",
-    "bytes": 9964,
-    "sha256": "d7573d4e6368b54a5c35c899e362f6a4d4f4f519ca23525827d94a1ca4ebeca0"
+    "bytes": 10949,
+    "sha256": "864452a5201abf0197dbe95bedb95f28760953aa04d7baad0a213595485bcef9"
   },
   {
     "path": "docs/DECISIONS.md",
@@ -91,8 +91,8 @@
   },
   {
     "path": "docs/agents/IMPLEMENTATION_PROMPT.md",
-    "bytes": 5956,
-    "sha256": "892be28eebdb9a39c8b11d46caaeb6f47008c3b0fdd0ac417bf4333f728187e7"
+    "bytes": 6802,
+    "sha256": "6b3e40b7a55978583211752c2eea1740cd89b47eb7fc316758cf644abea4c652"
   },
   {
     "path": "docs/agents/PROMPT_FIX_AND_GOLDEN_ROAD.md",
@@ -118,6 +118,11 @@
     "path": "docs/config/tactics.matrix.json",
     "bytes": 1943,
     "sha256": "726c1b7a6951ee620d03bbf5bc4b45301697c91060f111b5157881560e94c98a"
+  },
+  {
+    "path": "docs/evidence/DOC_SYNC.md",
+    "bytes": 3349,
+    "sha256": "1ae44ee75f38176b3fc08468ce4bb5fea38a6af689298e4ae9d007a49bf0bbc9"
   },
   {
     "path": "docs/evidence/PHASE_0.md",
@@ -176,8 +181,8 @@
   },
   {
     "path": "docs/index.md",
-    "bytes": 16415,
-    "sha256": "11b05d1f08cae023b4da3c1557fa958dccb1f457d6c2506d85f48d2800a81e90"
+    "bytes": 17905,
+    "sha256": "308edd56d4ef1b7a6e5badfb5b2807ab5654001e25da86cfd380eb17e968b834"
   },
   {
     "path": "docs/research/LEGACY_DRAFT_BEHAVIOR.md",

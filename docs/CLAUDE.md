@@ -8,7 +8,7 @@ This is the **documentation/spec pack (v2.2, 2026-10-27)** for *APAC Rising: Esp
 
 Context: solo developer + coding agents, contest submission deadline originally **15/11/2026** (aim 14/11); the owner reported on 03/11/2026 that it has been extended, new date not yet recorded (`DECISIONS.md` Q5). The docs are written in **Vietnamese** with English identifiers; keep that convention when editing them.
 
-## Planned stack and commands (for the future codebase, not runnable here)
+## Stack and commands (run from the repository root)
 
 From `08_ARCHITECTURE_DEPLOY.md` §4 and `agents/IMPLEMENTATION_PROMPT.md`:
 - Frontend: React + TypeScript + Vite, **Bun**. `bun install --frozen-lockfile` → `bun run typecheck` → `bun run test` → `bun run build`.
@@ -34,7 +34,7 @@ Several older passages are superseded by v2.2 additions and were not rewritten, 
 
 ## Gate G0 — do this before writing gameplay code
 
-The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the owner records an architecture choice in **`docs/DECISIONS.md`**: **A** server-authoritative (Spring Boot + Neon) vs **B** local-first (TypeScript simulator, IndexedDB, static host). That file now exists and records **G0 = B** (03/11/2026, taken from the owner's statement; the owner's written confirmation is pending). It also holds the proposed decisions (DEC-1..9) and the open questions (Q1..Q4); an agent may append to it but must not change "Đề xuất" to "Đã chốt". Because B is chosen, `06` and `08` are reference for optional parts only. The deploy skeleton (HTTPS + iframe harness + CSP + health + token-storage test in Chrome/Safari/Firefox) must be working before F0 gameplay.
+The architecture gate in `agents/IMPLEMENTATION_PROMPT.md` is recorded in **`docs/DECISIONS.md`**: **G0 = B**, local-first TypeScript simulator, **localStorage**, static host. Spring Boot/Neon/Java/API sections in `06`/`08` describe optional Architecture A; the new §0 in those specs describes the actual B contracts. IndexedDB is not implemented. Keep DEC-1..9 as "Đề xuất"; Q1–Q3 are answered and Q4–Q6 remain open with defaults. Public HTTPS/CSP/real portal and Safari/Firefox gates are still open; the local iframe harness is evidence for local behavior only.
 
 ## Cross-cutting rules (these span several files)
 
@@ -42,13 +42,15 @@ The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the 
 
 **Server authority (architecture A).** The backend decides packs, rewards, wallet and match results; the frontend only renders event replays. The client never submits scores or winners. `club_id` always comes from the authenticated guest principal, never the request body. `Watch/Fast/Skip` replay the *same persisted* match. All financial mutations need an `Idempotency-Key` (request-hash mismatch → `409 IDEMPOTENCY_CONFLICT`) and a transactional ledger. Wallet balances have `CHECK >= 0`.
 
-**Simulator determinism (`05` §3, `13`).** The domain engine is pure Java with no DB calls and no `Math.random()`. Every random draw uses a sub-seed `hash(seed, gameIndex, phase, eventSlot)`, never a shared sequential stream. This is what makes the post-match counterfactual explanation honest. Golden test: changing the EARLY decision must not change the MID/LATE draws. Win probability comes from attributes, synergy (±8), tacticFit (±5), decisionFit (±6) and form (±2), **not** from displayed OVR.
+**Simulator determinism (`05` §3, `13`).** The current B engine is pure TypeScript with no DB calls and no `Math.random()` in `src/lib/`; Java is the optional A design. Every phase/event draw uses a sub-seed `hash(seed, gameIndex, phase, eventSlot)`, never a shared cross-phase stream. This makes post-match counterfactual explanations honest. Golden test: changing EARLY does not change MID/LATE draws. Player probability uses attributes, synergy (±8), tacticFit (±5), decisionFit (±6) and form (±2), **not** displayed OVR; current opponents use attributes + synergy + form, with their actual archetype driving player decisionFit (`05` §3).
+
+**Per-game recap (`05` §4–6, `07` §6, `13` §4.1).** BO3/BO5 in both career and demo pause at `GAME_RECAP` after every game, including the final one. Show verdict, series score and all three phase logs; only explicit Next advances to FOCUS_1 or the series summary. Watch/Fast/Skip must not bypass recap. Career reload restores the same recap/seed/result; demo remains component-local with no career writes.
 
 **Tactic matrix.** The `decisionFit` table is duplicated in `13_MATCH_DECISION_SPEC.md` §3 (human) and `config/tactics.matrix.json` (machine). Keep them identical. CI must enforce four properties: no dominated tactic in a phase; every tactic is best against at least one archetype; per-phase tactic means differ by ≤ 1.5; all values in [-6, 6].
 
 **Pity (v2.2).** For the Scout family, at most 7 consecutive non-Epic+ opens; the 8th open is forced Epic+; `misses` resets on any Epic+. Scout Commons have `baseOvr >= 62`. Pack odds are displayed to players and change only with a new `packTableVersion`. No real-money mechanics.
 
-**Anti-duplication schema details.** `milestone_claim.career_year` is `NOT NULL DEFAULT 0` because PostgreSQL's UNIQUE doesn't block NULL duplicates. Flyway runs against Neon's **direct** (non-pooled) endpoint via `FLYWAY_URL`, separate from runtime `DB_URL`. `06` §2 is a *logical* schema; the agent is expected to write the real DDL, not copy it.
+**Anti-duplication schema details (optional A).** `milestone_claim.career_year` is `NOT NULL DEFAULT 0` because PostgreSQL's UNIQUE doesn't block NULL duplicates. Flyway uses Neon's direct endpoint via `FLYWAY_URL`, separate from runtime `DB_URL`. These are logical designs, not deployed B schema. B uses a validated single save, first-clear guards and persisted pending reveal; it does not prevent manual save tampering.
 
 **Numbers that live in more than one place.** Pack odds/pity: `04`, `config/balance.initial.json`, `CHANGELOG`, IMPLEMENTATION_PROMPT. Simulator caps and decision policy: `05`, `13`, `balance.initial.json`. Credit sources and sinks: `03` §7, `04` §4, `14`. When changing one, grep for the others, add a `CHANGELOG.md` entry, and bump `rulesVersion` in the config if gameplay changes. `FILE_MANIFEST.json` holds sha256/byte sizes and goes stale after any edit; regenerate it rather than hand-editing.
 
@@ -63,11 +65,13 @@ The prompt in `agents/IMPLEMENTATION_PROMPT.md` forbids gameplay code until the 
 
 ## Rights and contest constraints
 
-The owner says Riot approved use of **player names and photos** by email and, as of 03/11/2026, that the grant covers everything with no limits (`DECISIONS.md` Q2), so real club names are allowed. Acer/Predator marks are not Riot's to grant. No cleared image or logo files exist yet: keep fictional flat-art placeholders unless an `asset_license` record exists per asset (`11` §1). No Portal login/credential collection, camera, microphone or external redirects. Guest identity is a random bearer token (stored hashed) plus a recovery code if iframe storage is blocked, and it must never appear in URLs or logs. `frame-ancestors` must list only the verified portal origin and the owned domain; don't guess the portal host. The contest's current terms at submission time override the snapshot in `11` §2.
+The owner says Riot approved use of **player names and photos** by email and, as of 03/11/2026, that the grant covers everything with no limits (`DECISIONS.md` Q2), so real club names are allowed. Acer/Predator marks are not Riot's to grant. No cleared image or logo files exist yet: keep fictional flat-art placeholders unless an `asset_license` record exists per asset (`11` §1). No Portal login/credential collection, camera, microphone or external redirects. B Recovery Code contains a compressed save (`AR1` + CRC32), not a server identity; never put it in URLs or logs. Hashed guest bearer tokens describe optional A only. `frame-ancestors` must list only the verified portal origin and the owned domain; don't guess the portal host. The contest's current terms at submission time override the snapshot in `11` §2.
 
 ## Reference material (`ref/`) and the current work order
 
 `ref/golden_road/` is a third-party fan game (ads and a Ko-fi button) kept **for reference only**. Never bundle it, and never copy its code, UI text, CSS, icons or share-card layout (`agents/IMPLEMENTATION_PROMPT.md` line 16, `11` §6). Its roster facts and rating values may seed `LEGACY` card editions (the owner has permission to use and adjust the ratings, `DECISIONS.md` Q1); record `ratingSource` on each edition. The permission covers ratings only. The current work order is `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`, tracked as **M9** in `index.md`. Fact snapshots for 2026 events carry a confidence per row in `research/LINKS_AND_FACT_CHECK.md`; don't promote a Low row into game data.
+
+Local Phase 0–4 evidence is recorded in `evidence/PHASE_0.md` → `PHASE_4.md` (latest: 31 unit tests and 14 browser results). Read it and M9 before continuing; do not repeat completed phases or overwrite the user's working tree. Remaining public/browser/playtest/prototype-balance gates are listed explicitly; `FEATURE_GOLDEN_ROAD=false`. Do not call this submission-ready or mark those gates passed from the local results. Regenerate `FILE_MANIFEST.json` after documentation edits.
 
 ## Definition of first playable (F0, non-negotiable)
 

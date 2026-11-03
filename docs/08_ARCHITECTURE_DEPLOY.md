@@ -1,6 +1,14 @@
 # 08 — Architecture, Monorepo, Oracle / Nginx / Neon
 
-## 1. Stack (fixed)
+## 0. Kiến trúc đang chạy — B (03/11/2026)
+
+Repo có app ngay tại root: `src/`, `package.json`, `bun.lock`, `vite.config.ts`; React + TypeScript strict + Vite + Bun, simulator TS thuần và một snapshot localStorage. `bun run typecheck`, `bun run test`, `bun run build` tạo static `dist/`; `bun run clean` kiểm tra đường dẫn rồi chỉ xóa dist. Không cần Spring Boot/Neon để chơi bản hiện tại. Cấu trúc monorepo và request flow A ở phần sau là phương án tham khảo, không phải cây repo thực tế.
+
+Kiểm chứng release local: `bun scripts/verify-release.ts`; output ở `docs/evidence/phase-4-commands.txt`. CI được định nghĩa tại `.github/workflows/verify.yml`, chưa chạy remote vì không push. `release-audit.ts` kiểm tra không đưa tài liệu nội bộ hoặc mã tham chiếu `docs/ref` vào bundle.
+
+`tools/iframe-harness.html` + `scripts/harness-server.ts` đã kiểm tra production build qua hai origin local (`127.0.0.1:4174` → `localhost:4173`), gồm F0/reload và storage bị chặn. **Đây chưa phải kiểm chứng public HTTPS, CSP trên Nginx hay portal thật.** Dùng `infra/nginx.conf.template` cho B sau khi có domain/VM và parent origin chính xác (D1/D4); không đoán host, không thay dịch vụ đang chạy. Safari/iOS, Firefox và playtest vẫn là gate mở. Xem [Phase 4](evidence/PHASE_4.md).
+
+## 1. Stack tham chiếu Architecture A
 - FE: React, TypeScript, Vite, **Bun** install/scripts/build. Pure UI/replay; server-authoritative collection/economy/simulator.
 - BE: Java 21, Spring Boot, Maven wrapper (`./mvnw`), PostgreSQL Neon, Flyway, JUnit.
 - Infra: Oracle Cloud Always Free Ubuntu 24.04 ARM64 (user says ~12GB RAM), Nginx, existing owned `.dpdns.org` domain through Cloudflare free plan, HTTPS via certificate automation. Server may host OTHER websites; isolate deployment.

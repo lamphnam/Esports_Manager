@@ -8,6 +8,8 @@ Project owner stated: **Riot has granted permission via email to use player name
 ### Asset-level rights checklist
 Record for each asset: `assetId`, `athleteName`, `sourceURI`, `copyrightOwner`, `licenseEmailRef`, `permittedUses`, `allowedDerivativeEdits`, `commercialOrContestScope`, `territory`, `expiry`, `attribution`, `approvedAt`, `fileHash`. Don't store private email content in public repo; keep redacted evidence/review note privately. If not covered, use original flat-art placeholder.
 
+**Tình trạng build 03/11/2026:** chưa thêm file ảnh/logo thật, dùng placeholder và SVG hình học tự vẽ. README/footer đã có disclaimer và credit theo mặc định Q6; đây không phải chủ dự án đã trả lời Q6. Dữ liệu Legacy có provenance/checksum, nguồn 2026 có confidence/retrievedAt; không đưa hàng Low vào game. `docs/ref` không vào bundle, release-audit local xanh; chi tiết [Phase 3](evidence/PHASE_3.md) và [Phase 4](evidence/PHASE_4.md). Điều khoản public tại thời điểm nộp vẫn cần kiểm tra lại.
+
 ### Before enabling real assets
 - Verify email applies to **this game, contest, hosting and distribution**, and permits portrait/card transformation if used.
 - Check photos: esports organization/team/photographer may hold copyright independently of person name/likeness.

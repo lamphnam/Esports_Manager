@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-11-03 — đồng bộ tài liệu sau phản hồi recap (không đổi rulesVersion)
+- Đồng bộ spec simulator/UX/decision/QA với `GAME_RECAP`: kết quả từng ván BO3/BO5, logs, explicit Next và career reload; demo không ghi save.
+- Ghi contract Architecture B/localStorage/Recovery Code, palette và catalog/pool thực tế; phân biệt thiết kế A/tương lai, kế hoạch ngày cũ và hạn đã giãn chưa có ngày mới. Bổ sung trạng thái vào CLAUDE, START HERE và prompt khởi tạo.
+- Giữ rõ các gate chưa đạt: qualification/next split đầy đủ, mô phỏng wallet theo chính sách, balance prototype, public/portal, cross-browser và playtest. M9/evidence là nguồn tiến độ hiện tại; G3 vẫn tắt. Không đổi odds/pity/matrix hoặc DECISIONS.
+- Bằng chứng kiểm tra docs/manifest: `evidence/DOC_SYNC.md`; kết quả test code 31/14 thuộc lượt Phase 4 trước, không báo là vừa chạy lại trong lượt chỉ sửa tài liệu.
+
 ## v2.2.3 — 2026-11-03 (Phase 3/4, rulesVersion v1.2.0)
 - Thêm importer Legacy có provenance/checksum, historical demo không ghi career, đối thủ Ch6–12 và daily market; nguồn TSW 2026 có confidence, không dùng Low. Draft clean-room sau flag tắt, có cap thưởng và poster canvas mới.
 - Sửa reload giữa trận/recap/pack bằng persisted snapshot và reveal; sửa FOCUS_1 giữ lựa chọn pha cũ, role chính edition lịch sử và validation save.

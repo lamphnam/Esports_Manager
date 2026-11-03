@@ -1,9 +1,11 @@
 # APAC Rising — Esports Manager | START HERE
 
-**Documentation release:** v2.2 • 2026-10-27 (xem `CHANGELOG.md`) • language: Vietnamese  
+**Documentation release:** v2.2 + cập nhật triển khai 03/11/2026 (xem `CHANGELOG.md`) • language: Vietnamese
 **Product:** Web MOBA esports-manager, campaign từ sinh viên Việt Nam đến Worlds, kết hợp thu thập thẻ tuyển thủ theo mùa, pack, đào tạo, chuyển nhượng, tài chính CLB, match simulation.  
-**Submission window:** kết thúc 15/11/2026 (theo điều lệ phần thi Công nghệ Road to Predator League 2027 mà người dùng cung cấp và portal công khai).  
-**Team:** 1 developer + coding agents. **Hosting:** Oracle Cloud Ubuntu ARM64 + Nginx; **FE:** React/TypeScript/Vite/Bun; **BE:** Java 21/Spring Boot; **DB:** Neon PostgreSQL.
+**Submission window:** hạn gốc 15/11/2026 đã được chủ dự án giãn; ngày mới chưa ghi (`DECISIONS.md` Q5). Không dùng ngày cũ làm hạn hiện hành.
+**Team:** 1 developer + coding agents. **Architecture B:** React/TypeScript/Vite/Bun, simulator TS, save localStorage, host tĩnh; Oracle/Nginx là hướng deploy chưa nghiệm thu public. Spring Boot/Neon là tham chiếu Architecture A tùy chọn.
+
+**Trạng thái hiện tại:** theo [index.md — Now/M9](index.md), không suy ra mức hoàn thành từ các mục tiêu thiết kế phía dưới. Phase 0–4 có bằng chứng local; public HTTPS/portal, Safari/Firefox, playtest và một số mục tiêu balance vẫn mở. `FEATURE_GOLDEN_ROAD=false`; chưa đạt nghiệm thu bản nộp. BO3/BO5 đã có kết quả từng ván và nút Next thủ công; xem `05`/`07`/`13`.
 
 ## Đọc theo thứ tự
 1. `01_PRODUCT_VISION_GDD.md` — north star, vòng lặp chơi, nguyên tắc và phạm vi.
@@ -22,7 +24,7 @@
 14. `14_ECONOMY_SIM_TABLE.md` — **(mới v2.2)** bảng nguồn/sink credits theo chapter (giả thuyết để mô phỏng kiểm chứng).
 15. `agents/IMPLEMENTATION_PROMPT.md` — copy cho agent, chia phase và báo cáo bằng chứng.
 16. `config/*.json` — ví dụ cân bằng, competition và card (hư cấu).
-17. `DECISIONS.md` — **(mới 03/11)** nhật ký quyết định: Gate G0 = B (đã ghi nhận), quyết định đề xuất DEC-1..9, câu hỏi mở Q1..Q4 cho chủ dự án.
+17. `DECISIONS.md` — nhật ký quyết định: Gate G0 = B đã ghi nhận; DEC-1..9 giữ trạng thái Đề xuất; Q1–Q3 đã trả lời, Q4–Q6 còn mở và có mặc định để tiếp tục.
 18. `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md` — **(mới 03/11)** prompt sửa lỗi audit và tích hợp dữ liệu lịch sử; theo dõi ở `index.md` mục M9.
 19. `research/LINKS_AND_FACT_CHECK.md` — liên kết chính thức và bảng kiểm tra thực tế 03/11/2026 kèm độ tin cậy.
 20. `ref/golden_road/` — **chỉ để tham khảo** (fan game bên thứ ba): không đóng gói, không sao chép mã/giao diện. Xem `11` §6.
@@ -51,10 +53,10 @@
 ## Các quyết định không tùy tiện đổi
 - Một chủ tài khoản khách có 1 CLB/career save mặc định, có thể mở rộng nhiều save sau.
 - Thẻ tuyển thủ theo season edition KHÁC mùa sự nghiệp CLB.
-- Backend là nguồn sự thật cho pack, thưởng, kinh tế và kết quả trận; frontend chỉ hiển thị event replay.
+- Architecture B hiện tại: engine TS + reducer lưu pack, thưởng, kinh tế và kết quả trong một snapshot localStorage; không có server authority/chống sửa save. Quy tắc backend là nguồn sự thật chỉ áp dụng Architecture A tùy chọn.
 - Game có dữ liệu thẻ **được cấp phép** nếu có xác nhận asset-level; trong môi trường dev dùng placeholder hư cấu.
 - Không yêu cầu đăng nhập vào portal của BTC và không thu thập thông tin tài khoản portal.
 - Kết quả thi đấu gắn với phiên bản rules và snapshot đội hình, chống replay/submit trùng.
 
 ## Lệnh gọi agent
-Copy toàn bộ `agents/IMPLEMENTATION_PROMPT.md`, đặt folder `docs/` tại root repo rồi bắt đầu từ Phase 0 audit read-only và Phase 1 first playable. Không yêu cầu agent viết cả game trước khi chạy demo đầu tiên.
+Work order hiện tại là `agents/PROMPT_FIX_AND_GOLDEN_ROAD.md`; đọc `index.md` M9 và `evidence/PHASE_0.md` → `PHASE_4.md` trước khi tiếp tục các gate còn mở. `agents/IMPLEMENTATION_PROMPT.md` là prompt khởi tạo tham khảo, không phải lý do làm lại baseline hoặc các phase đã có bằng chứng.

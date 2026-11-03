@@ -1,5 +1,17 @@
 # 04 — Collection, Pack, Economy & Club Systems
 
+**Triển khai 03/11/2026 — Architecture B:** `economyEngine.ts` và reducer `GameContext.tsx` thực hiện trên một snapshot localStorage. Các đoạn server/transaction/idempotency key bên dưới là hợp đồng A tham khảo; build hiện tại không có backend hoặc bảo đảm chống sửa save. Odds và định nghĩa pity v2.2 giữ nguyên.
+
+Các quy tắc đã triển khai:
+- Catalog có 399 identities / 684 editions; **pool pack hiện tại chỉ 30 `CURRENT_EDITIONS`**, không lấy 649 `LEGACY` hoặc tự mở rộng pool theo catalog chung (DEC-2). Legacy đi qua market/demo/opponents/Draft sau flag tắt.
+- `effectiveOVR` tính từ stats thực tế với trọng số MECHANICS 0.30, MACRO 0.25, TEAMWORK 0.20, MENTAL 0.15, CHAMPION_POOL 0.10. Role chính lấy theo edition trước identity hiện tại; secondary -3; cùng physical card không được chiếm hai slot.
+- Training tăng +2 cho stat được chọn, cap stat 99 và level 10; giá `100 + 60*(level-1)`, giảm 10% khi Training Center tier 1. Không huấn luyện `CHAMPION_POOL` vì chưa có cơ chế Fearless; materials/tickets có hiển thị nhưng chưa là chi phí training. Enhancement/shards/potential bên dưới là thiết kế tương lai.
+- Training Center hiện chỉ tier 1; Strategy Lab tier 1/2/3 cộng synergy +1/+2/+3, vẫn cap tổng ±8; Scout Office chưa có tác dụng nên ẩn. Không hiển thị perk chưa làm như đã hoạt động.
+- Market hiện có 6 offer Legacy, seed/ngày và expiry theo múi giờ Việt Nam; lưu các offer đã mua. Không phải vòng quay tuần/split hoặc dữ liệu hợp đồng tuyển thủ thật.
+- Tài trợ khôi phục 100 credits khi ví dưới 100, tối đa một lần/ngày Việt Nam; ngày claim lưu riêng để không farm khi archive ledger. Giữ 500 ledger gần nhất và tổng credits/materials/tickets/count đã archive.
+
+Bằng chứng: [Phase 2](evidence/PHASE_2.md), [Phase 3](evidence/PHASE_3.md), [Phase 4](evidence/PHASE_4.md). Phần thiết kế dưới đây chỉ được coi là hoàn tất khi có bằng chứng tương ứng.
+
 ## 1. Card domain glossary
 - `PlayerIdentity`: playerId, displayName, region, primaryRole, secondaryRole?, biography, age-appropriate content, licensing data.
 - `PlayerCardEdition`: editionId, playerId, editionYear, editionCode (ACADEMY/BREAKOUT/CHAMPION/LEGACY), baseStats, baseOVR, rarity, styleTraits, artAssetId, eligibilityFlags.
@@ -18,7 +30,7 @@
 - Clutch: resilience in high-stakes rounds.
 - Flexible: better Fearless-lite champion pool across BO5.
 
-## 3. Pack opening: server authoritative
+## 3. Pack opening (odds chung; hợp đồng server thuộc A)
 | Pack | Default distribution | Earn method | Protection |
 |---|---|---|---|
 |Welcome|0 Common / 100% Rare+ with 80 Rare, 18 Epic, 2 Legendary|tutorial only|guaranteed upgrade|

@@ -1,5 +1,13 @@
 # 12 — Content Blueprint: Card Catalog, Competition, Rival & Dialog
 
+## 0. Snapshot nội dung đã triển khai — 03/11/2026
+
+Catalog thực tế: **399 identities, 684 editions**, gồm 30 current pack editions, 649 `LEGACY` lịch sử và 5 bản 2026 TSW có nguồn/confidence/retrievedAt. Legacy có 374 identities, 73 teams, 129 team-years; importer và checksum ở `scripts/import-golden-road.ts`/`src/data/generated/legacyManifest.json`. Các nhóm identity có giao nhau nên không cộng số identity từng nguồn. `CURRENT_EDITIONS` là pool pack cố định; Legacy không vào pack (DEC-2).
+
+Golden Road chỉ cung cấp dữ kiện/ratings được phép; mã, text, CSS, icon, UI và bố cục share-card không sao chép. Stats/ratings là cân bằng game, không phải đánh giá khách quan cá nhân. Dữ kiện 2026 chỉ lấy hàng đủ độ tin cậy; không dùng Low từ research. Toàn bộ hình vẫn là placeholder; chưa thêm ảnh/logo thật có asset_license.
+
+Demo BO5 dùng đội lịch sử, không ghi career. Đối thủ Ch6–12/daily market dùng Legacy với seed/provenance, knockout có nhãn hư cấu. Draft clean-room có triển khai nhưng `FEATURE_GOLDEN_ROAD=false`. Các khối lượng/nhân vật/template ở §1 trở đi là mục tiêu và ví dụ thiết kế, không phải danh sách tính năng đã có; đặc biệt Rival Zero, Swiss, nhánh job LCK/LPL và Hall of Fame đầy đủ chưa được nghiệm thu. Bằng chứng: [Phase 3](evidence/PHASE_3.md), [Phase 4](evidence/PHASE_4.md).
+
 ## 1. Content volumes
 Launch target: 30 player identities (6/role) × 2–3 editions ≈ 75 card editions; 5 starter academy identities can be fictional; licensed pro identities appended when asset approvals recorded. 12 major chapter milestones; 20–40 unique matchup fixtures via templates per split; 5 recurring rival archetypes + 1 named multi-season rival.
 

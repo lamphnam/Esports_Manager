@@ -2,6 +2,8 @@
 
 Mục tiêu: để "Smart team beats pure OVR" thành sự thật có thể kiểm chứng. Người chơi phải có **thông tin để suy luận**, nhưng không có đáp án luôn đúng.
 
+**Cập nhật 03/11/2026:** policy và recap dưới đây mô tả build B đang chạy. Ma trận §3 giữ nguyên. Scout Office/Rival Zero thích nghi ở §1 là thiết kế tương lai, chưa được nghiệm thu trong build hiện tại; không hiển thị perk Scout Office như đã có. Kết quả/gate còn mở xem [Phase 4](evidence/PHASE_4.md).
+
 ## 1. Người chơi biết gì (Opponent Preview)
 - **Archetype chính** của đối thủ (1 trong: EARLY_AGGRO, OBJECTIVE_CONTROL, LATE_SCALING, SPLIT_PRESSURE, BALANCED) hiển thị dưới dạng nhãn + 1 câu mô tả (ví dụ "Hay lấy lợi thế sớm, yếu dần về cuối").
 - **Chỉ số tóm tắt** 3 thanh (Early / Mid / Late) so với đội mình.
@@ -55,12 +57,24 @@ Ràng buộc đã kiểm tra tự động khi tạo file này, và phải đư�
 - Có công tắc "Chơi thủ công cả 3 pha" cho người thích kiểm soát (`manualAllOptional`).
 - `Skip` chỉ chọn mặc định khi bấm rõ ràng và có hiển thị (đúng `05` §6).
 
+### 4.1. Kết quả từng ván và chuyển ván
+
+- Sau mỗi ván BO3/BO5, career và demo vào `GAME_RECAP`: thắng/thua ván, tỷ số chuỗi, kills, thời lượng, MVP và logs EARLY/MID/LATE. Giữ nguyên màn hình cho đến khi người chơi bấm nút; `Watch/Fast/Skip` không vượt qua điểm dừng này.
+- Nếu chuỗi chưa kết thúc, **Ván Tiếp Theo** mới mở `FOCUS_1` cho ván kế; chưa mô phỏng ván đó trước khi xác nhận lựa chọn. Khi đổi focus hoặc tắt `manualAllOptional`, các pha tự động trở lại gợi ý, không giữ thêm lựa chọn thủ công ẩn.
+- Nếu chuỗi đã kết thúc, **Xem Tổng Kết Chuỗi** mới mở tổng kết/thưởng; không nhầm thắng một ván với thắng chuỗi. BO1 giữ luồng tổng kết F0 trực tiếp.
+- Career lưu và khôi phục đúng `GAME_RECAP`/seed/result qua reload. Demo dùng state riêng, không ghi career và không hứa khôi phục qua reload.
+
 ## 5. Giải thích sau trận (counterfactual)
 Nhờ sub-seed theo pha (`05` §3), engine tính lại `P_phase` với quyết định thay thế và hiển thị: "Pha MID: bạn chọn `SPLIT_PUSH` (−2) so với `CONTEST_OBJECTIVE` (+4) vì đối thủ là `SPLIT_PRESSURE`". Kèm 1 gợi ý hành động. Không tuyên bố kết quả "sẽ" thay đổi, chỉ nói xác suất thay đổi bao nhiêu.
+
+Tổng kết xét mọi ván trong chuỗi, ưu tiên alternative có độ chênh tuyệt đối lớn nhất. Hiển thị đúng dấu tăng/giảm và nói tương đương khi bằng 0; archetype/tactic có nhãn tiếng Việt dễ đọc, không chỉ in identifier.
 
 ## 6. Kiểm thử bắt buộc
 - Test tính chất ma trận (mục 3) chạy trong CI.
 - 10k seeds: người chơi chọn tối ưu vs ngẫu nhiên → chênh win rate ≥ 5 điểm % (mục tiêu, hiệu chỉnh).
 - 10k seeds: một chính sách "luôn chọn cùng một tactic" không thắng chính sách thích nghi theo archetype.
 - Golden test sub-seed: đổi quyết định EARLY không đổi random draw MID/LATE.
+- Regression `GAME_RECAP`: mẫu thắng/thua BO3/BO5, đủ 3 logs, chờ 15 giây không tự chuyển, reload career cùng kết quả và chỉ Next mới vào FOCUS/tổng kết; demo không đổi localStorage (`scripts/e2e-game-recap.js`, `scripts/e2e-demo.js`).
 - Playtest: hỏi "Vì sao bạn chọn tactic đó?" — nếu câu trả lời là "đoán", thông tin hiển thị ở mục 1 chưa đủ rõ.
+
+Benchmark local 10k seed 03/11: adaptive 55.27%, random/fixed 51.76%; adaptive vượt fixed nhưng gap 3.51 điểm % chưa đạt mục tiêu ≥5. Giữ gate đó mở, không sửa ma trận để ép số; Q4 vẫn dùng mặc định đang ghi trong DECISIONS.

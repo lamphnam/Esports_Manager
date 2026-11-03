@@ -1,5 +1,7 @@
 # 03 — Campaign Design | Campus → World Champion
 
+**Trạng thái triển khai 03/11/2026:** tài liệu này là thiết kế campaign đích. Build B hiện có 12 chapter, first-clear guards, đối thủ lịch sử Ch6–12 và demo BO5 không ghi career; chưa nghiệm thu đầy đủ season-state-machine, qualification theo split hoặc chuyển split/year sau pro loss. Không coi các luồng ở §1/§3 đã hoàn tất chỉ vì có đủ 12 chapter. Knockout quốc tế có nhãn hư cấu; Fearless-lite/Swiss/Rival Zero thích nghi là phần chưa nghiệm thu. Trạng thái và bằng chứng: [M9](index.md), [Phase 4](evidence/PHASE_4.md).
+
 ## 1. Campaign philosophy
 Career là **season-state-machine có nhánh**, không phải 20 stage tuyến tính luôn phải thắng. Cấu trúc kể chuyện 3 Acts / 12 Chapters chỉ là **milestone**; engine chạy fixtures, qualification, placement, retry tại grassroots và next split/year khi thua cấp pro.
 

@@ -1,5 +1,7 @@
 # 14 — Economy Sim Table (v2.2, giả thuyết khởi đầu)
 
+**Cập nhật 03/11/2026:** bảng dưới là giả thuyết thiết kế, không phải bảng payout đã được engine kiểm chứng. `scripts/balance-sim.ts` hiện đo win-rate 3 đội mẫu × 12 chapter (4000 seed/ô), **không** mô phỏng wallet theo 3 chính sách chi tiêu ở cuối tài liệu. Không dùng kết quả DEC-5 để tick các chỉ tiêu thu nhập/lạm phát 1–4. Training/sponsorship/first-clear guards hiện tại xem `04` và bằng chứng `evidence/PHASE_2.md`/`PHASE_4.md`; mô phỏng economy theo chính sách còn mở.
+
 Mọi con số là **giả thuyết** để chạy mô phỏng/playtest, không phải chân lý. Nguồn: `03` §7 và `04` §4. Giá: Scout pack 800, training 100–700 (leo thang), NPC signing 1,200–10,000, facility ≥ 1,000.
 
 | Chapter | Thu nhập lần đầu (credits) | Thu nhập lặp/mùa (ước tính) | Mục tiêu mua được trước chapter kế |
@@ -17,5 +19,5 @@ Mọi con số là **giả thuyết** để chạy mô phỏng/playtest, không 
 4. **Không lạm phát:** tổng credits sinh ra mỗi chapter ≤ ~1.3× tổng sink "hợp lý" của chapter đó; không có chu trình mua–bán NPC có lời.
 5. **Anti-farm:** replay kết quả cache không thưởng; mỗi first-clear chỉ nhận một lần (ledger unique).
 
-## Script kiểm chứng (để agent viết)
+## Script economy theo chính sách (chưa triển khai)
 Một script mô phỏng đơn giản (Python hoặc test Java) cho 1,000 "người chơi" theo 3 chính sách (tiết kiệm / mua pack ngay / training trước) qua chapter 1–5, in ra: credits theo chapter, số pack, win rate chapter, và cảnh báo vi phạm chỉ tiêu 1–4.

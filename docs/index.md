@@ -13,6 +13,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 - **Answered by the owner on 03/11:** Q1 (the Golden Road ratings may be used and adjusted), Q2 (the Riot email covers everything, no limits), Q3 (no schedule slip; deadline extended).
 - **Waiting on the owner:** Q5 (new submission date), Q4 (win-rate targets), Q6 (credit line). Defaults are recorded in `DECISIONS.md`, so work is not blocked.
 - **Freeze:** once Q5 is answered, set the feature-freeze date at least 2 working days before the submission date. The dates in M1-M8 below assume the original 15/11 deadline and need re-dating then.
+- **Docs:** specs 00/03–14, CLAUDE and the original implementation prompt now distinguish current B behavior from A/future designs. Per-game recap, save/recovery contract, catalog/pool and local QA limits are synchronized; [documentation evidence](evidence/DOC_SYNC.md). The economy wallet-policy simulation in `14` is still unimplemented; `balance-sim` measures match win rates only.
 
 ## Open decisions (owner)
 
@@ -24,11 +25,13 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 | D7 | Cut order if the schedule slips (`DECISIONS.md` Q3) | — | `[x]` | Answered 03/11: no slip, deadline extended. Cut order dropped; new date is open (Q5) |
 | D8 | New submission date after the extension (`DECISIONS.md` Q5) | now | `[ ]` | Also re-check the current contest terms (`11` §2) |
 | D1 | Exact portal parent origin for CSP `frame-ancestors` | before 11/11 | `[ ]` | Don't guess the host (`08` §5). Use a harness hostname until known |
-| D2 | Scope of Riot's email grant (names/photos only?) and which assets it covers | before enabling `collection.realAssets` | `[ ]` | Placeholders until `asset_license` rows exist (`11` §1) |
+| D2 | Asset-level approvals for actual image/logo files | before enabling `collection.realAssets` | `[ ]` | Broad Riot scope answered in Q2/D6; no files approved yet. Placeholders until `asset_license` rows exist (`11` §1) |
 | D3 | Predator side cup: keep behind flag, or rename "APAC Invitational" | P2 | `[ ]` | Depends on Acer brand rights |
 | D4 | Game domain / subdomain and backend port on the Oracle VM | 28/10 | `[ ]` | Port must not collide with existing services (`08` §3) |
 
 ## Milestones
+
+**M1–M8 are the original planning snapshot** (including A-only backend requirements and the old calendar), retained for traceability; their unchecked rows are not a current inventory of B bug fixes. Use **M9**, the test invariants below and phase evidence for current verified progress. Qualification/next split, public deployment and human/browser QA remain open product gates; do not infer they passed from the audit phase checkboxes.
 
 ### M1 — Gate G0 + repo skeleton (27–28/10)
 - [x] Spec pack v2.2 delivered (`00`–`14`, `config/`, `agents/`)
@@ -125,6 +128,7 @@ Phase 4 — release
 - [x] `CHANGELOG.md` entry and `FILE_MANIFEST.json` regenerated — `scripts/generate-manifest.ts` + --check.
 - [!] Public HTTPS/real portal, Safari/Firefox, playtest and remaining prototype balance gates — see Phase 4 limits; G3 remains off.
 - [x] Owner feedback: pause after each BO3/BO5 game for verdict/series score/logs; explicit Next; recap survives reload — `scripts/e2e-game-recap.js`.
+- [x] Documentation follow-up: align current B contracts, manual recap flow, palette, catalog, extended deadline and QA scope; preserve odds/pity/matrix and open owner decisions — [DOC_SYNC.md](evidence/DOC_SYNC.md).
 
 ## Scope priority
 
@@ -187,6 +191,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Documentation follow-up: synchronized current B behavior in specs/CLAUDE/START HERE, explicit per-game recap and regression criteria; qualified A/future designs, old calendar and remaining campaign/economy/public QA gates. Catalog 399 identities/684 editions, pack pool 30 with Legacy excluded. Manifest and protected-doc checks: `evidence/DOC_SYNC.md`. No gameplay or owner decisions changed. |
 | 03/11 | Phase 4 local: 31 tests, 14 E2E results, mandatory CLI commands exit0; specs/deps cleanup, accessible modals, deep match/pack reload, explicit per-game recap per owner. Manifest regenerated. Public/cross-browser/playtest/prototype margins remain open; G3 off. `evidence/PHASE_4.md`. |
 | 03/11 | Phase 3 G0→G1→G2→G4→G3: 30 tests, 649 Legacy editions, sourced TSW layer, demo no writes, Draft property/QA with flag off. `evidence/PHASE_3.md`. |
 | 03/11 | Phase 2 xanh: 19 tests, F0/reload/recovery, incremental BO3, Skip fake clock, header/font/lang. DEC-5 4000 seeds/ô: 68.70/54.23/48.63/49.52/49.30%, đủ dải. `evidence/PHASE_2.md`; bắt đầu G0 sau gate này. |
