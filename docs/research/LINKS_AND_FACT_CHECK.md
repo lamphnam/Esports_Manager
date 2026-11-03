@@ -1,5 +1,16 @@
 # Reference links (official)
 
+## Bổ sung đã đối chiếu ngày 03/11/2026 — Phase 3
+
+| Dữ kiện | Nguồn đọc trực tiếp | Confidence / sử dụng |
+|---|---|---|
+| T1 thắng BLG 3–2 trong chung kết Worlds 2024 ngày 02/11/2024 | [Comcast Spectacor, chủ sở hữu T1](https://comcastspectacor.com/news/2024/11/t1-entertainment-sports-wins-riot-games-league-of-legends-world-championship/) | High; chỉ làm provenance demo, kết quả game không cố định theo lịch sử |
+| Hai roster chung kết 2024: T1 Zeus/Oner/Faker/Gumayusi/Keria, BLG Bin/Xun/knight/Elk/ON | [Wikipedia final 2024](https://en.wikipedia.org/wiki/2024_League_of_Legends_World_Championship_final), [LoL Esports VOD chính thức](https://www.youtube.com/watch?v=rZHrffKAc6k) | Medium; dữ kiện roster đối chiếu dataset; rating vẫn là game balance |
+| Team Secret Whales có Pun/Hizto/Dire/Eddie/Bie | [LoL Esports team page](https://lolesports.com/en-US/teams/team-secret-whales) | High cho membership; không dùng họ tên/tuổi/ảnh |
+| Role tương ứng TOP/JUNGLE/MID/BOT/SUPPORT trong roster 2026 | [Sheep Esports team page, full roster](https://www.sheepesports.com/en/lol/teams/Team%20Secret%20Whales) | Medium; kết hợp membership chính thức, năm bản ghi `verified2026.ts` đều medium, retrievedAt 2026-11-03 |
+
+GAM 2026 và các suất/thể thức Worlds 2026 ở bảng Low dưới đây không được nhập vào lớp dữ liệu mới. Trang giới thiệu VCS chính thức truy cập được nhưng không cung cấp roster; bài GAM trên Sheep trả nội dung khung trang không đủ xác minh. Không nâng confidence các dòng Low cũ. Không nhập dữ kiện thành tích 2026 từ snippet. Dữ liệu Golden Road ngoài demo giữ provenance medium theo dataset tham khảo; nhãn trong game mô tả roster Legacy, không nhận là đội hình hiện tại.
+
 - LCP 2027 structure (21/09/2026): https://lolesports.com/en-SG/lolesports/news/a-more-open-lcp-ecosystem-in-2027
 - VCS 2026 Road to VCS: https://lolesports.com/vi-VN/news/gioi-thieu-vcs-
 - Worlds 2026 primer: https://lolesports.com/en-GB/news/worlds-2026-primer

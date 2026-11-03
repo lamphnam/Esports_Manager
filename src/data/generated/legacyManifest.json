@@ -1,0 +1,17 @@
+{
+  "datasetVersion": "golden-road-43e63c0fe522",
+  "importedAt": "2026-11-03T00:00:00.000Z",
+  "sourcePath": "docs/ref/golden_road/data.js",
+  "sourceSha256": "43e63c0fe52262ab876292671a05ad51e59595432746f86e0c5b77816dfd9a7f",
+  "teams": 73,
+  "teamYears": 129,
+  "editions": 649,
+  "identities": 374,
+  "distribution": {
+    "COMMON": 81,
+    "RARE": 365,
+    "EPIC": 166,
+    "LEGENDARY": 37
+  },
+  "outputSha256": "009f127fda99459e07f984f4519f1179e9be3a2a6f8cacc92bb7808f929a671f"
+}

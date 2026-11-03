@@ -113,10 +113,11 @@ Phase 2 — P1 and polish
 Evidence: [Phase 2 red/green, commands and measurements](evidence/PHASE_2.md).
 
 Phase 3 — legacy data (starts only after Phase 1 and 2 are green)
-- [ ] G0 importer: Golden Road facts + ratings (`ratingSource`: `golden_road` / `adjusted` / `derived`); `LEGACY` editions generated with provenance
-- [ ] G1 `demoScenario` rebuilt from historical rosters; symmetric opponent; no career writes (localStorage snapshot identical before and after)
-- [ ] G2 opponents and market generated deterministically from the legacy pool
-- [ ] G3 Draft mode behind `FEATURE_GOLDEN_ROAD`: built with the flag off, switched on for submission only if F0/R1 acceptance and 390×844 + iframe QA are green
+- [x] G0 importer: Golden Road facts + ratings (`ratingSource`: `golden_road` / `adjusted` / `derived`); `LEGACY` editions generated with provenance — 649 editions, checksum + 40k pack exclusion, [Phase 3](evidence/PHASE_3.md).
+- [x] G1 `demoScenario` rebuilt from historical rosters; symmetric opponent; no career writes — `e2e-demo.js`: entire localStorage identical, 390×844.
+- [x] G2 opponents and market generated deterministically from the legacy pool — `legacy.test.ts`, sourced snapshots + daily expiry.
+- [x] G4 sourced 2026 data layer — five TSW records, source/confidence/retrievedAt; Low excluded.
+- [x] G3 Draft mode behind `FEATURE_GOLDEN_ROAD` — built and QA with flag **off**; 1000-seed property, 6 brackets, reward caps + 1080×1350 PNG. Submission enable gate remains unmet; [evidence](evidence/PHASE_3.md).
 
 Phase 4 — release
 - [ ] Typecheck, test, build and `balance-sim` outputs captured; Playwright F0 + reload + iframe harness
@@ -184,6 +185,7 @@ Authz bypass · economy dupe · lost progress · unrecoverable login · pack rew
 
 | Date | Entry |
 |---|---|
+| 03/11 | Phase 3 G0→G1→G2→G4→G3: 30 tests, 649 Legacy editions, sourced TSW layer, demo no writes, Draft property/QA with flag off. `evidence/PHASE_3.md`. |
 | 03/11 | Phase 2 xanh: 19 tests, F0/reload/recovery, incremental BO3, Skip fake clock, header/font/lang. DEC-5 4000 seeds/ô: 68.70/54.23/48.63/49.52/49.30%, đủ dải. `evidence/PHASE_2.md`; bắt đầu G0 sau gate này. |
 | 03/11 | Phase 1 P0 xanh: Playwright F0 390×844 + reload/recovery + blocked storage/clipboard; 11 tests và build xanh. Chi tiết `evidence/PHASE_1.md`. Đã báo cáo trước khi bắt đầu Phase 2; chưa bắt đầu mục G. |
 | 03/11 | Phase 0 xanh: strict typecheck + 6 invariant tests; balance baseline đã ghi trong `evidence/PHASE_0.md`. Baseline nguyên trạng `ca12d39`; nhánh `fix/audit-and-golden-road`, không push. |

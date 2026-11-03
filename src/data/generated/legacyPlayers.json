@@ -1,0 +1,3749 @@
+[
+  {
+    "id": "legacy_impact",
+    "displayName": "Impact",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "impact"
+  },
+  {
+    "id": "legacy_bengi",
+    "displayName": "Bengi",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bengi"
+  },
+  {
+    "id": "p_celestial",
+    "displayName": "Faker",
+    "primaryRole": "MID",
+    "region": "Global Legend (LCK)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Clutch",
+    "weakness": "Không có điểm yếu rõ rệt trong các trận cầu lớn",
+    "avatarSeed": "faker_mid"
+  },
+  {
+    "id": "legacy_piglet",
+    "displayName": "Piglet",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "piglet"
+  },
+  {
+    "id": "legacy_poohmandu",
+    "displayName": "PoohManDu",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "poohmandu"
+  },
+  {
+    "id": "legacy_marin",
+    "displayName": "MaRin",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "marin"
+  },
+  {
+    "id": "legacy_bang",
+    "displayName": "Bang",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bang"
+  },
+  {
+    "id": "legacy_wolf",
+    "displayName": "Wolf",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wolf"
+  },
+  {
+    "id": "legacy_duke",
+    "displayName": "Duke",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "duke"
+  },
+  {
+    "id": "legacy_blank",
+    "displayName": "Blank",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "blank"
+  },
+  {
+    "id": "legacy_huni",
+    "displayName": "Huni",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "huni"
+  },
+  {
+    "id": "legacy_peanut",
+    "displayName": "Peanut",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "peanut"
+  },
+  {
+    "id": "legacy_khan",
+    "displayName": "Khan",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "khan"
+  },
+  {
+    "id": "legacy_clid",
+    "displayName": "Clid",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "clid"
+  },
+  {
+    "id": "legacy_teddy",
+    "displayName": "Teddy",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "teddy"
+  },
+  {
+    "id": "legacy_effort",
+    "displayName": "Effort",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "effort"
+  },
+  {
+    "id": "legacy_zeus",
+    "displayName": "Zeus",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zeus"
+  },
+  {
+    "id": "legacy_oner",
+    "displayName": "Oner",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "oner"
+  },
+  {
+    "id": "legacy_gumayusi",
+    "displayName": "Gumayusi",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gumayusi"
+  },
+  {
+    "id": "legacy_keria",
+    "displayName": "Keria",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "keria"
+  },
+  {
+    "id": "legacy_doran",
+    "displayName": "Doran",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "doran"
+  },
+  {
+    "id": "legacy_looper",
+    "displayName": "Looper",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "looper"
+  },
+  {
+    "id": "legacy_dandy",
+    "displayName": "DanDy",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dandy"
+  },
+  {
+    "id": "legacy_pawn",
+    "displayName": "PawN",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pawn"
+  },
+  {
+    "id": "legacy_imp",
+    "displayName": "imp",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "imp"
+  },
+  {
+    "id": "legacy_mata",
+    "displayName": "Mata",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mata"
+  },
+  {
+    "id": "legacy_acorn",
+    "displayName": "Acorn",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "acorn"
+  },
+  {
+    "id": "legacy_spirit",
+    "displayName": "Spirit",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "spirit"
+  },
+  {
+    "id": "legacy_dade",
+    "displayName": "Dade",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dade"
+  },
+  {
+    "id": "legacy_deft",
+    "displayName": "Deft",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "deft"
+  },
+  {
+    "id": "legacy_heart",
+    "displayName": "Heart",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "heart"
+  },
+  {
+    "id": "legacy_cuvee",
+    "displayName": "CuVee",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cuvee"
+  },
+  {
+    "id": "legacy_ambition",
+    "displayName": "Ambition",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ambition"
+  },
+  {
+    "id": "legacy_crown",
+    "displayName": "Crown",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "crown"
+  },
+  {
+    "id": "p_phoenix",
+    "displayName": "Ruler",
+    "primaryRole": "BOT",
+    "region": "Global Legend (LCK / LPL)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Clutch",
+    "weakness": "Cần tuyến trước vững chắc để tự do xả sát thương cuối trận",
+    "avatarSeed": "ruler_bot"
+  },
+  {
+    "id": "legacy_corejj",
+    "displayName": "CoreJJ",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "corejj"
+  },
+  {
+    "id": "legacy_chovy",
+    "displayName": "Chovy",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "chovy"
+  },
+  {
+    "id": "legacy_lehends",
+    "displayName": "Lehends",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lehends"
+  },
+  {
+    "id": "legacy_peyz",
+    "displayName": "Peyz",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "peyz"
+  },
+  {
+    "id": "legacy_delight",
+    "displayName": "Delight",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "delight"
+  },
+  {
+    "id": "legacy_kiin",
+    "displayName": "Kiin",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kiin"
+  },
+  {
+    "id": "legacy_canyon",
+    "displayName": "Canyon",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "canyon"
+  },
+  {
+    "id": "legacy_duro",
+    "displayName": "Duro",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "duro"
+  },
+  {
+    "id": "legacy_smeb",
+    "displayName": "Smeb",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "smeb"
+  },
+  {
+    "id": "legacy_hojin",
+    "displayName": "Hojin",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hojin"
+  },
+  {
+    "id": "legacy_kuro",
+    "displayName": "Kuro",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kuro"
+  },
+  {
+    "id": "legacy_pray",
+    "displayName": "PraY",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pray"
+  },
+  {
+    "id": "legacy_gorilla",
+    "displayName": "GorillA",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gorilla"
+  },
+  {
+    "id": "legacy_ssumday",
+    "displayName": "Ssumday",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ssumday"
+  },
+  {
+    "id": "legacy_kakao",
+    "displayName": "KaKAO",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kakao"
+  },
+  {
+    "id": "legacy_rookie",
+    "displayName": "Rookie",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "rookie"
+  },
+  {
+    "id": "legacy_arrow",
+    "displayName": "Arrow",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "arrow"
+  },
+  {
+    "id": "legacy_hachani",
+    "displayName": "Hachani",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hachani"
+  },
+  {
+    "id": "legacy_score",
+    "displayName": "Score",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "score"
+  },
+  {
+    "id": "legacy_ucal",
+    "displayName": "Ucal",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ucal"
+  },
+  {
+    "id": "legacy_cuzz",
+    "displayName": "Cuzz",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cuzz"
+  },
+  {
+    "id": "legacy_bdd",
+    "displayName": "Bdd",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bdd"
+  },
+  {
+    "id": "legacy_sword",
+    "displayName": "Sword",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "sword"
+  },
+  {
+    "id": "legacy_tarzan",
+    "displayName": "Tarzan",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tarzan"
+  },
+  {
+    "id": "legacy_viper",
+    "displayName": "Viper",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "viper"
+  },
+  {
+    "id": "legacy_nuguri",
+    "displayName": "Nuguri",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nuguri"
+  },
+  {
+    "id": "legacy_showmaker",
+    "displayName": "ShowMaker",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "showmaker"
+  },
+  {
+    "id": "legacy_ghost",
+    "displayName": "Ghost",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ghost"
+  },
+  {
+    "id": "legacy_beryl",
+    "displayName": "BeryL",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "beryl"
+  },
+  {
+    "id": "legacy_deokdam",
+    "displayName": "deokdam",
+    "primaryRole": "BOT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "deokdam"
+  },
+  {
+    "id": "legacy_kellin",
+    "displayName": "Kellin",
+    "primaryRole": "SUPPORT",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kellin"
+  },
+  {
+    "id": "legacy_kingen",
+    "displayName": "Kingen",
+    "primaryRole": "TOP",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kingen"
+  },
+  {
+    "id": "legacy_pyosik",
+    "displayName": "Pyosik",
+    "primaryRole": "JUNGLE",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pyosik"
+  },
+  {
+    "id": "legacy_zeka",
+    "displayName": "Zeka",
+    "primaryRole": "MID",
+    "region": "LCK",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zeka"
+  },
+  {
+    "id": "legacy_theshy",
+    "displayName": "TheShy",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "theshy"
+  },
+  {
+    "id": "legacy_ning",
+    "displayName": "Ning",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ning"
+  },
+  {
+    "id": "legacy_jackeylove",
+    "displayName": "JackeyLove",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jackeylove"
+  },
+  {
+    "id": "legacy_baolan",
+    "displayName": "Baolan",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "baolan"
+  },
+  {
+    "id": "legacy_globe",
+    "displayName": "Globe",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "globe"
+  },
+  {
+    "id": "legacy_lucas",
+    "displayName": "Lucas",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lucas"
+  },
+  {
+    "id": "legacy_wh1t3zz",
+    "displayName": "Wh1t3zZ",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wh1t3zz"
+  },
+  {
+    "id": "legacy_uzi",
+    "displayName": "Uzi",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "uzi"
+  },
+  {
+    "id": "legacy_tabe",
+    "displayName": "Tabe",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tabe"
+  },
+  {
+    "id": "legacy_cola",
+    "displayName": "Cola",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cola"
+  },
+  {
+    "id": "legacy_insec",
+    "displayName": "InSec",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "insec"
+  },
+  {
+    "id": "legacy_corn",
+    "displayName": "corn",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "corn"
+  },
+  {
+    "id": "legacy_zero",
+    "displayName": "Zero",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zero"
+  },
+  {
+    "id": "legacy_letme",
+    "displayName": "Letme",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "letme"
+  },
+  {
+    "id": "legacy_mlxg",
+    "displayName": "Mlxg",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mlxg"
+  },
+  {
+    "id": "legacy_xiaohu",
+    "displayName": "Xiaohu",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xiaohu",
+    "secondaryRole": "TOP"
+  },
+  {
+    "id": "legacy_ming",
+    "displayName": "Ming",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ming"
+  },
+  {
+    "id": "legacy_wei",
+    "displayName": "Wei",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wei"
+  },
+  {
+    "id": "legacy_cryin",
+    "displayName": "Cryin",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cryin"
+  },
+  {
+    "id": "legacy_gala",
+    "displayName": "GALA",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gala"
+  },
+  {
+    "id": "legacy_bin",
+    "displayName": "Bin",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bin"
+  },
+  {
+    "id": "legacy_koro1",
+    "displayName": "Koro1",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "koro1"
+  },
+  {
+    "id": "legacy_clearlove",
+    "displayName": "Clearlove",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "clearlove"
+  },
+  {
+    "id": "legacy_meiko",
+    "displayName": "Meiko",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "meiko"
+  },
+  {
+    "id": "legacy_mouse",
+    "displayName": "Mouse",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mouse"
+  },
+  {
+    "id": "legacy_scout",
+    "displayName": "Scout",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "scout"
+  },
+  {
+    "id": "legacy_flandre",
+    "displayName": "Flandre",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "flandre"
+  },
+  {
+    "id": "legacy_jiejie",
+    "displayName": "Jiejie",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jiejie"
+  },
+  {
+    "id": "legacy_gimgoon",
+    "displayName": "GimGoon",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gimgoon"
+  },
+  {
+    "id": "legacy_tian",
+    "displayName": "Tian",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tian"
+  },
+  {
+    "id": "legacy_doinb",
+    "displayName": "Doinb",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "doinb"
+  },
+  {
+    "id": "legacy_lwx",
+    "displayName": "Lwx",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lwx"
+  },
+  {
+    "id": "legacy_crisp",
+    "displayName": "Crisp",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "crisp"
+  },
+  {
+    "id": "legacy_zoom",
+    "displayName": "Zoom",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zoom"
+  },
+  {
+    "id": "legacy_kanavi",
+    "displayName": "Kanavi",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kanavi"
+  },
+  {
+    "id": "legacy_yagao",
+    "displayName": "Yagao",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yagao"
+  },
+  {
+    "id": "legacy_loken",
+    "displayName": "LokeN",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "loken"
+  },
+  {
+    "id": "legacy_lvmao",
+    "displayName": "LvMao",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lvmao"
+  },
+  {
+    "id": "legacy_369",
+    "displayName": "369",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "369"
+  },
+  {
+    "id": "legacy_knight",
+    "displayName": "knight",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "knight"
+  },
+  {
+    "id": "legacy_missing",
+    "displayName": "Missing",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "missing"
+  },
+  {
+    "id": "p_kaiser",
+    "displayName": "Karsa",
+    "primaryRole": "JUNGLE",
+    "secondaryRole": "TOP",
+    "region": "Pacific (LCP)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Lane Dominator",
+    "weakness": "Ưu tiên kiểm soát và phản gank hơn là farm thuần túy",
+    "avatarSeed": "karsa_jg"
+  },
+  {
+    "id": "legacy_yuyanjia",
+    "displayName": "yuyanjia",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yuyanjia"
+  },
+  {
+    "id": "p_leviathan",
+    "displayName": "SofM",
+    "primaryRole": "JUNGLE",
+    "region": "Vietnam Legend",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Shotcaller",
+    "weakness": "Lối lên đồ và hướng đi rừng độc dị đòi hỏi đồng đội phải hiểu ý tuyệt đối",
+    "avatarSeed": "sofm_jg"
+  },
+  {
+    "id": "legacy_angel",
+    "displayName": "Angel",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "angel"
+  },
+  {
+    "id": "legacy_huanfeng",
+    "displayName": "huanfeng",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "huanfeng"
+  },
+  {
+    "id": "legacy_swordart",
+    "displayName": "SwordArT",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "swordart"
+  },
+  {
+    "id": "legacy_xun",
+    "displayName": "Xun",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xun"
+  },
+  {
+    "id": "legacy_elk",
+    "displayName": "Elk",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "elk"
+  },
+  {
+    "id": "legacy_on",
+    "displayName": "ON",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "on"
+  },
+  {
+    "id": "legacy_weiwei",
+    "displayName": "Weiwei",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "weiwei"
+  },
+  {
+    "id": "legacy_light",
+    "displayName": "Light",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "light"
+  },
+  {
+    "id": "legacy_caomei",
+    "displayName": "CaoMei",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "caomei"
+  },
+  {
+    "id": "legacy_misaya",
+    "displayName": "Misaya",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "misaya"
+  },
+  {
+    "id": "legacy_weixiao",
+    "displayName": "WeiXiao",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "weixiao"
+  },
+  {
+    "id": "legacy_fzzf",
+    "displayName": "Fzzf",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fzzf"
+  },
+  {
+    "id": "legacy_957",
+    "displayName": "957",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "957"
+  },
+  {
+    "id": "legacy_condi",
+    "displayName": "Condi",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "condi"
+  },
+  {
+    "id": "legacy_xiye",
+    "displayName": "xiye",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xiye"
+  },
+  {
+    "id": "legacy_mystic",
+    "displayName": "Mystic",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mystic"
+  },
+  {
+    "id": "legacy_ben",
+    "displayName": "Ben",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ben"
+  },
+  {
+    "id": "legacy_gogoing",
+    "displayName": "Gogoing",
+    "primaryRole": "TOP",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gogoing"
+  },
+  {
+    "id": "legacy_loveling",
+    "displayName": "LoveLing",
+    "primaryRole": "JUNGLE",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "loveling"
+  },
+  {
+    "id": "legacy_cool",
+    "displayName": "Cool",
+    "primaryRole": "MID",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cool"
+  },
+  {
+    "id": "legacy_san",
+    "displayName": "San",
+    "primaryRole": "BOT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "san"
+  },
+  {
+    "id": "legacy_cloud",
+    "displayName": "Cloud",
+    "primaryRole": "SUPPORT",
+    "region": "LPL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cloud"
+  },
+  {
+    "id": "legacy_xpeke",
+    "displayName": "xPeke",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xpeke",
+    "secondaryRole": "TOP"
+  },
+  {
+    "id": "legacy_cyanidefi",
+    "displayName": "CyanideFI",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cyanidefi"
+  },
+  {
+    "id": "legacy_shushei",
+    "displayName": "Shushei",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "shushei"
+  },
+  {
+    "id": "legacy_lamiafinlandese",
+    "displayName": "LaMiaFinlandese",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lamiafinlandese"
+  },
+  {
+    "id": "legacy_mellisan",
+    "displayName": "Mellisan",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mellisan"
+  },
+  {
+    "id": "legacy_soaz",
+    "displayName": "sOAZ",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "soaz"
+  },
+  {
+    "id": "legacy_cyanide",
+    "displayName": "Cyanide",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cyanide"
+  },
+  {
+    "id": "legacy_puszu",
+    "displayName": "puszu",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "puszu"
+  },
+  {
+    "id": "legacy_yellowstar",
+    "displayName": "YellOwStaR",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yellowstar"
+  },
+  {
+    "id": "legacy_rekkles",
+    "displayName": "Rekkles",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "rekkles"
+  },
+  {
+    "id": "legacy_reignover",
+    "displayName": "Reignover",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "reignover"
+  },
+  {
+    "id": "legacy_febiven",
+    "displayName": "Febiven",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "febiven"
+  },
+  {
+    "id": "legacy_bwipo",
+    "displayName": "Bwipo",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bwipo"
+  },
+  {
+    "id": "legacy_broxah",
+    "displayName": "Broxah",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "broxah"
+  },
+  {
+    "id": "legacy_caps",
+    "displayName": "Caps",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "caps"
+  },
+  {
+    "id": "legacy_hylissang",
+    "displayName": "Hylissang",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hylissang"
+  },
+  {
+    "id": "legacy_wunder",
+    "displayName": "Wunder",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wunder"
+  },
+  {
+    "id": "legacy_razork",
+    "displayName": "Razork",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "razork"
+  },
+  {
+    "id": "legacy_humanoid",
+    "displayName": "Humanoid",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "humanoid"
+  },
+  {
+    "id": "legacy_upset",
+    "displayName": "Upset",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "upset"
+  },
+  {
+    "id": "legacy_kikis",
+    "displayName": "Kikis",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kikis",
+    "secondaryRole": "TOP"
+  },
+  {
+    "id": "legacy_trick",
+    "displayName": "Trick",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "trick"
+  },
+  {
+    "id": "legacy_perkz",
+    "displayName": "Perkz",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "perkz",
+    "secondaryRole": "BOT"
+  },
+  {
+    "id": "legacy_emperor",
+    "displayName": "Emperor",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "emperor"
+  },
+  {
+    "id": "legacy_hybrid",
+    "displayName": "Hybrid",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hybrid"
+  },
+  {
+    "id": "legacy_expect",
+    "displayName": "Expect",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "expect"
+  },
+  {
+    "id": "legacy_zven",
+    "displayName": "Zven",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zven",
+    "secondaryRole": "BOT"
+  },
+  {
+    "id": "legacy_mithy",
+    "displayName": "Mithy",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mithy"
+  },
+  {
+    "id": "legacy_jankos",
+    "displayName": "Jankos",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jankos"
+  },
+  {
+    "id": "legacy_hjarnan",
+    "displayName": "Hjarnan",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hjarnan"
+  },
+  {
+    "id": "legacy_wadid",
+    "displayName": "Wadid",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wadid"
+  },
+  {
+    "id": "legacy_mikyx",
+    "displayName": "Mikyx",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mikyx"
+  },
+  {
+    "id": "legacy_brokenblade",
+    "displayName": "BrokenBlade",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "brokenblade"
+  },
+  {
+    "id": "legacy_flakked",
+    "displayName": "Flakked",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "flakked"
+  },
+  {
+    "id": "legacy_targamas",
+    "displayName": "Targamas",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "targamas"
+  },
+  {
+    "id": "legacy_yike",
+    "displayName": "Yike",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yike"
+  },
+  {
+    "id": "legacy_hanssama",
+    "displayName": "Hans Sama",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hanssama"
+  },
+  {
+    "id": "legacy_amazing",
+    "displayName": "Amazing",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "amazing"
+  },
+  {
+    "id": "legacy_niels",
+    "displayName": "Niels",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "niels"
+  },
+  {
+    "id": "legacy_alphari",
+    "displayName": "Alphari",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "alphari"
+  },
+  {
+    "id": "legacy_kold",
+    "displayName": "Kold",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kold"
+  },
+  {
+    "id": "legacy_nukeduck",
+    "displayName": "Nukeduck",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nukeduck"
+  },
+  {
+    "id": "legacy_patrik",
+    "displayName": "Patrik",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "patrik"
+  },
+  {
+    "id": "legacy_armut",
+    "displayName": "Armut",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "armut"
+  },
+  {
+    "id": "legacy_elyoya",
+    "displayName": "Elyoya",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "elyoya"
+  },
+  {
+    "id": "legacy_carzzy",
+    "displayName": "Carzzy",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "carzzy"
+  },
+  {
+    "id": "legacy_kaiser",
+    "displayName": "Kaiser",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kaiser"
+  },
+  {
+    "id": "legacy_nisqy",
+    "displayName": "Nisqy",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nisqy"
+  },
+  {
+    "id": "legacy_unforgiven",
+    "displayName": "UNFORGIVEN",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "unforgiven"
+  },
+  {
+    "id": "legacy_finn",
+    "displayName": "Finn",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "finn"
+  },
+  {
+    "id": "legacy_inspired",
+    "displayName": "Inspired",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "inspired"
+  },
+  {
+    "id": "legacy_larssen",
+    "displayName": "Larssen",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "larssen"
+  },
+  {
+    "id": "legacy_vander",
+    "displayName": "Vander",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "vander"
+  },
+  {
+    "id": "legacy_odoamne",
+    "displayName": "Odoamne",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "odoamne"
+  },
+  {
+    "id": "legacy_malrang",
+    "displayName": "Malrang",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "malrang"
+  },
+  {
+    "id": "legacy_comp",
+    "displayName": "Comp",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "comp"
+  },
+  {
+    "id": "legacy_trymbi",
+    "displayName": "Trymbi",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "trymbi"
+  },
+  {
+    "id": "legacy_maxlore",
+    "displayName": "Maxlore",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "maxlore"
+  },
+  {
+    "id": "legacy_powerofevil",
+    "displayName": "PowerOfEvil",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "powerofevil"
+  },
+  {
+    "id": "legacy_ignar",
+    "displayName": "IgNar",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ignar"
+  },
+  {
+    "id": "legacy_dyrus",
+    "displayName": "Dyrus",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dyrus"
+  },
+  {
+    "id": "legacy_theoddone",
+    "displayName": "TheOddOne",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "theoddone"
+  },
+  {
+    "id": "legacy_reginald",
+    "displayName": "Reginald",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "reginald"
+  },
+  {
+    "id": "legacy_chaox",
+    "displayName": "Chaox",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "chaox"
+  },
+  {
+    "id": "legacy_xpecial",
+    "displayName": "Xpecial",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xpecial"
+  },
+  {
+    "id": "legacy_bjergsen",
+    "displayName": "Bjergsen",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bjergsen"
+  },
+  {
+    "id": "legacy_wildturtle",
+    "displayName": "WildTurtle",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wildturtle"
+  },
+  {
+    "id": "legacy_lustboy",
+    "displayName": "Lustboy",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lustboy"
+  },
+  {
+    "id": "legacy_hauntzer",
+    "displayName": "Hauntzer",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hauntzer"
+  },
+  {
+    "id": "legacy_svenskeren",
+    "displayName": "Svenskeren",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "svenskeren"
+  },
+  {
+    "id": "legacy_doublelift",
+    "displayName": "Doublelift",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "doublelift"
+  },
+  {
+    "id": "legacy_biofrost",
+    "displayName": "Biofrost",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "biofrost"
+  },
+  {
+    "id": "legacy_spica",
+    "displayName": "Spica",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "spica"
+  },
+  {
+    "id": "legacy_balls",
+    "displayName": "Balls",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "balls"
+  },
+  {
+    "id": "legacy_meteos",
+    "displayName": "Meteos",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "meteos"
+  },
+  {
+    "id": "legacy_hai",
+    "displayName": "Hai",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hai"
+  },
+  {
+    "id": "legacy_sneaky",
+    "displayName": "Sneaky",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "sneaky"
+  },
+  {
+    "id": "legacy_lemonnation",
+    "displayName": "LemonNation",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lemonnation"
+  },
+  {
+    "id": "legacy_licorice",
+    "displayName": "Licorice",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "licorice"
+  },
+  {
+    "id": "legacy_jensen",
+    "displayName": "Jensen",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jensen"
+  },
+  {
+    "id": "legacy_zeyzal",
+    "displayName": "Zeyzal",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zeyzal"
+  },
+  {
+    "id": "legacy_blaber",
+    "displayName": "Blaber",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "blaber"
+  },
+  {
+    "id": "legacy_vulcan",
+    "displayName": "Vulcan",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "vulcan"
+  },
+  {
+    "id": "legacy_fudge",
+    "displayName": "Fudge",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fudge"
+  },
+  {
+    "id": "legacy_berserker",
+    "displayName": "Berserker",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "berserker"
+  },
+  {
+    "id": "legacy_zionspartan",
+    "displayName": "ZionSpartan",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zionspartan"
+  },
+  {
+    "id": "legacy_xmithie",
+    "displayName": "Xmithie",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xmithie"
+  },
+  {
+    "id": "legacy_pobelter",
+    "displayName": "Pobelter",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pobelter"
+  },
+  {
+    "id": "legacy_aphromoo",
+    "displayName": "aphromoo",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "aphromoo"
+  },
+  {
+    "id": "legacy_darshan",
+    "displayName": "Darshan",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "darshan"
+  },
+  {
+    "id": "legacy_huhi",
+    "displayName": "Huhi",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "huhi",
+    "secondaryRole": "MID"
+  },
+  {
+    "id": "legacy_stixxay",
+    "displayName": "Stixxay",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "stixxay"
+  },
+  {
+    "id": "legacy_olleh",
+    "displayName": "Olleh",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "olleh"
+  },
+  {
+    "id": "legacy_jojopyun",
+    "displayName": "jojopyun",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jojopyun"
+  },
+  {
+    "id": "legacy_danny",
+    "displayName": "Danny",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "danny"
+  },
+  {
+    "id": "legacy_closer",
+    "displayName": "Closer",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "closer"
+  },
+  {
+    "id": "legacy_abbedagge",
+    "displayName": "Abbedagge",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "abbedagge"
+  },
+  {
+    "id": "legacy_fbi",
+    "displayName": "FBI",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fbi"
+  },
+  {
+    "id": "legacy_tenacity",
+    "displayName": "Tenacity",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tenacity"
+  },
+  {
+    "id": "legacy_quid",
+    "displayName": "Quid",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "quid"
+  },
+  {
+    "id": "legacy_busio",
+    "displayName": "Busio",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "busio"
+  },
+  {
+    "id": "legacy_cruzer",
+    "displayName": "Cruzer",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cruzer"
+  },
+  {
+    "id": "legacy_crumbz",
+    "displayName": "Crumbz",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "crumbz"
+  },
+  {
+    "id": "legacy_scarra",
+    "displayName": "Scarra",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "scarra"
+  },
+  {
+    "id": "legacy_imaqtpie",
+    "displayName": "Imaqtpie",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "imaqtpie"
+  },
+  {
+    "id": "legacy_kiwikid",
+    "displayName": "KiWiKiD",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kiwikid"
+  },
+  {
+    "id": "legacy_quas",
+    "displayName": "Quas",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "quas"
+  },
+  {
+    "id": "legacy_iwilldominate",
+    "displayName": "IWillDominate",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "iwilldominate"
+  },
+  {
+    "id": "legacy_voyboy",
+    "displayName": "Voyboy",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "voyboy"
+  },
+  {
+    "id": "legacy_cop",
+    "displayName": "Cop",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cop"
+  },
+  {
+    "id": "legacy_bunnyfufuu",
+    "displayName": "Bunny FuFuu",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bunnyfufuu"
+  },
+  {
+    "id": "legacy_rush",
+    "displayName": "Rush",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "rush"
+  },
+  {
+    "id": "legacy_xiaoweixiao",
+    "displayName": "XiaoWeiXiao",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xiaoweixiao"
+  },
+  {
+    "id": "legacy_apollo",
+    "displayName": "Apollo",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "apollo"
+  },
+  {
+    "id": "legacy_adrian",
+    "displayName": "Adrian",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "adrian"
+  },
+  {
+    "id": "legacy_move",
+    "displayName": "Move",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "move"
+  },
+  {
+    "id": "legacy_keane",
+    "displayName": "Keane",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "keane"
+  },
+  {
+    "id": "legacy_flame",
+    "displayName": "Flame",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "flame"
+  },
+  {
+    "id": "legacy_dardoch",
+    "displayName": "Dardoch",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dardoch"
+  },
+  {
+    "id": "legacy_codysun",
+    "displayName": "Cody Sun",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "codysun"
+  },
+  {
+    "id": "legacy_santorin",
+    "displayName": "Santorin",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "santorin"
+  },
+  {
+    "id": "legacy_gbm",
+    "displayName": "GBM",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gbm"
+  },
+  {
+    "id": "legacy_altec",
+    "displayName": "Altec",
+    "primaryRole": "BOT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "altec"
+  },
+  {
+    "id": "legacy_konkwon",
+    "displayName": "KonKwon",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "konkwon"
+  },
+  {
+    "id": "legacy_dhokla",
+    "displayName": "Dhokla",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dhokla"
+  },
+  {
+    "id": "legacy_contractz",
+    "displayName": "Contractz",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "contractz"
+  },
+  {
+    "id": "legacy_palafox",
+    "displayName": "Palafox",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "palafox"
+  },
+  {
+    "id": "legacy_zig",
+    "displayName": "zig",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zig"
+  },
+  {
+    "id": "legacy_mikeyeung",
+    "displayName": "MikeYeung",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mikeyeung"
+  },
+  {
+    "id": "legacy_ryu",
+    "displayName": "Ryu",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ryu"
+  },
+  {
+    "id": "legacy_moon",
+    "displayName": "Moon",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "moon"
+  },
+  {
+    "id": "legacy_solo",
+    "displayName": "Solo",
+    "primaryRole": "TOP",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "solo"
+  },
+  {
+    "id": "legacy_fenix",
+    "displayName": "Fenix",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fenix"
+  },
+  {
+    "id": "legacy_lira",
+    "displayName": "Lira",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lira"
+  },
+  {
+    "id": "legacy_damonte",
+    "displayName": "Damonte",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "damonte"
+  },
+  {
+    "id": "legacy_akaadian",
+    "displayName": "Akaadian",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "akaadian"
+  },
+  {
+    "id": "legacy_big",
+    "displayName": "Big",
+    "primaryRole": "SUPPORT",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "big"
+  },
+  {
+    "id": "legacy_river",
+    "displayName": "River",
+    "primaryRole": "JUNGLE",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "river"
+  },
+  {
+    "id": "legacy_gori",
+    "displayName": "Gori",
+    "primaryRole": "MID",
+    "region": "LCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gori"
+  },
+  {
+    "id": "legacy_darien",
+    "displayName": "Darien",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "darien"
+  },
+  {
+    "id": "legacy_diamondprox",
+    "displayName": "Diamondprox",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "diamondprox"
+  },
+  {
+    "id": "legacy_alexich",
+    "displayName": "Alex Ich",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "alexich"
+  },
+  {
+    "id": "legacy_genja",
+    "displayName": "Genja",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "genja"
+  },
+  {
+    "id": "legacy_gosupepper",
+    "displayName": "GoSu Pepper",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gosupepper"
+  },
+  {
+    "id": "legacy_edward",
+    "displayName": "Edward",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "edward"
+  },
+  {
+    "id": "legacy_wickd",
+    "displayName": "Wickd",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "wickd"
+  },
+  {
+    "id": "legacy_shook",
+    "displayName": "Shook",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "shook"
+  },
+  {
+    "id": "legacy_froggen",
+    "displayName": "Froggen",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "froggen"
+  },
+  {
+    "id": "legacy_tabzz",
+    "displayName": "Tabzz",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tabzz"
+  },
+  {
+    "id": "legacy_nyph",
+    "displayName": "Nyph",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nyph"
+  },
+  {
+    "id": "legacy_fredy122",
+    "displayName": "fredy122",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fredy122"
+  },
+  {
+    "id": "legacy_jesiz",
+    "displayName": "Jesiz",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jesiz"
+  },
+  {
+    "id": "legacy_candypanda",
+    "displayName": "CandyPanda",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "candypanda"
+  },
+  {
+    "id": "legacy_nrated",
+    "displayName": "nRated",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nrated"
+  },
+  {
+    "id": "legacy_werlyb",
+    "displayName": "Werlyb",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "werlyb"
+  },
+  {
+    "id": "legacy_selfmade",
+    "displayName": "Selfmade",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "selfmade"
+  },
+  {
+    "id": "legacy_pirean",
+    "displayName": "Pirean",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pirean"
+  },
+  {
+    "id": "legacy_crownshot",
+    "displayName": "Crownshot",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "crownshot"
+  },
+  {
+    "id": "legacy_dreams",
+    "displayName": "Dreams",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dreams"
+  },
+  {
+    "id": "legacy_xaxus",
+    "displayName": "Xaxus",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xaxus"
+  },
+  {
+    "id": "legacy_overpow",
+    "displayName": "Overpow",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "overpow"
+  },
+  {
+    "id": "legacy_woolite",
+    "displayName": "Woolite",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "woolite"
+  },
+  {
+    "id": "legacy_vizicsacsi",
+    "displayName": "Vizicsacsi",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "vizicsacsi"
+  },
+  {
+    "id": "legacy_vardags",
+    "displayName": "Vardags",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "vardags"
+  },
+  {
+    "id": "legacy_exileh",
+    "displayName": "Exileh",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "exileh"
+  },
+  {
+    "id": "legacy_pilot",
+    "displayName": "Pilot",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "pilot"
+  },
+  {
+    "id": "legacy_forg1ven",
+    "displayName": "FORG1VEN",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "forg1ven"
+  },
+  {
+    "id": "legacy_trashy",
+    "displayName": "Trashy",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "trashy"
+  },
+  {
+    "id": "legacy_sencux",
+    "displayName": "Sencux",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "sencux"
+  },
+  {
+    "id": "legacy_kobbe",
+    "displayName": "Kobbe",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kobbe"
+  },
+  {
+    "id": "legacy_xerxe",
+    "displayName": "Xerxe",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "xerxe"
+  },
+  {
+    "id": "legacy_norskeren",
+    "displayName": "Norskeren",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "norskeren"
+  },
+  {
+    "id": "legacy_cabochard",
+    "displayName": "Cabochard",
+    "primaryRole": "TOP",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "cabochard"
+  },
+  {
+    "id": "legacy_gilius",
+    "displayName": "Gilius",
+    "primaryRole": "JUNGLE",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gilius"
+  },
+  {
+    "id": "legacy_jiizuke",
+    "displayName": "Jiizuke",
+    "primaryRole": "MID",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jiizuke"
+  },
+  {
+    "id": "legacy_attila",
+    "displayName": "Attila",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "attila"
+  },
+  {
+    "id": "legacy_jactroll",
+    "displayName": "Jactroll",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jactroll"
+  },
+  {
+    "id": "legacy_labrov",
+    "displayName": "Labrov",
+    "primaryRole": "SUPPORT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "labrov"
+  },
+  {
+    "id": "legacy_neon",
+    "displayName": "Neon",
+    "primaryRole": "BOT",
+    "region": "LEC",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "neon"
+  },
+  {
+    "id": "legacy_stanley",
+    "displayName": "Stanley",
+    "primaryRole": "TOP",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "stanley"
+  },
+  {
+    "id": "legacy_lilballz",
+    "displayName": "Lilballz",
+    "primaryRole": "JUNGLE",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "lilballz"
+  },
+  {
+    "id": "legacy_toyz",
+    "displayName": "Toyz",
+    "primaryRole": "MID",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "toyz"
+  },
+  {
+    "id": "legacy_bebe",
+    "displayName": "bebe",
+    "primaryRole": "BOT",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bebe"
+  },
+  {
+    "id": "legacy_mistake",
+    "displayName": "MiSTakE",
+    "primaryRole": "SUPPORT",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mistake"
+  },
+  {
+    "id": "legacy_mmd",
+    "displayName": "MMD",
+    "primaryRole": "TOP",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mmd"
+  },
+  {
+    "id": "p_valk",
+    "displayName": "Maple",
+    "primaryRole": "MID",
+    "region": "Pacific (LCP / Talon)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Clutch",
+    "weakness": "Cần phối hợp chặt với rừng để kiểm soát nhịp đẩy đường giữa",
+    "avatarSeed": "maple_mid"
+  },
+  {
+    "id": "legacy_nl",
+    "displayName": "NL",
+    "primaryRole": "BOT",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nl"
+  },
+  {
+    "id": "legacy_ziv",
+    "displayName": "Ziv",
+    "primaryRole": "TOP",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ziv"
+  },
+  {
+    "id": "legacy_mountain",
+    "displayName": "Mountain",
+    "primaryRole": "JUNGLE",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mountain"
+  },
+  {
+    "id": "legacy_westdoor",
+    "displayName": "Westdoor",
+    "primaryRole": "MID",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "westdoor"
+  },
+  {
+    "id": "legacy_an",
+    "displayName": "AN",
+    "primaryRole": "BOT",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "an"
+  },
+  {
+    "id": "legacy_albis",
+    "displayName": "Albis",
+    "primaryRole": "SUPPORT",
+    "region": "LMS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "albis"
+  },
+  {
+    "id": "legacy_hanabi",
+    "displayName": "Hanabi",
+    "primaryRole": "TOP",
+    "region": "PCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "hanabi"
+  },
+  {
+    "id": "legacy_unified",
+    "displayName": "Unified",
+    "primaryRole": "BOT",
+    "region": "PCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "unified"
+  },
+  {
+    "id": "legacy_kaiwing",
+    "displayName": "Kaiwing",
+    "primaryRole": "SUPPORT",
+    "region": "PCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kaiwing"
+  },
+  {
+    "id": "legacy_archie",
+    "displayName": "Archie",
+    "primaryRole": "TOP",
+    "region": "VCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "archie"
+  },
+  {
+    "id": "p_dragon",
+    "displayName": "Levi",
+    "primaryRole": "JUNGLE",
+    "region": "Vietnam (GAM / LCP)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Playmaker",
+    "weakness": "Gánh nặng kêu gọi toàn đội trong những ván đấu kéo dài",
+    "avatarSeed": "levi_jg"
+  },
+  {
+    "id": "legacy_optimus",
+    "displayName": "Optimus",
+    "primaryRole": "MID",
+    "region": "VCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "optimus"
+  },
+  {
+    "id": "legacy_slay",
+    "displayName": "Slay",
+    "primaryRole": "BOT",
+    "region": "VCS",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "slay"
+  },
+  {
+    "id": "p_aegis",
+    "displayName": "Palette",
+    "primaryRole": "SUPPORT",
+    "region": "Vietnam (VCS)",
+    "biography": "Trong mô phỏng, hiệu quả của tuyển thủ phụ thuộc chỉ số, đội hình và chiến thuật.",
+    "playstyle": "Shotcaller",
+    "weakness": "Các tướng hỗ trợ thuật sư không phải sở trường mạnh nhất",
+    "avatarSeed": "palette_sup"
+  },
+  {
+    "id": "legacy_mylon",
+    "displayName": "Mylon",
+    "primaryRole": "TOP",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mylon"
+  },
+  {
+    "id": "legacy_sirt",
+    "displayName": "SirT",
+    "primaryRole": "JUNGLE",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "sirt"
+  },
+  {
+    "id": "legacy_kami",
+    "displayName": "Kami",
+    "primaryRole": "MID",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "kami"
+  },
+  {
+    "id": "legacy_brtt",
+    "displayName": "brTT",
+    "primaryRole": "BOT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "brtt"
+  },
+  {
+    "id": "legacy_dioud",
+    "displayName": "Dioud",
+    "primaryRole": "SUPPORT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "dioud"
+  },
+  {
+    "id": "legacy_yang",
+    "displayName": "Yang",
+    "primaryRole": "TOP",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yang"
+  },
+  {
+    "id": "legacy_revolta",
+    "displayName": "Revolta",
+    "primaryRole": "JUNGLE",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "revolta"
+  },
+  {
+    "id": "legacy_tockers",
+    "displayName": "Tockers",
+    "primaryRole": "MID",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tockers"
+  },
+  {
+    "id": "legacy_micao",
+    "displayName": "micaO",
+    "primaryRole": "BOT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "micao"
+  },
+  {
+    "id": "legacy_jockster",
+    "displayName": "Jockster",
+    "primaryRole": "SUPPORT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "jockster"
+  },
+  {
+    "id": "legacy_robo",
+    "displayName": "Robo",
+    "primaryRole": "TOP",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "robo"
+  },
+  {
+    "id": "legacy_croc",
+    "displayName": "Croc",
+    "primaryRole": "JUNGLE",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "croc"
+  },
+  {
+    "id": "legacy_tinowns",
+    "displayName": "tinowns",
+    "primaryRole": "MID",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "tinowns"
+  },
+  {
+    "id": "legacy_brance",
+    "displayName": "Brance",
+    "primaryRole": "BOT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "brance"
+  },
+  {
+    "id": "legacy_ceos",
+    "displayName": "Ceos",
+    "primaryRole": "SUPPORT",
+    "region": "CBLOL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ceos"
+  },
+  {
+    "id": "legacy_evi",
+    "displayName": "Evi",
+    "primaryRole": "TOP",
+    "region": "LJL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "evi"
+  },
+  {
+    "id": "legacy_steal",
+    "displayName": "Steal",
+    "primaryRole": "JUNGLE",
+    "region": "LJL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "steal"
+  },
+  {
+    "id": "legacy_aria",
+    "displayName": "Aria",
+    "primaryRole": "MID",
+    "region": "LJL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "aria"
+  },
+  {
+    "id": "legacy_yutapon",
+    "displayName": "Yutapon",
+    "primaryRole": "BOT",
+    "region": "LJL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "yutapon"
+  },
+  {
+    "id": "legacy_gaeng",
+    "displayName": "Gaeng",
+    "primaryRole": "SUPPORT",
+    "region": "LJL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gaeng"
+  },
+  {
+    "id": "legacy_fabfabulous",
+    "displayName": "fabFabulous",
+    "primaryRole": "TOP",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "fabfabulous"
+  },
+  {
+    "id": "legacy_stomaged",
+    "displayName": "Stomaged",
+    "primaryRole": "JUNGLE",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "stomaged"
+  },
+  {
+    "id": "legacy_zeitnot",
+    "displayName": "Zeitnot",
+    "primaryRole": "BOT",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "zeitnot"
+  },
+  {
+    "id": "legacy_snowflower",
+    "displayName": "SnowFlower",
+    "primaryRole": "SUPPORT",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "snowflower"
+  },
+  {
+    "id": "legacy_thaldrin",
+    "displayName": "Thaldrin",
+    "primaryRole": "TOP",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "thaldrin"
+  },
+  {
+    "id": "legacy_bolulu",
+    "displayName": "Bolulu",
+    "primaryRole": "JUNGLE",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "bolulu"
+  },
+  {
+    "id": "legacy_frozen",
+    "displayName": "Frozen",
+    "primaryRole": "MID",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "frozen"
+  },
+  {
+    "id": "legacy_padden",
+    "displayName": "Padden",
+    "primaryRole": "BOT",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "padden"
+  },
+  {
+    "id": "legacy_japone",
+    "displayName": "Japone",
+    "primaryRole": "SUPPORT",
+    "region": "TCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "japone"
+  },
+  {
+    "id": "legacy_acce",
+    "displayName": "Acce",
+    "primaryRole": "TOP",
+    "region": "LLA",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "acce"
+  },
+  {
+    "id": "legacy_josedeodo",
+    "displayName": "Josedeodo",
+    "primaryRole": "JUNGLE",
+    "region": "LLA",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "josedeodo"
+  },
+  {
+    "id": "legacy_mireu",
+    "displayName": "Mireu",
+    "primaryRole": "MID",
+    "region": "LLA",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "mireu"
+  },
+  {
+    "id": "legacy_whitelotus",
+    "displayName": "WhiteLotus",
+    "primaryRole": "BOT",
+    "region": "LLA",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "whitelotus"
+  },
+  {
+    "id": "legacy_ssol",
+    "displayName": "SsoL",
+    "primaryRole": "SUPPORT",
+    "region": "LLA",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ssol"
+  },
+  {
+    "id": "legacy_boss",
+    "displayName": "BOSS",
+    "primaryRole": "TOP",
+    "region": "LCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "boss"
+  },
+  {
+    "id": "legacy_ahahacik",
+    "displayName": "AHaHaCiK",
+    "primaryRole": "JUNGLE",
+    "region": "LCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Playmaker",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "ahahacik"
+  },
+  {
+    "id": "legacy_nomanz",
+    "displayName": "Nomanz",
+    "primaryRole": "MID",
+    "region": "LCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Flexible",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "nomanz"
+  },
+  {
+    "id": "legacy_gadget",
+    "displayName": "Gadget",
+    "primaryRole": "BOT",
+    "region": "LCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Late Carry",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "gadget"
+  },
+  {
+    "id": "legacy_santas",
+    "displayName": "SaNTaS",
+    "primaryRole": "SUPPORT",
+    "region": "LCL",
+    "biography": "Hồ sơ mô phỏng từ dữ liệu lịch sử; chỉ số dùng để cân bằng trò chơi.",
+    "playstyle": "Shotcaller",
+    "weakness": "Hiệu quả phụ thuộc đội hình và chiến thuật.",
+    "avatarSeed": "santas"
+  }
+]

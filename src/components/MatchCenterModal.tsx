@@ -49,7 +49,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
   const [manualAll,setManualAll]=useState(false);
 
   // Create opponent snapshot from chapter
-  const opponentSnapshot: TeamSnapshot = {
+  const opponentSnapshot: TeamSnapshot = chapter.opponent.snapshot || {
     teamName: chapter.opponent.name,
     logoKey: chapter.opponent.logoKey,
     teamOvr: chapter.opponent.ovr,

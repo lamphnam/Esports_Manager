@@ -112,7 +112,7 @@ export const HubView: React.FC<HubViewProps> = ({
               </span>
             </div>
             <p className="text-sm text-slate-300 mt-0.5">
-              Trải nghiệm trận Chung kết Thế giới trong ~3 phút với đội hình siêu sao VCS & APAC (Kiaya, SofM, Maple, Artemis, Bie) đại chiến Siêu Đội Hình LCK!
+              Dẫn dắt T1 2024 đối đầu Bilibili Gaming 2024 trong BO5 mô phỏng khoảng 3 phút. Chọn 5–7 quyết định; tiến trình sự nghiệp được giữ riêng.
             </p>
           </div>
         </div>

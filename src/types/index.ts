@@ -45,6 +45,17 @@ export interface PlayerIdentity {
 }
 
 export interface PlayerCardEdition {
+  role?: Role;
+  teamId?: string;
+  provenance?: {
+    ratingSource:'golden_road'|'adjusted'|'derived';
+    rawRating:number;
+    ratingNote:string;
+    datasetVersion:string;
+    importedAt:string;
+    source:string;
+    confidence:'high'|'medium';
+  };
   id: string;
   playerId: string;
   editionYear: number;
@@ -191,6 +202,10 @@ export interface CurrencyLedgerEntry {
 }
 
 export interface Chapter {
+  rulesBasisYear:number;
+  adaptationNote:string;
+  isOfficialFormat:false;
+  realWorldReferenceUrl:string;
   id: number;
   code: string;
   title: string;
@@ -200,6 +215,7 @@ export interface Chapter {
   suggestedOvr: string;
   format: SeriesFormat;
   opponent: {
+    snapshot?:TeamSnapshot;
     name: string;
     shortTag: string;
     logoKey: string;
@@ -232,6 +248,7 @@ export interface Facility {
 }
 
 export interface TransferOffer {
+  expiresAt?:number;
   id: string;
   editionId: string;
   priceCredits: number;

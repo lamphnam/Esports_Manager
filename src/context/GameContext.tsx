@@ -10,6 +10,7 @@ import {
 import { AudioSynth } from '../lib/audioSynth';
 import {
   getTrainingCost,
+  generateNpcTransferOffers,
   openPackInstance,
   PACK_DEFINITIONS,
   PackDrawResult,
@@ -30,6 +31,8 @@ import {
 
 import { emptySave, GameSave, SAVE_KEY, saveReducer, validateSave } from '../lib/saveState';
 import { encodeSave, decodeSave } from '../lib/recoveryCode';
+import {DraftSession} from '../lib/legacyDraft/engine';
+import {rewardDraft} from '../lib/legacyDraft/reward';
 import { newId, vietnamDay } from '../lib/identity';
 const LEGACY_SAVE_KEY = 'apac_rising_save_v2';
 const LEDGER_KEY = 'apac_rising_ledger_v2';
@@ -60,6 +63,7 @@ interface GameContextType {
   } | null;
   resetGame: () => void;
   claimSponsorship: () => boolean;
+  claimDraftReward: (draft:DraftSession) => boolean;
   restoreFromRecoveryCode: (code: string) => Promise<boolean>;
   exportRecoveryCode: () => Promise<string>;
   storageBlocked: boolean;
@@ -106,23 +110,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [save, isLoading]);
 
-  // Initial transfer offers
   useEffect(() => {
-    if (transferOffers.length === 0) {
-      const proEditions = EDITIONS_CATALOG.filter((e) => e.editionCode !== 'ACADEMY');
-      const selected = proEditions.slice(0, 6);
-      const offers: TransferOffer[] = selected.map((ed, idx) => ({
-        id: `offer_${idx}`,
-        editionId: ed.id,
-        priceCredits: ed.rarity === 'LEGENDARY' ? 8000 : ed.rarity === 'EPIC' ? 3500 : 1600,
-        expiresInSeconds: 3600 * 24,
-        sourceClub: ['Saigon Cyber Club', 'Hanoi Academy', 'Da Nang Storm', 'Mekong Wave', 'Free Agent'][
-          idx % 5
-        ],
-      }));
-      setTransferOffers(offers);
-    }
-  }, [transferOffers.length]);
+    if(isLoading||!club)return;
+    const refresh=()=>{
+      const day=vietnamDay(),current=saveRef.current;
+      if(current.marketDay!==day)commit({marketDay:day,purchasedOfferIds:[],transferOffers:generateNpcTransferOffers(day)});
+    };
+    refresh();const interval=setInterval(refresh,60000);return()=>clearInterval(interval);
+  },[isLoading,club?.id]);
 
   /**
    * Initialize a new club with 5 starters
@@ -365,7 +360,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const {club, ownedCards, transferOffers} = saveRef.current;
     if (!club) return false;
     const offer = transferOffers.find((o) => o.id === offerId);
-    if (!offer) return false;
+    if (!offer || !offer.expiresAt || offer.expiresAt <= Date.now()) return false;
+    if(saveRef.current.purchasedOfferIds?.includes(offer.id))return false;
 
     if (club.wallet.credits < offer.priceCredits) return false;
 
@@ -391,6 +387,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       },
     });
 
+    commit({purchasedOfferIds:[...(saveRef.current.purchasedOfferIds||[]),offer.id]});
     // Remove bought offer
     setTransferOffers((prev) => prev.filter((o) => o.id !== offerId));
 
@@ -611,6 +608,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   };
 
   const exportRecoveryCode = () => encodeSave(saveRef.current);
+  const claimDraftReward = (draft:DraftSession):boolean => {
+    const current=saveRef.current,next=rewardDraft(current,draft,vietnamDay(),Date.now(),newId('legacy'));
+    if(current===next)return false;
+    commit(next);return true;
+  };
   const restoreFromRecoveryCode = async (code: string): Promise<boolean> => {
     try {
       const restored = await decodeSave(code);
@@ -640,6 +642,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         getOwnedCardWithDetails,
         resetGame,
         claimSponsorship,
+        claimDraftReward,
         restoreFromRecoveryCode,
         exportRecoveryCode,
         storageBlocked,

@@ -5,6 +5,8 @@ import { OnboardingModal } from './components/OnboardingModal';
 import { PackOpeningModal } from './components/PackOpeningModal';
 import { RecoveryModal } from './components/RecoveryModal';
 import { WorldDemoModal } from './components/WorldDemoModal';
+import {LegacyDraftModal} from './components/LegacyDraftModal';
+import {FEATURE_GOLDEN_ROAD} from './data/featureFlags';
 import { GameProvider, useGame } from './context/GameContext';
 import { CAMPAIGN_CHAPTERS } from './data/campaignData';
 import { PackDrawResult } from './lib/economyEngine';
@@ -18,7 +20,7 @@ import { TrainingView } from './views/TrainingView';
 import { TransfersView } from './views/TransfersView';
 
 function MainApp() {
-  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked } = useGame();
+  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward } = useGame();
 
   const [currentTab, setCurrentTab] = useState('hub');
   const [activeMatchChapterId, setActiveMatchChapterId] = useState<number | null>(null);
@@ -26,6 +28,7 @@ function MainApp() {
   const [showWorldDemo, setShowWorldDemo] = useState(false);
   const [showRecoveryModal, setShowRecoveryModal] = useState(false);
   const [pendingWelcome, setPendingWelcome] = useState(false);
+  const [showDraft,setShowDraft]=useState(false);
 
   useEffect(() => {
     if ((pendingWelcome || club?.completedChapterIds.includes(1)) && club?.packs.some(p => p.family === 'WELCOME')) {
@@ -121,6 +124,8 @@ function MainApp() {
       )}
 
       {showWorldDemo && <WorldDemoModal onClose={() => setShowWorldDemo(false)} />}
+      {FEATURE_GOLDEN_ROAD && <button className="min-h-11 px-4 text-amber-300" onClick={()=>setShowDraft(true)}>Golden Road Draft</button>}
+      {FEATURE_GOLDEN_ROAD && showDraft && <LegacyDraftModal onClose={()=>setShowDraft(false)} onClaim={claimDraftReward}/>}
 
       {showRecoveryModal && (
         <RecoveryModal onClose={() => setShowRecoveryModal(false)} />

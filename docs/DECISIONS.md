@@ -56,6 +56,8 @@ Các câu trả lời dưới đây là lời chủ dự án trong phiên làm v
 
 ## Nhật ký thay đổi của file này
 
+Kết quả G0 (03/11): mapping mặc định triển khai theo neo integer 76→55, 80→69, 81→70, 86→79, 87→80, 91→89, 92→90, 98→96; đơn điệu cả input thập phân. Phân bố đo được 81/365/166/37. Đây là mặc định kỹ thuật theo DEC-4, không thay trạng thái đề xuất. Ba edition 2026 hiện tại trước đây gắn nhầm LEGACY được phân loại CHAMPION, giữ nguyên id/stats/odds; LEGACY sinh từ dataset không vào pack. RatingSource của edition remap là adjusted, giữ rawRating và ratingNote. Bằng chứng checksum tại `src/data/generated/legacyManifest.json`.
+
 Kết quả Phase 2 (03/11): dùng mặc định Q4/DEC-5, OVR đối thủ Ch1–5 = 55/62/66/72/77, win-rate 4000 seed/ô = 68.70/54.23/48.63/49.52/49.30%. Không chốt thay chủ dự án. Tài trợ phục hồi 100 credits/ngày khi ví dưới 100, giao hữu/thử lại miễn phí; Champion Pool tạm không huấn luyện. `evidence/PHASE_2.md`.
 
 Kết quả triển khai Phase 1 (03/11): theo mặc định DEC-1, Recovery Code của Kiến trúc B là bản save nén deflate, version `AR1`, CRC32 và giới hạn kích thước. Mã là snapshot tiến trình, không phải danh tính server; xuất mã mới sau khi chơi. Trạng thái đề xuất của DEC-1 được giữ nguyên. E2E storage bị chặn và round-trip đã xanh, xem `evidence/PHASE_1.md`.

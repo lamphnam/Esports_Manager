@@ -20,7 +20,7 @@ export const TransfersView: React.FC = () => {
             Thị Trường Chuyển Nhượng Tuyển Thủ (Transfer Market)
           </h1>
           <p className="text-sm text-slate-300 mt-1">
-            Ký hợp đồng trực tiếp với các tuyển thủ tự do từ VCS, LCP và khu vực quốc tế
+            Tuyển mộ thẻ Legacy trong mô phỏng. Sáu đề nghị xoay theo ngày Việt Nam, không phản ánh hợp đồng thật.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export const TransfersView: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between mb-3 text-xs">
                   <span className="font-bold text-[#FFB800] uppercase">{offer.sourceClub}</span>
-                  <span className="text-slate-300 font-mono">Hợp đồng mở</span>
+                  <span className="text-slate-300 text-xs">Hết hạn: {offer.expiresAt ? new Date(offer.expiresAt).toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'}) : 'Đã hết hạn'}</span>
                 </div>
 
                 <div className="mb-4">
@@ -75,7 +75,7 @@ export const TransfersView: React.FC = () => {
 
                 <button
                   onClick={() => handleBuy(offer.id)}
-                  disabled={!canAfford}
+                  disabled={!canAfford || !offer.expiresAt || offer.expiresAt<=Date.now()}
                   className={`px-5 py-2.5 font-display font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
                     canAfford
                       ? 'bg-[#FFB800] hover:bg-amber-400 text-slate-950 shadow'

@@ -3,10 +3,7 @@ import { EDITIONS_CATALOG } from '../../data/cardCatalog';
 import { decodeSave, encodeSave } from '../recoveryCode';
 import { emptySave, GameSave, saveReducer, validateSave } from '../saveState';
 
-export function sampleSave():GameSave {
-  const cards=EDITIONS_CATALOG.filter(e=>e.editionCode==='ACADEMY').slice(0,5).map((e,i)=>({instanceId:`fixture-${i}`,editionId:e.id,playerId:e.playerId,level:1,trainedStats:{},acquiredAt:1,acquiredFrom:'test'}));
-  return {...emptySave(),ownedCards:cards,club:{id:'club-test',name:'CLB Việt Nam',logoKey:'gold_star',homeRegion:'Vietnam',reputation:0,careerYear:2026,currentChapterId:1,completedChapterIds:[],recoveryCode:'',wallet:{credits:500,trainingMaterials:0,scoutTickets:0},scoutPityMisses:0,packs:[],lineup:{TOP:cards[0].instanceId,JUNGLE:cards[1].instanceId,MID:cards[2].instanceId,BOT:cards[3].instanceId,SUPPORT:cards[4].instanceId},facilities:{TRAINING_CENTER:0,SCOUT_OFFICE:0,STRATEGY_LAB:0},createdAt:1}};
-}
+import {sampleSave} from './fixtures';
 describe('Recovery Code',()=>{
   it('P1-13 bounds the hot ledger and archives old balances',()=>{
     const state=sampleSave();const ledger=Array.from({length:600},(_,i)=>({id:`id-${i}`,timestamp:1,deltaCredits:1,deltaMaterials:0,deltaTickets:0,reason:'test',sourceType:'SPONSOR' as const}));

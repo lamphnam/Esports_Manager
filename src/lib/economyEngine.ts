@@ -14,7 +14,9 @@ import {
   Role,
   TransferOffer,
 } from '../types';
-import { newId } from './identity';
+import { newId, vietnamDay } from './identity';
+import {murmurHash3} from './seededRng';
+import {CURRENT_EDITIONS} from '../data/currentCatalog';
 import { SeededRng } from './seededRng';
 
 export const PACK_DEFINITIONS: Record<PackFamily, PackDefinition> = {
@@ -120,8 +122,8 @@ export function openPackInstance(
   const chosenRarity = rng.weightedChoice(rarities, weightValues);
 
   // Filter pool by chosen rarity and criteria
-  let eligibleEditions = EDITIONS_CATALOG.filter(
-    (e) => e.rarity === chosenRarity
+  let eligibleEditions = CURRENT_EDITIONS.filter(
+    (e) => e.rarity === chosenRarity && e.editionCode !== 'LEGACY'
   );
 
   if (chosenRarity === 'COMMON' && packDef.minCommonOvr) {
@@ -133,7 +135,7 @@ export function openPackInstance(
   }
 
   if (eligibleEditions.length === 0) {
-    eligibleEditions = EDITIONS_CATALOG;
+    throw new Error(`Missing current-pack pool for ${chosenRarity}`);
   }
 
   const chosenEdition = rng.choice(eligibleEditions);
@@ -178,34 +180,10 @@ export function getTrainingCost(currentLevel: number, trainingCenterTier = 0): n
 /**
  * Generates 6 rotating NPC transfer offers
  */
-export function generateNpcTransferOffers(seed: number = Date.now()): TransferOffer[] {
-  const rng = new SeededRng(seed);
-  // Exclude starter academy editions
-  const proEditions = EDITIONS_CATALOG.filter((e) => e.editionCode !== 'ACADEMY');
-  const shuffled = [...proEditions].sort(() => rng.next() - 0.5);
-  const selected = shuffled.slice(0, 6);
-
-  const clubs = [
-    'Saigon Cyber Club',
-    'Hanoi Academy',
-    'Da Nang Storm',
-    'Mekong Wave',
-    'Pacific Scouting',
-    'Free Agent Market',
-  ];
-
-  return selected.map((ed, idx) => {
-    let basePrice = 1200;
-    if (ed.rarity === 'RARE') basePrice = 1600 + (ed.baseOvr - 70) * 150;
-    if (ed.rarity === 'EPIC') basePrice = 3500 + (ed.baseOvr - 83) * 300;
-    if (ed.rarity === 'LEGENDARY') basePrice = 8000 + (ed.baseOvr - 91) * 600;
-
-    return {
-      id: `offer_${seed}_${idx}`,
-      editionId: ed.id,
-      priceCredits: Math.round(basePrice),
-      expiresInSeconds: 3600 * (idx + 2),
-      sourceClub: clubs[idx % clubs.length],
-    };
-  });
+export function generateNpcTransferOffers(day:string = vietnamDay()): TransferOffer[] {
+  const rng = new SeededRng(murmurHash3(`market-${day}`));
+  const pool = EDITIONS_CATALOG.filter(e=>e.editionCode==='LEGACY');
+  for(let i=pool.length-1;i>0;i--){const j=rng.nextInt(0,i);[pool[i],pool[j]]=[pool[j],pool[i]];}
+  const expiresAt=Date.parse(`${day}T00:00:00+07:00`)+86400000;
+  return pool.slice(0,6).map((ed,index)=>({id:`offer_${day}_${index}`,editionId:ed.id,priceCredits:ed.rarity==='LEGENDARY'?8000+(ed.baseOvr-90)*500:ed.rarity==='EPIC'?3500+(ed.baseOvr-80)*200:ed.rarity==='RARE'?1600+(ed.baseOvr-70)*100:1200,expiresInSeconds:86400,expiresAt,sourceClub:'Legacy card market'}));
 }

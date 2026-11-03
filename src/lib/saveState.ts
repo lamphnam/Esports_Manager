@@ -8,9 +8,12 @@ export interface GameSave {
   ledger: CurrencyLedgerEntry[];
   transferOffers: TransferOffer[];
   ledgerArchive?: {credits:number;materials:number;tickets:number;count:number};
+  marketDay?:string;
+  purchasedOfferIds?:string[];
+  draftRewards?:{claimedSeeds:number[];day:string;count:number};
 }
 export const SAVE_KEY = 'apac_rising_save_v3';
-export const emptySave = (): GameSave => ({version:1,club:null,ownedCards:[],ledger:[],transferOffers:[],ledgerArchive:undefined});
+export const emptySave = (): GameSave => ({version:1,club:null,ownedCards:[],ledger:[],transferOffers:[],ledgerArchive:undefined,marketDay:undefined,purchasedOfferIds:undefined,draftRewards:undefined});
 export function saveReducer(state: GameSave, patch: Partial<GameSave>): GameSave {
   const next:GameSave={...state,...patch,version:1};
   if(next.ledger.length>500){
@@ -33,6 +36,9 @@ const stats=['mechanics','macro','teamwork','mental','championPool'];
 export function validateSave(value: unknown): GameSave {
   if(!record(value)||value.version!==1) throw new Error('Phiên bản save không được hỗ trợ.');
   const {club,ownedCards,ledger,transferOffers}=value;
+  if(value.draftRewards!==undefined && (!record(value.draftRewards)||!text(value.draftRewards.day,10)||!integer(value.draftRewards.count,0,2)||!Array.isArray(value.draftRewards.claimedSeeds)||value.draftRewards.claimedSeeds.length>10000||!value.draftRewards.claimedSeeds.every(seed=>integer(seed))))throw new Error('Lịch sử Draft không hợp lệ.');
+  if(value.marketDay!==undefined && (typeof value.marketDay!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value.marketDay)))throw new Error('Ngày thị trường không hợp lệ.');
+  if(value.purchasedOfferIds!==undefined && (!Array.isArray(value.purchasedOfferIds)||value.purchasedOfferIds.length>6||!value.purchasedOfferIds.every(id=>text(id))))throw new Error('Lịch sử thị trường không hợp lệ.');
   if(!record(club)||!Array.isArray(ownedCards)||ownedCards.length>10000||!Array.isArray(ledger)||ledger.length>10000||!Array.isArray(transferOffers)||transferOffers.length>100) throw new Error('Cấu trúc save không hợp lệ.');
   if(!text(club.id)||!text(club.name,100)||!text(club.logoKey)||!text(club.homeRegion)||!text(club.recoveryCode,100)||!integer(club.createdAt)||!integer(club.reputation)||!integer(club.careerYear,2020,9999)||!integer(club.currentChapterId,1,12)||!integer(club.scoutPityMisses,0,7)) throw new Error('Thông tin CLB không hợp lệ.');
   if(club.sponsorshipDay!==undefined && (typeof club.sponsorshipDay!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(club.sponsorshipDay)))throw new Error('Ngày tài trợ không hợp lệ.');

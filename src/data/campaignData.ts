@@ -1,6 +1,8 @@
+import {legacyOpponent} from './legacyOpponents';
+import {murmurHash3} from '../lib/seededRng';
 import { Chapter, TeamSnapshot } from '../types';
 
-export const CAMPAIGN_CHAPTERS: Chapter[] = [
+const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialFormat'|'realWorldReferenceUrl'>[] = [
   {
     id: 1,
     code: 'CH_01_FIVE_STRANGERS',
@@ -397,103 +399,10 @@ export const CAMPAIGN_CHAPTERS: Chapter[] = [
   },
 ];
 
-/**
- * Pre-configured World Championship Demo Match (spec v2.2 P1 requirement)
- * Uses authentic real-world VCS/LCP and LCK legends
- */
-export const WORLD_CHAMPIONSHIP_DEMO_SCENARIO = {
-  title: 'Chung Kết Thế Giới (Bản Trình Diễn)',
-  subtitle: 'Worlds Grand Finals · BO5 Exhibition Match',
-  description:
-    'Trải nghiệm trực tiếp trận Chung kết Thế giới đỉnh cao: Đội hình Siêu Sao VCS & APAC (Kiaya, SofM, Maple, Artemis, Bie - OVR 89) đại chiến Siêu Cường LCK (Kiin, Canyon, Chovy, Ruler, Keria - OVR 92). Thử nghiệm tư duy chiến thuật, ma trận khắc chế và phân tích quyết định trong 3 phút!',
-  format: 'BO5' as const,
-  playerTeam: {
-    teamName: 'VCS & APAC All-Stars',
-    logoKey: 'gold_star',
-    teamOvr: 89,
-    synergyBonus: 6,
-    ratings: { lane: 89, macro: 90, teamfight: 91 },
-    roster: [
-      {
-        role: 'TOP' as const,
-        displayName: 'Kiaya',
-        ovr: 88,
-        archetype: 'Lane Dominator' as const,
-        effectiveStats: { mechanics: 90, macro: 85, teamwork: 86, mental: 88, championPool: 87 },
-      },
-      {
-        role: 'JUNGLE' as const,
-        displayName: 'SofM',
-        ovr: 93,
-        archetype: 'Shotcaller' as const,
-        effectiveStats: { mechanics: 94, macro: 96, teamwork: 91, mental: 92, championPool: 94 },
-      },
-      {
-        role: 'MID' as const,
-        displayName: 'Maple',
-        ovr: 88,
-        archetype: 'Clutch' as const,
-        effectiveStats: { mechanics: 89, macro: 89, teamwork: 88, mental: 90, championPool: 88 },
-      },
-      {
-        role: 'BOT' as const,
-        displayName: 'Artemis',
-        ovr: 88,
-        archetype: 'Late Carry' as const,
-        effectiveStats: { mechanics: 92, macro: 85, teamwork: 86, mental: 86, championPool: 89 },
-      },
-      {
-        role: 'SUPPORT' as const,
-        displayName: 'Bie',
-        ovr: 86,
-        archetype: 'Playmaker' as const,
-        effectiveStats: { mechanics: 83, macro: 91, teamwork: 90, mental: 88, championPool: 84 },
-      },
-    ],
-  } as TeamSnapshot,
-  opponentArchetype: 'BALANCED' as const,
-  opponentTeam: {
-    teamName: 'LCK Superteam',
-    logoKey: 'world_trophy',
-    teamOvr: 92,
-    synergyBonus: 4,
-    ratings: { lane: 92, macro: 93, teamfight: 93 },
-    roster: [
-      {
-        role: 'TOP' as const,
-        displayName: 'Kiin',
-        ovr: 92,
-        archetype: 'Lane Dominator' as const,
-        effectiveStats: { mechanics: 94, macro: 89, teamwork: 90, mental: 91, championPool: 91 },
-      },
-      {
-        role: 'JUNGLE' as const,
-        displayName: 'Canyon',
-        ovr: 93,
-        archetype: 'Playmaker' as const,
-        effectiveStats: { mechanics: 93, macro: 95, teamwork: 92, mental: 92, championPool: 93 },
-      },
-      {
-        role: 'MID' as const,
-        displayName: 'Chovy',
-        ovr: 95,
-        archetype: 'Lane Dominator' as const,
-        effectiveStats: { mechanics: 97, macro: 94, teamwork: 93, mental: 94, championPool: 95 },
-      },
-      {
-        role: 'BOT' as const,
-        displayName: 'Ruler',
-        ovr: 94,
-        archetype: 'Late Carry' as const,
-        effectiveStats: { mechanics: 96, macro: 91, teamwork: 93, mental: 94, championPool: 94 },
-      },
-      {
-        role: 'SUPPORT' as const,
-        displayName: 'Keria',
-        ovr: 92,
-        archetype: 'Shotcaller' as const,
-        effectiveStats: { mechanics: 90, macro: 94, teamwork: 93, mental: 90, championPool: 92 },
-      },
-    ],
-  } as TeamSnapshot,
-};
+export const CAMPAIGN_CHAPTERS:Chapter[]=CHAPTER_SEEDS.map(chapter=>({...chapter,
+  rulesBasisYear:2027,isOfficialFormat:false,
+  adaptationNote:'Hành trình loại trực tiếp hư cấu; suất tham dự được xét lại mỗi split.',
+  realWorldReferenceUrl:'https://lolesports.com/en-SG/lolesports/news/a-more-open-lcp-ecosystem-in-2027',
+  ...(chapter.id>=6?{opponent:legacyOpponent(chapter.id,murmurHash3(`campaign-${chapter.id}-v1.1`)),description:'Đội hình lịch sử gặp nhau trong nhánh loại trực tiếp hư cấu.',subtitle:`Chapter ${chapter.id} · Loại trực tiếp hư cấu`,storyEpilogue:'Tiến tới chặng tiếp theo của hành trình mô phỏng.'}:{})
+}));
+export {WORLD_CHAMPIONSHIP_DEMO_SCENARIO} from './demoScenario';

@@ -1,0 +1,2783 @@
+[
+  {
+    "id": "t1",
+    "name": "T1",
+    "teamAlias": "Historic Club 1",
+    "region": "LCK",
+    "rosters": {
+      "2013": {
+        "TOP": [
+          "legacy_t1_2013_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2013_jungle_bengi"
+        ],
+        "MID": [
+          "legacy_t1_2013_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2013_bot_piglet"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2013_support_poohmandu"
+        ]
+      },
+      "2015": {
+        "TOP": [
+          "legacy_t1_2015_top_marin"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2015_jungle_bengi"
+        ],
+        "MID": [
+          "legacy_t1_2015_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2015_bot_bang"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2015_support_wolf"
+        ]
+      },
+      "2016": {
+        "TOP": [
+          "legacy_t1_2016_top_duke"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2016_jungle_bengi",
+          "legacy_t1_2016_jungle_blank"
+        ],
+        "MID": [
+          "legacy_t1_2016_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2016_bot_bang"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2016_support_wolf"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_t1_2017_top_huni"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2017_jungle_peanut",
+          "legacy_t1_2017_jungle_blank"
+        ],
+        "MID": [
+          "legacy_t1_2017_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2017_bot_bang"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2017_support_wolf"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_t1_2019_top_khan"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2019_jungle_clid"
+        ],
+        "MID": [
+          "legacy_t1_2019_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2019_bot_teddy"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2019_support_effort"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_t1_2022_top_zeus"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2022_jungle_oner"
+        ],
+        "MID": [
+          "legacy_t1_2022_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2022_bot_gumayusi"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2022_support_keria"
+        ]
+      },
+      "2023": {
+        "TOP": [
+          "legacy_t1_2023_top_zeus"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2023_jungle_oner"
+        ],
+        "MID": [
+          "legacy_t1_2023_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2023_bot_gumayusi"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2023_support_keria"
+        ]
+      },
+      "2024": {
+        "TOP": [
+          "legacy_t1_2024_top_zeus"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2024_jungle_oner"
+        ],
+        "MID": [
+          "legacy_t1_2024_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2024_bot_gumayusi"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2024_support_keria"
+        ]
+      },
+      "2025": {
+        "TOP": [
+          "legacy_t1_2025_top_doran"
+        ],
+        "JUNGLE": [
+          "legacy_t1_2025_jungle_oner"
+        ],
+        "MID": [
+          "legacy_t1_2025_mid_faker"
+        ],
+        "BOT": [
+          "legacy_t1_2025_bot_gumayusi"
+        ],
+        "SUPPORT": [
+          "legacy_t1_2025_support_keria"
+        ]
+      }
+    }
+  },
+  {
+    "id": "samsung-white",
+    "name": "Samsung White",
+    "teamAlias": "Historic Club 2",
+    "region": "LCK",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_samsung-white_2014_top_looper"
+        ],
+        "JUNGLE": [
+          "legacy_samsung-white_2014_jungle_dandy"
+        ],
+        "MID": [
+          "legacy_samsung-white_2014_mid_pawn"
+        ],
+        "BOT": [
+          "legacy_samsung-white_2014_bot_imp"
+        ],
+        "SUPPORT": [
+          "legacy_samsung-white_2014_support_mata"
+        ]
+      }
+    }
+  },
+  {
+    "id": "samsung-blue",
+    "name": "Samsung Blue",
+    "teamAlias": "Historic Club 3",
+    "region": "LCK",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_samsung-blue_2014_top_acorn"
+        ],
+        "JUNGLE": [
+          "legacy_samsung-blue_2014_jungle_spirit"
+        ],
+        "MID": [
+          "legacy_samsung-blue_2014_mid_dade"
+        ],
+        "BOT": [
+          "legacy_samsung-blue_2014_bot_deft"
+        ],
+        "SUPPORT": [
+          "legacy_samsung-blue_2014_support_heart"
+        ]
+      }
+    }
+  },
+  {
+    "id": "samsung-galaxy",
+    "name": "Samsung Galaxy",
+    "teamAlias": "Historic Club 4",
+    "region": "LCK",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_samsung-galaxy_2016_top_cuvee"
+        ],
+        "JUNGLE": [
+          "legacy_samsung-galaxy_2016_jungle_ambition"
+        ],
+        "MID": [
+          "legacy_samsung-galaxy_2016_mid_crown"
+        ],
+        "BOT": [
+          "legacy_samsung-galaxy_2016_bot_ruler"
+        ],
+        "SUPPORT": [
+          "legacy_samsung-galaxy_2016_support_corejj"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_samsung-galaxy_2017_top_cuvee"
+        ],
+        "JUNGLE": [
+          "legacy_samsung-galaxy_2017_jungle_ambition"
+        ],
+        "MID": [
+          "legacy_samsung-galaxy_2017_mid_crown"
+        ],
+        "BOT": [
+          "legacy_samsung-galaxy_2017_bot_ruler"
+        ],
+        "SUPPORT": [
+          "legacy_samsung-galaxy_2017_support_corejj"
+        ]
+      }
+    }
+  },
+  {
+    "id": "geng",
+    "name": "Gen.G",
+    "teamAlias": "Historic Club 5",
+    "region": "LCK",
+    "rosters": {
+      "2022": {
+        "TOP": [
+          "legacy_geng_2022_top_doran"
+        ],
+        "JUNGLE": [
+          "legacy_geng_2022_jungle_peanut"
+        ],
+        "MID": [
+          "legacy_geng_2022_mid_chovy"
+        ],
+        "BOT": [
+          "legacy_geng_2022_bot_ruler"
+        ],
+        "SUPPORT": [
+          "legacy_geng_2022_support_lehends"
+        ]
+      },
+      "2023": {
+        "TOP": [
+          "legacy_geng_2023_top_doran"
+        ],
+        "JUNGLE": [
+          "legacy_geng_2023_jungle_peanut"
+        ],
+        "MID": [
+          "legacy_geng_2023_mid_chovy"
+        ],
+        "BOT": [
+          "legacy_geng_2023_bot_peyz"
+        ],
+        "SUPPORT": [
+          "legacy_geng_2023_support_delight"
+        ]
+      },
+      "2024": {
+        "TOP": [
+          "legacy_geng_2024_top_kiin"
+        ],
+        "JUNGLE": [
+          "legacy_geng_2024_jungle_canyon"
+        ],
+        "MID": [
+          "legacy_geng_2024_mid_chovy"
+        ],
+        "BOT": [
+          "legacy_geng_2024_bot_peyz"
+        ],
+        "SUPPORT": [
+          "legacy_geng_2024_support_lehends"
+        ]
+      },
+      "2025": {
+        "TOP": [
+          "legacy_geng_2025_top_kiin"
+        ],
+        "JUNGLE": [
+          "legacy_geng_2025_jungle_canyon"
+        ],
+        "MID": [
+          "legacy_geng_2025_mid_chovy"
+        ],
+        "BOT": [
+          "legacy_geng_2025_bot_ruler"
+        ],
+        "SUPPORT": [
+          "legacy_geng_2025_support_duro"
+        ]
+      }
+    }
+  },
+  {
+    "id": "koo-tigers",
+    "name": "KOO Tigers",
+    "teamAlias": "Historic Club 6",
+    "region": "LCK",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_koo-tigers_2015_top_smeb"
+        ],
+        "JUNGLE": [
+          "legacy_koo-tigers_2015_jungle_hojin"
+        ],
+        "MID": [
+          "legacy_koo-tigers_2015_mid_kuro"
+        ],
+        "BOT": [
+          "legacy_koo-tigers_2015_bot_pray"
+        ],
+        "SUPPORT": [
+          "legacy_koo-tigers_2015_support_gorilla"
+        ]
+      }
+    }
+  },
+  {
+    "id": "rox-tigers",
+    "name": "ROX Tigers",
+    "teamAlias": "Historic Club 7",
+    "region": "LCK",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_rox-tigers_2016_top_smeb"
+        ],
+        "JUNGLE": [
+          "legacy_rox-tigers_2016_jungle_peanut"
+        ],
+        "MID": [
+          "legacy_rox-tigers_2016_mid_kuro"
+        ],
+        "BOT": [
+          "legacy_rox-tigers_2016_bot_pray"
+        ],
+        "SUPPORT": [
+          "legacy_rox-tigers_2016_support_gorilla"
+        ]
+      }
+    }
+  },
+  {
+    "id": "kt-rolster",
+    "name": "KT Rolster",
+    "teamAlias": "Historic Club 8",
+    "region": "LCK",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_kt-rolster_2014_top_ssumday"
+        ],
+        "JUNGLE": [
+          "legacy_kt-rolster_2014_jungle_kakao"
+        ],
+        "MID": [
+          "legacy_kt-rolster_2014_mid_rookie"
+        ],
+        "BOT": [
+          "legacy_kt-rolster_2014_bot_arrow"
+        ],
+        "SUPPORT": [
+          "legacy_kt-rolster_2014_support_hachani"
+        ]
+      },
+      "2018": {
+        "TOP": [
+          "legacy_kt-rolster_2018_top_smeb"
+        ],
+        "JUNGLE": [
+          "legacy_kt-rolster_2018_jungle_score"
+        ],
+        "MID": [
+          "legacy_kt-rolster_2018_mid_ucal"
+        ],
+        "BOT": [
+          "legacy_kt-rolster_2018_bot_deft"
+        ],
+        "SUPPORT": [
+          "legacy_kt-rolster_2018_support_mata"
+        ]
+      }
+    }
+  },
+  {
+    "id": "kingzone",
+    "name": "Kingzone DragonX",
+    "teamAlias": "Historic Club 9",
+    "region": "LCK",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_kingzone_2018_top_khan"
+        ],
+        "JUNGLE": [
+          "legacy_kingzone_2018_jungle_peanut",
+          "legacy_kingzone_2018_jungle_cuzz"
+        ],
+        "MID": [
+          "legacy_kingzone_2018_mid_bdd"
+        ],
+        "BOT": [
+          "legacy_kingzone_2018_bot_pray"
+        ],
+        "SUPPORT": [
+          "legacy_kingzone_2018_support_gorilla"
+        ]
+      }
+    }
+  },
+  {
+    "id": "griffin",
+    "name": "Griffin",
+    "teamAlias": "Historic Club 10",
+    "region": "LCK",
+    "rosters": {
+      "2019": {
+        "TOP": [
+          "legacy_griffin_2019_top_sword"
+        ],
+        "JUNGLE": [
+          "legacy_griffin_2019_jungle_tarzan"
+        ],
+        "MID": [
+          "legacy_griffin_2019_mid_chovy"
+        ],
+        "BOT": [
+          "legacy_griffin_2019_bot_viper"
+        ],
+        "SUPPORT": [
+          "legacy_griffin_2019_support_lehends"
+        ]
+      }
+    }
+  },
+  {
+    "id": "dwg-kia",
+    "name": "DWG KIA",
+    "teamAlias": "Historic Club 11",
+    "region": "LCK",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_dwg-kia_2020_top_nuguri"
+        ],
+        "JUNGLE": [
+          "legacy_dwg-kia_2020_jungle_canyon"
+        ],
+        "MID": [
+          "legacy_dwg-kia_2020_mid_showmaker"
+        ],
+        "BOT": [
+          "legacy_dwg-kia_2020_bot_ghost"
+        ],
+        "SUPPORT": [
+          "legacy_dwg-kia_2020_support_beryl"
+        ]
+      },
+      "2021": {
+        "TOP": [
+          "legacy_dwg-kia_2021_top_khan"
+        ],
+        "JUNGLE": [
+          "legacy_dwg-kia_2021_jungle_canyon"
+        ],
+        "MID": [
+          "legacy_dwg-kia_2021_mid_showmaker"
+        ],
+        "BOT": [
+          "legacy_dwg-kia_2021_bot_ghost"
+        ],
+        "SUPPORT": [
+          "legacy_dwg-kia_2021_support_beryl"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_dwg-kia_2022_top_nuguri"
+        ],
+        "JUNGLE": [
+          "legacy_dwg-kia_2022_jungle_canyon"
+        ],
+        "MID": [
+          "legacy_dwg-kia_2022_mid_showmaker"
+        ],
+        "BOT": [
+          "legacy_dwg-kia_2022_bot_deokdam"
+        ],
+        "SUPPORT": [
+          "legacy_dwg-kia_2022_support_kellin"
+        ]
+      }
+    }
+  },
+  {
+    "id": "drx",
+    "name": "DRX",
+    "teamAlias": "Historic Club 12",
+    "region": "LCK",
+    "rosters": {
+      "2022": {
+        "TOP": [
+          "legacy_drx_2022_top_kingen"
+        ],
+        "JUNGLE": [
+          "legacy_drx_2022_jungle_pyosik"
+        ],
+        "MID": [
+          "legacy_drx_2022_mid_zeka"
+        ],
+        "BOT": [
+          "legacy_drx_2022_bot_deft"
+        ],
+        "SUPPORT": [
+          "legacy_drx_2022_support_beryl"
+        ]
+      }
+    }
+  },
+  {
+    "id": "hanwha-life",
+    "name": "Hanwha Life Esports",
+    "teamAlias": "Historic Club 13",
+    "region": "LCK",
+    "rosters": {
+      "2024": {
+        "TOP": [
+          "legacy_hanwha-life_2024_top_doran"
+        ],
+        "JUNGLE": [
+          "legacy_hanwha-life_2024_jungle_peanut"
+        ],
+        "MID": [
+          "legacy_hanwha-life_2024_mid_zeka"
+        ],
+        "BOT": [
+          "legacy_hanwha-life_2024_bot_viper"
+        ],
+        "SUPPORT": [
+          "legacy_hanwha-life_2024_support_delight"
+        ]
+      },
+      "2025": {
+        "TOP": [
+          "legacy_hanwha-life_2025_top_zeus"
+        ],
+        "JUNGLE": [
+          "legacy_hanwha-life_2025_jungle_peanut"
+        ],
+        "MID": [
+          "legacy_hanwha-life_2025_mid_zeka"
+        ],
+        "BOT": [
+          "legacy_hanwha-life_2025_bot_viper"
+        ],
+        "SUPPORT": [
+          "legacy_hanwha-life_2025_support_delight"
+        ]
+      }
+    }
+  },
+  {
+    "id": "longzhu",
+    "name": "Longzhu Gaming",
+    "teamAlias": "Historic Club 14",
+    "region": "LCK",
+    "rosters": {
+      "2017": {
+        "TOP": [
+          "legacy_longzhu_2017_top_khan"
+        ],
+        "JUNGLE": [
+          "legacy_longzhu_2017_jungle_cuzz"
+        ],
+        "MID": [
+          "legacy_longzhu_2017_mid_bdd"
+        ],
+        "BOT": [
+          "legacy_longzhu_2017_bot_pray"
+        ],
+        "SUPPORT": [
+          "legacy_longzhu_2017_support_gorilla"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ig",
+    "name": "Invictus Gaming",
+    "teamAlias": "Historic Club 15",
+    "region": "LPL",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_ig_2018_top_theshy"
+        ],
+        "JUNGLE": [
+          "legacy_ig_2018_jungle_ning"
+        ],
+        "MID": [
+          "legacy_ig_2018_mid_rookie"
+        ],
+        "BOT": [
+          "legacy_ig_2018_bot_jackeylove"
+        ],
+        "SUPPORT": [
+          "legacy_ig_2018_support_baolan"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_ig_2019_top_theshy"
+        ],
+        "JUNGLE": [
+          "legacy_ig_2019_jungle_ning"
+        ],
+        "MID": [
+          "legacy_ig_2019_mid_rookie"
+        ],
+        "BOT": [
+          "legacy_ig_2019_bot_jackeylove"
+        ],
+        "SUPPORT": [
+          "legacy_ig_2019_support_baolan"
+        ]
+      }
+    }
+  },
+  {
+    "id": "royal-club",
+    "name": "Royal Club",
+    "teamAlias": "Historic Club 16",
+    "region": "LPL",
+    "rosters": {
+      "2013": {
+        "TOP": [
+          "legacy_royal-club_2013_top_globe"
+        ],
+        "JUNGLE": [
+          "legacy_royal-club_2013_jungle_lucas"
+        ],
+        "MID": [
+          "legacy_royal-club_2013_mid_wh1t3zz"
+        ],
+        "BOT": [
+          "legacy_royal-club_2013_bot_uzi"
+        ],
+        "SUPPORT": [
+          "legacy_royal-club_2013_support_tabe"
+        ]
+      },
+      "2014": {
+        "TOP": [
+          "legacy_royal-club_2014_top_cola"
+        ],
+        "JUNGLE": [
+          "legacy_royal-club_2014_jungle_insec"
+        ],
+        "MID": [
+          "legacy_royal-club_2014_mid_corn"
+        ],
+        "BOT": [
+          "legacy_royal-club_2014_bot_uzi"
+        ],
+        "SUPPORT": [
+          "legacy_royal-club_2014_support_zero"
+        ]
+      }
+    }
+  },
+  {
+    "id": "rng",
+    "name": "Royal Never Give Up",
+    "teamAlias": "Historic Club 17",
+    "region": "LPL",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_rng_2018_top_letme"
+        ],
+        "JUNGLE": [
+          "legacy_rng_2018_jungle_mlxg"
+        ],
+        "MID": [
+          "legacy_rng_2018_mid_xiaohu"
+        ],
+        "BOT": [
+          "legacy_rng_2018_bot_uzi"
+        ],
+        "SUPPORT": [
+          "legacy_rng_2018_support_ming"
+        ]
+      },
+      "2021": {
+        "TOP": [
+          "legacy_rng_2021_top_xiaohu"
+        ],
+        "JUNGLE": [
+          "legacy_rng_2021_jungle_wei"
+        ],
+        "MID": [
+          "legacy_rng_2021_mid_cryin"
+        ],
+        "BOT": [
+          "legacy_rng_2021_bot_gala"
+        ],
+        "SUPPORT": [
+          "legacy_rng_2021_support_ming"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_rng_2022_top_bin"
+        ],
+        "JUNGLE": [
+          "legacy_rng_2022_jungle_wei"
+        ],
+        "MID": [
+          "legacy_rng_2022_mid_xiaohu"
+        ],
+        "BOT": [
+          "legacy_rng_2022_bot_gala"
+        ],
+        "SUPPORT": [
+          "legacy_rng_2022_support_ming"
+        ]
+      }
+    }
+  },
+  {
+    "id": "edg",
+    "name": "EDward Gaming",
+    "teamAlias": "Historic Club 18",
+    "region": "LPL",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_edg_2015_top_koro1"
+        ],
+        "JUNGLE": [
+          "legacy_edg_2015_jungle_clearlove"
+        ],
+        "MID": [
+          "legacy_edg_2015_mid_pawn"
+        ],
+        "BOT": [
+          "legacy_edg_2015_bot_deft"
+        ],
+        "SUPPORT": [
+          "legacy_edg_2015_support_meiko"
+        ]
+      },
+      "2016": {
+        "TOP": [
+          "legacy_edg_2016_top_mouse"
+        ],
+        "JUNGLE": [
+          "legacy_edg_2016_jungle_clearlove"
+        ],
+        "MID": [
+          "legacy_edg_2016_mid_scout"
+        ],
+        "BOT": [
+          "legacy_edg_2016_bot_deft"
+        ],
+        "SUPPORT": [
+          "legacy_edg_2016_support_meiko"
+        ]
+      },
+      "2021": {
+        "TOP": [
+          "legacy_edg_2021_top_flandre"
+        ],
+        "JUNGLE": [
+          "legacy_edg_2021_jungle_jiejie"
+        ],
+        "MID": [
+          "legacy_edg_2021_mid_scout"
+        ],
+        "BOT": [
+          "legacy_edg_2021_bot_viper"
+        ],
+        "SUPPORT": [
+          "legacy_edg_2021_support_meiko"
+        ]
+      }
+    }
+  },
+  {
+    "id": "fpx",
+    "name": "FunPlus Phoenix",
+    "teamAlias": "Historic Club 19",
+    "region": "LPL",
+    "rosters": {
+      "2019": {
+        "TOP": [
+          "legacy_fpx_2019_top_gimgoon"
+        ],
+        "JUNGLE": [
+          "legacy_fpx_2019_jungle_tian"
+        ],
+        "MID": [
+          "legacy_fpx_2019_mid_doinb"
+        ],
+        "BOT": [
+          "legacy_fpx_2019_bot_lwx"
+        ],
+        "SUPPORT": [
+          "legacy_fpx_2019_support_crisp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "jdg",
+    "name": "JD Gaming",
+    "teamAlias": "Historic Club 20",
+    "region": "LPL",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_jdg_2020_top_zoom"
+        ],
+        "JUNGLE": [
+          "legacy_jdg_2020_jungle_kanavi"
+        ],
+        "MID": [
+          "legacy_jdg_2020_mid_yagao"
+        ],
+        "BOT": [
+          "legacy_jdg_2020_bot_loken"
+        ],
+        "SUPPORT": [
+          "legacy_jdg_2020_support_lvmao"
+        ]
+      },
+      "2023": {
+        "TOP": [
+          "legacy_jdg_2023_top_369"
+        ],
+        "JUNGLE": [
+          "legacy_jdg_2023_jungle_kanavi"
+        ],
+        "MID": [
+          "legacy_jdg_2023_mid_knight"
+        ],
+        "BOT": [
+          "legacy_jdg_2023_bot_ruler"
+        ],
+        "SUPPORT": [
+          "legacy_jdg_2023_support_missing"
+        ]
+      }
+    }
+  },
+  {
+    "id": "tes",
+    "name": "Top Esports",
+    "teamAlias": "Historic Club 21",
+    "region": "LPL",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_tes_2020_top_369"
+        ],
+        "JUNGLE": [
+          "legacy_tes_2020_jungle_karsa"
+        ],
+        "MID": [
+          "legacy_tes_2020_mid_knight"
+        ],
+        "BOT": [
+          "legacy_tes_2020_bot_jackeylove"
+        ],
+        "SUPPORT": [
+          "legacy_tes_2020_support_yuyanjia"
+        ]
+      }
+    }
+  },
+  {
+    "id": "suning",
+    "name": "Suning",
+    "teamAlias": "Historic Club 22",
+    "region": "LPL",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_suning_2020_top_bin"
+        ],
+        "JUNGLE": [
+          "legacy_suning_2020_jungle_sofm"
+        ],
+        "MID": [
+          "legacy_suning_2020_mid_angel"
+        ],
+        "BOT": [
+          "legacy_suning_2020_bot_huanfeng"
+        ],
+        "SUPPORT": [
+          "legacy_suning_2020_support_swordart"
+        ]
+      }
+    }
+  },
+  {
+    "id": "blg",
+    "name": "Bilibili Gaming",
+    "teamAlias": "Historic Club 23",
+    "region": "LPL",
+    "rosters": {
+      "2023": {
+        "TOP": [
+          "legacy_blg_2023_top_bin"
+        ],
+        "JUNGLE": [
+          "legacy_blg_2023_jungle_xun"
+        ],
+        "MID": [
+          "legacy_blg_2023_mid_yagao"
+        ],
+        "BOT": [
+          "legacy_blg_2023_bot_elk"
+        ],
+        "SUPPORT": [
+          "legacy_blg_2023_support_on"
+        ]
+      },
+      "2024": {
+        "TOP": [
+          "legacy_blg_2024_top_bin"
+        ],
+        "JUNGLE": [
+          "legacy_blg_2024_jungle_xun"
+        ],
+        "MID": [
+          "legacy_blg_2024_mid_knight"
+        ],
+        "BOT": [
+          "legacy_blg_2024_bot_elk"
+        ],
+        "SUPPORT": [
+          "legacy_blg_2024_support_on"
+        ]
+      }
+    }
+  },
+  {
+    "id": "wbg",
+    "name": "Weibo Gaming",
+    "teamAlias": "Historic Club 24",
+    "region": "LPL",
+    "rosters": {
+      "2023": {
+        "TOP": [
+          "legacy_wbg_2023_top_theshy"
+        ],
+        "JUNGLE": [
+          "legacy_wbg_2023_jungle_weiwei"
+        ],
+        "MID": [
+          "legacy_wbg_2023_mid_xiaohu"
+        ],
+        "BOT": [
+          "legacy_wbg_2023_bot_light"
+        ],
+        "SUPPORT": [
+          "legacy_wbg_2023_support_crisp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "world-elite",
+    "name": "World Elite",
+    "teamAlias": "Historic Club 25",
+    "region": "LPL",
+    "rosters": {
+      "2012": {
+        "TOP": [
+          "legacy_world-elite_2012_top_caomei"
+        ],
+        "JUNGLE": [
+          "legacy_world-elite_2012_jungle_clearlove"
+        ],
+        "MID": [
+          "legacy_world-elite_2012_mid_misaya"
+        ],
+        "BOT": [
+          "legacy_world-elite_2012_bot_weixiao"
+        ],
+        "SUPPORT": [
+          "legacy_world-elite_2012_support_fzzf"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_world-elite_2017_top_957"
+        ],
+        "JUNGLE": [
+          "legacy_world-elite_2017_jungle_condi"
+        ],
+        "MID": [
+          "legacy_world-elite_2017_mid_xiye"
+        ],
+        "BOT": [
+          "legacy_world-elite_2017_bot_mystic"
+        ],
+        "SUPPORT": [
+          "legacy_world-elite_2017_support_ben"
+        ]
+      }
+    }
+  },
+  {
+    "id": "omg",
+    "name": "OMG",
+    "teamAlias": "Historic Club 26",
+    "region": "LPL",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_omg_2014_top_gogoing"
+        ],
+        "JUNGLE": [
+          "legacy_omg_2014_jungle_loveling"
+        ],
+        "MID": [
+          "legacy_omg_2014_mid_cool"
+        ],
+        "BOT": [
+          "legacy_omg_2014_bot_san"
+        ],
+        "SUPPORT": [
+          "legacy_omg_2014_support_cloud"
+        ]
+      }
+    }
+  },
+  {
+    "id": "fnatic",
+    "name": "Fnatic",
+    "teamAlias": "Historic Club 27",
+    "region": "LEC",
+    "rosters": {
+      "2011": {
+        "TOP": [
+          "legacy_fnatic_2011_top_xpeke"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2011_jungle_cyanidefi"
+        ],
+        "MID": [
+          "legacy_fnatic_2011_mid_shushei"
+        ],
+        "BOT": [
+          "legacy_fnatic_2011_bot_lamiafinlandese"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2011_support_mellisan"
+        ]
+      },
+      "2013": {
+        "TOP": [
+          "legacy_fnatic_2013_top_soaz"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2013_jungle_cyanide"
+        ],
+        "MID": [
+          "legacy_fnatic_2013_mid_xpeke"
+        ],
+        "BOT": [
+          "legacy_fnatic_2013_bot_puszu"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2013_support_yellowstar"
+        ]
+      },
+      "2014": {
+        "TOP": [
+          "legacy_fnatic_2014_top_soaz"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2014_jungle_cyanide"
+        ],
+        "MID": [
+          "legacy_fnatic_2014_mid_xpeke"
+        ],
+        "BOT": [
+          "legacy_fnatic_2014_bot_rekkles"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2014_support_yellowstar"
+        ]
+      },
+      "2015": {
+        "TOP": [
+          "legacy_fnatic_2015_top_huni"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2015_jungle_reignover"
+        ],
+        "MID": [
+          "legacy_fnatic_2015_mid_febiven"
+        ],
+        "BOT": [
+          "legacy_fnatic_2015_bot_rekkles"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2015_support_yellowstar"
+        ]
+      },
+      "2018": {
+        "TOP": [
+          "legacy_fnatic_2018_top_bwipo"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2018_jungle_broxah"
+        ],
+        "MID": [
+          "legacy_fnatic_2018_mid_caps"
+        ],
+        "BOT": [
+          "legacy_fnatic_2018_bot_rekkles"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2018_support_hylissang"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_fnatic_2022_top_wunder"
+        ],
+        "JUNGLE": [
+          "legacy_fnatic_2022_jungle_razork"
+        ],
+        "MID": [
+          "legacy_fnatic_2022_mid_humanoid"
+        ],
+        "BOT": [
+          "legacy_fnatic_2022_bot_upset"
+        ],
+        "SUPPORT": [
+          "legacy_fnatic_2022_support_hylissang"
+        ]
+      }
+    }
+  },
+  {
+    "id": "g2",
+    "name": "G2 Esports",
+    "teamAlias": "Historic Club 28",
+    "region": "LEC",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_g2_2016_top_kikis"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2016_jungle_trick"
+        ],
+        "MID": [
+          "legacy_g2_2016_mid_perkz"
+        ],
+        "BOT": [
+          "legacy_g2_2016_bot_emperor"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2016_support_hybrid"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_g2_2017_top_expect"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2017_jungle_trick"
+        ],
+        "MID": [
+          "legacy_g2_2017_mid_perkz"
+        ],
+        "BOT": [
+          "legacy_g2_2017_bot_zven"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2017_support_mithy"
+        ]
+      },
+      "2018": {
+        "TOP": [
+          "legacy_g2_2018_top_wunder"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2018_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_g2_2018_mid_perkz"
+        ],
+        "BOT": [
+          "legacy_g2_2018_bot_hjarnan"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2018_support_wadid"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_g2_2019_top_wunder"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2019_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_g2_2019_mid_caps"
+        ],
+        "BOT": [
+          "legacy_g2_2019_bot_perkz"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2019_support_mikyx"
+        ]
+      },
+      "2020": {
+        "TOP": [
+          "legacy_g2_2020_top_wunder"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2020_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_g2_2020_mid_caps"
+        ],
+        "BOT": [
+          "legacy_g2_2020_bot_perkz"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2020_support_mikyx"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_g2_2022_top_brokenblade"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2022_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_g2_2022_mid_caps"
+        ],
+        "BOT": [
+          "legacy_g2_2022_bot_flakked"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2022_support_targamas"
+        ]
+      },
+      "2024": {
+        "TOP": [
+          "legacy_g2_2024_top_brokenblade"
+        ],
+        "JUNGLE": [
+          "legacy_g2_2024_jungle_yike"
+        ],
+        "MID": [
+          "legacy_g2_2024_mid_caps"
+        ],
+        "BOT": [
+          "legacy_g2_2024_bot_hanssama"
+        ],
+        "SUPPORT": [
+          "legacy_g2_2024_support_mikyx"
+        ]
+      }
+    }
+  },
+  {
+    "id": "origen",
+    "name": "Origen",
+    "teamAlias": "Historic Club 29",
+    "region": "LEC",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_origen_2015_top_soaz"
+        ],
+        "JUNGLE": [
+          "legacy_origen_2015_jungle_amazing"
+        ],
+        "MID": [
+          "legacy_origen_2015_mid_xpeke"
+        ],
+        "BOT": [
+          "legacy_origen_2015_bot_niels"
+        ],
+        "SUPPORT": [
+          "legacy_origen_2015_support_mithy"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_origen_2019_top_alphari"
+        ],
+        "JUNGLE": [
+          "legacy_origen_2019_jungle_kold"
+        ],
+        "MID": [
+          "legacy_origen_2019_mid_nukeduck"
+        ],
+        "BOT": [
+          "legacy_origen_2019_bot_patrik"
+        ],
+        "SUPPORT": [
+          "legacy_origen_2019_support_mithy"
+        ]
+      }
+    }
+  },
+  {
+    "id": "mad-lions",
+    "name": "MAD Lions",
+    "teamAlias": "Historic Club 30",
+    "region": "LEC",
+    "rosters": {
+      "2021": {
+        "TOP": [
+          "legacy_mad-lions_2021_top_armut"
+        ],
+        "JUNGLE": [
+          "legacy_mad-lions_2021_jungle_elyoya"
+        ],
+        "MID": [
+          "legacy_mad-lions_2021_mid_humanoid"
+        ],
+        "BOT": [
+          "legacy_mad-lions_2021_bot_carzzy"
+        ],
+        "SUPPORT": [
+          "legacy_mad-lions_2021_support_kaiser"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_mad-lions_2022_top_armut"
+        ],
+        "JUNGLE": [
+          "legacy_mad-lions_2022_jungle_elyoya"
+        ],
+        "MID": [
+          "legacy_mad-lions_2022_mid_nisqy"
+        ],
+        "BOT": [
+          "legacy_mad-lions_2022_bot_unforgiven"
+        ],
+        "SUPPORT": [
+          "legacy_mad-lions_2022_support_kaiser"
+        ]
+      }
+    }
+  },
+  {
+    "id": "rogue",
+    "name": "Rogue",
+    "teamAlias": "Historic Club 31",
+    "region": "LEC",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_rogue_2020_top_finn"
+        ],
+        "JUNGLE": [
+          "legacy_rogue_2020_jungle_inspired"
+        ],
+        "MID": [
+          "legacy_rogue_2020_mid_larssen"
+        ],
+        "BOT": [
+          "legacy_rogue_2020_bot_hanssama"
+        ],
+        "SUPPORT": [
+          "legacy_rogue_2020_support_vander"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_rogue_2022_top_odoamne"
+        ],
+        "JUNGLE": [
+          "legacy_rogue_2022_jungle_malrang"
+        ],
+        "MID": [
+          "legacy_rogue_2022_mid_larssen"
+        ],
+        "BOT": [
+          "legacy_rogue_2022_bot_comp"
+        ],
+        "SUPPORT": [
+          "legacy_rogue_2022_support_trymbi"
+        ]
+      }
+    }
+  },
+  {
+    "id": "misfits",
+    "name": "Misfits Gaming",
+    "teamAlias": "Historic Club 32",
+    "region": "LEC",
+    "rosters": {
+      "2017": {
+        "TOP": [
+          "legacy_misfits_2017_top_alphari"
+        ],
+        "JUNGLE": [
+          "legacy_misfits_2017_jungle_maxlore"
+        ],
+        "MID": [
+          "legacy_misfits_2017_mid_powerofevil"
+        ],
+        "BOT": [
+          "legacy_misfits_2017_bot_hanssama"
+        ],
+        "SUPPORT": [
+          "legacy_misfits_2017_support_ignar"
+        ]
+      }
+    }
+  },
+  {
+    "id": "tsm",
+    "name": "Team SoloMid",
+    "teamAlias": "Historic Club 33",
+    "region": "LCS",
+    "rosters": {
+      "2011": {
+        "TOP": [
+          "legacy_tsm_2011_top_dyrus"
+        ],
+        "JUNGLE": [
+          "legacy_tsm_2011_jungle_theoddone"
+        ],
+        "MID": [
+          "legacy_tsm_2011_mid_reginald"
+        ],
+        "BOT": [
+          "legacy_tsm_2011_bot_chaox"
+        ],
+        "SUPPORT": [
+          "legacy_tsm_2011_support_xpecial"
+        ]
+      },
+      "2014": {
+        "TOP": [
+          "legacy_tsm_2014_top_dyrus"
+        ],
+        "JUNGLE": [
+          "legacy_tsm_2014_jungle_amazing"
+        ],
+        "MID": [
+          "legacy_tsm_2014_mid_bjergsen"
+        ],
+        "BOT": [
+          "legacy_tsm_2014_bot_wildturtle"
+        ],
+        "SUPPORT": [
+          "legacy_tsm_2014_support_lustboy"
+        ]
+      },
+      "2016": {
+        "TOP": [
+          "legacy_tsm_2016_top_hauntzer"
+        ],
+        "JUNGLE": [
+          "legacy_tsm_2016_jungle_svenskeren"
+        ],
+        "MID": [
+          "legacy_tsm_2016_mid_bjergsen"
+        ],
+        "BOT": [
+          "legacy_tsm_2016_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_tsm_2016_support_biofrost"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_tsm_2017_top_hauntzer"
+        ],
+        "JUNGLE": [
+          "legacy_tsm_2017_jungle_svenskeren"
+        ],
+        "MID": [
+          "legacy_tsm_2017_mid_bjergsen"
+        ],
+        "BOT": [
+          "legacy_tsm_2017_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_tsm_2017_support_biofrost"
+        ]
+      },
+      "2020": {
+        "TOP": [
+          "legacy_tsm_2020_top_brokenblade"
+        ],
+        "JUNGLE": [
+          "legacy_tsm_2020_jungle_spica"
+        ],
+        "MID": [
+          "legacy_tsm_2020_mid_bjergsen"
+        ],
+        "BOT": [
+          "legacy_tsm_2020_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_tsm_2020_support_biofrost"
+        ]
+      }
+    }
+  },
+  {
+    "id": "cloud9",
+    "name": "Cloud9",
+    "teamAlias": "Historic Club 34",
+    "region": "LCS",
+    "rosters": {
+      "2013": {
+        "TOP": [
+          "legacy_cloud9_2013_top_balls"
+        ],
+        "JUNGLE": [
+          "legacy_cloud9_2013_jungle_meteos"
+        ],
+        "MID": [
+          "legacy_cloud9_2013_mid_hai"
+        ],
+        "BOT": [
+          "legacy_cloud9_2013_bot_sneaky"
+        ],
+        "SUPPORT": [
+          "legacy_cloud9_2013_support_lemonnation"
+        ]
+      },
+      "2018": {
+        "TOP": [
+          "legacy_cloud9_2018_top_licorice"
+        ],
+        "JUNGLE": [
+          "legacy_cloud9_2018_jungle_svenskeren"
+        ],
+        "MID": [
+          "legacy_cloud9_2018_mid_jensen"
+        ],
+        "BOT": [
+          "legacy_cloud9_2018_bot_sneaky"
+        ],
+        "SUPPORT": [
+          "legacy_cloud9_2018_support_zeyzal"
+        ]
+      },
+      "2020": {
+        "TOP": [
+          "legacy_cloud9_2020_top_licorice"
+        ],
+        "JUNGLE": [
+          "legacy_cloud9_2020_jungle_blaber"
+        ],
+        "MID": [
+          "legacy_cloud9_2020_mid_nisqy"
+        ],
+        "BOT": [
+          "legacy_cloud9_2020_bot_zven"
+        ],
+        "SUPPORT": [
+          "legacy_cloud9_2020_support_vulcan"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_cloud9_2022_top_fudge"
+        ],
+        "JUNGLE": [
+          "legacy_cloud9_2022_jungle_blaber"
+        ],
+        "MID": [
+          "legacy_cloud9_2022_mid_jensen"
+        ],
+        "BOT": [
+          "legacy_cloud9_2022_bot_berserker"
+        ],
+        "SUPPORT": [
+          "legacy_cloud9_2022_support_zven"
+        ]
+      }
+    }
+  },
+  {
+    "id": "clg",
+    "name": "Counter Logic Gaming",
+    "teamAlias": "Historic Club 35",
+    "region": "LCS",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_clg_2015_top_zionspartan"
+        ],
+        "JUNGLE": [
+          "legacy_clg_2015_jungle_xmithie"
+        ],
+        "MID": [
+          "legacy_clg_2015_mid_pobelter"
+        ],
+        "BOT": [
+          "legacy_clg_2015_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_clg_2015_support_aphromoo"
+        ]
+      },
+      "2016": {
+        "TOP": [
+          "legacy_clg_2016_top_darshan"
+        ],
+        "JUNGLE": [
+          "legacy_clg_2016_jungle_xmithie"
+        ],
+        "MID": [
+          "legacy_clg_2016_mid_huhi"
+        ],
+        "BOT": [
+          "legacy_clg_2016_bot_stixxay"
+        ],
+        "SUPPORT": [
+          "legacy_clg_2016_support_aphromoo"
+        ]
+      }
+    }
+  },
+  {
+    "id": "team-liquid",
+    "name": "Team Liquid",
+    "teamAlias": "Historic Club 36",
+    "region": "LCS",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_team-liquid_2018_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_team-liquid_2018_jungle_xmithie"
+        ],
+        "MID": [
+          "legacy_team-liquid_2018_mid_pobelter"
+        ],
+        "BOT": [
+          "legacy_team-liquid_2018_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_team-liquid_2018_support_olleh"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_team-liquid_2019_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_team-liquid_2019_jungle_xmithie"
+        ],
+        "MID": [
+          "legacy_team-liquid_2019_mid_jensen"
+        ],
+        "BOT": [
+          "legacy_team-liquid_2019_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_team-liquid_2019_support_corejj"
+        ]
+      }
+    }
+  },
+  {
+    "id": "evil-geniuses",
+    "name": "Evil Geniuses",
+    "teamAlias": "Historic Club 37",
+    "region": "LCS",
+    "rosters": {
+      "2022": {
+        "TOP": [
+          "legacy_evil-geniuses_2022_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_evil-geniuses_2022_jungle_inspired"
+        ],
+        "MID": [
+          "legacy_evil-geniuses_2022_mid_jojopyun"
+        ],
+        "BOT": [
+          "legacy_evil-geniuses_2022_bot_danny"
+        ],
+        "SUPPORT": [
+          "legacy_evil-geniuses_2022_support_vulcan"
+        ]
+      }
+    }
+  },
+  {
+    "id": "100-thieves",
+    "name": "100 Thieves",
+    "teamAlias": "Historic Club 38",
+    "region": "LCS",
+    "rosters": {
+      "2021": {
+        "TOP": [
+          "legacy_100-thieves_2021_top_ssumday"
+        ],
+        "JUNGLE": [
+          "legacy_100-thieves_2021_jungle_closer"
+        ],
+        "MID": [
+          "legacy_100-thieves_2021_mid_abbedagge"
+        ],
+        "BOT": [
+          "legacy_100-thieves_2021_bot_fbi"
+        ],
+        "SUPPORT": [
+          "legacy_100-thieves_2021_support_huhi"
+        ]
+      },
+      "2023": {
+        "TOP": [
+          "legacy_100-thieves_2023_top_tenacity"
+        ],
+        "JUNGLE": [
+          "legacy_100-thieves_2023_jungle_closer"
+        ],
+        "MID": [
+          "legacy_100-thieves_2023_mid_quid"
+        ],
+        "BOT": [
+          "legacy_100-thieves_2023_bot_doublelift"
+        ],
+        "SUPPORT": [
+          "legacy_100-thieves_2023_support_busio"
+        ]
+      }
+    }
+  },
+  {
+    "id": "team-dignitas",
+    "name": "Team Dignitas",
+    "teamAlias": "Historic Club 39",
+    "region": "LCS",
+    "rosters": {
+      "2013": {
+        "TOP": [
+          "legacy_team-dignitas_2013_top_cruzer"
+        ],
+        "JUNGLE": [
+          "legacy_team-dignitas_2013_jungle_crumbz"
+        ],
+        "MID": [
+          "legacy_team-dignitas_2013_mid_scarra"
+        ],
+        "BOT": [
+          "legacy_team-dignitas_2013_bot_imaqtpie"
+        ],
+        "SUPPORT": [
+          "legacy_team-dignitas_2013_support_kiwikid"
+        ]
+      }
+    }
+  },
+  {
+    "id": "team-curse",
+    "name": "Team Curse",
+    "teamAlias": "Historic Club 40",
+    "region": "LCS",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_team-curse_2014_top_quas"
+        ],
+        "JUNGLE": [
+          "legacy_team-curse_2014_jungle_iwilldominate"
+        ],
+        "MID": [
+          "legacy_team-curse_2014_mid_voyboy"
+        ],
+        "BOT": [
+          "legacy_team-curse_2014_bot_cop"
+        ],
+        "SUPPORT": [
+          "legacy_team-curse_2014_support_bunnyfufuu"
+        ]
+      }
+    }
+  },
+  {
+    "id": "team-impulse",
+    "name": "Team Impulse",
+    "teamAlias": "Historic Club 41",
+    "region": "LCS",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_team-impulse_2015_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_team-impulse_2015_jungle_rush"
+        ],
+        "MID": [
+          "legacy_team-impulse_2015_mid_xiaoweixiao"
+        ],
+        "BOT": [
+          "legacy_team-impulse_2015_bot_apollo"
+        ],
+        "SUPPORT": [
+          "legacy_team-impulse_2015_support_adrian"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gravity-gaming",
+    "name": "Gravity Gaming",
+    "teamAlias": "Historic Club 42",
+    "region": "LCS",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_gravity-gaming_2015_top_hauntzer"
+        ],
+        "JUNGLE": [
+          "legacy_gravity-gaming_2015_jungle_move"
+        ],
+        "MID": [
+          "legacy_gravity-gaming_2015_mid_keane"
+        ],
+        "BOT": [
+          "legacy_gravity-gaming_2015_bot_cop"
+        ],
+        "SUPPORT": [
+          "legacy_gravity-gaming_2015_support_bunnyfufuu"
+        ]
+      }
+    }
+  },
+  {
+    "id": "immortals",
+    "name": "Immortals",
+    "teamAlias": "Historic Club 43",
+    "region": "LCS",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_immortals_2016_top_huni"
+        ],
+        "JUNGLE": [
+          "legacy_immortals_2016_jungle_reignover"
+        ],
+        "MID": [
+          "legacy_immortals_2016_mid_pobelter"
+        ],
+        "BOT": [
+          "legacy_immortals_2016_bot_wildturtle"
+        ],
+        "SUPPORT": [
+          "legacy_immortals_2016_support_adrian"
+        ]
+      },
+      "2017": {
+        "TOP": [
+          "legacy_immortals_2017_top_flame"
+        ],
+        "JUNGLE": [
+          "legacy_immortals_2017_jungle_dardoch"
+        ],
+        "MID": [
+          "legacy_immortals_2017_mid_pobelter"
+        ],
+        "BOT": [
+          "legacy_immortals_2017_bot_codysun"
+        ],
+        "SUPPORT": [
+          "legacy_immortals_2017_support_olleh"
+        ]
+      }
+    }
+  },
+  {
+    "id": "nrg",
+    "name": "NRG Esports",
+    "teamAlias": "Historic Club 44",
+    "region": "LCS",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_nrg_2016_top_impact"
+        ],
+        "JUNGLE": [
+          "legacy_nrg_2016_jungle_santorin"
+        ],
+        "MID": [
+          "legacy_nrg_2016_mid_gbm"
+        ],
+        "BOT": [
+          "legacy_nrg_2016_bot_altec"
+        ],
+        "SUPPORT": [
+          "legacy_nrg_2016_support_konkwon"
+        ]
+      },
+      "2023": {
+        "TOP": [
+          "legacy_nrg_2023_top_dhokla"
+        ],
+        "JUNGLE": [
+          "legacy_nrg_2023_jungle_contractz"
+        ],
+        "MID": [
+          "legacy_nrg_2023_mid_palafox"
+        ],
+        "BOT": [
+          "legacy_nrg_2023_bot_fbi"
+        ],
+        "SUPPORT": [
+          "legacy_nrg_2023_support_ignar"
+        ]
+      }
+    }
+  },
+  {
+    "id": "phoenix1",
+    "name": "Phoenix1",
+    "teamAlias": "Historic Club 45",
+    "region": "LCS",
+    "rosters": {
+      "2017": {
+        "TOP": [
+          "legacy_phoenix1_2017_top_zig"
+        ],
+        "JUNGLE": [
+          "legacy_phoenix1_2017_jungle_mikeyeung"
+        ],
+        "MID": [
+          "legacy_phoenix1_2017_mid_ryu"
+        ],
+        "BOT": [
+          "legacy_phoenix1_2017_bot_arrow"
+        ],
+        "SUPPORT": [
+          "legacy_phoenix1_2017_support_xpecial"
+        ]
+      }
+    }
+  },
+  {
+    "id": "flyquest",
+    "name": "FlyQuest",
+    "teamAlias": "Historic Club 46",
+    "region": "LCS",
+    "rosters": {
+      "2017": {
+        "TOP": [
+          "legacy_flyquest_2017_top_balls"
+        ],
+        "JUNGLE": [
+          "legacy_flyquest_2017_jungle_moon"
+        ],
+        "MID": [
+          "legacy_flyquest_2017_mid_hai"
+        ],
+        "BOT": [
+          "legacy_flyquest_2017_bot_altec"
+        ],
+        "SUPPORT": [
+          "legacy_flyquest_2017_support_lemonnation"
+        ]
+      },
+      "2020": {
+        "TOP": [
+          "legacy_flyquest_2020_top_solo"
+        ],
+        "JUNGLE": [
+          "legacy_flyquest_2020_jungle_santorin"
+        ],
+        "MID": [
+          "legacy_flyquest_2020_mid_powerofevil"
+        ],
+        "BOT": [
+          "legacy_flyquest_2020_bot_wildturtle"
+        ],
+        "SUPPORT": [
+          "legacy_flyquest_2020_support_ignar"
+        ]
+      }
+    }
+  },
+  {
+    "id": "echo-fox",
+    "name": "Echo Fox",
+    "teamAlias": "Historic Club 47",
+    "region": "LCS",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_echo-fox_2018_top_huni"
+        ],
+        "JUNGLE": [
+          "legacy_echo-fox_2018_jungle_dardoch"
+        ],
+        "MID": [
+          "legacy_echo-fox_2018_mid_fenix"
+        ],
+        "BOT": [
+          "legacy_echo-fox_2018_bot_altec"
+        ],
+        "SUPPORT": [
+          "legacy_echo-fox_2018_support_adrian"
+        ]
+      }
+    }
+  },
+  {
+    "id": "clutch-gaming",
+    "name": "Clutch Gaming",
+    "teamAlias": "Historic Club 48",
+    "region": "LCS",
+    "rosters": {
+      "2019": {
+        "TOP": [
+          "legacy_clutch-gaming_2019_top_huni"
+        ],
+        "JUNGLE": [
+          "legacy_clutch-gaming_2019_jungle_lira"
+        ],
+        "MID": [
+          "legacy_clutch-gaming_2019_mid_damonte"
+        ],
+        "BOT": [
+          "legacy_clutch-gaming_2019_bot_codysun"
+        ],
+        "SUPPORT": [
+          "legacy_clutch-gaming_2019_support_vulcan"
+        ]
+      }
+    }
+  },
+  {
+    "id": "optic-gaming",
+    "name": "OpTic Gaming",
+    "teamAlias": "Historic Club 49",
+    "region": "LCS",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_optic-gaming_2018_top_ssumday"
+        ],
+        "JUNGLE": [
+          "legacy_optic-gaming_2018_jungle_akaadian"
+        ],
+        "MID": [
+          "legacy_optic-gaming_2018_mid_powerofevil"
+        ],
+        "BOT": [
+          "legacy_optic-gaming_2018_bot_arrow"
+        ],
+        "SUPPORT": [
+          "legacy_optic-gaming_2018_support_big"
+        ]
+      }
+    }
+  },
+  {
+    "id": "golden-guardians",
+    "name": "Golden Guardians",
+    "teamAlias": "Historic Club 50",
+    "region": "LCS",
+    "rosters": {
+      "2023": {
+        "TOP": [
+          "legacy_golden-guardians_2023_top_licorice"
+        ],
+        "JUNGLE": [
+          "legacy_golden-guardians_2023_jungle_river"
+        ],
+        "MID": [
+          "legacy_golden-guardians_2023_mid_gori"
+        ],
+        "BOT": [
+          "legacy_golden-guardians_2023_bot_stixxay"
+        ],
+        "SUPPORT": [
+          "legacy_golden-guardians_2023_support_huhi"
+        ]
+      }
+    }
+  },
+  {
+    "id": "moscow-five",
+    "name": "Moscow Five",
+    "teamAlias": "Historic Club 51",
+    "region": "LEC",
+    "rosters": {
+      "2012": {
+        "TOP": [
+          "legacy_moscow-five_2012_top_darien"
+        ],
+        "JUNGLE": [
+          "legacy_moscow-five_2012_jungle_diamondprox"
+        ],
+        "MID": [
+          "legacy_moscow-five_2012_mid_alexich"
+        ],
+        "BOT": [
+          "legacy_moscow-five_2012_bot_genja"
+        ],
+        "SUPPORT": [
+          "legacy_moscow-five_2012_support_gosupepper"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gambit",
+    "name": "Gambit Gaming",
+    "teamAlias": "Historic Club 52",
+    "region": "LEC",
+    "rosters": {
+      "2013": {
+        "TOP": [
+          "legacy_gambit_2013_top_darien"
+        ],
+        "JUNGLE": [
+          "legacy_gambit_2013_jungle_diamondprox"
+        ],
+        "MID": [
+          "legacy_gambit_2013_mid_alexich"
+        ],
+        "BOT": [
+          "legacy_gambit_2013_bot_genja"
+        ],
+        "SUPPORT": [
+          "legacy_gambit_2013_support_edward"
+        ]
+      }
+    }
+  },
+  {
+    "id": "alliance",
+    "name": "Alliance",
+    "teamAlias": "Historic Club 53",
+    "region": "LEC",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_alliance_2014_top_wickd"
+        ],
+        "JUNGLE": [
+          "legacy_alliance_2014_jungle_shook"
+        ],
+        "MID": [
+          "legacy_alliance_2014_mid_froggen"
+        ],
+        "BOT": [
+          "legacy_alliance_2014_bot_tabzz"
+        ],
+        "SUPPORT": [
+          "legacy_alliance_2014_support_nyph"
+        ]
+      }
+    }
+  },
+  {
+    "id": "sk-gaming",
+    "name": "SK Gaming",
+    "teamAlias": "Historic Club 54",
+    "region": "LEC",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_sk-gaming_2014_top_fredy122"
+        ],
+        "JUNGLE": [
+          "legacy_sk-gaming_2014_jungle_svenskeren"
+        ],
+        "MID": [
+          "legacy_sk-gaming_2014_mid_jesiz"
+        ],
+        "BOT": [
+          "legacy_sk-gaming_2014_bot_candypanda"
+        ],
+        "SUPPORT": [
+          "legacy_sk-gaming_2014_support_nrated"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_sk-gaming_2019_top_werlyb"
+        ],
+        "JUNGLE": [
+          "legacy_sk-gaming_2019_jungle_selfmade"
+        ],
+        "MID": [
+          "legacy_sk-gaming_2019_mid_pirean"
+        ],
+        "BOT": [
+          "legacy_sk-gaming_2019_bot_crownshot"
+        ],
+        "SUPPORT": [
+          "legacy_sk-gaming_2019_support_dreams"
+        ]
+      }
+    }
+  },
+  {
+    "id": "roccat",
+    "name": "Team ROCCAT",
+    "teamAlias": "Historic Club 55",
+    "region": "LEC",
+    "rosters": {
+      "2014": {
+        "TOP": [
+          "legacy_roccat_2014_top_xaxus"
+        ],
+        "JUNGLE": [
+          "legacy_roccat_2014_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_roccat_2014_mid_overpow"
+        ],
+        "BOT": [
+          "legacy_roccat_2014_bot_woolite"
+        ],
+        "SUPPORT": [
+          "legacy_roccat_2014_support_vander"
+        ]
+      }
+    }
+  },
+  {
+    "id": "uol",
+    "name": "Unicorns of Love",
+    "teamAlias": "Historic Club 56",
+    "region": "LEC",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_uol_2015_top_vizicsacsi"
+        ],
+        "JUNGLE": [
+          "legacy_uol_2015_jungle_kikis"
+        ],
+        "MID": [
+          "legacy_uol_2015_mid_powerofevil"
+        ],
+        "BOT": [
+          "legacy_uol_2015_bot_vardags"
+        ],
+        "SUPPORT": [
+          "legacy_uol_2015_support_hylissang"
+        ]
+      },
+      "2016": {
+        "TOP": [
+          "legacy_uol_2016_top_vizicsacsi"
+        ],
+        "JUNGLE": [
+          "legacy_uol_2016_jungle_move"
+        ],
+        "MID": [
+          "legacy_uol_2016_mid_exileh"
+        ],
+        "BOT": [
+          "legacy_uol_2016_bot_pilot"
+        ],
+        "SUPPORT": [
+          "legacy_uol_2016_support_hylissang"
+        ]
+      }
+    }
+  },
+  {
+    "id": "h2k",
+    "name": "H2k-Gaming",
+    "teamAlias": "Historic Club 57",
+    "region": "LEC",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_h2k_2016_top_odoamne"
+        ],
+        "JUNGLE": [
+          "legacy_h2k_2016_jungle_jankos"
+        ],
+        "MID": [
+          "legacy_h2k_2016_mid_ryu"
+        ],
+        "BOT": [
+          "legacy_h2k_2016_bot_forg1ven"
+        ],
+        "SUPPORT": [
+          "legacy_h2k_2016_support_vander"
+        ]
+      }
+    }
+  },
+  {
+    "id": "splyce",
+    "name": "Splyce",
+    "teamAlias": "Historic Club 58",
+    "region": "LEC",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_splyce_2016_top_wunder"
+        ],
+        "JUNGLE": [
+          "legacy_splyce_2016_jungle_trashy"
+        ],
+        "MID": [
+          "legacy_splyce_2016_mid_sencux"
+        ],
+        "BOT": [
+          "legacy_splyce_2016_bot_kobbe"
+        ],
+        "SUPPORT": [
+          "legacy_splyce_2016_support_mikyx"
+        ]
+      },
+      "2019": {
+        "TOP": [
+          "legacy_splyce_2019_top_vizicsacsi"
+        ],
+        "JUNGLE": [
+          "legacy_splyce_2019_jungle_xerxe"
+        ],
+        "MID": [
+          "legacy_splyce_2019_mid_humanoid"
+        ],
+        "BOT": [
+          "legacy_splyce_2019_bot_kobbe"
+        ],
+        "SUPPORT": [
+          "legacy_splyce_2019_support_norskeren"
+        ]
+      }
+    }
+  },
+  {
+    "id": "vitality",
+    "name": "Team Vitality",
+    "teamAlias": "Historic Club 59",
+    "region": "LEC",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_vitality_2018_top_cabochard"
+        ],
+        "JUNGLE": [
+          "legacy_vitality_2018_jungle_kikis",
+          "legacy_vitality_2018_jungle_gilius"
+        ],
+        "MID": [
+          "legacy_vitality_2018_mid_jiizuke"
+        ],
+        "BOT": [
+          "legacy_vitality_2018_bot_attila"
+        ],
+        "SUPPORT": [
+          "legacy_vitality_2018_support_jactroll"
+        ]
+      },
+      "2022": {
+        "TOP": [
+          "legacy_vitality_2022_top_alphari"
+        ],
+        "JUNGLE": [
+          "legacy_vitality_2022_jungle_selfmade"
+        ],
+        "MID": [
+          "legacy_vitality_2022_mid_perkz"
+        ],
+        "BOT": [
+          "legacy_vitality_2022_bot_carzzy"
+        ],
+        "SUPPORT": [
+          "legacy_vitality_2022_support_labrov"
+        ]
+      }
+    }
+  },
+  {
+    "id": "schalke-04",
+    "name": "FC Schalke 04",
+    "teamAlias": "Historic Club 60",
+    "region": "LEC",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_schalke-04_2020_top_odoamne"
+        ],
+        "JUNGLE": [
+          "legacy_schalke-04_2020_jungle_gilius"
+        ],
+        "MID": [
+          "legacy_schalke-04_2020_mid_abbedagge"
+        ],
+        "BOT": [
+          "legacy_schalke-04_2020_bot_neon"
+        ],
+        "SUPPORT": [
+          "legacy_schalke-04_2020_support_dreams"
+        ]
+      }
+    }
+  },
+  {
+    "id": "tpa",
+    "name": "Taipei Assassins",
+    "teamAlias": "Historic Club 61",
+    "region": "LMS",
+    "rosters": {
+      "2012": {
+        "TOP": [
+          "legacy_tpa_2012_top_stanley"
+        ],
+        "JUNGLE": [
+          "legacy_tpa_2012_jungle_lilballz"
+        ],
+        "MID": [
+          "legacy_tpa_2012_mid_toyz"
+        ],
+        "BOT": [
+          "legacy_tpa_2012_bot_bebe"
+        ],
+        "SUPPORT": [
+          "legacy_tpa_2012_support_mistake"
+        ]
+      }
+    }
+  },
+  {
+    "id": "flash-wolves",
+    "name": "Flash Wolves",
+    "teamAlias": "Historic Club 62",
+    "region": "LMS",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_flash-wolves_2016_top_mmd"
+        ],
+        "JUNGLE": [
+          "legacy_flash-wolves_2016_jungle_karsa"
+        ],
+        "MID": [
+          "legacy_flash-wolves_2016_mid_maple"
+        ],
+        "BOT": [
+          "legacy_flash-wolves_2016_bot_nl"
+        ],
+        "SUPPORT": [
+          "legacy_flash-wolves_2016_support_swordart"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ahq",
+    "name": "ahq e-Sports Club",
+    "teamAlias": "Historic Club 63",
+    "region": "LMS",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_ahq_2015_top_ziv"
+        ],
+        "JUNGLE": [
+          "legacy_ahq_2015_jungle_mountain"
+        ],
+        "MID": [
+          "legacy_ahq_2015_mid_westdoor"
+        ],
+        "BOT": [
+          "legacy_ahq_2015_bot_an"
+        ],
+        "SUPPORT": [
+          "legacy_ahq_2015_support_albis"
+        ]
+      }
+    }
+  },
+  {
+    "id": "psg-talon",
+    "name": "PSG Talon",
+    "teamAlias": "Historic Club 64",
+    "region": "PCS",
+    "rosters": {
+      "2021": {
+        "TOP": [
+          "legacy_psg-talon_2021_top_hanabi"
+        ],
+        "JUNGLE": [
+          "legacy_psg-talon_2021_jungle_river"
+        ],
+        "MID": [
+          "legacy_psg-talon_2021_mid_maple"
+        ],
+        "BOT": [
+          "legacy_psg-talon_2021_bot_unified"
+        ],
+        "SUPPORT": [
+          "legacy_psg-talon_2021_support_kaiwing"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gam-esports",
+    "name": "GAM Esports",
+    "teamAlias": "Historic Club 65",
+    "region": "VCS",
+    "rosters": {
+      "2017": {
+        "TOP": [
+          "legacy_gam-esports_2017_top_archie"
+        ],
+        "JUNGLE": [
+          "legacy_gam-esports_2017_jungle_levi"
+        ],
+        "MID": [
+          "legacy_gam-esports_2017_mid_optimus"
+        ],
+        "BOT": [
+          "legacy_gam-esports_2017_bot_slay"
+        ],
+        "SUPPORT": [
+          "legacy_gam-esports_2017_support_palette"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pain-gaming",
+    "name": "paiN Gaming",
+    "teamAlias": "Historic Club 66",
+    "region": "CBLOL",
+    "rosters": {
+      "2015": {
+        "TOP": [
+          "legacy_pain-gaming_2015_top_mylon"
+        ],
+        "JUNGLE": [
+          "legacy_pain-gaming_2015_jungle_sirt"
+        ],
+        "MID": [
+          "legacy_pain-gaming_2015_mid_kami"
+        ],
+        "BOT": [
+          "legacy_pain-gaming_2015_bot_brtt"
+        ],
+        "SUPPORT": [
+          "legacy_pain-gaming_2015_support_dioud"
+        ]
+      }
+    }
+  },
+  {
+    "id": "intz",
+    "name": "INTZ e-Sports",
+    "teamAlias": "Historic Club 67",
+    "region": "CBLOL",
+    "rosters": {
+      "2016": {
+        "TOP": [
+          "legacy_intz_2016_top_yang"
+        ],
+        "JUNGLE": [
+          "legacy_intz_2016_jungle_revolta"
+        ],
+        "MID": [
+          "legacy_intz_2016_mid_tockers"
+        ],
+        "BOT": [
+          "legacy_intz_2016_bot_micao"
+        ],
+        "SUPPORT": [
+          "legacy_intz_2016_support_jockster"
+        ]
+      }
+    }
+  },
+  {
+    "id": "loud",
+    "name": "LOUD",
+    "teamAlias": "Historic Club 68",
+    "region": "CBLOL",
+    "rosters": {
+      "2022": {
+        "TOP": [
+          "legacy_loud_2022_top_robo"
+        ],
+        "JUNGLE": [
+          "legacy_loud_2022_jungle_croc"
+        ],
+        "MID": [
+          "legacy_loud_2022_mid_tinowns"
+        ],
+        "BOT": [
+          "legacy_loud_2022_bot_brance"
+        ],
+        "SUPPORT": [
+          "legacy_loud_2022_support_ceos"
+        ]
+      }
+    }
+  },
+  {
+    "id": "dfm",
+    "name": "DetonatioN FocusMe",
+    "teamAlias": "Historic Club 69",
+    "region": "LJL",
+    "rosters": {
+      "2021": {
+        "TOP": [
+          "legacy_dfm_2021_top_evi"
+        ],
+        "JUNGLE": [
+          "legacy_dfm_2021_jungle_steal"
+        ],
+        "MID": [
+          "legacy_dfm_2021_mid_aria"
+        ],
+        "BOT": [
+          "legacy_dfm_2021_bot_yutapon"
+        ],
+        "SUPPORT": [
+          "legacy_dfm_2021_support_gaeng"
+        ]
+      }
+    }
+  },
+  {
+    "id": "supermassive",
+    "name": "SuperMassive",
+    "teamAlias": "Historic Club 70",
+    "region": "TCL",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_supermassive_2018_top_fabfabulous"
+        ],
+        "JUNGLE": [
+          "legacy_supermassive_2018_jungle_stomaged"
+        ],
+        "MID": [
+          "legacy_supermassive_2018_mid_gbm"
+        ],
+        "BOT": [
+          "legacy_supermassive_2018_bot_zeitnot"
+        ],
+        "SUPPORT": [
+          "legacy_supermassive_2018_support_snowflower"
+        ]
+      }
+    }
+  },
+  {
+    "id": "fenerbahce",
+    "name": "1907 Fenerbahçe",
+    "teamAlias": "Historic Club 71",
+    "region": "TCL",
+    "rosters": {
+      "2018": {
+        "TOP": [
+          "legacy_fenerbahce_2018_top_thaldrin"
+        ],
+        "JUNGLE": [
+          "legacy_fenerbahce_2018_jungle_bolulu"
+        ],
+        "MID": [
+          "legacy_fenerbahce_2018_mid_frozen"
+        ],
+        "BOT": [
+          "legacy_fenerbahce_2018_bot_padden"
+        ],
+        "SUPPORT": [
+          "legacy_fenerbahce_2018_support_japone"
+        ]
+      }
+    }
+  },
+  {
+    "id": "rainbow7",
+    "name": "Rainbow7",
+    "teamAlias": "Historic Club 72",
+    "region": "LLA",
+    "rosters": {
+      "2020": {
+        "TOP": [
+          "legacy_rainbow7_2020_top_acce"
+        ],
+        "JUNGLE": [
+          "legacy_rainbow7_2020_jungle_josedeodo"
+        ],
+        "MID": [
+          "legacy_rainbow7_2020_mid_mireu"
+        ],
+        "BOT": [
+          "legacy_rainbow7_2020_bot_whitelotus"
+        ],
+        "SUPPORT": [
+          "legacy_rainbow7_2020_support_ssol"
+        ]
+      }
+    }
+  },
+  {
+    "id": "uol-se",
+    "name": "Unicorns of Love SE",
+    "teamAlias": "Historic Club 73",
+    "region": "LCL",
+    "rosters": {
+      "2021": {
+        "TOP": [
+          "legacy_uol-se_2021_top_boss"
+        ],
+        "JUNGLE": [
+          "legacy_uol-se_2021_jungle_ahahacik"
+        ],
+        "MID": [
+          "legacy_uol-se_2021_mid_nomanz"
+        ],
+        "BOT": [
+          "legacy_uol-se_2021_bot_gadget"
+        ],
+        "SUPPORT": [
+          "legacy_uol-se_2021_support_santas"
+        ]
+      }
+    }
+  }
+]
