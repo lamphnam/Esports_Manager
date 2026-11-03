@@ -1,6 +1,6 @@
 import {spawnSync} from 'node:child_process';
 import {writeFileSync} from 'node:fs';
-const commands=[['install','--frozen-lockfile'],['run','typecheck'],['run','test'],['run','build'],['scripts/balance-sim.ts'],['scripts/import-golden-road.ts','--check'],['scripts/release-audit.ts']];
+const commands=[['install','--frozen-lockfile'],['run','typecheck'],['run','test'],['run','build'],['scripts/balance-sim.ts'],['scripts/progression-sim.ts'],['scripts/import-golden-road.ts','--check'],['scripts/release-audit.ts']];
 let report='',failed=false;
 for(const args of commands){
  const result=spawnSync(process.execPath,args,{encoding:'utf8',env:{...process.env,NO_COLOR:'1'},maxBuffer:16*1024*1024});

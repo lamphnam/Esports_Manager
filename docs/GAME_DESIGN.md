@@ -35,7 +35,7 @@ Tab trong `App.tsx`: Hub, Campaign, Lineup, Collection, Packs, Training, Transfe
 
 ## 3. Campaign
 
-**Thiết kế đích** là season-state-machine có nhánh (PRE_SEASON → DOMESTIC_SPLIT → LCP_STAGE → FIRST_STAND → … → WORLDS → OFF_SEASON), nơi thua ở cấp pro chuyển sang split/năm kế, không bao giờ xóa CLB hay thẻ. **Build hiện tại** là 12 chapter tuyến tính với first-clear guard; qualification theo split, chuyển split/năm sau pro loss và Rival Zero thích nghi **chưa nghiệm thu** **[Đích]**.
+**Thiết kế đích** là season-state-machine có nhánh (đã có vòng lặp mùa giải tuyến tính ở trên; nhánh và qualification theo split vẫn chưa) (PRE_SEASON → DOMESTIC_SPLIT → LCP_STAGE → FIRST_STAND → … → WORLDS → OFF_SEASON), nơi thua ở cấp pro chuyển sang split/năm kế, không bao giờ xóa CLB hay thẻ. **Build hiện tại** là 12 chapter tuyến tính với first-clear guard; qualification theo split, chuyển split/năm sau pro loss và Rival Zero thích nghi **chưa nghiệm thu** **[Đích]**.
 
 | # | Act | Chapter | Thể thức | Đối thủ | Thưởng first-clear |
 |---|---|---|---|---|---|
@@ -47,12 +47,14 @@ Tab trong `App.tsx`: Hub, Campaign, Lineup, Collection, Packs, Training, Transfe
 | 6 | 3 | Đại Chiến Thái Bình Dương (LCP) | BO5 | Đội Legacy từ VCS/PCS/LMS/LJL | 2200 cr, Champion, rep 400 |
 | 7 | 3 | First Stand Quốc Tế | BO5 | Đội Legacy (mọi khu vực) | 2500 cr, Champion, rep 500 |
 | 8 | 3 | Bậc Thầy Giữa Mùa (MSI) | BO5 | Đội Legacy (mọi khu vực) | 3000 cr, Champion, rep 600 |
-| 9 | 3 | Tấm Vé Cuối Cùng | BO5 | Đội Legacy từ VCS/PCS/LMS/LJL | 3500 cr, Champion, rep 750 |
+| 9 | 3 | Tấm Vé Cuối Cùng | BO5 | Đội Legacy (mọi khu vực) | 3500 cr, Champion, rep 750 |
 | 10 | 3 | Đối Đầu Cả Thế Giới | BO5 | Đội Legacy (mọi khu vực) | 4000 cr, Champion, rep 900 |
 | 11 | 3 | Bán Kết Sinh Tử | BO5 | Đội Legacy (mọi khu vực) | 5000 cr, 2 Champion, rep 1200 |
 | 12 | 3 | Khắc Tên Vào Lịch Sử | BO5 | Đội Legacy (mọi khu vực) | 10000 cr, 2 Champion, rep 2500 |
 
-- Ch1–5 là phạm vi **phải xong tốt**; OVR đối thủ 55/62/66/72/77 được hiệu chỉnh theo mục tiêu win-rate DEC-5 ([DECISIONS.md](DECISIONS.md)). Ch6–12 dùng `legacyOpponent()` ([legacyOpponents.ts](../src/data/legacyOpponents.ts)): mỗi chapter chọn tất định (seed `campaign-<id>-v1.1`) một đội-năm trong pool Legacy, archetype cũng theo seed; Ch6 và Ch9 chỉ lấy từ khu vực VCS/PCS/LMS/LJL. Dạng **knockout đơn hư cấu có nhãn**, không cần engine riêng; tên đội trong các seed của `campaignData.ts` bị ghi đè bởi đội này.
+- **Bracket mùa giải (DEC-15):** 12 chương được gom thành 7 giải để dễ nhìn (`COMPETITIONS` trong `src/data/season.ts`): Giải Sinh Viên (Ch1–2), Road to VCS (Ch3), VCS (Ch4–5), LCP (Ch6, Ch9), First Stand (Ch7), MSI (Ch8), Worlds (Ch10 Vòng bảng, Ch11 Bán kết, Ch12 Chung kết). **Mỗi vòng vẫn là một series của một chương**: bracket là cách hiển thị và đặt tên, chưa thêm trận mới.
+- **Qua mùa:** thắng Ch12 → màn "Vô địch thế giới" → bước sang mùa sau (năm +1, giữ đội hình/thẻ/ví, +1000 credits, bắt đầu lại từ Ch3 với đối thủ mạnh hơn). Chi tiết số liệu ở [ECONOMY.md](ECONOMY.md) §8.
+- Ch1–5 là phạm vi **phải xong tốt**; OVR đối thủ 55/62/66/72/77 được hiệu chỉnh theo mục tiêu win-rate DEC-5 ([DECISIONS.md](DECISIONS.md)). Ch6–12 dùng `legacyOpponent()` ([legacyOpponents.ts](../src/data/legacyOpponents.ts)): mỗi chapter có OVR mục tiêu tăng dần (80, 84, 86, 88, 90, 93, 95), chọn tất định đội-năm lịch sử gần mục tiêu nhất, mỗi đội chỉ một lần, archetype theo seed; chỉ Ch6 giới hạn khu vực VCS/PCS/LMS/LJL. Khi pool không đủ mạnh có `difficultyBonus` hiển thị cho người chơi ([ECONOMY.md](ECONOMY.md) §8). Dạng **knockout đơn hư cấu có nhãn**, không cần engine riêng; tên đội trong các seed của `campaignData.ts` bị ghi đè bởi đội này. Người chơi xem được đội hình đối thủ (vai trò, tên, OVR) ở Hub, Campaign và màn Match Center, đặt cạnh đội hình của mình.
 - Swiss, double elimination, Play-In chỉ làm nếu còn thời gian và có test **[P2]**. Nếu làm Swiss-lite phải gắn nhãn hư cấu.
 - Chapter 1–2 (grassroots): thử lại tự do, first-clear chỉ nhận một lần. Giao hữu và thử lại không thưởng. Replay chapter đã clear không hứa thưởng.
 - **Anti-farm:** `completedChapterIds` + ledger append-only; không có vòng lặp pack vô hạn.
@@ -90,8 +92,8 @@ Road to VCS qualification → Elite; VCS title → Elite ×2 + reputation +200; 
 
 - **`PlayerIdentity`** (con người) → **`PlayerCardEdition`** (phiên bản theo năm/loại: ACADEMY, BREAKOUT, CHAMPION, LEGACY; có stats, OVR, rarity, traits) → **`OwnedCard`** (instance riêng: level, trainedStats, acquiredFrom). Hai bản cùng edition là hai instance. Mùa của CLB (`careerYear`) khác `editionYear` của thẻ.
 - **Rarity:** Common 55–69, Rare 70–79, Epic 80–89, Legendary 90–96 (`docs/config/balance.initial.json`). Rarity luôn có nhãn chữ, không chỉ màu.
-- **Catalog hiện tại [Đã có]:** 399 identities / 684 editions = **30 `CURRENT_EDITIONS`** (pool pack cố định) + **649 `LEGACY`** (lịch sử 2011–2025, 374 identities, 73 đội, 129 team-years) + 5 bản 2026 Team Secret Whales có `source/confidence/retrievedAt`. Các nhóm identity giao nhau nên không cộng số identity từng nguồn.
-- **LEGACY không vào pack hiện tại** (DEC-2): đi qua Market hằng ngày, đối thủ Ch6–12, demo và Draft. Giữ nguyên bảng pack và pity.
+- **Catalog hiện tại [Đã có]:** 399 identities / 684 editions = **30 `CURRENT_EDITIONS`** + **649 `LEGACY`** (lịch sử 2011–2025, 374 identities, 73 đội, 129 team-years) + 5 bản 2026 Team Secret Whales có `source/confidence/retrievedAt`. Các nhóm identity giao nhau nên không cộng số identity từng nguồn.
+- **Pack mở thẻ từ cả CURRENT và LEGACY** (DEC-13, thay DEC-2): ~679 ứng viên nên ít lặp lại; bảng pack và pity giữ nguyên. LEGACY cũng xuất hiện ở Market hằng ngày, đối thủ Ch6–12, demo và Draft.
 - **Rating Legacy:** lấy từ dataset tham khảo Golden Road, mỗi edition có `ratingSource` = `golden_road` / `adjusted` / `derived` và mapping đơn điệu sang OVR (neo 76→55, 80→69, 81→70, 86→79, 87→80, 91→89, 92→90, 98→96; tạo 81 Common, 365 Rare, 166 Epic, 37 Legendary). Người không có trong dataset dùng `deriveRating()` (hash `playerId|team|year|role`). Chỉ số là **cân bằng game**, không đánh giá khách quan người thật.
 - **Tên và hình:** tên CLB thật bật (`ENABLE_REAL_CLUB_NAMES=true`, DEC-3); toàn bộ hình hiện là placeholder hình học/SVG, chưa có ảnh/logo thật được duyệt. Tiểu sử tuyển thủ phải có nguồn trong [CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md), nếu không dùng mô tả lối chơi trung tính; không đưa họ tên đời thực, tuổi, quê quán (DEC-6).
 - **Dữ kiện 2026:** chỉ nhập hàng có độ tin cậy từ Medium trở lên; không đưa dòng Low vào game.

@@ -20,6 +20,9 @@ import { AudioSynth } from '../lib/audioSynth';
 import { ARCHETYPE_LABELS } from '../lib/labels';
 import {useDialog} from '../lib/useDialog';
 import {GameRecap} from './GameRecap';
+import {LaneMap,SeriesTracker,VersusRosters} from './MatchVisuals';
+import {stageOf} from '../data/season';
+import {KeyMoment,PhaseEvents} from './PhaseLog';
 import { recommendTactics, seriesFinished, simulateNextGame, summarizeSeries } from '../lib/simulator';
 import { PHASE_TACTICS, TACTIC_METADATA } from '../lib/tacticsMatrix';
 import {
@@ -166,31 +169,34 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
       if(simulationResult.winner==='PLAYER')AudioSynth.playVictory();else AudioSynth.playDefeat();
     }else{resetAutomaticTactics();setMatchState('PREVIEW');}
   };
+  const stage = stageOf(chapter.id);
   const finishedGames = simulationResult?.games.slice(0, activeGameIndex) || [];
   const livePlayerWins = finishedGames.filter(g => g.winner === 'PLAYER').length;
   const liveOpponentWins = finishedGames.length - livePlayerWins;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto">
-      <div ref={dialog} role="dialog" aria-modal="true" aria-label="Trung Tâm Trận Đấu" tabIndex={-1} className="relative w-full max-w-4xl max-h-[90dvh] bg-[#111827] border border-slate-800 rounded-2xl shadow-2xl p-5 lg:p-7 overflow-y-auto my-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto">
+      <div ref={dialog} role="dialog" aria-modal="true" aria-label="Trung Tâm Trận Đấu" tabIndex={-1} className="relative w-full max-w-4xl max-h-[90dvh] bg-surface border border-line rounded-2xl shadow-2xl p-5 lg:p-7 overflow-y-auto my-6">
         {/* Header Bar */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-line">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-1 text-xs font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-800/60 rounded">
+            <span className="px-2.5 py-1 text-xs font-mono font-bold bg-info/10 text-info border border-info/40 rounded">
               {chapter.format}
             </span>
             <div>
               <h2 className="text-lg lg:text-xl font-display font-bold text-white tracking-tight">
                 {chapter.title}
               </h2>
-              <span className="text-xs text-slate-400">{chapter.subtitle}</span>
+              <span className="text-xs text-fg-subtle">
+                {stage ? `${stage.competition.name} · ${stage.label} · ` : ''}{chapter.subtitle}
+              </span>
             </div>
           </div>
 
           <button
             aria-label="Đóng trận đấu"
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
+            className="p-1.5 text-fg-subtle hover:text-white bg-elevated/80 hover:bg-line rounded-lg transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -199,98 +205,42 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
         {/* ================= STAGE 1: PRE-MATCH PREVIEW & TACTICAL CHOICES ================= */}
         {matchState === 'PREVIEW' && (
           <div className="space-y-6 pt-5">
-            <div className="rounded-lg border border-cyan-900 p-3 text-sm space-y-2">
+            <div className="rounded-lg border border-info/40 p-3 text-sm space-y-2">
               <p>Ván {(simulationResult?.games.length || 0)+1} · {simulationResult ? 'FOCUS_1: chọn một pha can thiệp, hai pha còn lại dùng gợi ý đã hiển thị.' : 'Chọn đủ 3 pha cho ván đầu.'}</p>
               {simulationResult && <>
                 <label className="flex gap-2 items-center"><input type="checkbox" checked={manualAll} onChange={e=>{setManualAll(e.target.checked);if(!e.target.checked)resetAutomaticTactics();}}/>Chơi thủ công cả 3 pha</label>
-                {!manualAll && <div className="flex gap-2">{(['EARLY','MID','LATE'] as const).map(phase=><button key={phase} aria-pressed={focusPhase===phase} className={`min-h-11 px-3 border rounded ${focusPhase===phase?'border-amber-400':'border-slate-600'}`} onClick={()=>{resetAutomaticTactics();setFocusPhase(phase);}}>Can thiệp {phase}</button>)}</div>}
+                {!manualAll && <div className="flex gap-2">{(['EARLY','MID','LATE'] as const).map(phase=><button key={phase} aria-pressed={focusPhase===phase} className={`min-h-11 px-3 border rounded ${focusPhase===phase?'border-gold/40':'border-line'}`} onClick={()=>{resetAutomaticTactics();setFocusPhase(phase);}}>Can thiệp {phase}</button>)}</div>}
               </>}
             </div>
-            {/* Versus Banner */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Player Side */}
-              <div className="p-4 rounded-xl bg-gradient-to-r from-cyan-950/40 to-slate-900 border border-cyan-500/30">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 flex items-center justify-center font-bold">
-                      {playerSnapshot.teamName.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="font-display font-bold text-base text-white">
-                        {playerSnapshot.teamName}
-                      </h3>
-                      <span className="text-xs text-cyan-400">Đội của bạn</span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs text-slate-400 block">Sức Mạnh (OVR)</span>
-                    <span className="text-2xl font-mono-nums font-extrabold text-cyan-300">
-                      {playerSnapshot.teamOvr}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2 mt-4 text-center text-xs">
-                  <div className="bg-slate-900/80 p-2 rounded border border-slate-800">
-                    <span className="text-slate-400 block text-[10px]">ĐI ĐƯỜNG</span>
-                    <span className="font-mono-nums font-bold text-slate-200">
-                      {playerSnapshot.ratings.lane}
-                    </span>
-                  </div>
-                  <div className="bg-slate-900/80 p-2 rounded border border-slate-800">
-                    <span className="text-slate-400 block text-[10px]">MACRO</span>
-                    <span className="font-mono-nums font-bold text-slate-200">
-                      {playerSnapshot.ratings.macro}
-                    </span>
-                  </div>
-                  <div className="bg-slate-900/80 p-2 rounded border border-slate-800">
-                    <span className="text-slate-400 block text-[10px]">GIAO TRANH</span>
-                    <span className="font-mono-nums font-bold text-slate-200">
-                      {playerSnapshot.ratings.teamfight}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Opponent Side */}
-              <div className="p-4 rounded-xl bg-gradient-to-r from-rose-950/40 to-slate-900 border border-rose-500/30">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-300 border border-rose-400/40 flex items-center justify-center font-bold">
-                      {chapter.opponent.shortTag}
-                    </div>
-                    <div>
-                      <h3 className="font-display font-bold text-base text-white">
-                        {chapter.opponent.name}
-                      </h3>
-                      <span className="text-xs text-rose-400 font-semibold">
-                        Lối chơi: {ARCHETYPE_LABELS[chapter.opponent.archetype]}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs text-slate-400 block">Sức Mạnh (OVR)</span>
-                    <span className="text-2xl font-mono-nums font-extrabold text-rose-300">
-                      {chapter.opponent.ovr}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="mt-3 text-xs text-slate-300 bg-slate-900/70 p-2.5 rounded border border-slate-800">
-                  <span className="font-semibold text-rose-300">Báo cáo trinh sát:</span>{' '}
-                  {chapter.opponent.description}
-                </div>
-              </div>
+            {/* Both line-ups, opponent first (Worlds Mayhem style) */}
+            <VersusRosters
+              opponent={{
+                name: chapter.opponent.name,
+                ovr: opponentSnapshot.teamOvr,
+                players: opponentSnapshot.roster,
+                ratings: opponentSnapshot.ratings,
+                note: (chapter.opponent.difficultyBonus ?? opponentSnapshot.difficultyBonus ?? 0) > 0 ? `Chỉ số đội hình này được cân chỉnh +${(chapter.opponent.difficultyBonus ?? opponentSnapshot.difficultyBonus ?? 0)} để phù hợp độ khó.` : undefined,
+              }}
+              you={{
+                name: playerSnapshot.teamName,
+                ovr: playerSnapshot.teamOvr,
+                players: playerSnapshot.roster,
+                ratings: playerSnapshot.ratings,
+              }}
+            />
+            <div className="rounded-lg border border-line bg-bg p-3 text-label text-fg-muted">
+              <span className="font-semibold text-danger">Báo cáo trinh sát:</span>{' '}
+              Lối chơi <strong className="text-fg">{ARCHETYPE_LABELS[chapter.opponent.archetype]}</strong>. {chapter.opponent.description}
             </div>
 
             {/* Tactical Decisions Box */}
-            <div className="p-4 rounded-xl bg-[#0F172A] border border-slate-800 space-y-4">
+            <div className="p-4 rounded-xl bg-bg border border-line space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-display font-bold text-sm text-slate-200">
+                  <h4 className="font-display font-bold text-sm text-fg">
                     Chiến Lược Trận Đấu (3 Quyết Định Then Chốt)
                   </h4>
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-fg-subtle">
                     Khắc chế lối chơi đối thủ bằng cách chọn đấu pháp hợp lý theo từng giai đoạn
                   </span>
                 </div>
@@ -298,7 +248,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
               {/* EARLY Phase Selection */}
               <div>
-                <label className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
+                <label className="block text-xs font-semibold text-info mb-1.5 ">
                   1. Đầu Trận (Early Phase)
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -316,13 +266,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         }}
                         className={`p-3 text-left rounded-lg border transition-all cursor-pointer ${
                           isSelected
-                            ? 'border-cyan-400 bg-cyan-950/40 ring-1 ring-cyan-400/50'
-                            : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                            ? 'border-info/40 bg-info/10 ring-1 ring-info/40'
+                            : 'border-line bg-surface/60 hover:border-line'
                         }`}
                       >
-                        <div className="font-bold text-xs text-slate-200 mb-1">{meta.name}</div>
-                        <div className="text-[11px] text-slate-400 line-clamp-2">{meta.description}</div>
-                        <div className="text-[10px] text-cyan-300 mt-2 font-medium">{meta.recommendedAgainst}</div>
+                        <div className="font-bold text-xs text-fg mb-1">{meta.name}</div>
+                        <div className="text-caption text-fg-subtle line-clamp-2">{meta.description}</div>
+                        <div className="text-caption text-info mt-2 font-medium">{meta.recommendedAgainst}</div>
                       </button>
                     );
                   })}
@@ -331,7 +281,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
               {/* MID Phase Selection */}
               <div>
-                <label className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
+                <label className="block text-xs font-semibold text-info mb-1.5 ">
                   2. Giữa Trận (Mid Phase)
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -349,13 +299,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         }}
                         className={`p-3 text-left rounded-lg border transition-all cursor-pointer ${
                           isSelected
-                            ? 'border-cyan-400 bg-cyan-950/40 ring-1 ring-cyan-400/50'
-                            : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                            ? 'border-info/40 bg-info/10 ring-1 ring-info/40'
+                            : 'border-line bg-surface/60 hover:border-line'
                         }`}
                       >
-                        <div className="font-bold text-xs text-slate-200 mb-1">{meta.name}</div>
-                        <div className="text-[11px] text-slate-400 line-clamp-2">{meta.description}</div>
-                        <div className="text-[10px] text-cyan-300 mt-2 font-medium">{meta.recommendedAgainst}</div>
+                        <div className="font-bold text-xs text-fg mb-1">{meta.name}</div>
+                        <div className="text-caption text-fg-subtle line-clamp-2">{meta.description}</div>
+                        <div className="text-caption text-info mt-2 font-medium">{meta.recommendedAgainst}</div>
                       </button>
                     );
                   })}
@@ -364,7 +314,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
               {/* LATE Phase Selection */}
               <div>
-                <label className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
+                <label className="block text-xs font-semibold text-info mb-1.5 ">
                   3. Cuối Trận (Late Phase)
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -382,13 +332,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         }}
                         className={`p-3 text-left rounded-lg border transition-all cursor-pointer ${
                           isSelected
-                            ? 'border-cyan-400 bg-cyan-950/40 ring-1 ring-cyan-400/50'
-                            : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                            ? 'border-info/40 bg-info/10 ring-1 ring-info/40'
+                            : 'border-line bg-surface/60 hover:border-line'
                         }`}
                       >
-                        <div className="font-bold text-xs text-slate-200 mb-1">{meta.name}</div>
-                        <div className="text-[11px] text-slate-400 line-clamp-2">{meta.description}</div>
-                        <div className="text-[10px] text-cyan-300 mt-2 font-medium">{meta.recommendedAgainst}</div>
+                        <div className="font-bold text-xs text-fg mb-1">{meta.name}</div>
+                        <div className="text-caption text-fg-subtle line-clamp-2">{meta.description}</div>
+                        <div className="text-caption text-info mt-2 font-medium">{meta.recommendedAgainst}</div>
                       </button>
                     );
                   })}
@@ -398,14 +348,14 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
             {/* Launch CTA Strip */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
-              <span className="text-sm text-slate-300">
+              <span className="text-sm text-fg-muted">
                 Thể thức: <strong className="text-white">{chapter.format}</strong> · Kết quả được tính toán chuẩn xác từ chỉ số & đối sách.
               </span>
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={handleStartMatch}
-                  className="flex-1 sm:flex-initial px-6 py-3 bg-[#FFB800] hover:bg-amber-400 text-slate-950 font-display font-extrabold text-xs uppercase tracking-wider rounded-lg shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="flex-1 sm:flex-initial px-6 py-3 bg-gold hover:brightness-110 text-bg font-display font-extrabold text-xs rounded-lg shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <Play className="w-4 h-4 fill-slate-950" />
                   <span>Vào Trận Đấu</span>
@@ -418,27 +368,43 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
         {/* ================= STAGE 2: LIVE SIMULATION STAGE ================= */}
         {matchState === 'PLAYING' && simulationResult && (
           <div className="space-y-6 pt-5">
+            <div className="grid items-start gap-5 md:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+              <div className="mx-auto w-full max-w-xs md:max-w-none">
+                <LaneMap
+                  player={playerSnapshot.roster}
+                  opponent={opponentSnapshot.roster}
+                  phase={currentPhaseOutcome?.phase ?? 'EARLY'}
+                  playerWinsPhase={currentPhaseOutcome ? currentPhaseOutcome.winner === 'PLAYER' : true}
+                />
+              </div>
+              <div className="space-y-3">
+                <SeriesTracker format={chapter.format} finished={finishedGames} currentIndex={activeGameIndex} />
+                <p className="text-label text-fg-muted">
+                  {opponentSnapshot.teamName} <span className="text-fg-subtle">đối đầu</span> {playerSnapshot.teamName}. Mỗi ván có 3 pha; thắng 2 pha là thắng ván.
+                </p>
+              </div>
+            </div>
             {/* Live Scoreboard */}
-            <div className="flex items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-surface/80 border border-line">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-sm border border-cyan-500/30">
+                <div className="w-10 h-10 rounded-lg bg-info/20 text-info font-bold flex items-center justify-center text-sm border border-info/40">
                   {playerSnapshot.teamName.slice(0, 3).toUpperCase()}
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-white text-sm">
                     {playerSnapshot.teamName}
                   </h4>
-                  <span className="text-xs text-cyan-400 font-mono">
+                  <span className="text-xs text-info font-mono">
                     Hạ gục: {currentPhaseIndex === 2 ? currentGame?.killsPlayer : '—'}
                   </span>
                 </div>
               </div>
 
-              <div className="text-center px-4 py-1.5 bg-slate-950 rounded-xl border border-slate-800">
-                <div className="text-[10px] text-slate-400 uppercase tracking-widest">
+              <div className="text-center px-4 py-1.5 bg-bg rounded-xl border border-line">
+                <div className="text-caption text-fg-subtle ">
                   Ván {activeGameIndex + 1} ({chapter.format})
                 </div>
-                <div data-testid="live-score" className="text-2xl font-mono-nums font-black text-amber-400">
+                <div data-testid="live-score" className="text-2xl font-mono-nums font-black text-gold">
                   {livePlayerWins} - {liveOpponentWins}
                 </div>
               </div>
@@ -448,11 +414,11 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   <h4 className="font-display font-bold text-white text-sm">
                     {opponentSnapshot.teamName}
                   </h4>
-                  <span className="text-xs text-rose-400 font-mono">
+                  <span className="text-xs text-danger font-mono">
                     Hạ gục: {currentPhaseIndex === 2 ? currentGame?.killsOpponent : '—'}
                   </span>
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center text-sm border border-rose-500/30">
+                <div className="w-10 h-10 rounded-lg bg-danger/20 text-danger font-bold flex items-center justify-center text-sm border border-danger/40">
                   {chapter.opponent.shortTag}
                 </div>
               </div>
@@ -460,13 +426,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
             {/* Current Phase Card */}
             {currentPhaseOutcome && (
-              <div className="p-5 rounded-xl bg-[#0D1525] border border-cyan-500/40 shadow-inner">
+              <div className="p-5 rounded-xl bg-bg border border-info/40 shadow-inner">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 text-xs font-bold bg-cyan-950 text-cyan-300 rounded border border-cyan-800/60 uppercase">
+                    <span className="px-2 py-0.5 text-xs font-bold bg-info/10 text-info rounded border border-info/40 ">
                       Pha: {currentPhaseOutcome.phase}
                     </span>
-                    <span className="text-xs text-slate-300 font-semibold">
+                    <span className="text-xs text-fg-muted font-semibold">
                       {TACTIC_METADATA[currentPhaseOutcome.playerTactic]?.name}
                     </span>
                   </div>
@@ -474,8 +440,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   <span
                     className={`px-2 py-0.5 text-xs font-bold rounded ${
                       currentPhaseOutcome.winner === 'PLAYER'
-                        ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/60'
-                        : 'bg-rose-950 text-rose-300 border border-rose-800/60'
+                        ? 'bg-success/10 text-success border border-success/40'
+                        : 'bg-danger/10 text-danger border border-danger/40'
                     }`}
                   >
                     {currentPhaseOutcome.winner === 'PLAYER' ? 'Chiếm Lợi Thế' : 'Bị Đối Thủ Ép'}
@@ -483,29 +449,24 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                 </div>
 
                 {/* Commentary Stream */}
-                <div className="text-xs text-slate-200 space-y-1">
+                <div className="text-xs text-fg space-y-1">
                   <p>{currentPhaseOutcome.wasOffScript ? 'Lệch bài: ' : 'Đúng bài: '}{ARCHETYPE_LABELS[currentPhaseOutcome.opponentArchetypeActual]} · Đối thủ: {TACTIC_METADATA[currentPhaseOutcome.opponentTactic].name}</p>
                   <p>Xác suất thắng pha: {Math.round(currentPhaseOutcome.winProbability*100)}%</p>
-                  <p>{currentPhaseOutcome.keyMoment}</p>
+                  <KeyMoment phase={currentPhaseOutcome} gameWinner={currentGame?.winner ?? currentPhaseOutcome.winner} />
                   {currentPhaseIndex === 2 && <p>MVP ván: {currentGame?.mvpName}</p>}
                 </div>
-                <div className="space-y-1.5 my-3 text-xs font-mono text-slate-300 bg-slate-950/70 p-3 rounded-lg border border-slate-900">
-                  {currentPhaseOutcome.events.map((evt, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <ChevronRight className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{evt}</span>
-                    </div>
-                  ))}
+                <div className="space-y-1.5 my-3 text-xs font-mono text-fg-muted bg-bg/70 p-3 rounded-lg border border-line">
+                  <PhaseEvents phase={currentPhaseOutcome} gameWinner={currentGame?.winner ?? currentPhaseOutcome.winner} />
                 </div>
 
-                <div className="mt-3 text-xs text-slate-400 flex items-center justify-between pt-2 border-t border-slate-800/60">
+                <div className="mt-3 text-xs text-fg-subtle flex items-center justify-between pt-2 border-t border-line/60">
                   <span>
                     Chênh lệch vàng:{' '}
                     <strong
                       className={`font-mono-nums ${
                         currentPhaseOutcome.goldDelta > 0
-                          ? 'text-emerald-400'
-                          : 'text-rose-400'
+                          ? 'text-success'
+                          : 'text-danger'
                       }`}
                     >
                       {currentPhaseOutcome.goldDelta > 0 ? '+' : ''}
@@ -513,9 +474,9 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                     </strong>
                   </span>
 
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-caption text-fg-subtle">
                     Tác động quyết định:{' '}
-                    <strong className="text-cyan-300 font-mono-nums">
+                    <strong className="text-info font-mono-nums">
                       {currentPhaseOutcome.decisionFitBonus > 0 ? '+' : ''}
                       {currentPhaseOutcome.decisionFitBonus} Điểm
                     </strong>
@@ -526,15 +487,15 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
             {/* Live Controller Speed buttons */}
             <div className="flex items-center justify-between pt-2">
-              <span className="text-xs text-slate-400">Đang tái hiện diễn biến trận đấu...</span>
+              <span className="text-xs text-fg-subtle">Đang tái hiện diễn biến trận đấu...</span>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsFastMode(!isFastMode)}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors flex items-center gap-1 cursor-pointer ${
                     isFastMode
-                      ? 'bg-cyan-950 text-cyan-300 border-cyan-500'
-                      : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                      ? 'bg-info/10 text-info border-info/40'
+                      : 'bg-elevated text-fg-muted border-line hover:bg-line'
                   }`}
                 >
                   <FastForward className="w-3.5 h-3.5" />
@@ -543,7 +504,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
                 <button
                   onClick={handleSkipToResult}
-                  className="px-4 py-1.5 text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition-colors cursor-pointer"
+                  className="px-4 py-1.5 text-xs font-bold text-white bg-elevated hover:bg-line border border-line rounded-lg transition-colors cursor-pointer"
                 >
                   Xem Kết Quả Ngay ➔
                 </button>
@@ -552,6 +513,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
           </div>
         )}
 
+        {matchState==='GAME_RECAP'&&simulationResult&&<div className="pt-5"><SeriesTracker format={chapter.format} finished={simulationResult.games.slice(0,activeGameIndex+1)} /></div>}
         {matchState==='GAME_RECAP'&&currentGame&&simulationResult&&<GameRecap game={currentGame} playerTeamName={playerSnapshot.teamName} opponentTeamName={opponentSnapshot.teamName} playerWins={simulationResult.playerWins} opponentWins={simulationResult.opponentWins} onNext={continueSeries} nextLabel={seriesFinished(chapter.format,simulationResult.games)?'Xem Tổng Kết Chuỗi':'Ván Tiếp Theo'}/>}
 
         {/* ================= STAGE 3: POST-MATCH BREAKDOWN & REWARD ================= */}
@@ -561,15 +523,15 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             <div
               className={`p-6 rounded-2xl border text-center ${
                 isPlayerWon
-                  ? 'bg-gradient-to-b from-emerald-950/40 via-slate-900 to-[#111827] border-emerald-500/50 shadow-emerald-500/10'
-                  : 'bg-gradient-to-b from-rose-950/40 via-slate-900 to-[#111827] border-rose-500/50 shadow-rose-500/10'
+                  ? 'bg-success/10 border-success/40'
+                  : 'bg-danger/10 border-danger/40'
               } shadow-2xl`}
             >
               <span
-                className={`px-3 py-1 text-xs font-extrabold uppercase tracking-widest rounded-full ${
+                className={`px-3 py-1 text-xs font-extrabold rounded-full ${
                   isPlayerWon
-                    ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-rose-950 text-rose-300 border border-rose-500/40'
+                    ? 'bg-success/10 text-success border border-success/40'
+                    : 'bg-danger/10 text-danger border border-danger/40'
                 }`}
               >
                 {isPlayerWon ? 'Chiến Thắng Tuyệt Đối' : 'Thất Bại Tiếc Nuối'}
@@ -578,7 +540,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
               <h3 className="mt-3 text-3xl font-display font-extrabold text-white">
                 {simulationResult.playerWins} - {simulationResult.opponentWins}
               </h3>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-1 text-xs text-fg-subtle">
                 {isPlayerWon
                   ? `Xuất sắc hạ gục ${opponentSnapshot.teamName} sau loạt trận kịch tính!`
                   : `Không thể vượt qua ${opponentSnapshot.teamName}. Hãy nâng cấp đội hình và thử lại!`}
@@ -586,19 +548,19 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             </div>
 
             {/* "WHY" Breakdown - 4 Key Pillars */}
-            <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-              <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
+            <div className="p-4 rounded-xl bg-surface/80 border border-line">
+              <h4 className="text-xs font-bold text-fg-muted mb-3">
                 Phân Tích Nguyên Nhân Thắng / Thua (Match Analytics)
               </h4>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center text-xs">
-                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 block">CHỈ SỐ ĐỘI HÌNH</span>
+                <div className="p-2.5 rounded-lg bg-bg border border-line">
+                  <span className="text-caption text-fg-subtle block">CHỈ SỐ ĐỘI HÌNH</span>
                   <span
                     className={`font-mono-nums font-bold text-sm ${
                       simulationResult.breakdown.rosterDiff >= 0
-                        ? 'text-emerald-400'
-                        : 'text-rose-400'
+                        ? 'text-success'
+                        : 'text-danger'
                     }`}
                   >
                     {simulationResult.breakdown.rosterDiff >= 0 ? '+' : ''}
@@ -606,20 +568,20 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   </span>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 block">ĐIỂM GẮN KẾT</span>
-                  <span className="font-mono-nums font-bold text-sm text-cyan-400">
+                <div className="p-2.5 rounded-lg bg-bg border border-line">
+                  <span className="text-caption text-fg-subtle block">ĐIỂM GẮN KẾT</span>
+                  <span className="font-mono-nums font-bold text-sm text-info">
                     +{simulationResult.breakdown.synergyAdvantage}
                   </span>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 block">ĐỘ HỢP TƯỚNG</span>
+                <div className="p-2.5 rounded-lg bg-bg border border-line">
+                  <span className="text-caption text-fg-subtle block">ĐỘ HỢP TƯỚNG</span>
                   <span
                     className={`font-mono-nums font-bold text-sm ${
                       simulationResult.breakdown.tacticSuitability >= 0
-                        ? 'text-emerald-400'
-                        : 'text-rose-400'
+                        ? 'text-success'
+                        : 'text-danger'
                     }`}
                   >
                     {simulationResult.breakdown.tacticSuitability >= 0 ? '+' : ''}
@@ -627,13 +589,13 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   </span>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 block">NƯỚC ĐI KHẮC CHẾ</span>
+                <div className="p-2.5 rounded-lg bg-bg border border-line">
+                  <span className="text-caption text-fg-subtle block">NƯỚC ĐI KHẮC CHẾ</span>
                   <span
                     className={`font-mono-nums font-bold text-sm ${
                       simulationResult.breakdown.decisionQuality >= 0
-                        ? 'text-emerald-400'
-                        : 'text-rose-400'
+                        ? 'text-success'
+                        : 'text-danger'
                     }`}
                   >
                     {simulationResult.breakdown.decisionQuality >= 0 ? '+' : ''}
@@ -644,8 +606,8 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
 
               {/* Counterfactual Insight (spec v2.2) */}
               {simulationResult.counterfactual.length > 0 && (
-                <div className="mt-3 p-3 rounded-lg bg-cyan-950/30 border border-cyan-800/40 text-xs text-cyan-200">
-                  <div className="font-semibold text-cyan-300 flex items-center gap-1 mb-1">
+                <div className="mt-3 p-3 rounded-lg bg-info/10 border border-info/40 text-xs text-info">
+                  <div className="font-semibold text-info flex items-center gap-1 mb-1">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Bài học mô phỏng chiến thuật (Counterfactual Insight):</span>
                   </div>
@@ -654,16 +616,16 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
               )}
 
               {/* Coaching Advice */}
-              <div className="mt-2 text-xs text-slate-400 italic">
+              <div className="mt-2 text-xs text-fg-subtle italic">
                 <strong>Lời khuyên HLV:</strong> {simulationResult.coachingAdvice}
               </div>
             </div>
 
             {/* Action Bottom Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-800">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-line">
               {isPlayerWon ? (
                 <>
-                  <div className="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <div className="text-xs text-success font-semibold flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4" />
                     <span>
                       {isFriendly ? 'Giao hữu: không thưởng' : `Phần thưởng: +${chapter.milestoneRewards.credits} Credits `}
@@ -675,10 +637,10 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                   <button
                     onClick={isFriendly ? onClose : handleClaim}
                     disabled={isRewardClaimed}
-                    className={`w-full sm:w-auto px-6 py-3 font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer ${
+                    className={`w-full sm:w-auto px-6 py-3 font-display font-extrabold text-xs rounded-xl transition-all cursor-pointer ${
                       isRewardClaimed
-                        ? 'bg-slate-800 text-slate-400 cursor-default'
-                        : 'bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 shadow-lg shadow-emerald-500/20'
+                        ? 'bg-elevated text-fg-subtle cursor-default'
+                        : 'bg-success hover:brightness-110 text-bg'
                     }`}
                   >
                     {isFriendly ? 'Hoàn Tất Giao Hữu' : isRewardClaimed ? 'Đã Nhận Thưởng' : 'Nhận Thưởng & Hoàn Thành ➔'}
@@ -686,7 +648,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                 </>
               ) : (
                 <>
-                  <div className="text-xs text-rose-400 font-semibold flex items-center gap-1.5">
+                  <div className="text-xs text-danger font-semibold flex items-center gap-1.5">
                     <AlertCircle className="w-4 h-4" />
                     <span>Thất bại không xóa dữ liệu đội tuyển. Hãy tinh chỉnh chiến thuật!</span>
                   </div>
@@ -699,14 +661,14 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
                         seedRef.current=Date.now();
                         setMatchState('PREVIEW');
                       }}
-                      className="flex-1 sm:flex-initial px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                      className="flex-1 sm:flex-initial px-5 py-2.5 bg-elevated hover:bg-line text-fg text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1 cursor-pointer"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Thử Lại Trận Đấu</span>
                     </button>
                     <button
                       onClick={onClose}
-                      className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white text-xs font-semibold rounded-xl border border-slate-800 transition-colors cursor-pointer"
+                      className="px-4 py-2.5 bg-surface hover:bg-elevated text-fg-subtle hover:text-white text-xs font-semibold rounded-xl border border-line transition-colors cursor-pointer"
                     >
                       Đóng
                     </button>

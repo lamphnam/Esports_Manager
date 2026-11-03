@@ -7,9 +7,12 @@ import {
   Zap,
 } from 'lucide-react';
 import React from 'react';
+import { OpponentRoster } from '../components/OpponentRoster';
 import { PlayerCard } from '../components/PlayerCard';
+import { ROLE_LABELS } from '../components/ui';
 import { useGame } from '../context/GameContext';
-import { CAMPAIGN_CHAPTERS } from '../data/campaignData';
+import { chaptersForSeason } from '../data/season';
+import { SeasonBracket, SeasonSummary } from '../components/SeasonBracket';
 import { AudioSynth } from '../lib/audioSynth';
 import { Role } from '../types';
 
@@ -20,140 +23,154 @@ interface HubViewProps {
   onOpenPackDirect: () => void;
 }
 
+interface ShortcutProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  onClick: () => void;
+}
+
+const Shortcut: React.FC<ShortcutProps> = ({ icon, title, description, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="panel flex w-full items-center gap-3 text-left transition-colors hover:bg-elevated"
+  >
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-elevated text-gold">
+      {icon}
+    </span>
+    <span className="min-w-0 flex-1">
+      <span className="block text-card font-display font-bold text-fg">{title}</span>
+      <span className="block text-caption text-fg-muted">{description}</span>
+    </span>
+    <ArrowRight className="h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true" />
+  </button>
+);
+
 export const HubView: React.FC<HubViewProps> = ({
   onStartMatch,
   onNavigateTab,
   onOpenWorldDemo,
 }) => {
-  const { club, getTeamSnapshot, getOwnedCardWithDetails, claimSponsorship, ledger } = useGame();
+  const { club, getTeamSnapshot, getOwnedCardWithDetails, claimSponsorship, ledger, ownedCards, season, seasonComplete, startNextSeason } = useGame();
+  const chapters = chaptersForSeason(season);
   const teamSnapshot = getTeamSnapshot();
 
   const currentChapter =
-    CAMPAIGN_CHAPTERS.find((c) => c.id === club?.currentChapterId) ||
-    CAMPAIGN_CHAPTERS[0];
+    chapters.find((c) => c.id === club?.currentChapterId) ||
+    chapters[0];
 
   const roles: Role[] = ['TOP', 'JUNGLE', 'MID', 'BOT', 'SUPPORT'];
+  const alreadyCleared = !!club?.completedChapterIds.includes(currentChapter.id);
+  const sponsorDisabled =
+    (club?.wallet.credits || 0) >= 100 ||
+    ledger.some((e) => e.id === `sponsor_${new Date(Date.now() + 7 * 3600_000).toISOString().slice(0, 10)}`);
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto px-4 lg:px-8 py-6">
-      <div className="p-3 border border-slate-700 rounded-lg text-sm text-slate-300">
-        Giao hữu và thử lại luôn miễn phí. Khi còn dưới 100 Credits, nhận tài trợ phục hồi 100 Credits, tối đa một lần mỗi ngày (giờ Việt Nam).
-        <button className="block min-h-11 text-amber-300 disabled:text-slate-500" onClick={claimSponsorship} disabled={(club?.wallet.credits || 0)>=100 || ledger.some(e=>e.id===`sponsor_${new Date(Date.now()+7*3600_000).toISOString().slice(0,10)}`)}>Nhận Tài Trợ Phục Hồi</button>
-      </div>
-      {/* Hero Campaign Spotlight Banner - Crisp Industrial */}
-      <div className="relative overflow-hidden rounded-xl bg-[#111827] border border-slate-700 p-6 lg:p-8 shadow-xl">
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FFB800]">
-              <span>Mục Tiêu Chiến Dịch · Hồi {currentChapter.act}</span>
-              <span aria-hidden="true" className="text-slate-500">·</span>
-              <span className="text-slate-300 font-medium normal-case">
-                {currentChapter.subtitle}
-              </span>
-            </div>
-
-            <h1 className="text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 py-6 lg:px-8">
+      {/* 1. Campaign objective and the primary action (or the season summary once the Worlds are won) */}
+      {seasonComplete ? (
+        <SeasonSummary
+          year={club?.careerYear ?? 2026}
+          reputation={club?.reputation ?? 0}
+          teamOvr={teamSnapshot.teamOvr}
+          cards={ownedCards.length}
+          onNextSeason={() => { AudioSynth.playClick(); startNextSeason(); }}
+        />
+      ) : (
+      <section className="panel !p-5 lg:!p-7" aria-labelledby="campaign-objective">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
+          <div className="min-w-0 max-w-2xl space-y-3">
+            <p className="label-text">
+              <span className="text-gold">Mục tiêu chiến dịch</span> · Hồi {currentChapter.act} · {currentChapter.subtitle}
+            </p>
+            <h1 id="campaign-objective" className="text-title lg:text-[2.25rem] font-display font-extrabold leading-tight text-fg">
               {currentChapter.title}
             </h1>
+            <p className="text-body text-fg-muted">{currentChapter.description}</p>
 
-            <p className="text-sm lg:text-base text-slate-200 leading-relaxed">
-              {currentChapter.description}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-slate-300">
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-2 pt-1 text-label sm:grid-cols-[auto_auto_auto] sm:justify-start">
               <div>
-                Đối thủ:{' '}
-                <strong className="text-white">
-                  {currentChapter.opponent.name} (OVR {currentChapter.opponent.ovr})
-                </strong>
+                <dt className="text-fg-subtle">Đối thủ</dt>
+                <dd className="font-semibold text-fg">
+                  {currentChapter.opponent.name} <span className="font-mono-nums text-fg-muted">(OVR {currentChapter.opponent.ovr})</span>
+                </dd>
               </div>
-              <span aria-hidden="true">·</span>
               <div>
-                Thể thức: <strong className="text-[#FFB800]">{currentChapter.format}</strong>
+                <dt className="text-fg-subtle">Thể thức</dt>
+                <dd className="font-semibold text-fg">{currentChapter.format}</dd>
               </div>
-              <span aria-hidden="true">·</span>
               <div>
-                Thưởng:{' '}
-                <strong className="text-emerald-400 font-mono-nums">
-                  {club?.completedChapterIds.includes(currentChapter.id) ? 'Giao hữu: không thưởng' : `+${currentChapter.milestoneRewards.credits} Credits`}
-                </strong>
+                <dt className="text-fg-subtle">Thưởng</dt>
+                <dd className="font-mono-nums font-semibold text-success">
+                  {alreadyCleared ? 'Giao hữu: không thưởng' : `+${currentChapter.milestoneRewards.credits} Credits`}
+                </dd>
               </div>
+            </dl>
+            <div className="max-w-md pt-1">
+              <OpponentRoster opponent={currentChapter.opponent} />
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-            <button
-              onClick={() => {
-                AudioSynth.playClick();
-                onStartMatch(currentChapter.id);
-              }}
-              className="px-8 py-4 bg-[#FFB800] hover:bg-amber-400 text-slate-950 font-display font-extrabold text-sm uppercase tracking-wider rounded-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-all"
-            >
-              <Play className="w-5 h-5 fill-slate-950" />
-              <span>Thi Đấu Ngay</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => {
+              AudioSynth.playClick();
+              onStartMatch(currentChapter.id);
+            }}
+            className="btn btn-primary btn-lg w-full shrink-0 lg:w-auto lg:min-w-48"
+          >
+            <Play className="h-5 w-5 shrink-0 fill-current" />
+            <span>Thi Đấu Ngay</span>
+          </button>
         </div>
-      </div>
+      </section>
+      )}
 
-      {/* Quick World Championship Demo Card (Spec v2.2 P1 requirement) */}
-      <div className="p-5 rounded-xl bg-[#0D1322] border border-amber-500/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-lg bg-amber-500/15 text-[#FFB800] border border-amber-500/40 flex items-center justify-center shrink-0">
-            <Globe2 className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="font-display font-bold text-white text-lg">
-                Chung Kết Thế Giới (Bản Trình Diễn)
-              </h3>
-              <span className="px-2 py-0.5 text-xs font-bold bg-[#FFB800] text-slate-950 rounded">
-                DEMO BO5
-              </span>
-            </div>
-            <p className="text-sm text-slate-300 mt-0.5">
-              Dẫn dắt T1 2024 đối đầu Bilibili Gaming 2024 trong BO5 mô phỏng khoảng 3 phút. Chọn 5–7 quyết định; tiến trình sự nghiệp được giữ riêng.
-            </p>
-          </div>
+      {/* The season as brackets, so the whole run is visible, not only the next match */}
+      <section className="space-y-3" aria-labelledby="season-journey">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <h2 id="season-journey" className="text-heading font-display font-bold text-fg">
+            Hành trình mùa {club?.careerYear ?? 2026}
+          </h2>
+          <button type="button" className="btn btn-ghost !px-2 text-gold hover:text-gold" onClick={() => onNavigateTab('campaign')}>
+            <span>Xem chi tiết</span>
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
+        <SeasonBracket
+          compact
+          chapters={chapters}
+          completedIds={club?.completedChapterIds ?? []}
+          currentChapterId={club?.currentChapterId ?? 1}
+          onStart={onStartMatch}
+        />
+      </section>
 
-        <button
-          onClick={onOpenWorldDemo}
-          className="px-5 py-2.5 bg-[#2563EB] hover:bg-blue-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-lg shadow shrink-0 cursor-pointer transition-all"
-        >
-          Thử Nghiệm Ngay ➔
-        </button>
-      </div>
-
-      {/* Starting 5 Lineup Roster Cards */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-display font-bold text-white">
+      {/* 2. Main roster */}
+      <section className="space-y-4" aria-labelledby="main-roster">
+        <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
+          <div className="min-w-0">
+            <h2 id="main-roster" className="text-heading font-display font-bold text-fg">
               Đội Hình Chính (5 Tuyển Thủ)
             </h2>
-            <p className="text-sm text-slate-300 mt-0.5">
-              Tổng Sức Mạnh Đội Tuyển:{' '}
-              <strong className="text-[#FFB800] font-mono-nums">
-                OVR {teamSnapshot.teamOvr}
-              </strong>{' '}
-              · Điểm Gắn Kết:{' '}
-              <strong className="text-emerald-400 font-mono-nums">
-                +{teamSnapshot.synergyBonus}
-              </strong>
+            <p className="mt-0.5 text-label text-fg-muted">
+              Tổng sức mạnh <span className="font-mono-nums font-semibold text-gold">OVR {teamSnapshot.teamOvr}</span>
+              {' · '}Điểm gắn kết <span className="font-mono-nums font-semibold text-success">+{teamSnapshot.synergyBonus}</span>
             </p>
           </div>
 
           <button
+            type="button"
             onClick={() => onNavigateTab('lineup')}
-            className="text-sm font-semibold text-[#FFB800] hover:text-amber-300 flex items-center gap-1 cursor-pointer"
+            className="btn btn-ghost !px-2 text-gold hover:text-gold"
           >
             <span>Quản Lý Đội Hình</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 lg:gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
           {roles.map((role) => {
             const cardId = club?.lineup[role];
             const details = cardId ? getOwnedCardWithDetails(cardId) : null;
@@ -162,10 +179,10 @@ export const HubView: React.FC<HubViewProps> = ({
               return (
                 <div
                   key={role}
-                  className="rounded-lg border border-dashed border-slate-700 p-4 flex flex-col items-center justify-center min-h-[220px] bg-[#111827] text-center"
+                  className="panel flex min-h-[200px] flex-col items-center justify-center border-dashed text-center"
                 >
-                  <span className="text-xs font-bold text-slate-400 mb-1">{role}</span>
-                  <span className="text-xs text-slate-300">Vị trí trống</span>
+                  <span className="label-text mb-1" title={ROLE_LABELS[role].full}>{ROLE_LABELS[role].name}</span>
+                  <span className="text-caption text-fg-muted">Vị trí trống</span>
                 </div>
               );
             }
@@ -176,7 +193,7 @@ export const HubView: React.FC<HubViewProps> = ({
                 edition={details.edition}
                 player={details.player}
                 ownedCard={details.owned}
-                isEquipped={true}
+                isEquipped={false}
                 compact={false}
                 onClick={() => onNavigateTab('lineup')}
                 showActions={false}
@@ -184,63 +201,52 @@ export const HubView: React.FC<HubViewProps> = ({
             );
           })}
         </div>
-      </div>
+      </section>
 
-      {/* Quick Action Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Packs Inventory */}
-        <div
-          onClick={() => onNavigateTab('packs')}
-          className="p-5 rounded-xl bg-[#111827] hover:bg-[#172033] border border-slate-700 cursor-pointer transition-all flex items-center justify-between"
-        >
-          <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-[#2563EB]/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
-              <Package className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-display font-bold text-white text-base">Kho Gói Thẻ</h4>
-              <p className="text-xs text-slate-300">
-                {club?.packs.length ? `${club.packs.length} gói sẵn sàng mở` : 'Chiêu mộ thêm tuyển thủ mới'}
-              </p>
-            </div>
-          </div>
-          <ArrowRight className="w-4 h-4 text-slate-400" />
+      {/* 3. Secondary activities and resources */}
+      <section className="space-y-3" aria-labelledby="more-activities">
+        <h2 id="more-activities" className="label-text">Hoạt động khác</h2>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <Shortcut
+            icon={<Package className="h-5 w-5" />}
+            title="Kho Gói Thẻ"
+            description={club?.packs.length ? `${club.packs.length} gói sẵn sàng mở` : 'Chiêu mộ thêm tuyển thủ mới'}
+            onClick={() => onNavigateTab('packs')}
+          />
+          <Shortcut
+            icon={<Zap className="h-5 w-5" />}
+            title="Phòng Huấn Luyện"
+            description="Nâng cấp chỉ số cá nhân tuyển thủ"
+            onClick={() => onNavigateTab('training')}
+          />
+          <Shortcut
+            icon={<Coins className="h-5 w-5" />}
+            title="Thị Trường Chuyển Nhượng"
+            description="Ký hợp đồng trực tiếp tuyển thủ VCS & LCP"
+            onClick={() => onNavigateTab('transfers')}
+          />
+          <Shortcut
+            icon={<Globe2 className="h-5 w-5" />}
+            title="Chung Kết Thế Giới (Demo BO5)"
+            description="T1 2024 đối đầu Bilibili Gaming 2024, khoảng 3 phút. Tiến trình sự nghiệp được giữ riêng."
+            onClick={onOpenWorldDemo}
+          />
         </div>
 
-        {/* Training */}
-        <div
-          onClick={() => onNavigateTab('training')}
-          className="p-5 rounded-xl bg-[#111827] hover:bg-[#172033] border border-slate-700 cursor-pointer transition-all flex items-center justify-between"
-        >
-          <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-[#FFB800]/20 text-[#FFB800] border border-amber-500/30 flex items-center justify-center">
-              <Zap className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-display font-bold text-white text-base">Phòng Huấn Luyện</h4>
-              <p className="text-xs text-slate-300">Nâng cấp chỉ số cá nhân tuyển thủ</p>
-            </div>
-          </div>
-          <ArrowRight className="w-4 h-4 text-slate-400" />
+        <div className="panel-inset flex flex-col gap-2 p-3 text-label text-fg-muted sm:flex-row sm:items-center sm:justify-between">
+          <p className="min-w-0">
+            Giao hữu và thử lại luôn miễn phí. Khi còn dưới 100 Credits, nhận tài trợ phục hồi 100 Credits, tối đa một lần mỗi ngày (giờ Việt Nam).
+          </p>
+          <button
+            type="button"
+            className="btn btn-secondary shrink-0"
+            onClick={claimSponsorship}
+            disabled={sponsorDisabled}
+          >
+            Nhận Tài Trợ Phục Hồi
+          </button>
         </div>
-
-        {/* Transfer Market */}
-        <div
-          onClick={() => onNavigateTab('transfers')}
-          className="p-5 rounded-xl bg-[#111827] hover:bg-[#172033] border border-slate-700 cursor-pointer transition-all flex items-center justify-between"
-        >
-          <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
-              <Coins className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-display font-bold text-white text-base">Thị Trường Chuyển Nhượng</h4>
-              <p className="text-xs text-slate-300">Ký hợp đồng trực tiếp tuyển thủ VCS & LCP</p>
-            </div>
-          </div>
-          <ArrowRight className="w-4 h-4 text-slate-400" />
-        </div>
-      </div>
+      </section>
     </div>
   );
 };

@@ -36,6 +36,7 @@ import {BackupMeta,emptyBackupMeta,isDirty,progressScore,readBackupMeta,shouldNu
 import {DraftSession} from '../lib/legacyDraft/engine';
 import {rewardDraft} from '../lib/legacyDraft/reward';
 import { newId, vietnamDay } from '../lib/identity';
+import { NEW_SEASON_STIPEND, nextSeasonClub, seasonOf } from '../data/season';
 const LEGACY_SAVE_KEY = 'apac_rising_save_v2';
 const LEDGER_KEY = 'apac_rising_ledger_v2';
 const CARDS_KEY = 'apac_rising_cards_v2';
@@ -73,6 +74,9 @@ interface GameContextType {
   restoreFromRecoveryCode: (code: string) => Promise<boolean>;
   exportRecoveryCode: () => Promise<string>;
   storageBlocked: boolean;
+  season: number;
+  seasonComplete: boolean;
+  startNextSeason: () => boolean;
   backup: {
     unsaved: number;
     dirty: boolean;
@@ -654,6 +658,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     } catch { setStorageBlocked(true); }
   };
 
+  /** After the Worlds title (chapter 12) the club moves on to the next year with a retuned pro run. */
+  const startNextSeason = (): boolean => {
+    const {club} = saveRef.current;
+    const next = club ? nextSeasonClub(club) : null;
+    if (!next) return false;
+    const nextYear = next.careerYear;
+    commit({activeMatch: null, club: next});
+    setLedger((prev) => [{id: newId('ledger'), timestamp: Date.now(), deltaCredits: NEW_SEASON_STIPEND, deltaMaterials: 0, deltaTickets: 0, reason: `Tài trợ khởi đầu mùa ${nextYear}`, sourceType: 'SPONSOR' as const}, ...prev]);
+    return true;
+  };
+
   const claimSponsorship = (): boolean => {
     const {club,ledger}=saveRef.current;
     if(!club || club.wallet.credits>=100)return false;
@@ -715,6 +730,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         restoreFromRecoveryCode,
         exportRecoveryCode,
         storageBlocked,
+        season: seasonOf(club?.careerYear ?? 2026),
+        seasonComplete: !!club?.completedChapterIds.includes(12),
+        startNextSeason,
         backup: {
           unsaved: unsavedChanges(backupMeta, score),
           dirty: !!club && isDirty(backupMeta, score),

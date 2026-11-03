@@ -1,7 +1,7 @@
 $ bun install --frozen-lockfile
 bun install v1.4.3 (c6da4a4d3)
 
-Checked 61 installs across 122 packages (no changes) [29.00ms]
+Checked 61 installs across 122 packages (no changes) [27.00ms]
 exit=0
 $ bun run typecheck
 $ tsc --noEmit
@@ -11,24 +11,24 @@ $ bun run test
  RUN  v5.1.0 D:/BachKhoa/hk261/APAC_Rising_Esports_Manager_Docs_v2_2
 
 
- Test Files  6 passed (6)
-      Tests  40 passed (40)
-   Start at  14:27:03
-   Duration  7.22s (tests 72%, import 20%, transform 7%, worker 1%)
+ Test Files  8 passed (8)
+      Tests  48 passed (48)
+   Start at  15:47:29
+   Duration  3.38s (tests 75%, import 15%, transform 9%, worker 1%)
 
 $ vitest run
 exit=0
 $ bun run build
 vite v8.3.5 building client environment for production...
 transforming...
-✓ 1707 modules transformed.
+✓ 1718 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   1.30 kB │ gzip:   0.58 kB
-dist/assets/index-CBtb9fLh.css   52.28 kB │ gzip:   9.43 kB
-dist/assets/index-Du3UV_ek.js   977.78 kB │ gzip: 157.85 kB
+dist/index.html                   1.32 kB │ gzip:   0.59 kB
+dist/assets/index-QMtZwUsH.css   46.30 kB │ gzip:   8.75 kB
+dist/assets/index-dVEKsuZM.js   998.15 kB │ gzip: 170.33 kB
 
-✓ built in 1.16s
+✓ built in 311ms
 $ vite build
 [plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
@@ -44,19 +44,92 @@ Chapter | Format | Starter | +1 Rare (Welcome fixture, TOP) | All Rare
 3 | BO3 | 33.52% | 41.63% | 67.38%
 4 | BO3 | 26.57% | 34.08% | 59.90%
 5 | BO5 | 8.30% | 12.95% | 36.90%
-6 | BO5 | 16.30% | 22.80% | 52.80%
-7 | BO5 | 13.97% | 20.70% | 48.63%
-8 | BO5 | 16.30% | 22.80% | 52.80%
-9 | BO5 | 14.90% | 20.93% | 50.40%
-10 | BO5 | 3.30% | 5.55% | 21.75%
-11 | BO5 | 1.98% | 3.42% | 14.88%
-12 | BO5 | 12.65% | 18.00% | 46.60%
+6 | BO5 | 2.20% | 3.85% | 16.13%
+7 | BO5 | 2.42% | 4.10% | 18.05%
+8 | BO5 | 0.45% | 1.15% | 6.35%
+9 | BO5 | 0.65% | 1.45% | 7.28%
+10 | BO5 | 0.17% | 0.25% | 2.63%
+11 | BO5 | 0.20% | 0.33% | 3.10%
+12 | BO5 | 0.10% | 0.23% | 1.75%
 DEC-5 acceptance (default tactics, 4000 series/cell):
 Ch1: 68.70% target 65-72% PASS
 Ch2: 54.23% target 50-60% PASS
 Ch3: 48.63% target 45-55% PASS
 Ch4: 49.52% target 45-55% PASS
 Ch5: 49.30% target 45-55% PASS
+exit=0
+$ bun scripts/progression-sim.ts
+200 simulated players x 40 series per chapter, 3 seasons (default tactics, no training, no market)
+
+Policy: rewards (casual)
+Season.Ch | format | opponent OVR (bonus) | team OVR p25/median/p75 | mean win rate
+1.1 | BO1 | 55 (0) Học Viện VCS Trẻ | 61/61/61 | 65.8%
+1.2 | BO3 | 62 (0) Saigon Buffalo Young | 63/64/64 | 62.4%
+1.3 | BO3 | 66 (0) CERBERUS Esports | 65/66/67 | 57.4%
+1.4 | BO3 | 72 (0) Vikings Esports | 67/68/70 | 49.7%
+1.5 | BO5 | 77 (0) GAM Esports | 69/71/72 | 41.2%
+1.6 | BO5 | 80 (7) Flash Wolves 2016 | 73/75/77 | 43.4%
+1.7 | BO5 | 84 (1) FunPlus Phoenix 2019 | 75/77/80 | 41.8%
+1.8 | BO5 | 86 (1) Invictus Gaming 2018 | 76/79/81 | 39.1%
+1.9 | BO5 | 88 (1) T1 2024 | 78/80/83 | 36.5%
+1.10 | BO5 | 91 (0) Samsung White 2014 | 79/81/84 | 35.0%
+1.11 | BO5 | 93 (7) Gen.G 2024 | 80/83/85 | 31.2%
+1.12 | BO5 | 94 (9) G2 Esports 2019 | 82/84/86 | 37.5%
+2.3 | BO3 | 92 (1) Samsung White 2014 | 83/86/87 | 47.6%
+2.4 | BO3 | 92 (4) T1 2015 | 84/86/88 | 45.7%
+2.5 | BO5 | 93 (7) G2 Esports 2019 | 84/86/88 | 52.1%
+2.6 | BO5 | 92 (7) DWG KIA 2021 | 85/87/88 | 50.5%
+2.7 | BO5 | 94 (8) Gen.G 2024 | 86/87/89 | 47.1%
+2.8 | BO5 | 95 (8) JD Gaming 2023 | 86/88/89 | 43.3%
+2.9 | BO5 | 95 (9) ROX Tigers 2016 | 86/88/89 | 45.8%
+2.10 | BO5 | 95 (11) Invictus Gaming 2018 | 87/88/89 | 48.1%
+2.11 | BO5 | 95 (12) Hanwha Life Esports 2025 | 87/88/89 | 46.6%
+2.12 | BO5 | 96 (12) Bilibili Gaming 2024 | 88/89/90 | 44.0%
+3.3 | BO3 | 94 (3) Samsung White 2014 | 88/89/90 | 54.2%
+3.4 | BO3 | 94 (7) JD Gaming 2023 | 88/89/90 | 53.2%
+3.5 | BO5 | 94 (8) T1 2023 | 88/89/90 | 51.3%
+3.6 | BO5 | 95 (9) Gen.G 2024 | 88/89/90 | 52.0%
+3.7 | BO5 | 95 (9) DWG KIA 2020 | 88/89/90 | 52.2%
+3.8 | BO5 | 96 (12) Bilibili Gaming 2024 | 89/90/91 | 47.7%
+3.9 | BO5 | 97 (12) Samsung Galaxy 2017 | 89/90/91 | 49.4%
+3.10 | BO5 | 96 (11) G2 Esports 2019 | 89/90/91 | 53.4%
+3.11 | BO5 | 95 (12) Invictus Gaming 2018 | 89/90/91 | 53.8%
+3.12 | BO5 | 97 (11) ROX Tigers 2016 | 89/90/91 | 49.4%
+
+Policy: engaged (buys Champion/Elite packs)
+Season.Ch | format | opponent OVR (bonus) | team OVR p25/median/p75 | mean win rate
+1.1 | BO1 | 55 (0) Học Viện VCS Trẻ | 61/61/61 | 65.8%
+1.2 | BO3 | 62 (0) Saigon Buffalo Young | 63/64/64 | 62.4%
+1.3 | BO3 | 66 (0) CERBERUS Esports | 65/66/67 | 57.4%
+1.4 | BO3 | 72 (0) Vikings Esports | 69/71/72 | 58.0%
+1.5 | BO5 | 77 (0) GAM Esports | 70/72/75 | 49.0%
+1.6 | BO5 | 80 (7) Flash Wolves 2016 | 75/78/80 | 53.9% target 45-62% PASS
+1.7 | BO5 | 84 (1) FunPlus Phoenix 2019 | 78/80/83 | 54.5% target 45-62% PASS
+1.8 | BO5 | 86 (1) Invictus Gaming 2018 | 80/82/85 | 54.7% target 45-62% PASS
+1.9 | BO5 | 88 (1) T1 2024 | 81/84/86 | 51.0% target 45-62% PASS
+1.10 | BO5 | 91 (0) Samsung White 2014 | 84/85/87 | 50.1% target 42-60% PASS
+1.11 | BO5 | 93 (7) Gen.G 2024 | 85/86/88 | 45.6% target 40-58% PASS
+1.12 | BO5 | 94 (9) G2 Esports 2019 | 86/87/88 | 51.0% target 38-55% PASS
+2.3 | BO3 | 92 (1) Samsung White 2014 | 87/88/89 | 58.1% target 42-65% PASS
+2.4 | BO3 | 92 (4) T1 2015 | 88/89/89 | 55.8% target 42-65% PASS
+2.5 | BO5 | 93 (7) G2 Esports 2019 | 88/89/89 | 62.5% target 42-65% PASS
+2.6 | BO5 | 92 (7) DWG KIA 2021 | 88/89/90 | 58.8% target 42-65% PASS
+2.7 | BO5 | 94 (8) Gen.G 2024 | 88/89/90 | 54.7% target 42-65% PASS
+2.8 | BO5 | 95 (8) JD Gaming 2023 | 88/89/90 | 50.3% target 42-65% PASS
+2.9 | BO5 | 95 (9) ROX Tigers 2016 | 88/89/90 | 52.1% target 42-65% PASS
+2.10 | BO5 | 95 (11) Invictus Gaming 2018 | 89/90/91 | 54.5% target 42-65% PASS
+2.11 | BO5 | 95 (12) Hanwha Life Esports 2025 | 89/90/91 | 52.5% target 42-65% PASS
+2.12 | BO5 | 96 (12) Bilibili Gaming 2024 | 89/90/91 | 49.8% target 42-65% PASS
+3.3 | BO3 | 94 (3) Samsung White 2014 | 89/90/91 | 58.5% target 42-65% PASS
+3.4 | BO3 | 94 (7) JD Gaming 2023 | 90/90/91 | 57.4% target 42-65% PASS
+3.5 | BO5 | 94 (8) T1 2023 | 90/91/91 | 56.3% target 42-65% PASS
+3.6 | BO5 | 95 (9) Gen.G 2024 | 90/91/91 | 56.7% target 42-65% PASS
+3.7 | BO5 | 95 (9) DWG KIA 2020 | 90/91/91 | 57.0% target 42-65% PASS
+3.8 | BO5 | 96 (12) Bilibili Gaming 2024 | 90/91/92 | 52.5% target 42-65% PASS
+3.9 | BO5 | 97 (12) Samsung Galaxy 2017 | 90/91/92 | 54.1% target 42-65% PASS
+3.10 | BO5 | 96 (11) G2 Esports 2019 | 90/91/92 | 57.9% target 42-65% PASS
+3.11 | BO5 | 95 (12) Invictus Gaming 2018 | 90/91/92 | 58.4% target 42-65% PASS
+3.12 | BO5 | 97 (11) ROX Tigers 2016 | 90/91/92 | 53.9% target 42-65% PASS
 exit=0
 $ bun scripts/import-golden-road.ts --check
 {

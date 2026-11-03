@@ -100,6 +100,7 @@ export interface TeamSnapshot {
     isStarter?: boolean;
   }[];
   teamOvr: number;
+  difficultyBonus?: number; // chapter difficulty adjustment already applied to every roster stat
   synergyBonus: number; // [-8, 8]
   ratings: {
     lane: number;
@@ -229,6 +230,7 @@ export interface Chapter {
     ovr: number;
     archetype: OpponentArchetype;
     description: string;
+    difficultyBonus?: number; // season/difficulty adjustment already applied to the displayed OVR
     rosterPreview: {
       role: Role;
       displayName: string;

@@ -42,7 +42,7 @@
   {
     "filename": "scripts/e2e-layout.js",
     "passed": true,
-    "summary": "### Result\n{\"header\":390,\"client\":390,\"viewport\":390,\"font\":\"\\\"Be Vietnam Pro\\\", sans-serif\",\"lang\":\"vi\",\"controls\":[{\"left\":282,\"right\":326},{\"left\":330,\"right\":374}],\"friendlyRewardLabel\":true}\n"
+    "summary": "### Result\n{\"header\":390,\"client\":390,\"viewport\":390,\"font\":\"\\\"Be Vietnam Pro\\\", sans-serif\",\"lang\":\"vi\",\"controls\":[{\"left\":266,\"right\":316},{\"left\":0,\"right\":0}],\"friendlyRewardLabel\":true}\n"
   },
   {
     "filename": "scripts/e2e-accessibility.js",
@@ -67,6 +67,11 @@
   {
     "filename": "scripts/e2e-backup.js",
     "passed": true,
-    "summary": "### Result\n{\"nudgeAtStart\":0,\"nudgeInline\":true,\"neverBackedUp\":true,\"noEmbedAdvice\":true,\"codeStartsAR1\":true,\"codeLength\":1480,\"clearedAfterCopy\":true,\"reloadQuiet\":true,\"lastBackupShown\":true,\"pageErrors\":[]}\n"
+    "summary": "### Result\n{\"nudgeAtStart\":0,\"nudgeInline\":true,\"neverBackedUp\":true,\"noEmbedAdvice\":true,\"codeStartsAR1\":true,\"codeLength\":1479,\"clearedAfterCopy\":true,\"reloadQuiet\":true,\"lastBackupShown\":true,\"pageErrors\":[]}\n"
+  },
+  {
+    "filename": "scripts/e2e-season.js",
+    "passed": true,
+    "summary": "### Result\n{\"brackets\":7,\"worldsStages\":3,\"opponentCards\":5,\"yourCards\":5,\"headerHasStage\":true,\"trackerSlots\":5,\"season2Opponent\":\"Samsung White 2014 (OVR 92)\",\"careerYear\":2027,\"persistedAfterReload\":true,\"pageErrors\":[]}\n"
   }
 ]

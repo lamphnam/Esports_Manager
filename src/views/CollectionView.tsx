@@ -1,6 +1,7 @@
 import { X } from 'lucide-react';
 import React, { useState } from 'react';
 import { PlayerCard } from '../components/PlayerCard';
+import { PageHeader, SegmentedControl } from '../components/ui';
 import { useGame } from '../context/GameContext';
 import { getEditionById, getPlayerById } from '../data/cardCatalog';
 import { AudioSynth } from '../lib/audioSynth';
@@ -29,71 +30,35 @@ export const CollectionView: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-4 lg:px-8 py-6">
       {/* Header & Filter Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-display font-extrabold text-white">
-            Bộ Sưu Tập Tuyển Thủ ({ownedCards.length} Thẻ)
-          </h1>
-          <p className="text-sm text-slate-300 mt-1">
-            Toàn bộ các phiên bản thẻ tuyển thủ VCS, LCP và Huyền Thoại Thế Giới thuộc quyền sở hữu của câu lạc bộ
-          </p>
+      <PageHeader
+        title={`Bộ Sưu Tập Tuyển Thủ (${ownedCards.length} Thẻ)`}
+        subtitle="Toàn bộ các phiên bản thẻ tuyển thủ VCS, LCP và Huyền Thoại Thế Giới thuộc quyền sở hữu của câu lạc bộ"
+      >
+        <div className="flex flex-col gap-2 md:items-end">
+          <SegmentedControl
+            label="Lọc theo vị trí"
+            value={selectedRole}
+            onChange={(r) => { AudioSynth.playClick(); setSelectedRole(r); }}
+            options={['ALL', 'TOP', 'JUNGLE', 'MID', 'BOT', 'SUPPORT'].map((r) => ({ value: r, label: r === 'ALL' ? 'Tất cả' : r }))}
+          />
+          <SegmentedControl
+            label="Lọc theo độ hiếm"
+            value={selectedRarity}
+            onChange={(rarity) => { AudioSynth.playClick(); setSelectedRarity(rarity); }}
+            options={[
+              { value: 'ALL', label: 'Mọi Phẩm' },
+              { value: 'COMMON', label: 'Thường' },
+              { value: 'RARE', label: 'Hiếm' },
+              { value: 'EPIC', label: 'Sử Thi' },
+              { value: 'LEGENDARY', label: 'Huyền Thoại' },
+            ]}
+          />
         </div>
-
-        {/* Filter Controls */}
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Role Filter */}
-          <div className="flex items-center gap-1 p-1 bg-[#111827] border border-slate-700 rounded-lg text-xs">
-            {['ALL', 'TOP', 'JUNGLE', 'MID', 'BOT', 'SUPPORT'].map((r) => (
-              <button
-                key={r}
-                onClick={() => {
-                  AudioSynth.playClick();
-                  setSelectedRole(r);
-                }}
-                className={`px-3 py-1.5 rounded font-semibold transition-colors cursor-pointer ${
-                  selectedRole === r
-                    ? 'bg-[#2563EB] text-white'
-                    : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                {r === 'ALL' ? 'Tất cả' : r}
-              </button>
-            ))}
-          </div>
-
-          {/* Rarity Filter */}
-          <div className="flex items-center gap-1 p-1 bg-[#111827] border border-slate-700 rounded-lg text-xs">
-            {['ALL', 'COMMON', 'RARE', 'EPIC', 'LEGENDARY'].map((rarity) => (
-              <button
-                key={rarity}
-                onClick={() => {
-                  AudioSynth.playClick();
-                  setSelectedRarity(rarity);
-                }}
-                className={`px-3 py-1.5 rounded font-semibold transition-colors cursor-pointer ${
-                  selectedRarity === rarity
-                    ? 'bg-[#FFB800] text-slate-950 font-bold'
-                    : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                {rarity === 'ALL'
-                  ? 'Mọi Phẩm'
-                  : rarity === 'COMMON'
-                  ? 'Thường'
-                  : rarity === 'RARE'
-                  ? 'Hiếm'
-                  : rarity === 'EPIC'
-                  ? 'Sử Thi'
-                  : 'Huyền Thoại'}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      </PageHeader>
 
       {/* Grid of Cards */}
       {filteredCards.length === 0 ? (
-        <div className="py-20 text-center text-slate-400 text-sm">
+        <div className="py-20 text-center text-fg-subtle text-sm">
           Không tìm thấy thẻ nào phù hợp với bộ lọc đã chọn.
         </div>
       ) : (
@@ -121,66 +86,66 @@ export const CollectionView: React.FC = () => {
 
       {/* Detailed Card Inspection Modal */}
       {inspectedDetails && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
-          <div ref={inspection} role="dialog" aria-modal="true" aria-label="Chi Tiết Thẻ" tabIndex={-1} className="relative w-full max-w-lg max-h-[90dvh] bg-[#111827] border border-slate-700 rounded-xl shadow-2xl p-6 overflow-y-auto">
-            <div className="flex justify-between items-start pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/85 backdrop-blur-md p-4">
+          <div ref={inspection} role="dialog" aria-modal="true" aria-label="Chi Tiết Thẻ" tabIndex={-1} className="relative w-full max-w-lg max-h-[90dvh] bg-surface border border-line rounded-xl shadow-2xl p-6 overflow-y-auto">
+            <div className="flex justify-between items-start pb-3 border-b border-line">
               <div>
-                <span className="text-xs font-mono font-bold text-[#FFB800] uppercase">
+                <span className="text-xs font-mono font-bold text-gold ">
                   {inspectedDetails.player.primaryRole} · {inspectedDetails.edition.editionCode}
                 </span>
                 <h3 className="text-2xl font-display font-bold text-white mt-0.5">
                   {inspectedDetails.player.displayName}
                 </h3>
-                <span className="text-xs text-slate-300">{inspectedDetails.player.region}</span>
+                <span className="text-xs text-fg-muted">{inspectedDetails.player.region}</span>
               </div>
               <button
                 aria-label="Đóng chi tiết thẻ"
                 onClick={() => setInspectCardId(null)}
-                className="p-1.5 text-slate-300 hover:text-white bg-slate-800 border border-slate-700 rounded cursor-pointer"
+                className="p-1.5 text-fg-muted hover:text-white bg-elevated border border-line rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             <div className="space-y-4 my-4 text-sm">
-              <p className="text-slate-200 leading-relaxed bg-[#090D16] p-3.5 rounded-lg border border-slate-800">
+              <p className="text-fg leading-relaxed bg-bg p-3.5 rounded-lg border border-line">
                 {inspectedDetails.player.biography}
               </p>
 
               {/* 5 Stats Breakdown */}
-              <div className="space-y-2.5 p-3.5 bg-[#090D16] rounded-lg border border-slate-800">
-                <span className="text-xs font-bold text-slate-300 uppercase block">
+              <div className="space-y-2.5 p-3.5 bg-bg rounded-lg border border-line">
+                <span className="text-xs font-bold text-fg-muted block">
                   Bảng Chỉ Số Chi Tiết (Cấp {inspectedDetails.owned.level}/10)
                 </span>
 
-                <div className="grid grid-cols-2 gap-2.5 text-xs text-slate-200">
-                  <div className="flex justify-between p-2 bg-[#111827] border border-slate-800 rounded">
+                <div className="grid grid-cols-2 gap-2.5 text-xs text-fg">
+                  <div className="flex justify-between p-2 bg-surface border border-line rounded">
                     <span>Kỹ Năng (Mechanics)</span>
-                    <strong className="font-mono-nums text-[#FFB800]">
+                    <strong className="font-mono-nums text-gold">
                       {inspectedDetails.effectiveStats.mechanics}
                     </strong>
                   </div>
-                  <div className="flex justify-between p-2 bg-[#111827] border border-slate-800 rounded">
+                  <div className="flex justify-between p-2 bg-surface border border-line rounded">
                     <span>Chiến Thuật (Macro)</span>
-                    <strong className="font-mono-nums text-blue-400">
+                    <strong className="font-mono-nums text-info">
                       {inspectedDetails.effectiveStats.macro}
                     </strong>
                   </div>
-                  <div className="flex justify-between p-2 bg-[#111827] border border-slate-800 rounded">
+                  <div className="flex justify-between p-2 bg-surface border border-line rounded">
                     <span>Đồng Đội (Teamwork)</span>
-                    <strong className="font-mono-nums text-emerald-400">
+                    <strong className="font-mono-nums text-success">
                       {inspectedDetails.effectiveStats.teamwork}
                     </strong>
                   </div>
-                  <div className="flex justify-between p-2 bg-[#111827] border border-slate-800 rounded">
+                  <div className="flex justify-between p-2 bg-surface border border-line rounded">
                     <span>Tâm Lý (Mental)</span>
-                    <strong className="font-mono-nums text-teal-400">
+                    <strong className="font-mono-nums text-success">
                       {inspectedDetails.effectiveStats.mental}
                     </strong>
                   </div>
-                  <div className="flex justify-between p-2 bg-[#111827] border border-slate-800 rounded col-span-2">
+                  <div className="flex justify-between p-2 bg-surface border border-line rounded col-span-2">
                     <span>Bể Tướng (Champion Pool)</span>
-                    <strong className="font-mono-nums text-rose-400">
+                    <strong className="font-mono-nums text-danger">
                       {inspectedDetails.effectiveStats.championPool}
                     </strong>
                   </div>
@@ -189,13 +154,13 @@ export const CollectionView: React.FC = () => {
 
               {/* Archetype & Traits */}
               <div className="grid grid-cols-2 gap-2.5 text-xs">
-                <div className="p-3 rounded-lg bg-[#090D16] border border-slate-800">
-                  <span className="text-slate-400 block uppercase font-semibold mb-0.5">Phong Cách Đấu</span>
+                <div className="p-3 rounded-lg bg-bg border border-line">
+                  <span className="text-fg-subtle block font-semibold mb-0.5">Phong Cách Đấu</span>
                   <span className="font-bold text-white">{inspectedDetails.player.playstyle}</span>
                 </div>
-                <div className="p-3 rounded-lg bg-[#090D16] border border-slate-800">
-                  <span className="text-slate-400 block uppercase font-semibold mb-0.5">Điểm Cần Lưu Ý</span>
-                  <span className="font-medium text-rose-300 line-clamp-2">
+                <div className="p-3 rounded-lg bg-bg border border-line">
+                  <span className="text-fg-subtle block font-semibold mb-0.5">Điểm Cần Lưu Ý</span>
+                  <span className="font-medium text-danger line-clamp-2">
                     {inspectedDetails.player.weakness}
                   </span>
                 </div>
@@ -203,18 +168,18 @@ export const CollectionView: React.FC = () => {
 
               {/* Trait Tags - Clean Unboxed Metadata per Zero-Pill Rule */}
               <div>
-                <span className="text-xs text-slate-400 block uppercase font-semibold mb-1">Đặc Tính Tuyển Thủ</span>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-[#FFB800] font-semibold">
+                <span className="text-xs text-fg-subtle block font-semibold mb-1">Đặc Tính Tuyển Thủ</span>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-gold font-semibold">
                   {inspectedDetails.edition.traits.map((t, idx) => (
                     <React.Fragment key={idx}>
-                      {idx > 0 && <span aria-hidden="true" className="text-slate-500">·</span>}
+                      {idx > 0 && <span aria-hidden="true" className="text-fg-subtle">·</span>}
                       <span>{t}</span>
                     </React.Fragment>
                   ))}
                 </div>
               </div>
 
-              <div className="text-xs text-slate-400 pt-3 border-t border-slate-800">
+              <div className="text-xs text-fg-subtle pt-3 border-t border-line">
                 Nguồn gốc: {inspectedDetails.owned.acquiredFrom} · Sở hữu ngày:{' '}
                 {new Date(inspectedDetails.owned.acquiredAt).toLocaleDateString('vi-VN')}
               </div>

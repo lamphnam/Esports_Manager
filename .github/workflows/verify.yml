@@ -20,5 +20,6 @@ jobs:
       - run: bun run test
       - run: bun run build
       - run: bun scripts/balance-sim.ts
+      - run: bun scripts/progression-sim.ts
       - run: bun scripts/import-golden-road.ts --check
       - run: bun scripts/release-audit.ts

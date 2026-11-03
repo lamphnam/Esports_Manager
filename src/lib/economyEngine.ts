@@ -19,6 +19,13 @@ import {murmurHash3} from './seededRng';
 import {CURRENT_EDITIONS} from '../data/currentCatalog';
 import { SeededRng } from './seededRng';
 
+// Packs draw from the current editions plus the historical (LEGACY) editions, so the same few cards do not repeat.
+// The 5 sourced 2026 Team Secret Whales editions stay out of packs.
+export const PACK_POOL: PlayerCardEdition[] = [
+  ...CURRENT_EDITIONS,
+  ...EDITIONS_CATALOG.filter((e) => e.editionCode === 'LEGACY'),
+];
+
 export const PACK_DEFINITIONS: Record<PackFamily, PackDefinition> = {
   WELCOME: {
     family: 'WELCOME',
@@ -122,9 +129,7 @@ export function openPackInstance(
   const chosenRarity = rng.weightedChoice(rarities, weightValues);
 
   // Filter pool by chosen rarity and criteria
-  let eligibleEditions = CURRENT_EDITIONS.filter(
-    (e) => e.rarity === chosenRarity && e.editionCode !== 'LEGACY'
-  );
+  let eligibleEditions = PACK_POOL.filter((e) => e.rarity === chosenRarity);
 
   if (chosenRarity === 'COMMON' && packDef.minCommonOvr) {
     const minOvr = packDef.minCommonOvr;
@@ -135,7 +140,7 @@ export function openPackInstance(
   }
 
   if (eligibleEditions.length === 0) {
-    throw new Error(`Missing current-pack pool for ${chosenRarity}`);
+    throw new Error(`Missing pack pool for ${chosenRarity}`);
   }
 
   const chosenEdition = rng.choice(eligibleEditions);

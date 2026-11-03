@@ -10,13 +10,14 @@ bun run test                            # vitest
 bun run build
 bun scripts/balance-sim.ts              # win-rate DEC-5 theo chapter, exit != 0 nếu ngoài dải
 bun scripts/simulator-bench.ts          # benchmark prototype (10k seed)
+bun scripts/progression-sim.ts          # win rate Ch6–12 theo tiến trình thật của người chơi (thoát khác 0 nếu ngoài dải DEC-14)
 bun scripts/import-golden-road.ts --check
 bun run audit:release                   # chặn spec/code tham khảo/dependency thừa/màu cấm/emoji/Math.random trong bundle và src
 bun scripts/verify-release.ts           # chạy tất cả và ghi docs/evidence/verify-output.txt
 bun scripts/generate-manifest.ts [--check]   # checksum tài liệu; sinh lại sau mọi chỉnh sửa docs
 ```
 
-Test trong `src/lib/__tests__/`: `invariants` (ma trận, sub-seed, pity, xác suất, BO), `audit` (các lỗi P1 đã sửa), `recovery` (save/Recovery Code, input hỏng), `backup` (DEC-12: điểm tiến trình, nhắc sao lưu, meta hỏng, phát hiện nhúng/Safari, mã rút gọn), `legacy` (importer, mapping, pool, market, đối thủ), `draft` (Draft, thưởng, circuit). Mỗi bug mới phải có repro **đỏ** trước khi sửa rồi chạy lại xanh.
+Test trong `src/lib/__tests__/`: `invariants` (ma trận, sub-seed, pity, xác suất, BO), `audit` (các lỗi P1 đã sửa), `recovery` (save/Recovery Code, input hỏng), `season` (mùa giải: bracket, đối thủ theo mùa, chuyển mùa thuần), `narrative` (log khớp kết quả và màu), `backup` (DEC-12: điểm tiến trình, nhắc sao lưu, meta hỏng, phát hiện nhúng/Safari, mã rút gọn), `legacy` (importer, mapping, pool, market, đối thủ), `draft` (Draft, thưởng, circuit). Mỗi bug mới phải có repro **đỏ** trước khi sửa rồi chạy lại xanh.
 
 ## 2. E2E trình duyệt
 
@@ -32,6 +33,7 @@ Test trong `src/lib/__tests__/`: `invariants` (ma trận, sub-seed, pity, xác s
 | `e2e-state` | equip unique, claim một lần, trần stat, tài trợ ở 0 credits, UUID không trùng |
 | `e2e-layout`, `e2e-accessibility` | header 390px không tràn, font, `lang`; Esc, focus trap, touch ≥ 44px, reduced motion |
 | `e2e-backup` | DEC-12: không nhắc khi vừa tạo CLB; nhắc sau clear Chapter 1 (banner trong luồng trang); chấm báo trên nút Sao lưu; hết nhắc sau khi sao chép mã; reload không nhắc lại; meta không lọt vào save |
+| `e2e-season` | Hub có 7 bracket (Worlds 3 vòng); màn trận có hai hàng 5 thẻ, bản đồ và thanh Best of 5; thắng Worlds → tổng kết → sang mùa 2027 (năm, chương, completed, +1000 credits, đối thủ lịch sử), còn nguyên sau reload |
 | `e2e-demo` | demo BO5: `localStorage` byte-identical trước/sau |
 | `e2e-draft` | Draft (cờ tắt): 6 bracket, thưởng một lần, poster 1080×1350 |
 | `e2e-iframe` | production build trong iframe khác origin (`127.0.0.1:4174` → `localhost:4173`) với storage bị chặn |
@@ -42,7 +44,7 @@ Test trong `src/lib/__tests__/`: `invariants` (ma trận, sub-seed, pity, xác s
 
 Output nguyên văn ở `evidence/verify-output.txt`; kết quả browser ở `evidence/e2e-results.json`.
 
-- typecheck, build, balance-sim, importer `--check`, release-audit đều exit 0 (`verify-release.ts` chạy lại 03/11 sau DEC-12); **40 test xanh**; **14 kết quả E2E xanh trên Chrome** (gồm `e2e-backup` và `e2e-iframe`).
+- typecheck, build, balance-sim, importer `--check`, release-audit đều exit 0 (`verify-release.ts` chạy lại 03/11 sau DEC-12); **48 test xanh**; **15 kết quả E2E xanh trên Chrome** (gồm `e2e-backup`, `e2e-season` và `e2e-iframe`).
 - DEC-5 (4000 seed/ô) đạt dải: 68.70 / 54.23 / 48.63 / 49.52 / 49.30 %.
 - Importer: 649 editions, 374 identities, 73 đội, 129 team-years, checksum khớp.
 - Build: JS ~973 kB (gzip ~156 kB), CSS ~53 kB (gzip ~9.5 kB); cảnh báo chunk > 500 kB raw.

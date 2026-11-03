@@ -1,4 +1,4 @@
-import {legacyOpponent} from './legacyOpponents';
+import {campaignOpponentSeed,legacyOpponent} from './legacyOpponents';
 import {murmurHash3} from '../lib/seededRng';
 import { Chapter, TeamSnapshot } from '../types';
 
@@ -403,6 +403,6 @@ export const CAMPAIGN_CHAPTERS:Chapter[]=CHAPTER_SEEDS.map(chapter=>({...chapter
   rulesBasisYear:2027,isOfficialFormat:false,
   adaptationNote:'Hành trình loại trực tiếp hư cấu; suất tham dự được xét lại mỗi split.',
   realWorldReferenceUrl:'https://lolesports.com/en-SG/lolesports/news/a-more-open-lcp-ecosystem-in-2027',
-  ...(chapter.id>=6?{opponent:legacyOpponent(chapter.id,murmurHash3(`campaign-${chapter.id}-v1.1`)),description:'Đội hình lịch sử gặp nhau trong nhánh loại trực tiếp hư cấu.',subtitle:`Chapter ${chapter.id} · Loại trực tiếp hư cấu`,storyEpilogue:'Tiến tới chặng tiếp theo của hành trình mô phỏng.'}:{})
+  ...(chapter.id>=6?{opponent:legacyOpponent(chapter.id,campaignOpponentSeed(chapter.id)),description:'Đội hình lịch sử gặp nhau trong nhánh loại trực tiếp hư cấu.',subtitle:`Chapter ${chapter.id} · Loại trực tiếp hư cấu`,storyEpilogue:'Tiến tới chặng tiếp theo của hành trình mô phỏng.'}:{})
 }));
 export {WORLD_CHAMPIONSHIP_DEMO_SCENARIO} from './demoScenario';

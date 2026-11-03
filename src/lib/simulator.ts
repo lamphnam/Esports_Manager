@@ -257,6 +257,32 @@ export function simulatePhase(
 }
 
 /**
+ * Commentary for a LATE phase whose own result points the opposite way to the game result.
+ * `lateWon` is the player's result in the LATE phase; the game result is the opposite.
+ * Wording keeps the final line consistent with who actually wins the game.
+ */
+function reconcileLateNarrative(lateWon: boolean): { events: string[]; keyMoment: string } {
+  if (lateWon) {
+    return {
+      events: [
+        '[26:30] Bẫy Baron thần sầu! Bắt lẻ thành công chủ lực đối phương.',
+        '[28:10] Quét Sạch (ACE)! Nhưng khoảng cách vàng và mục tiêu tích lũy từ đầu trận quá lớn để lật ngược.',
+        '[29:30] Đối phương vẫn đẩy được vào căn cứ và phá hủy Nhà Chính của bạn.',
+      ],
+      keyMoment: 'Thắng giao tranh tổng cuối trận nhưng không bù nổi khoảng cách từ hai pha trước, ván đấu thuộc về đối thủ.',
+    };
+  }
+  return {
+    events: [
+      '[27:00] Mất mục tiêu Baron sau pha trừng phạt 50/50 nghẹt thở.',
+      '[29:15] Đối phương tràn vào căn cứ nhưng lợi thế vàng tích lũy từ đầu trận giúp đội bạn trụ vững.',
+      '[29:50] Phản công thành công, phá hủy Nhà Chính Nexus đối phương!',
+    ],
+    keyMoment: 'Thua giao tranh tổng cuối trận nhưng lợi thế tích lũy từ hai pha trước đủ để giữ vững và dứt điểm ván đấu.',
+  };
+}
+
+/**
  * Simulates a full game (3 phases)
  */
 export function simulateGame(
@@ -302,6 +328,11 @@ export function simulateGame(
   const phases = [p1, p2, p3];
   const playerWins = phases.filter((p) => p.winner === 'PLAYER').length;
   const gameWon = playerWins >= 2;
+  // The game goes to whoever takes 2 of 3 phases, so the last phase may swing against the game result.
+  // Only its commentary changes (never winner, probability, gold or any RNG draw), so the log leads to the result.
+  if ((p3.winner === 'PLAYER') !== gameWon) {
+    phases[2] = { ...p3, ...reconcileLateNarrative(p3.winner === 'PLAYER') };
+  }
 
   const rng = getPhaseRng(masterSeed, gameIndex, 'SUMMARY', 0);
   const killsPlayer = gameWon ? rng.nextInt(14, 26) : rng.nextInt(6, 15);

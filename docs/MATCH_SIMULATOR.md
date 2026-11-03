@@ -116,4 +116,4 @@ Test tự động (`src/lib/__tests__/`): ma trận (4 ràng buộc + khớp JSO
 | Chọn thích nghi vs ngẫu nhiên/cố định | chênh ≥ 5 điểm % | 55.27% vs 51.76% (gap 3.51) — **chưa đạt** |
 | BO5 p95 | < 200 ms | ~0.09 ms — đạt |
 
-Không đổi ma trận hay odds để ép số; hai mục chưa đạt cần cân bằng/playtest tiếp theo (xem [PROJECT_STATUS.md](PROJECT_STATUS.md)). Mỗi pha có tối đa 15 sự kiện (giới hạn do `validateSave` áp khi nhập save).
+Độ khó Ch6–12 được đo riêng bằng `scripts/progression-sim.ts` ([ECONOMY.md](ECONOMY.md) §8). Log trận có màu: dòng có lợi cho người chơi xanh, bất lợi đỏ; dòng chốt pha LATE luôn theo người thắng ván (`PhaseLog.tsx`). Không đổi ma trận hay odds để ép số; hai mục chưa đạt cần cân bằng/playtest tiếp theo (xem [PROJECT_STATUS.md](PROJECT_STATUS.md)). Mỗi pha có tối đa 15 sự kiện (giới hạn do `validateSave` áp khi nhập save).

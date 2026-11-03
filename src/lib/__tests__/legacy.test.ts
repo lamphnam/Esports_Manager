@@ -9,7 +9,7 @@ import {getEditionById} from '../../data/cardCatalog';
 import {WORLD_CHAMPIONSHIP_DEMO_SCENARIO as scenario} from '../../data/campaignData';
 import {calculateTeamRatings} from '../simulator';
 import {VERIFIED_2026_EDITIONS,VERIFIED_2026_ROSTER} from '../../data/verified2026';
-import {legacyOpponent} from '../../data/legacyOpponents';
+import {campaignOpponentSeed,legacyOpponent,MAX_DIFFICULTY_BONUS,OPPONENT_TARGET_OVR} from '../../data/legacyOpponents';
 
 describe('legacy data',()=>{
  it('G4 uses only sourced medium+ records and the common derived-rating mapping',()=>{
@@ -46,7 +46,31 @@ describe('legacy data',()=>{
   for(const edition of editions){expect(computeCardOvr(edition.baseStats)).toBe(edition.baseOvr);expect(edition.provenance.datasetVersion).toBe(manifest.datasetVersion);}
   expect(deriveRating('test','team',2026,'MID')).toBe(deriveRating('test','team',2026,'MID'));
  });
- it('DEC-2 LEGACY never enters any current pack (10k draws/family)',()=>{
-  for(const family of ['WELCOME','SCOUT','ELITE','CHAMPION'] as const)for(let seed=0;seed<10000;seed++)expect(openPackInstance(family,seed%8,seed).edition.editionCode).not.toBe('LEGACY');
+ it('DEC-13 packs draw from current + legacy editions: wide variety, odds and guarantees intact',()=>{
+  const draws=20000,seen=new Set<string>();let legacy=0;const rarity:Record<string,number>={COMMON:0,RARE:0,EPIC:0,LEGENDARY:0};
+  for(let seed=0;seed<draws;seed++){
+   const {edition}=openPackInstance('SCOUT',0,seed);seen.add(edition.id);rarity[edition.rarity]++;if(edition.editionCode==='LEGACY')legacy++;
+   if(edition.rarity==='COMMON')expect(edition.baseOvr).toBeGreaterThanOrEqual(62);
+  }
+  expect(seen.size).toBeGreaterThan(250);                      // was at most 30 before the pool grew
+  expect(legacy/draws).toBeGreaterThan(0.7);
+  expect(rarity.COMMON/draws).toBeGreaterThan(0.52);expect(rarity.COMMON/draws).toBeLessThan(0.58);  // table: 55%
+  expect(rarity.LEGENDARY/draws).toBeGreaterThan(0.005);expect(rarity.LEGENDARY/draws).toBeLessThan(0.015);  // table: 1%
+  for(let seed=0;seed<3000;seed++)expect(['RARE','EPIC','LEGENDARY']).toContain(openPackInstance('WELCOME',0,seed).edition.rarity);
+  for(let seed=0;seed<3000;seed++)expect(['EPIC','LEGENDARY']).toContain(openPackInstance('CHAMPION',0,seed).edition.rarity);
+  for(let seed=0;seed<3000;seed++)expect(['EPIC','LEGENDARY']).toContain(openPackInstance('SCOUT',7,seed).edition.rarity);  // 8th open is forced Epic+
+ });
+ it('DEC-14 chapters 6-12 follow the difficulty curve, with distinct teams and a bounded bonus',()=>{
+  const chapters=[6,7,8,9,10,11,12].map(id=>({id,opponent:legacyOpponent(id,campaignOpponentSeed(id))}));
+  const names=chapters.map(c=>c.opponent.name.replace(/ \d{4}$/,''));
+  expect(new Set(names).size).toBe(names.length);
+  for(const {id,opponent} of chapters){
+   expect(opponent.snapshot!.difficultyBonus??0).toBeLessThanOrEqual(MAX_DIFFICULTY_BONUS);
+   expect(opponent.ovr).toBeGreaterThanOrEqual(OPPONENT_TARGET_OVR[id]-3);
+   expect(opponent.ovr).toBeLessThanOrEqual(OPPONENT_TARGET_OVR[id]+2);
+   expect(opponent.snapshot!.roster.every(p=>p.ovr<=99&&Object.values(p.effectiveStats).every(v=>v<=99))).toBe(true);
+  }
+  expect(chapters[6].opponent.ovr).toBeGreaterThan(chapters[0].opponent.ovr+10);
+  for(let i=1;i<chapters.length;i++)expect(chapters[i].opponent.ovr).toBeGreaterThanOrEqual(chapters[i-1].opponent.ovr-1);
  });
 });

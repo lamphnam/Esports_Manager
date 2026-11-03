@@ -1,5 +1,8 @@
 import { Coins, Zap } from 'lucide-react';
 import React, { useState } from 'react';
+import { RarityBadge, RoleBadge } from '../components/ui';
+import { RoleIcon } from '../components/RoleIcon';
+import { ROLE_LABELS } from '../components/ui';
 import { useGame } from '../context/GameContext';
 import { AudioSynth } from '../lib/audioSynth';
 import { getTrainingCost } from '../lib/economyEngine';
@@ -31,168 +34,156 @@ export const TrainingView: React.FC = () => {
     { key: 'mental', label: 'Tâm Lý (Mental)', desc: 'Bản lĩnh vững vàng khi bị dẫn trước hoặc tranh trừng phạt' },
   ];
 
+  const actionLabel = isStatFull
+    ? 'Chỉ Số Đã Đầy (99)'
+    : isMaxLevel
+    ? 'Đã Đạt Cấp 10 Tối Đa'
+    : canAfford
+    ? `Nâng Cấp Lên Cấp ${currentLevel + 1}`
+    : 'Không Đủ Credits';
+
   return (
-    <div className="space-y-6 max-w-7xl mx-auto px-4 lg:px-8 py-6">
-      {/* Header */}
-      <div className="pb-4 border-b border-slate-800">
-        <h1 className="text-2xl lg:text-3xl font-display font-extrabold text-white">
-          Trung Tâm Huấn Luyện (Training Center)
+    <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 lg:px-8">
+      <div className="border-b border-line pb-4">
+        <h1 className="text-title font-display font-extrabold text-fg">
+          Trung Tâm Huấn Luyện <span className="text-fg-muted">(Training Center)</span>
         </h1>
-        <p className="text-sm text-slate-300 mt-1">
+        <p className="mt-1 text-body text-fg-muted">
           Rèn luyện và phát triển chỉ số cá nhân của các tuyển thủ từ cấp 1 đến cấp 10
         </p>
-        <p className="text-xs text-slate-400">Vật liệu: {club?.wallet.trainingMaterials || 0} · Vé trinh sát: {club?.wallet.scoutTickets || 0}. Chi phí hiện tại chỉ dùng Credits.</p>
+        <p className="mt-1 text-caption text-fg-subtle">
+          Vật liệu: {club?.wallet.trainingMaterials || 0} · Vé trinh sát: {club?.wallet.scoutTickets || 0}. Chi phí hiện tại chỉ dùng Credits.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Card Selection list */}
-        <div className="lg:col-span-1 p-4 rounded-xl bg-[#111827] border border-slate-700 space-y-3">
-          <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block mb-2">
-            Chọn Tuyển Thủ Cần Huấn Luyện
-          </span>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        {/* Left: card selection list */}
+        <section className="panel space-y-3" aria-labelledby="training-roster">
+          <h2 id="training-roster" className="label-text">Chọn tuyển thủ cần huấn luyện</h2>
 
-          <div className="space-y-2 max-h-[520px] overflow-y-auto pr-1">
+          <div className="max-h-[520px] space-y-2 overflow-y-auto pr-1">
             {ownedCards.map((card) => {
               const details = getOwnedCardWithDetails(card.instanceId);
               if (!details) return null;
               const isSelected = card.instanceId === selectedCardId;
+              const role = details.edition.role || details.player.primaryRole;
 
               return (
-                <div
+                <button
                   key={card.instanceId}
+                  type="button"
+                  aria-pressed={isSelected}
                   onClick={() => {
                     AudioSynth.playClick();
                     setSelectedCardId(card.instanceId);
                   }}
-                  className={`p-3 rounded-lg border flex items-center justify-between cursor-pointer transition-all ${
-                    isSelected
-                      ? 'border-[#FFB800] bg-slate-800/90 ring-1 ring-[#FFB800]'
-                      : 'border-slate-800 bg-[#090D16] hover:border-slate-700'
-                  }`}
+                  className="option flex w-full items-center gap-3 p-3 text-left"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded bg-slate-800 border border-slate-700 text-[#FFB800] font-bold flex items-center justify-center text-xs">
-                      {details.player.primaryRole}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-base text-white">
-                        {details.player.displayName}
-                      </h4>
-                      <span className="text-xs text-slate-300">
-                        Cấp {card.level}/10 · {details.edition.rarity}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="text-right">
-                    <span className="font-mono-nums font-bold text-sm text-[#FFB800]">
-                      OVR {details.effectiveOvr}
+                  <span
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-elevated text-fg-muted"
+                    title={ROLE_LABELS[role].full}
+                    aria-label={ROLE_LABELS[role].full}
+                  >
+                    <RoleIcon role={role} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-card font-display font-bold text-fg [overflow-wrap:anywhere]" title={details.player.displayName}>
+                      {details.player.displayName}
                     </span>
-                  </div>
-                </div>
+                    <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-caption text-fg-muted">
+                      <span>{ROLE_LABELS[role].name}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>Cấp {card.level}/10</span>
+                      <span aria-hidden="true">·</span>
+                      <RarityBadge rarity={details.edition.rarity} />
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-right" aria-label={`OVR ${details.effectiveOvr}`}>
+                    <span className="block font-mono-nums text-heading font-bold leading-none text-fg">{details.effectiveOvr}</span>
+                    <span className="text-caption text-fg-subtle">OVR</span>
+                  </span>
+                </button>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Right: Upgrade Workbench */}
+        {/* Right: upgrade workbench */}
         {selectedDetails && (
-          <div className="lg:col-span-2 p-6 rounded-xl bg-[#111827] border border-slate-700 flex flex-col justify-between space-y-6">
-            <div>
-              <div className="flex items-start justify-between pb-4 border-b border-slate-800">
-                <div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="px-2.5 py-0.5 text-xs font-bold bg-[#2563EB] text-white rounded">
-                      {selectedDetails.player.primaryRole}
-                    </span>
-                    <h2 className="text-2xl font-display font-bold text-white">
-                      {selectedDetails.player.displayName}
-                    </h2>
-                  </div>
-                  <span className="text-sm text-slate-300 mt-1 block">
-                    Tiến trình đào tạo: Cấp {currentLevel} / 10
-                  </span>
+          <section className="panel flex flex-col gap-6" aria-labelledby="training-workbench">
+            <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3 border-b border-line pb-4">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h2 id="training-workbench" className="text-heading font-display font-bold text-fg [overflow-wrap:anywhere]">
+                    {selectedDetails.player.displayName}
+                  </h2>
+                  <RoleBadge role={selectedDetails.edition.role || selectedDetails.player.primaryRole} />
                 </div>
-
-                <div className="text-right">
-                  <span className="text-xs text-slate-400 block uppercase font-semibold">Sức Mạnh Hiện Tại</span>
-                  <span className="text-2xl font-mono-nums font-black text-[#FFB800]">
-                    OVR {selectedDetails.effectiveOvr}
-                  </span>
-                </div>
+                <p className="mt-1 text-label text-fg-muted">Tiến trình đào tạo: Cấp {currentLevel} / 10</p>
               </div>
 
-              {/* Stat Chooser */}
-              <div className="mt-5 space-y-3">
-                <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
-                  Chọn Kỹ Năng Đào Tạo Chuyên Sâu (+2 Điểm):
-                </span>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {statOptions.map((opt) => {
-                    const isSelected = selectedStat === opt.key;
-                    const currentVal = selectedDetails.effectiveStats[opt.key];
-                    return (
-                      <button
-                        key={opt.key}
-                        type="button"
-                        disabled={currentVal >= 99}
-                        onClick={() => {
-                          AudioSynth.playClick();
-                          setSelectedStat(opt.key);
-                        }}
-                        className={`p-3.5 text-left rounded-lg border transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
-                          isSelected
-                            ? 'border-[#FFB800] bg-slate-800/90 ring-1 ring-[#FFB800]'
-                            : 'border-slate-800 bg-[#090D16] hover:border-slate-700'
-                        }`}
-                      >
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="font-bold text-sm text-white">{opt.label}</span>
-                          <span className="font-mono-nums font-bold text-sm text-[#FFB800]">
-                            {currentVal} ➔ {Math.min(99,currentVal + 2)}{currentVal >= 99 ? ' (Đầy)' : ''}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300">{opt.desc}</p>
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="text-right" aria-label={`Sức mạnh hiện tại OVR ${selectedDetails.effectiveOvr}`}>
+                <span className="label-text block">Sức mạnh hiện tại</span>
+                <span className="font-mono-nums text-title font-bold leading-none text-gold">{selectedDetails.effectiveOvr}</span>
+                <span className="ml-1 text-caption text-fg-subtle">OVR</span>
               </div>
             </div>
 
-            {/* Action Bar */}
-            <div className="p-4 rounded-lg bg-[#090D16] border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <span className="text-xs text-slate-400 block font-semibold uppercase">Chi phí huấn luyện:</span>
-                <div className="flex items-center gap-1.5 font-mono-nums font-extrabold text-[#FFB800] text-lg">
-                  <Coins className="w-4 h-4" />
-                  <span>{isMaxLevel ? 'Tối Đa' : `${cost.toLocaleString()} Credits`}</span>
+            <div className="space-y-3">
+              <h3 className="label-text">Chọn kỹ năng đào tạo chuyên sâu (+2 điểm)</h3>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {statOptions.map((opt) => {
+                  const isSelected = selectedStat === opt.key;
+                  const currentVal = selectedDetails.effectiveStats[opt.key];
+                  const next = Math.min(99, currentVal + 2);
+                  return (
+                    <button
+                      key={opt.key}
+                      type="button"
+                      disabled={currentVal >= 99}
+                      aria-pressed={isSelected}
+                      onClick={() => {
+                        AudioSynth.playClick();
+                        setSelectedStat(opt.key);
+                      }}
+                      className="option flex flex-col gap-1.5 p-3.5 text-left disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      <span className="flex items-start justify-between gap-3">
+                        <span className="min-w-0 text-body font-bold text-fg">{opt.label}</span>
+                        <span className="shrink-0 whitespace-nowrap font-mono-nums text-label font-bold text-gold">
+                          {currentVal} → {next}
+                          {currentVal >= 99 ? ' (Đầy)' : ''}
+                        </span>
+                      </span>
+                      <span className="text-caption text-fg-muted">{opt.desc}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Cost and action are one area. */}
+            <div className="panel-inset flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <span className="label-text block">Chi phí huấn luyện</span>
+                <div className="mt-0.5 flex items-center gap-1.5 font-mono-nums text-heading font-bold text-gold">
+                  <Coins className="h-4 w-4 shrink-0" />
+                  <span>{isMaxLevel ? 'Tối đa' : `${cost.toLocaleString()} Credits`}</span>
                 </div>
               </div>
 
               <button
+                type="button"
                 onClick={handleTrain}
                 disabled={isMaxLevel || isStatFull || !canAfford}
-                className={`w-full sm:w-auto px-8 py-3.5 font-display font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 ${
-                  isMaxLevel
-                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                    : canAfford
-                    ? 'bg-[#FFB800] hover:bg-amber-400 text-slate-950 shadow cursor-pointer'
-                    : 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                }`}
+                className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                <Zap className="w-4 h-4 fill-current" />
-                <span>
-                  {isStatFull ? 'Chỉ Số Đã Đầy (99)' : isMaxLevel
-                    ? 'Đã Đạt Cấp 10 Tối Đa'
-                    : canAfford
-                    ? `Nâng Cấp Lên Cấp ${currentLevel + 1}`
-                    : 'Không Đủ Credits'}
-                </span>
+                <Zap className="h-4 w-4 shrink-0 fill-current" />
+                <span>{actionLabel}</span>
               </button>
             </div>
-          </div>
+          </section>
         )}
       </div>
     </div>

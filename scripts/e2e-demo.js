@@ -4,9 +4,9 @@ async(driver)=>{
   const p=await context.newPage();await p.goto('http://localhost:3000');
   await p.getByRole('button',{name:/Tiếp Tục: Điểm Danh/}).click();await p.getByRole('button',{name:/Bắt Đầu Trận Đấu Đầu Tiên/}).click();
   await p.getByRole('button',{name:'Đóng trận đấu',exact:true}).click();
-  await p.reload();await p.getByRole('button',{name:/Thử Nghiệm Ngay/}).waitFor();
+  await p.reload();await p.getByRole('button',{name:/Demo BO5/}).waitFor();
   const before=await p.evaluate(()=>JSON.stringify(Object.fromEntries(Object.entries(localStorage).sort())));
-  await p.getByRole('button',{name:/Thử Nghiệm Ngay/}).click();
+  await p.getByRole('button',{name:/Demo BO5/}).click();
   const dialog=p.getByRole('dialog',{name:'Demo Chung Kết Thế Giới'});
   for(let game=1;game<=5;game++){
    await dialog.getByRole('button',{name:`Bắt Đầu Ván ${game}`,exact:true}).click();

@@ -1,58 +1,58 @@
 [
   {
     "path": "docs/ARCHITECTURE.md",
-    "bytes": 15356,
-    "sha256": "c02dabc0030cff58818a2d2ba2417e5d940c5b40dc8baa67b256694fe70c7980"
+    "bytes": 15488,
+    "sha256": "0a2bff9e1446ec09527f85972d349f1dd665c66cc5e02ff55cbc20df08e2636e"
   },
   {
     "path": "docs/CHANGELOG.md",
-    "bytes": 5820,
-    "sha256": "09a5ee9eed76958fc98988af4d3b7ab8e5a160c422bc774ac250e81a30631a7c"
+    "bytes": 10621,
+    "sha256": "0a08e492ceb1a49c99d90356d2697eba21e18d86ac604610e0cdb2d7b6902b45"
   },
   {
     "path": "docs/CONTEST_AND_RIGHTS.md",
-    "bytes": 14129,
-    "sha256": "a6c649bc493bd3056852ca09e0f90868e654d27682fd616ee6138b493eb66234"
+    "bytes": 15536,
+    "sha256": "5d1c66a953227e06653855097db37429342841197172b4009736ffc01a3d99a6"
   },
   {
     "path": "docs/DECISIONS.md",
-    "bytes": 11652,
-    "sha256": "0f37d728e35c6e3c1a93e753867f88715f3928d01d0d9b8124c1d9d28616f44e"
+    "bytes": 13449,
+    "sha256": "1bf3eb7f739f812d9c57e86303ccf80715e235f6070b63845edc4c06bff9d1b8"
   },
   {
     "path": "docs/ECONOMY.md",
-    "bytes": 7963,
-    "sha256": "b17cc385e5455bf3a123f99d59e31d1dff57491b0ea74bb534b8511118605447"
+    "bytes": 12150,
+    "sha256": "f231be3ac17c3aceaf3ddc98b5df1c298c410b83e9c915c01790edab3595bb55"
   },
   {
     "path": "docs/GAME_DESIGN.md",
-    "bytes": 15221,
-    "sha256": "27700211c9d2991065ac4d130a149abd928590b5892d8b489912da7c226944ea"
+    "bytes": 16433,
+    "sha256": "8c2fba6f206da5c5bf208084fc9de845d3a3177bae2a1063a3e65d7408eac29e"
   },
   {
     "path": "docs/MATCH_SIMULATOR.md",
-    "bytes": 10005,
-    "sha256": "e07878ce7ae4d53616bbfba2d1407b05f92a4e13614ea4e0a0ff82733363e55c"
+    "bytes": 10267,
+    "sha256": "44ab5172e8044197aca533c815a88c45c5214df166473a4a3525d822229ae63b"
   },
   {
     "path": "docs/PROJECT_STATUS.md",
-    "bytes": 7509,
-    "sha256": "96ae78b2399ac67ba987cc7ac2f0e6974f0d622e115f37deb0f07fc6d2317cd2"
+    "bytes": 7785,
+    "sha256": "ac014ea439da56bd8de2f8f52d8d0582ca173c9f1a94fe218a34ea7b815c6b2e"
   },
   {
     "path": "docs/QA_AND_RELEASE.md",
-    "bytes": 10802,
-    "sha256": "eed03c09200b649373a2900670effdb6cb2b44e455abed42e9d5a643a5502547"
+    "bytes": 11361,
+    "sha256": "3c43b1b4e5ddd38c0ecbb7b808613ddd0cc7415b4d497de21b2b47c9a046b7f0"
   },
   {
     "path": "docs/UX_AND_ART.md",
-    "bytes": 6336,
-    "sha256": "b9b3c0fbe3e871e662c491a569dfe31f1df70d61298d6ddffc5a22f0de6500ec"
+    "bytes": 9455,
+    "sha256": "f48b0b99f9b07b25369e0d193ba9cea8a64ed18dfe7b08f005e1a841abee922d"
   },
   {
     "path": "docs/config/balance.initial.json",
     "bytes": 2322,
-    "sha256": "f5a2b139ab89adb98b69b7539ef50c4308cd2b980a377c191deccfafbee54779"
+    "sha256": "4be93b4e44c6e5b7cbb354498ecd4516e6a7b01f29a1f47b1264d319e85c6eb5"
   },
   {
     "path": "docs/config/tactics.matrix.json",
@@ -61,12 +61,12 @@
   },
   {
     "path": "docs/evidence/e2e-results.json",
-    "bytes": 3718,
-    "sha256": "6b711ac8b08e95d3c3e91d3adac371b601273cbfa3da7e51614f2d2375b2b036"
+    "bytes": 4050,
+    "sha256": "45ccbffa8668386b18f91495436ee423d0757ceae479ace9a06588425c342e9c"
   },
   {
     "path": "docs/evidence/verify-output.txt",
-    "bytes": 3151,
-    "sha256": "3e42f335f236f933db7f0824c04241aa84071a665c399cd04188b8542be83e91"
+    "bytes": 7549,
+    "sha256": "ca462e9b91e7eae1883ba759cf2331ead52bef02c417194b3b1699a1db592038"
   }
 ]

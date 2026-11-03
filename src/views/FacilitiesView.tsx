@@ -43,11 +43,11 @@ export const FacilitiesView: React.FC = () => {
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-4 lg:px-8 py-6">
-      <div className="pb-4 border-b border-slate-800">
+      <div className="pb-4 border-b border-line">
         <h1 className="text-2xl lg:text-3xl font-display font-extrabold text-white">
           Cơ Sở Vật Chất Câu Lạc Bộ (Club Facilities)
         </h1>
-        <p className="text-sm text-slate-300 mt-1">
+        <p className="text-sm text-fg-muted mt-1">
           Nâng cấp trụ sở và cơ sở hạ tầng mang lại lợi thế chiến thuật và kinh tế lâu dài cho đội tuyển
         </p>
       </div>
@@ -63,14 +63,14 @@ export const FacilitiesView: React.FC = () => {
           return (
             <div
               key={fac.code}
-              className="p-6 rounded-xl bg-[#111827] border border-slate-700 flex flex-col justify-between"
+              className="p-6 rounded-xl bg-surface border border-line flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#FFB800]/15 text-[#FFB800] border border-amber-500/30 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-gold/15 text-gold border border-gold/40 flex items-center justify-center">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="px-2.5 py-1 text-xs font-mono font-bold bg-[#090D16] text-[#FFB800] rounded border border-slate-700">
+                  <span className="px-2.5 py-1 text-xs font-mono font-bold bg-bg text-gold rounded border border-line">
                     Cấp {currentTier} / {Math.max(currentTier,fac.perks.length)}
                   </span>
                 </div>
@@ -78,12 +78,12 @@ export const FacilitiesView: React.FC = () => {
                 <h3 className="font-display font-bold text-lg text-white mb-2">
                   {fac.name}
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-4">
+                <p className="text-sm text-fg-muted leading-relaxed mb-4">
                   {fac.desc}
                 </p>
 
                 <div className="space-y-2 mb-6">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-fg-subtle block">
                     Đặc Quyền Kích Hoạt
                   </span>
                   {fac.perks.map((perk, idx) => {
@@ -93,13 +93,13 @@ export const FacilitiesView: React.FC = () => {
                         key={idx}
                         className={`p-2.5 rounded-lg text-xs flex items-start gap-2 border ${
                           isUnlocked
-                            ? 'bg-emerald-950/40 text-emerald-200 border-emerald-700/50'
-                            : 'bg-[#090D16] text-slate-400 border-slate-800'
+                            ? 'bg-success/10 text-success border-success/40'
+                            : 'bg-bg text-fg-subtle border-line'
                         }`}
                       >
                         <Check
                           className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            isUnlocked ? 'text-emerald-400' : 'text-slate-600'
+                            isUnlocked ? 'text-success' : 'text-fg-subtle'
                           }`}
                         />
                         <span>{perk}</span>
@@ -109,11 +109,11 @@ export const FacilitiesView: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+              <div className="pt-4 border-t border-line flex items-center justify-between gap-3">
                 {!isMax && (
                   <div>
-                    <span className="text-xs text-slate-400 block uppercase font-semibold">Chi Phí Nâng Cấp</span>
-                    <div className="flex items-center gap-1 font-mono-nums font-bold text-[#FFB800] text-base">
+                    <span className="text-xs text-fg-subtle block font-semibold">Chi Phí Nâng Cấp</span>
+                    <div className="flex items-center gap-1 font-mono-nums font-bold text-gold text-base">
                       <Coins className="w-4 h-4" />
                       <span>{nextCost.toLocaleString()} Credits</span>
                     </div>
@@ -123,12 +123,12 @@ export const FacilitiesView: React.FC = () => {
                 <button
                   onClick={() => upgradeFacility(fac.code)}
                   disabled={isMax || !canAfford}
-                  className={`w-full py-3 font-display font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all ${
+                  className={`w-full py-3 font-display font-extrabold text-xs rounded-lg transition-all ${
                     isMax
-                      ? 'bg-slate-800 text-slate-500 cursor-default'
+                      ? 'bg-elevated text-fg-subtle cursor-default'
                       : canAfford
-                      ? 'bg-[#FFB800] hover:bg-amber-400 text-slate-950 shadow cursor-pointer'
-                      : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                      ? 'bg-gold hover:brightness-110 text-bg shadow cursor-pointer'
+                      : 'bg-elevated text-fg-subtle cursor-not-allowed'
                   }`}
                 >
                   {isMax ? 'Đạt Cấp Tối Đa' : canAfford ? 'Nâng Cấp Cơ Sở' : 'Không Đủ Vốn'}

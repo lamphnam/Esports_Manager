@@ -62,7 +62,13 @@ Nguồn: `https://predatorleague.acervietnam.com.vn/terms?tab=technology` (tab "
 
 ## 5. Quy tắc `asset_license` cho ảnh và logo
 
-Hiện **không có file ảnh hay logo thật nào được duyệt**: mọi hình là placeholder hình học/SVG. Trước khi thêm bất kỳ file nào, ghi cho từng asset: `assetId`, tên tuyển thủ, `sourceURI`, chủ bản quyền, tham chiếu email cấp quyền, phạm vi dùng được, chỉnh sửa phái sinh được phép, phạm vi contest/thương mại, lãnh thổ, hạn, ghi công, ngày duyệt, hash file. Không lưu nội dung email riêng tư trong repo công khai. Lý do: bản quyền ảnh/logo có thể thuộc CLB hay nhiếp ảnh gia độc lập với quyền tên/hình người. Kiểm tra email áp dụng cho **game này, cuộc thi, hosting và phân phối**, và cho phép biến đổi chân dung nếu cần.
+Hiện chỉ có **5 icon vị trí** (bên dưới) là asset thật trong repo; mọi hình khác là placeholder hình học/SVG. Trước khi thêm bất kỳ file nào, ghi cho từng asset: `assetId`, tên tuyển thủ, `sourceURI`, chủ bản quyền, tham chiếu email cấp quyền, phạm vi dùng được, chỉnh sửa phái sinh được phép, phạm vi contest/thương mại, lãnh thổ, hạn, ghi công, ngày duyệt, hash file. Không lưu nội dung email riêng tư trong repo công khai. Lý do: bản quyền ảnh/logo có thể thuộc CLB hay nhiếp ảnh gia độc lập với quyền tên/hình người. Kiểm tra email áp dụng cho **game này, cuộc thi, hosting và phân phối**, và cho phép biến đổi chân dung nếu cần.
+
+**Asset đầu tiên được lên kế hoạch: 5 icon vị trí** (Top, Jungle, Mid, Bot, Support) từ League of Legends Wiki (`wiki.leagueoflegends.com/en-us/images/{Top,Jungle,Middle,Bottom,Support}_icon.png`), nội dung thuộc Riot Games. Chủ dự án yêu cầu dùng (03/11/2026) và khẳng định email Riot bao phủ mọi thứ (Q2). Cách thêm: **tự lưu 5 file về máy** (wiki chặn tải tự động) rồi đặt tên `top.png`, `jungle.png`, `mid.png`, `bot.png`, `support.png` trong `src/assets/roles/`; game tự dùng chúng thay icon SVG (`RoleIcon.tsx`), đóng gói cùng bản build, **không gắn link trực tiếp** tới wiki (tránh request bên thứ ba và lộ IP người chơi). Đã thêm 5 file, bảng dưới ghi lại.
+
+| assetId | sourceURI | chủ bản quyền | tham chiếu cấp quyền | phạm vi | hash file | ngày duyệt |
+|---|---|---|---|---|---|---|
+| `role-top`, `role-jungle`, `role-mid`, `role-bot`, `role-support` | URL wiki ở trên | Riot Games | email Riot (chủ dự án, giữ ngoài repo) | game này, cuộc thi, hosting và phân phối theo email | sha256 (16 ký tự đầu): Bottom_icon.png: e31f52d0a22510a1…; Jungle_icon.png: 09199a7a04d55365…; Middle_icon.png: 8ab75f9db816711a…; Support_icon.png: 8ec24b2853ab0e26…; Top_icon.png: 2b7763dd473c0eee… | 03/11/2026 (chủ dự án thêm file) |
 
 ## 6. Nguồn và đối chiếu dữ kiện
 

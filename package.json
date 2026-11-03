@@ -13,7 +13,8 @@
     "lint": "tsc --noEmit",
     "audit:release": "bun scripts/release-audit.ts",
     "import:legacy": "bun scripts/import-golden-road.ts",
-    "balance": "bun scripts/balance-sim.ts"
+    "balance": "bun scripts/balance-sim.ts",
+    "progression": "bun scripts/progression-sim.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

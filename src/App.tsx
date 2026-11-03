@@ -8,7 +8,7 @@ import { WorldDemoModal } from './components/WorldDemoModal';
 import {LegacyDraftModal} from './components/LegacyDraftModal';
 import {FEATURE_GOLDEN_ROAD} from './data/featureFlags';
 import { GameProvider, useGame } from './context/GameContext';
-import { CAMPAIGN_CHAPTERS } from './data/campaignData';
+import { chaptersForSeason } from './data/season';
 import { PackDrawResult } from './lib/economyEngine';
 import {getEditionById} from './data/cardCatalog';
 import { CampaignView } from './views/CampaignView';
@@ -21,7 +21,7 @@ import { TrainingView } from './views/TrainingView';
 import { TransfersView } from './views/TransfersView';
 
 function MainApp() {
-  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward, activeMatch, saveActiveMatch, pendingReveal,clearPackReveal,ownedCards,backup } = useGame();
+  const { club, createClub, claimChapterReward, openPack, isLoading, storageBlocked, claimDraftReward, activeMatch, saveActiveMatch, pendingReveal,clearPackReveal,ownedCards,backup,season } = useGame();
 
   const [currentTab, setCurrentTab] = useState('hub');
   const [activeMatchChapterId, setActiveMatchChapterId] = useState<number | null>(null);
@@ -44,7 +44,7 @@ function MainApp() {
     if(owned&&edition)setOpenedPackResult({ownedCard:owned,edition,wasPityTriggered:pendingReveal.wasPityTriggered,newPityMisses:club?.scoutPityMisses || 0});
   },[pendingReveal?.instanceId,isLoading]);
 
-  if (isLoading) return <div role="status" className="p-6 text-slate-200">Đang tải dữ liệu...</div>;
+  if (isLoading) return <div role="status" className="p-6 text-fg">Đang tải dữ liệu...</div>;
 
   // If first time, display onboarding modal
   if (!club) {
@@ -61,7 +61,7 @@ function MainApp() {
   }
 
   const activeMatchChapter = activeMatchChapterId
-    ? CAMPAIGN_CHAPTERS.find((c) => c.id === activeMatchChapterId) || null
+    ? chaptersForSeason(season).find((c) => c.id === activeMatchChapterId) || null
     : null;
 
   const handleVictoryClaim = (chapterId: number) => {
@@ -75,7 +75,7 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col selection:bg-[#FFB800] selection:text-slate-950">
+    <div className="min-h-screen bg-bg text-fg flex flex-col selection:bg-gold selection:text-bg">
       {/* Top Bar Navigation */}
       <Navbar
         currentTab={currentTab}
@@ -85,8 +85,8 @@ function MainApp() {
       />
 
       {/* Main Screen Router */}
-      {storageBlocked && <div role="alert" className="p-3 bg-amber-950 text-amber-100 text-sm">Không thể lưu trên trình duyệt này. Hãy sao lưu Recovery Code trước khi rời trang. <button className="underline min-h-11" onClick={() => setShowRecoveryModal(true)}>Mở sao lưu</button></div>}
-      {backup.nudge && <div role="status" className="p-3 bg-slate-900 border-b border-amber-500/60 text-slate-100 text-sm flex flex-wrap items-center gap-x-3 gap-y-1">Tiến trình mới chưa được sao lưu. Save nằm trên thiết bị này và có thể mất khi trình duyệt xóa dữ liệu.<button className="underline min-h-11 text-amber-300" onClick={() => { backup.dismissNudge(); setShowRecoveryModal(true); }}>Sao lưu ngay</button><button className="min-h-11 text-slate-300" onClick={backup.dismissNudge}>Để sau</button></div>}
+      {storageBlocked && <div role="alert" className="p-3 bg-gold/10 text-gold text-sm">Không thể lưu trên trình duyệt này. Hãy sao lưu Recovery Code trước khi rời trang. <button className="underline min-h-11" onClick={() => setShowRecoveryModal(true)}>Mở sao lưu</button></div>}
+      {backup.nudge && <div role="status" className="p-3 bg-surface border-b border-gold/40 text-fg text-sm flex flex-wrap items-center gap-x-3 gap-y-1">Tiến trình mới chưa được sao lưu. Save nằm trên thiết bị này và có thể mất khi trình duyệt xóa dữ liệu.<button className="underline min-h-11 text-gold" onClick={() => { backup.dismissNudge(); setShowRecoveryModal(true); }}>Sao lưu ngay</button><button className="min-h-11 text-fg-muted" onClick={backup.dismissNudge}>Để sau</button></div>}
       <main className="flex-1 pb-16">
         {currentTab === 'hub' && (
           <HubView
@@ -115,7 +115,7 @@ function MainApp() {
 
         {currentTab === 'facilities' && <FacilitiesView />}
       </main>
-      <footer className="px-4 py-5 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+      <footer className="px-4 py-5 border-t border-line text-xs text-fg-subtle space-y-2">
         <p>Trò chơi mô phỏng sự nghiệp esports, sử dụng quy tắc và chỉ số giải trí. Lịch, thể thức và điều kiện tham dự được giản lược; không phản ánh đầy đủ hệ thống thi đấu chính thức. Đây không phải sản phẩm chính thức của Riot/Acer.</p>
         <p>Dữ liệu rating lịch sử tham khảo Golden Road, được dùng và điều chỉnh theo quyền chủ dự án đã có. Mã nguồn, giao diện và tài sản hình ảnh được phát triển độc lập. Save lưu trên thiết bị; hãy xuất Recovery Code sau khi chơi.</p>
       </footer>
@@ -137,7 +137,7 @@ function MainApp() {
       )}
 
       {showWorldDemo && <WorldDemoModal onClose={() => setShowWorldDemo(false)} />}
-      {FEATURE_GOLDEN_ROAD && <button className="min-h-11 px-4 text-amber-300" onClick={()=>setShowDraft(true)}>Golden Road Draft</button>}
+      {FEATURE_GOLDEN_ROAD && <button className="min-h-11 px-4 text-gold" onClick={()=>setShowDraft(true)}>Golden Road Draft</button>}
       {FEATURE_GOLDEN_ROAD && showDraft && <LegacyDraftModal onClose={()=>setShowDraft(false)} onClaim={claimDraftReward}/>}
 
       {showRecoveryModal && (

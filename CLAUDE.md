@@ -26,7 +26,7 @@ E2E scripts in `scripts/e2e-*.js` are `async (page)` functions run through the P
 ## Where things are
 
 - `src/lib/simulator.ts`, `seededRng.ts`, `tacticsMatrix.ts`: pure engine. `economyEngine.ts`: packs, pity, training cost, market. `saveState.ts` + `recoveryCode.ts`: save validation and `AR1` Recovery Code. `src/context/GameContext.tsx`: reducer + `saveRef`, every game mutation.
-- `src/data/`: campaign, catalog (30 current + 649 `LEGACY` editions), `generated/` (importer output, never hand-edit), `featureFlags.ts`.
+- `src/data/`: campaign, catalog (30 current + 649 `LEGACY` editions; packs draw from both, `PACK_POOL`), `legacyOpponents.ts` (Ch6-12 difficulty curve, calibrated by `scripts/progression-sim.ts`), `generated/` (importer output, never hand-edit), `featureFlags.ts`.
 - `src/lib/backupMeta.ts` + `environment.ts`: DEC-12 backup nudges and storage-context advice (state wired in `GameContext`, UI in `Navbar`, `App`, `RecoveryModal`). The exported Recovery Code folds the ledger (`compactSave`).
 - `docs/config/balance.initial.json` and `tactics.matrix.json` are read by tests. `docs/ref/golden_road/data.js` is the only file kept there: rating data read by the importer, never bundled.
 
@@ -51,7 +51,7 @@ Pro axis is **Campus → Road to VCS → VCS → LCP → global events**; never 
 
 ## Contest and rights constraints
 
-No Portal login or credential collection, no camera/microphone, no external redirects, no third-party scripts or tracking. The owner states the Riot email covers everything including real club names (`DECISIONS.md` Q2) and the Golden Road grant covers **ratings only** (Q1): never copy its code, UI text, CSS, icons or share-card layout, never bundle `docs/ref` (it holds only `data.js`; the third-party engine/UI files were deleted). No cleared image or logo files exist: keep geometric placeholders unless an `asset_license` record exists for the asset. Recovery Codes are save copies: never put one in a URL or log. Do not set `frame-ancestors` until the Portal's embedding origin is confirmed by the organisers. After submission any content change must be reported to the organisers (`docs/CONTEST_AND_RIGHTS.md` §1). The contest's current terms at submission time override any snapshot in the docs.
+No Portal login or credential collection, no camera/microphone, no external redirects, no third-party scripts or tracking. The owner states the Riot email covers everything including real club names (`DECISIONS.md` Q2) and the Golden Road grant covers **ratings only** (Q1): never copy its code, UI text, CSS, icons or share-card layout, never bundle `docs/ref` (it holds only `data.js`; the third-party engine/UI files were deleted). Apart from the five role icons, no cleared image or logo files are committed: keep geometric placeholders unless an `asset_license` record exists for the asset. The five role icons (`src/assets/roles/*.png`, owner-requested, see `docs/CONTEST_AND_RIGHTS.md` §5) are optional: `RoleIcon.tsx` falls back to SVG without them, and they must be bundled, never hotlinked. Recovery Codes are save copies: never put one in a URL or log. Do not set `frame-ancestors` until the Portal's embedding origin is confirmed by the organisers. After submission any content change must be reported to the organisers (`docs/CONTEST_AND_RIGHTS.md` §1). The contest's current terms at submission time override any snapshot in the docs.
 
 ## Working tree notes
 

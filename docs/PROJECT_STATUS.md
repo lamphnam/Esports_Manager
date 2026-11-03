@@ -6,7 +6,7 @@ Cập nhật 03/11/2026. Tracker sống: cập nhật checkbox và Log khi có v
 
 ## 1. Hiện trạng
 
-- Kiến trúc B (client-only, `localStorage`, host tĩnh) đã chạy; audit P0/P1 đã sửa; Phase 0–4 có bằng chứng local ([QA_AND_RELEASE.md](QA_AND_RELEASE.md) §3 và §7): 40 test, 14 E2E trên Chrome, DEC-5 đạt dải, release-audit PASS.
+- Kiến trúc B (client-only, `localStorage`, host tĩnh) đã chạy; audit P0/P1 đã sửa; Phase 0–4 có bằng chứng local ([QA_AND_RELEASE.md](QA_AND_RELEASE.md) §3 và §7): 48 test, 15 E2E trên Chrome, DEC-5 đạt dải, release-audit PASS.
 - **DEC-12 (lưu trữ chịu được storage không bền) đã triển khai** 03/11: chỉ báo và nhắc sao lưu, lời khuyên theo ngữ cảnh nhúng/Safari, đọc lại sau ghi, `storage.persist()`, mã xuất ngắn hơn ([ARCHITECTURE.md](ARCHITECTURE.md) §7).
 - Bản chơi được: Onboarding F0 → Campaign 12 chapter (Ch1–5 chuẩn hóa, Ch6–12 đối thủ Legacy) → pack/training/market/facilities → demo BO5 → recap từng ván → Recovery Code.
 - **Chưa deploy.** Chưa kiểm tra nhúng Portal, Safari/iOS, Firefox, playtest. Draft (G3) tắt. Chưa phải submission-ready.
@@ -22,7 +22,7 @@ Cập nhật 03/11/2026. Tracker sống: cập nhật checkbox và Log khi có v
 | Mức | Nội dung |
 |---|---|
 | Phải xong tốt | Campus → Road to VCS → VCS (Ch1–5), pack/training/ledger, `demoScenario` |
-| Dạng dữ liệu | LCP, First Stand, MSI, Worlds: knockout đơn BO5 hư cấu có nhãn; thẻ LEGACY (không vào pack) |
+| Dạng dữ liệu | LCP, First Stand, MSI, Worlds: knockout đơn BO5 hư cấu có nhãn; thẻ LEGACY (nay cũng nằm trong pack, DEC-13) |
 | Chỉ khi còn thời gian (P2) | Swiss, double elimination, Play-In, Hall of Fame đầy đủ, Predator side cup, bật Draft |
 
 ## 2. Kế hoạch tới 15/11 (đề xuất, chờ chủ dự án duyệt)
@@ -50,7 +50,7 @@ Sau khi nộp: chỉ sửa lỗi nghiêm trọng, và **báo BTC duyệt lại**
 - [ ] **Quyết định Draft (G3):** giữ tắt trừ khi F0/R1, 390×844 và iframe đạt
 - [ ] Rà lần cuối copy (không bạo lực/chính trị), disclaimer, README trước khi nộp
 
-Không chặn nộp (ghi rõ ở README/UI là bản rút gọn): qualification theo split và chuyển split/năm sau pro loss, mô phỏng ví theo chính sách, Rival Zero, Hall of Fame, ảnh/logo thật.
+Không chặn nộp (ghi rõ ở README/UI là bản rút gọn): qualification theo split và pro loss sang split kế (vòng lặp mùa sau Worlds đã có), thêm trận mới vào từng bracket, mô phỏng ví theo chính sách, Rival Zero, Hall of Fame, ảnh/logo thật.
 
 ## 4. Việc cần chủ dự án quyết
 
@@ -69,6 +69,7 @@ Danh sách đầy đủ và mặc định ở [DECISIONS.md](DECISIONS.md). Đan
 
 | Ngày | Mục |
 |---|---|
+| 03/11 | UI trận kiểu Worlds Mayhem, bracket mùa giải (Hub, Chiến Dịch), hiển thị đội hình hai bên, qua mùa mới sau Worlds (DEC-15); 48 test, 14 E2E Chrome xanh |
 | 03/11 | DEC-12 triển khai (chỉ báo/nhắc sao lưu, lời khuyên nhúng/Safari, đọc lại sau ghi, `storage.persist()`, mã xuất rút gọn); 40 test, 14 E2E Chrome xanh, iframe xanh. Dọn `docs/ref/golden_road/` chỉ còn `data.js` |
 | 03/11 | Gộp tài liệu từ 22 file md đánh số + prompt agent + evidence còn 9 file có tên: GAME_DESIGN, ECONOMY, MATCH_SIMULATOR, UX_AND_ART, ARCHITECTURE, QA_AND_RELEASE, CONTEST_AND_RIGHTS, PROJECT_STATUS, DECISIONS (+ CHANGELOG). Loại bỏ nội dung kiến trúc A. `CLAUDE.md` chuyển ra thư mục gốc |
 | 03/11 | Chủ dự án chốt: hạn 15/11, bình chọn 22/11; host Vercel (DEC-10); khai AI ở ô riêng khi nộp (DEC-11); test iframe/iOS làm sau. Đọc điều lệ Technology (tab Technology); `/portal/technology` cần đăng nhập |

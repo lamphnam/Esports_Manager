@@ -2,6 +2,39 @@
 
 `rulesVersion` hiện tại: **v1.2.0** (`docs/config/balance.initial.json`). Đổi luật gameplay phải tăng `rulesVersion`, ghi một mục ở đây và kiểm tra các nơi lặp số (pack odds/pity: `ECONOMY.md` + `balance.initial.json`; giới hạn simulator và chính sách quyết định: `MATCH_SIMULATOR.md` + `balance.initial.json` + `tactics.matrix.json`).
 
+## 2026-11-03 — icon vị trí từ LoL Wiki (chờ file)
+
+- `RoleIcon` dùng 5 PNG trong `src/assets/roles/` (top, jungle, mid, bot, support) nếu có, đóng gói cùng build; không có thì dùng SVG cũ nên build không phụ thuộc. Kích thước mặc định 18px. Đã kiểm bằng 5 PNG thử (đã xóa): Hub nạp 10 icon, Training 6 icon, đều tải được.
+- Chưa có file thật trong repo: wiki chặn tải tự động, cần lưu tay. Hướng dẫn và bảng `asset_license` ở `CONTEST_AND_RIGHTS.md` §5.
+
+## 2026-11-03 — UI trận kiểu Worlds Mayhem, bracket mùa giải, qua mùa mới (rulesVersion v1.4.0)
+
+- **Màn trận:** hai hàng đội hình (đối thủ trên, đội bạn dưới, chữ viết tắt thay ảnh), bản đồ đường đi SVG có token trượt theo pha, thanh tiến trình M1…M5, tiêu đề giải/vòng (`MatchVisuals.tsx`). Chỗ trống bên trái trước đây đã có đội hình của bạn.
+- **Bracket:** `SeasonBracket` gom 12 chương thành 7 giải (Sinh Viên, Road to VCS, VCS, LCP, First Stand, MSI, Worlds với Vòng bảng/Bán kết/Chung kết); hiện ở Hub và Chiến Dịch. Chưa thêm trận mới.
+- **Qua mùa (DEC-15):** thắng Ch12 → tổng kết → `startNextSeason`: năm +1, completed `[1, 2]`, chương 3, +1000 credits; đối thủ Ch3–12 là đội lịch sử mạnh hơn (mục tiêu 92→97, +2 mỗi mùa, trần 97). `progression-sim` mô phỏng 3 mùa.
+- Test: `season.test.ts`, `narrative.test.ts` mở rộng; E2E `e2e-season.js`; `e2e-layout` chuyển sang "Danh sách chương". `balance.initial.json` v1.3.0 → v1.4.0.
+
+## 2026-11-03 — cân bằng Ch6–12, pool pack, xem đội đối thủ, log màu (rulesVersion v1.3.0)
+
+- **Độ khó Ch6–12 (DEC-14):** đối thủ không còn rút ngẫu nhiên; OVR mục tiêu tăng dần 80→95, đội thật gần mục tiêu, mỗi đội một lần, `difficultyBonus` ≤ 16 hiển thị cho người chơi. `scripts/progression-sim.ts` mô phỏng tiến trình thật (reward + mua pack) và đưa vào CI/`verify-release`. Người chơi engaged thắng ~45–55% thay vì ~90%. DEC-5 (Ch1–5) không đổi.
+- **Pool pack (DEC-13):** `PACK_POOL` = 30 CURRENT + 649 LEGACY (trước chỉ 30 thẻ). Odds/pity giữ nguyên. Thay test DEC-2 bằng test đa dạng/odds/đảm bảo.
+- **Đội hình đối thủ:** `OpponentRoster` ở Hub, Campaign, Match Center (vai trò, tên, OVR, ghi chú cân chỉnh).
+- **Log màu:** `PhaseLog.tsx`, có lợi xanh / bất lợi đỏ, áp cho recap, replay và demo.
+- `balance.initial.json` rulesVersion v1.2.0 → v1.3.0. Save cũ giữ nguyên thẻ đã có.
+
+## 2026-11-03 — log trận khớp kết quả ván, sửa Navbar màn rất rộng (không đổi rulesVersion)
+
+- `simulateGame`: ván thắng khi thắng ≥ 2/3 pha, nhưng lời kể pha LATE trước đây theo kết quả riêng của pha đó (thắng pha = "phá Nexus đối phương", thua pha = "đối phương tràn vào căn cứ") nên có thể kể ngược kết quả ván. Nay khi pha LATE trái chiều với ván, chỉ lời kể (`events`, `keyMoment`) được viết lại để dẫn tới đúng người thắng. Người thắng pha, xác suất, vàng và mọi lần rút RNG giữ nguyên: balance-sim y nguyên (68.70 / 54.23 / 48.63 / 49.52 / 49.30 %).
+- Test: `narrative.test.ts` (3000 seed: dòng cuối khớp người thắng ván, cả hai trường hợp trái chiều đều xuất hiện; lời kể chỉ là lớp trình bày). Test golden sub-seed so sánh phần rút ngẫu nhiên, bỏ qua lời kể LATE vì giờ phụ thuộc kết quả ván. Save cũ giữ lời kể cũ.
+- Navbar: bỏ tab inline từ `2xl` (cột nội dung giới hạn 1280px nên ví bị ép còn icon); tab luôn nằm ở hàng riêng từ `md`, ví không co. Lưới "Hoạt động khác" ở Dashboard về 2×2.
+
+## 2026-11-03 — đánh bóng UI/UX (không đổi luật, kinh tế, công thức)
+
+- Token ngữ nghĩa trong `index.css` thay ~790 chỗ màu hex/`slate-*`/`amber-*`… rải rác; thang chữ, lớp `.panel/.btn/.badge/.option`, một hệ rarity.
+- Component dùng chung mới trong `ui.tsx`; viết lại `PlayerCard` (tên + OVR trước, thuộc tính phụ), `Navbar` (ưu tiên mục, menu di động), `TrainingView`, `HubView`; áp `PageHeader`/`SegmentedControl` cho Bộ Sưu Tập và Đội Hình.
+- Sửa: nhãn role tràn avatar, thanh lọc bị bẻ chữ, header chồng nhau, `holo-card-shine` 200% gây tràn, bỏ `overflow-x:hidden` toàn body, chữ trắng trên nền sáng thiếu tương phản, mã thô `EARLY_AGGRO` ở Campaign.
+- E2E: `e2e-layout` mở menu di động, `e2e-demo` tìm nút theo `Demo BO5`.
+
 ## 2026-11-03 — DEC-12: lưu trữ chịu được storage không bền (không đổi rulesVersion, không đổi luật)
 
 - Thêm `src/lib/backupMeta.ts` (điểm tiến trình, chấm báo/nhắc sao lưu, key `apac_backup_meta`) và `src/lib/environment.ts` (phát hiện nhúng iframe và Safari/iOS để chọn lời khuyên).

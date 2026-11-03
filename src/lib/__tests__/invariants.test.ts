@@ -52,7 +52,9 @@ describe('spec invariants', () => {
       const first=simulateGame(seed,1,player,opponent,defaultTactics,{archetype:'EARLY_AGGRO'});
       expect(simulateGame(seed,1,player,opponent,defaultTactics,{archetype:'EARLY_AGGRO'})).toEqual(first);
       const altered=simulateGame(seed,1,player,opponent,{...defaultTactics,early:'GANK_TOP'},{archetype:'EARLY_AGGRO'});
-      expect(altered.phases.slice(1)).toEqual(first.phases.slice(1));
+      // Draws, probabilities and outcomes must not move. Only the LATE commentary may differ, because it now follows the game result.
+      const draws=(game:typeof first)=>game.phases.slice(1).map(({events,keyMoment,...rest})=>rest);
+      expect(draws(altered)).toEqual(draws(first));
     }
   });
   it('5000 series per format: bounded probabilities, finite powers and correct termination', () => {

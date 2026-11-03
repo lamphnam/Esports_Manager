@@ -54,7 +54,7 @@ Dev: `http://localhost:3000`. `bun run clean` chỉ xóa `dist` bằng script ki
 
 Credit dữ liệu rating lịch sử: **Golden Road (goldenroadlol.com)**. Chủ dự án đã có quyền dùng và điều chỉnh rating; quyền này chỉ bao phủ rating. Engine, giao diện, CSS, icon, copy và poster chia sẻ của bản game này được viết độc lập; `docs/ref` không nằm trong bundle.
 
-649 Legacy editions / 374 identities / 73 đội / 129 team-years. Mapping rating sang OVR giữ thứ tự; chỉ số là giá trị giải trí, không phải đánh giá khách quan người thật. Legacy không vào pack hiện tại. Năm bản ghi TSW 2026 có source/confidence/retrievedAt; dữ kiện Low chưa được xác minh không được thêm vào game. Bảng nguồn: [docs/CONTEST_AND_RIGHTS.md](docs/CONTEST_AND_RIGHTS.md) §6.
+649 Legacy editions / 374 identities / 73 đội / 129 team-years. Mapping rating sang OVR giữ thứ tự; chỉ số là giá trị giải trí, không phải đánh giá khách quan người thật. Legacy cũng nằm trong pack mở thẻ (cùng odds/pity) nên ít lặp lại. Năm bản ghi TSW 2026 có source/confidence/retrievedAt; dữ kiện Low chưa được xác minh không được thêm vào game. Bảng nguồn: [docs/CONTEST_AND_RIGHTS.md](docs/CONTEST_AND_RIGHTS.md) §6.
 
 Tên CLB thật bật theo quyền chủ dự án đã ghi nhận, có alias cho đội lịch sử. Chưa có file ảnh/logo thật được duyệt: chỉ dùng placeholder hình học và SVG. Khi thêm asset phải có `asset_license` từng file; không công khai email cấp quyền.
 
@@ -65,6 +65,7 @@ Tên CLB thật bật theo quyền chủ dự án đã ghi nhận, có alias cho
 - BO3/BO5 dừng ở kết quả từng ván, hiển thị thắng/thua, tỷ số chuỗi, MVP và logs ba pha. Người chơi bấm "Ván Tiếp Theo" để chọn chiến thuật; ván cuối có nút "Xem Tổng Kết Chuỗi". Demo BO5 cũng theo luồng này.
 - Odds/pity v2.2 giữ nguyên. Scout tối đa 7 miss liên tiếp, lần thứ 8 Epic+; không có thanh toán tiền thật.
 - `FEATURE_GOLDEN_ROAD=false`: Draft đã được phát triển và QA trực tiếp component, nhưng chưa bật cho bản nộp vì gate R1/public HTTPS/portal chưa đầy đủ. `ENABLE_REAL_CLUB_NAMES=true`.
+- Mùa giải: 12 chương gom thành 7 bracket (Sinh Viên, Road to VCS, VCS, LCP, First Stand, MSI, Worlds). Thắng Worlds thì sang mùa sau (năm +1, giữ đội/thẻ/ví, đối thủ mạnh hơn). Xem [docs/ECONOMY.md](docs/ECONOMY.md) §8.
 - Tài trợ phục hồi 100 credits/ngày VN khi ví dưới 100; giao hữu và thử lại miễn phí. Market Legacy xoay theo ngày, không phản ánh hợp đồng đời thực.
 
 ## QA iframe và triển khai
