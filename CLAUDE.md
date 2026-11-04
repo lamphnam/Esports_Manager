@@ -27,6 +27,7 @@ E2E scripts in `scripts/e2e-*.js` are `async (page)` functions run through the P
 
 - `src/lib/simulator.ts`, `seededRng.ts`, `tacticsMatrix.ts`: pure engine. `economyEngine.ts`: packs, pity, training cost, market. `saveState.ts` + `recoveryCode.ts`: save validation and `AR1` Recovery Code. `src/context/GameContext.tsx`: reducer + `saveRef`, every game mutation.
 - `src/data/`: campaign, catalog (30 current + 649 `LEGACY` editions; packs draw from both, `PACK_POOL`), `legacyOpponents.ts` (Ch6-12 difficulty curve, calibrated by `scripts/progression-sim.ts`), `generated/` (importer output, never hand-edit), `featureFlags.ts`.
+- `src/data/campaignCopy.ts` (copy từng chương, nhãn nguồn đối thủ) và `esportsReference.ts` (fact thật, nguồn, `asOf`, `null` khi chưa công bố): metadata thuần, không vào save. Copy Ch3–12 không nêu tên đối thủ cố định.
 - `src/lib/backupMeta.ts` + `environment.ts`: DEC-12 backup nudges and storage-context advice (state wired in `GameContext`, UI in `Navbar`, `App`, `RecoveryModal`). The exported Recovery Code folds the ledger (`compactSave`).
 - `docs/config/balance.initial.json` and `tactics.matrix.json` are read by tests. `docs/ref/golden_road/data.js` is the only file kept there: rating data read by the importer, never bundled.
 

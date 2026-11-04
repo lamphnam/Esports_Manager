@@ -1,13 +1,14 @@
 import {campaignOpponentSeed,legacyOpponent} from './legacyOpponents';
-import {murmurHash3} from '../lib/seededRng';
-import { Chapter, TeamSnapshot } from '../types';
+import {CHAPTER_COPY,GAM_ALLSTAR_DESCRIPTION,opponentOriginOf,referenceUrlFor,REFERENCE_RULES_YEAR} from './campaignCopy';
+import { Chapter } from '../types';
 
-const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialFormat'|'realWorldReferenceUrl'>[] = [
+type ChapterSeed=Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialFormat'|'realWorldReferenceUrl'|'opponentOrigin'|'subtitle'|'description'|'storyEpilogue'>&Partial<Pick<Chapter,'description'|'storyEpilogue'>>;
+// Subtitles and chapter 3-12 copy live in campaignCopy.ts; description/epilogue here are only the campus chapters'.
+const CHAPTER_SEEDS: ChapterSeed[] = [
   {
     id: 1,
     code: 'CH_01_FIVE_STRANGERS',
     title: 'Năm Người Xa Lạ',
-    subtitle: 'Chapter 1 · Giao Hữu Khởi Động',
     act: 1,
     description:
       'Năm tài năng trẻ cùng chung niềm đam mê thành lập câu lạc bộ esports. Trận đấu tập đầu tiên thử lửa trước đội hình trẻ Học Viện VCS.',
@@ -40,7 +41,6 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
     id: 2,
     code: 'CH_02_CAMPUS_KINGS',
     title: 'Vua Sinh Viên',
-    subtitle: 'Chapter 2 · Vòng Loại Đại Học',
     act: 1,
     description:
       'Bước vào giải đấu sinh viên toàn thành phố. Đối đầu với đội tuyển hạt giống Saigon Buffalo Young nổi tiếng với khả năng kiểm soát mục tiêu.',
@@ -74,10 +74,7 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
     id: 3,
     code: 'CH_03_ROAD_TO_VCS',
     title: 'Đường Tới VCS',
-    subtitle: 'Chapter 3 · Vòng Tuyển Chọn Chuyên Nghiệp',
     act: 2,
-    description:
-      'Đối đầu với CERBERUS Esports — tập hợp những tuyển thủ dày dạn kinh nghiệm thi đấu chuyên nghiệp với khả năng phòng ngự phản công cực kỳ khó chịu.',
     suggestedOvr: '68 - 76',
     format: 'BO3',
     opponent: {
@@ -101,17 +98,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['ELITE'],
       reputation: 100,
     },
-    storyEpilogue:
-      'Vượt qua vòng tuyển chọn khốc liệt! Tấm vé vàng chính thức đưa đội tuyển của bạn bước chân lên sàn đấu chuyên nghiệp VCS!',
   },
   {
     id: 4,
     code: 'CH_04_PRO_DEBUT',
     title: 'Chào Sân Chuyên Nghiệp',
-    subtitle: 'Chapter 4 · Khởi Tranh VCS',
     act: 2,
-    description:
-      'Trận mở màn mùa giải VCS trước Vikings Esports. Áp lực ánh đèn sân khấu và tốc độ di chuyển cánh chóng mặt.',
     suggestedOvr: '74 - 82',
     format: 'BO3',
     opponent: {
@@ -135,17 +127,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['ELITE'],
       reputation: 150,
     },
-    storyEpilogue:
-      'Một màn trình diễn xuất thần gây chấn động giới chuyên môn! Đội tuyển chính thức ghi tên vào trận Chung Kết VCS tranh cúp.',
   },
   {
     id: 5,
     code: 'CH_05_VIETNAM_CROWN',
     title: 'Vương Miện Việt Nam',
-    subtitle: 'Chapter 5 · Chung Kết VCS',
     act: 2,
-    description:
-      'Trận Chung kết tổng BO5 nghẹt thở tranh ngôi Vương VCS trước nhà vua GAM Esports. Kẻ thắng sẽ đại diện Việt Nam bước ra đấu trường APAC (LCP)!',
     suggestedOvr: '78 - 86',
     format: 'BO5',
     opponent: {
@@ -169,17 +156,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['ELITE', 'CHAMPION'],
       reputation: 300,
     },
-    storyEpilogue:
-      'VÔ ĐỊCH VCS! Cơn địa chấn lịch sử! Chiếc cúp vô địch danh giá và tấm vé chính thức tiến vào LCP 2027!',
   },
   {
     id: 6,
     code: 'CH_06_PACIFIC_RIVALS',
     title: 'Đại Chiến Thái Bình Dương',
-    subtitle: 'Chapter 6 · LCP APAC Stage',
     act: 3,
-    description:
-      'Chạm trán đại diện sừng sỏ PSG Talon tại LCP. Cuộc đấu trí chiến thuật đỉnh cao của khu vực Châu Á - Thái Bình Dương.',
     suggestedOvr: '82 - 89',
     format: 'BO5',
     opponent: {
@@ -202,16 +184,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION'],
       reputation: 400,
     },
-    storyEpilogue: 'Vượt qua vòng LCP với phong độ đỉnh cao, khẳng định vị thế nhà vô địch mới của khu vực APAC!',
   },
   {
     id: 7,
     code: 'CH_07_FIRST_STAND',
     title: 'First Stand Quốc Tế',
-    subtitle: 'Chapter 7 · Thử Lửa Đầu Mùa',
     act: 3,
-    description:
-      'Sự kiện toàn cầu đầu mùa quy tụ các nhà vô địch khu vực. Lần đầu tiên đối đầu trực tiếp đại diện Hàn Quốc Hanwha Life Esports.',
     suggestedOvr: '85 - 92',
     format: 'BO5',
     opponent: {
@@ -234,16 +212,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION'],
       reputation: 500,
     },
-    storyEpilogue: 'Một dấu ấn lịch sử! Đại diện APAC đánh bại ông lớn LCK ngay tại sân khấu quốc tế.',
   },
   {
     id: 8,
     code: 'CH_08_MIDSEASON_MASTERS',
     title: 'Bậc Thầy Giữa Mùa (MSI)',
-    subtitle: 'Chapter 8 · Sàn Đấu Tinh Anh',
     act: 3,
-    description:
-      'Mid-Season Invitational với thể thức thi đấu khắc nghiệt. Chạm trán đại diện LPL Bilibili Gaming.',
     suggestedOvr: '87 - 94',
     format: 'BO5',
     opponent: {
@@ -266,16 +240,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION'],
       reputation: 600,
     },
-    storyEpilogue: 'Chiến tích lừng lẫy tại MSI đưa tên tuổi câu lạc bộ lên trang nhất mọi diễn đàn quốc tế!',
   },
   {
     id: 9,
     code: 'CH_09_LAST_TICKET',
     title: 'Tấm Vé Cuối Cùng',
-    subtitle: 'Chapter 9 · Chung Kết LCP Mùa Hè',
     act: 3,
-    description:
-      'Giai đoạn quyết định để chốt suất hạt giống số 1 đại diện toàn khu vực APAC tham dự Chung Kết Thế Giới.',
     suggestedOvr: '88 - 95',
     format: 'BO5',
     opponent: {
@@ -298,16 +268,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION'],
       reputation: 750,
     },
-    storyEpilogue: 'Bảo vệ thành công ngôi vương APAC! Hạt giống số 1 tiến thẳng tới Chung Kết Thế Giới!',
   },
   {
     id: 10,
     code: 'CH_10_AGAINST_THE_WORLD',
     title: 'Đối Đầu Cả Thế Giới',
-    subtitle: 'Chapter 10 · Vòng Swiss Chung Kết Thế Giới',
     act: 3,
-    description:
-      'Bước lên sân khấu vĩ đại nhất hành tinh, đối đầu niềm hy vọng số 1 Châu Âu G2 Esports.',
     suggestedOvr: '90 - 96',
     format: 'BO5',
     opponent: {
@@ -330,16 +296,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION'],
       reputation: 900,
     },
-    storyEpilogue: 'Tiến thẳng vào vòng đấu loại trực tiếp Top 8 đội mạnh nhất thế giới!',
   },
   {
     id: 11,
     code: 'CH_11_SWISS_SURVIVAL',
     title: 'Bán Kết Sinh Tử',
-    subtitle: 'Chapter 11 · Knockout Stage',
     act: 3,
-    description:
-      'Chỉ còn một bước nữa là chạm vào trận chung kết trong mơ. Đánh bại nhà đương kim vô địch T1 trong trận BO5 nghẹt thở.',
     suggestedOvr: '92 - 97',
     format: 'BO5',
     opponent: {
@@ -362,16 +324,12 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION', 'CHAMPION'],
       reputation: 1200,
     },
-    storyEpilogue: 'Vượt qua T1 sau 5 ván đấu kinh điển! Cả thế giới ngả mũ trước kỳ tích của đại diện Việt Nam!',
   },
   {
     id: 12,
     code: 'CH_12_WRITE_YOUR_LEGACY',
     title: 'Khắc Tên Vào Lịch Sử',
-    subtitle: 'Chapter 12 · Chung Kết Thế Giới (Worlds Final)',
     act: 3,
-    description:
-      'Trận đấu cuối cùng của mùa giải trước siêu đội hình Gen.G. Giành chiếc Cúp Summoner danh giá nhất hành tinh!',
     suggestedOvr: '94 - 99',
     format: 'BO5',
     opponent: {
@@ -394,15 +352,15 @@ const CHAPTER_SEEDS: Omit<Chapter,'rulesBasisYear'|'adaptationNote'|'isOfficialF
       packs: ['CHAMPION', 'CHAMPION'],
       reputation: 2500,
     },
-    storyEpilogue:
-      'NHÀ VÔ ĐỊCH THẾ GIỚI! Từ những ngày khởi đầu ở giải đấu sinh viên Việt Nam đến đỉnh vinh quang tối thượng của Liên Minh Huyền Thoại toàn cầu!',
   },
 ];
 
-export const CAMPAIGN_CHAPTERS:Chapter[]=CHAPTER_SEEDS.map(chapter=>({...chapter,
-  rulesBasisYear:2027,isOfficialFormat:false,
-  adaptationNote:'Hành trình loại trực tiếp hư cấu; suất tham dự được xét lại mỗi split.',
-  realWorldReferenceUrl:'https://lolesports.com/en-SG/lolesports/news/a-more-open-lcp-ecosystem-in-2027',
-  ...(chapter.id>=6?{opponent:legacyOpponent(chapter.id,campaignOpponentSeed(chapter.id)),description:'Đội hình lịch sử gặp nhau trong nhánh loại trực tiếp hư cấu.',subtitle:`Chapter ${chapter.id} · Loại trực tiếp hư cấu`,storyEpilogue:'Tiến tới chặng tiếp theo của hành trình mô phỏng.'}:{})
-}));
+export const CAMPAIGN_CHAPTERS:Chapter[]=CHAPTER_SEEDS.map(seed=>{
+  const copy=CHAPTER_COPY[seed.id];
+  const chapter={...seed,subtitle:copy.subtitle,description:copy.description??seed.description??'',storyEpilogue:copy.storyEpilogue??seed.storyEpilogue??'',
+    rulesBasisYear:REFERENCE_RULES_YEAR,isOfficialFormat:false as const,adaptationNote:copy.adaptationNote,realWorldReferenceUrl:referenceUrlFor(seed.id),opponentOrigin:opponentOriginOf(seed.id)};
+  if(seed.id>=6)return {...chapter,opponent:legacyOpponent(seed.id,campaignOpponentSeed(seed.id))};
+  if(seed.id===5)return {...chapter,opponent:{...chapter.opponent,description:GAM_ALLSTAR_DESCRIPTION}};
+  return chapter;
+});
 export {WORLD_CHAMPIONSHIP_DEMO_SCENARIO} from './demoScenario';

@@ -209,8 +209,14 @@ export interface CurrencyLedgerEntry {
   sourceType: 'MILESTONE' | 'PACK_BUY' | 'TRAINING' | 'TRANSFER' | 'FACILITY' | 'SPONSOR';
 }
 
+/** Where a chapter's opponent roster comes from. None of them is a 2026 season roster. */
+export type OpponentOrigin='FICTIONAL_ROSTER'|'LEGACY_ALLSTAR'|'LEGACY_ROSTER';
+
 export interface Chapter {
+  /** Year of the real-world season the format is loosely inspired by (the career itself is fictional). */
   rulesBasisYear:number;
+  /** Fiction / provenance of the opponent; derived from code, never saved. */
+  opponentOrigin?:OpponentOrigin;
   adaptationNote:string;
   isOfficialFormat:false;
   realWorldReferenceUrl:string;

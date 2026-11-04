@@ -6,13 +6,13 @@
   },
   {
     "path": "docs/CHANGELOG.md",
-    "bytes": 12079,
-    "sha256": "6052dd0ef34184c91adffef0142f25a4b09a3a7ac204e3ce9d1f7c8e66087e1c"
+    "bytes": 15426,
+    "sha256": "98466b55224c648cad31145fceefd50e8e4b13482c6f43b247f348dfac492c5d"
   },
   {
     "path": "docs/CONTEST_AND_RIGHTS.md",
-    "bytes": 16718,
-    "sha256": "a2721ff2682f1ba77cca158edbf14eebf55104269ea311936473601dc281fbcb"
+    "bytes": 18543,
+    "sha256": "d52a7a5d93df5db463bf4a4a944a9ddcd273860ba03535b772f85eed71ffdbff"
   },
   {
     "path": "docs/DECISIONS.md",
@@ -26,8 +26,8 @@
   },
   {
     "path": "docs/GAME_DESIGN.md",
-    "bytes": 16438,
-    "sha256": "225e3dc371db93d02d4def6f56b6b24bf470a4bdc8db3557c6513fd850596aae"
+    "bytes": 18780,
+    "sha256": "a8718d80bc90446ae3a1e2630d028bb20501c614b6d76d2a5e4e00edaa97d523"
   },
   {
     "path": "docs/MATCH_SIMULATOR.md",
@@ -36,8 +36,8 @@
   },
   {
     "path": "docs/PROJECT_STATUS.md",
-    "bytes": 7865,
-    "sha256": "771ebf235664dd47fda0515c40479897f247ebddbb04ed39e5350e6a3ce242da"
+    "bytes": 8706,
+    "sha256": "fbe7f2156387f7160edaf627b82f5cab76a07a48de540ab16516e965782f945e"
   },
   {
     "path": "docs/QA_AND_RELEASE.md",

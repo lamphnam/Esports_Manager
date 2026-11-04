@@ -22,6 +22,7 @@ import {useDialog} from '../lib/useDialog';
 import {GameRecap} from './GameRecap';
 import {LaneMap,SeriesTracker,VersusRosters} from './MatchVisuals';
 import {stageOf} from '../data/season';
+import {OPPONENT_ORIGIN_LABELS} from '../data/campaignCopy';
 import {KeyMoment,PhaseEvents} from './PhaseLog';
 import { recommendTactics, seriesFinished, simulateNextGame, summarizeSeries } from '../lib/simulator';
 import { PHASE_TACTICS, TACTIC_METADATA } from '../lib/tacticsMatrix';
@@ -231,7 +232,7 @@ export const MatchCenterModal: React.FC<MatchCenterModalProps> = ({
             />
             <div className="rounded-lg border border-line bg-bg p-3 text-label text-fg-muted">
               <span className="font-semibold text-danger">Báo cáo trinh sát:</span>{' '}
-              Lối chơi <strong className="text-fg">{ARCHETYPE_LABELS[chapter.opponent.archetype]}</strong>. {chapter.opponent.description}
+              Lối chơi <strong className="text-fg">{ARCHETYPE_LABELS[chapter.opponent.archetype]}</strong>. {chapter.opponent.description}{chapter.opponentOrigin&&<span className="block mt-1 text-fg-subtle">{OPPONENT_ORIGIN_LABELS[chapter.opponentOrigin]}.</span>}
             </div>
 
             {/* Tactical Decisions Box */}

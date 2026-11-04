@@ -1,6 +1,6 @@
 # Project Status — tracker và kế hoạch tới hạn nộp
 
-Cập nhật 03/11/2026. Tracker sống: cập nhật checkbox và Log khi có việc xong, **không tick nếu thiếu bằng chứng** (lệnh đã chạy, output quan sát được).
+Cập nhật 04/11/2026. Tracker sống: cập nhật checkbox và Log khi có việc xong, **không tick nếu thiếu bằng chứng** (lệnh đã chạy, output quan sát được).
 
 **Hạn nộp: hết ngày 15/11/2026 (Chủ nhật). Bình chọn đến hết 22/11/2026.** Chủ dự án xác nhận 03/11 là không giãn hạn; khớp với trang điều lệ. Một người làm + coding agent.
 
@@ -69,6 +69,7 @@ Danh sách đầy đủ và mặc định ở [DECISIONS.md](DECISIONS.md). Đan
 
 | Ngày | Mục |
 |---|---|
+| 04/11 | UpdatePack dữ kiện LMHT Esports, P0 xong: Ch10 thành Tứ kết Worlds BO5 giả lập (hết nhãn Swiss), copy riêng Ch3–12 (`campaignCopy.ts`), Ch5 không còn "nhà vua GAM"/"LCP 2027", `rulesBasisYear` 2026, nhãn `opponentOrigin`. Chạy: `bun run typecheck` PASS; `bun run test` 63 test PASS (10 file, thêm `campaignCopy.test.ts` 11 test, 6 test đỏ trên code cũ); `bun run build` PASS; `bun run audit:release` PASS. Chưa chạy `balance`/`progression` (simulator và `legacyOpponent()` không đổi, có test khẳng định). Chưa kiểm bằng mắt UI 390×844 hay E2E Playwright. P1 đã làm trong ngày: lớp tham chiếu `esportsReference.ts` + nhãn nguồn trên chi tiết thẻ; 69 test PASS. Không làm thẻ BLG/HLE (chưa xác minh roster), Worlds 2026 vẫn `null` (xem CHANGELOG 04/11) |
 | 03/11 | UI trận kiểu Worlds Mayhem, bracket mùa giải (Hub, Chiến Dịch), hiển thị đội hình hai bên, qua mùa mới sau Worlds (DEC-15); 48 test, 14 E2E Chrome xanh |
 | 03/11 | DEC-12 triển khai (chỉ báo/nhắc sao lưu, lời khuyên nhúng/Safari, đọc lại sau ghi, `storage.persist()`, mã xuất rút gọn); 40 test, 14 E2E Chrome xanh, iframe xanh. Dọn `docs/ref/golden_road/` chỉ còn `data.js` |
 | 03/11 | Gộp tài liệu từ 22 file md đánh số + prompt agent + evidence còn 9 file có tên: GAME_DESIGN, ECONOMY, MATCH_SIMULATOR, UX_AND_ART, ARCHITECTURE, QA_AND_RELEASE, CONTEST_AND_RIGHTS, PROJECT_STATUS, DECISIONS (+ CHANGELOG). Loại bỏ nội dung kiến trúc A. `CLAUDE.md` chuyển ra thư mục gốc |

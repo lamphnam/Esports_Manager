@@ -7,6 +7,7 @@ import { SegmentedControl } from '../components/ui';
 import { AudioSynth } from '../lib/audioSynth';
 import { ARCHETYPE_LABELS } from '../lib/labels';
 import { OpponentRoster } from '../components/OpponentRoster';
+import { OPPONENT_ORIGIN_LABELS } from '../data/campaignCopy';
 
 interface CampaignViewProps {
   onStartMatch: (chapterId: number) => void;
@@ -32,7 +33,7 @@ export const CampaignView: React.FC<CampaignViewProps> = ({ onStartMatch }) => {
             Chiến Dịch Sự Nghiệp (Career Campaign)
           </h1>
           <p className="text-sm text-fg-muted mt-1">
-            Mùa {club?.careerYear ?? 2026}: từ giải phong trào sinh viên tới ngai vàng VCS, LCP và Chung Kết Thế Giới
+            Mùa {club?.careerYear ?? 2026} · hành trình giả lập: từ giải sinh viên tới VCS, LCP và Chung Kết Thế Giới. Thể thức đã rút gọn, không phải lịch giải thật.
           </p>
           <div className="mt-3">
             <SegmentedControl
@@ -158,6 +159,9 @@ export const CampaignView: React.FC<CampaignViewProps> = ({ onStartMatch }) => {
                     <span className="text-fg-subtle">Đối thủ:</span>
                     <strong className="text-white text-sm">{chapter.opponent.name}</strong>
                   </div>
+                  {chapter.opponentOrigin && (
+                    <p className="text-fg-subtle">{OPPONENT_ORIGIN_LABELS[chapter.opponentOrigin]}</p>
+                  )}
                   <div className="flex justify-between items-center">
                     <span className="text-fg-subtle">Sức mạnh OVR:</span>
                     <span className="font-mono-nums font-bold text-danger text-sm">

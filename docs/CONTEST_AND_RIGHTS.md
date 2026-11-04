@@ -90,11 +90,14 @@ Hiện chỉ có **5 icon vị trí, minimap Summoner's Rift và logo của game
 | LCP 2026 kết quả | Team Secret Whales vô địch cả 3 split; Worlds 2026 seed: TSW, CTBC Flying Oyster, MVK Esports | cùng nguồn | High |
 | Team Secret Whales | Pun (TOP), Hizto (JNG), Dire (MID), Eddie (BOT), Bie (SUP) | lolesports.com (membership), Sheep Esports (role) | High cho membership, Medium cho role |
 | Chung kết Worlds 2024 | T1 thắng BLG 3–2 (02/11/2024); roster T1 Zeus/Oner/Faker/Gumayusi/Keria, BLG Bin/Xun/knight/Elk/ON | Comcast Spectacor, Wikipedia, LoL Esports VOD | High (kết quả), Medium (roster) |
-| First Stand 2026 | Bilibili Gaming thắng G2 Esports ở chung kết, São Paulo | Sheep Esports, GosuGamers, esports.gg | Medium |
+| First Stand 2026 | Bilibili Gaming thắng G2 Esports ở chung kết, São Paulo; theo Liquipedia (UpdatePack, chưa tự đối chiếu) 3–1 ngày 22/03/2026 | Sheep Esports, GosuGamers, esports.gg, Liquipedia | Medium |
 | MSI 2026 | Hanwha Life Esports thắng Bilibili Gaming 3–2, Daejeon, 28/06–12/07 | Sheep Esports | Medium |
-| Worlds 2026 format | Play-In 4 đội (double elimination BO5), Swiss 16 đội, Knockout 8 đội BO5; Fearless Draft ở BO3/BO5 | blog bên thứ ba | **Low** (đối chiếu primer chính thức) |
+| Worlds 2026 format | Play-In 4 đội (double elimination BO5); Swiss 5 vòng, BO1/BO3, 3 thắng đi tiếp / 3 thua bị loại (16 đội, suy ra từ bốc thăm); Knockout BO5 gồm tứ kết, bán kết, chung kết. Chung kết 14/11/2026 giờ Mỹ (Brooklyn), tức 15/11 giờ Việt Nam | lolesports.com/en-GB/news/worlds-2026-primer, đọc 04/11/2026 (ngày trên trang: 5/10/2026) | High (stage và format); số đội mỗi stage suy ra, Medium. Fearless Draft ở BO3/BO5 chưa đối chiếu: **Low** |
 | Worlds 2026 slot và lịch | LCK/LPL/LEC/LCS/LCP 3 suất… | blog bên thứ ba | **Low** |
 | GAM Esports split 1 lineup | Kiaya, Draktharr, Aress, Artemis, Taki | Sheep Esports | **Low** (nguồn khác ghi Gloryy ở MID) |
+| VCS Finals 2026 | Saigon MVK Academy thắng Saigon Warriors 3–0 (11/10/2026). **Không phải GAM.** Lấy từ UpdatePack, chưa tự đối chiếu | RFT.GG, Báo Hải Phòng | Medium |
+| MSI 2026 chung kết | HLE thắng BLG 3–2, 12/07/2026 (UpdatePack, chưa tự đối chiếu) | Liquipedia | Medium |
+| Worlds 2026 nhà vô địch | **Chưa có** tính tới 04/11/2026; giữ `null`, cập nhật sau chung kết | — | — |
 | VCS 2025 cấu trúc, roster VCS, nhà vô địch theo năm | Không lấy được (Liquipedia 403, Leaguepedia 402) | — | **Chưa xác minh** |
 
 Dữ kiện đã dùng trong game: năm bản ghi Team Secret Whales 2026 (`verified2026.ts`, đều Medium, `retrievedAt` 2026-11-03) và dữ kiện lịch sử phục vụ provenance demo (chung kết 2024). Chưa đóng: roster VCS 2025–2026, nhà vô địch VCS theo split, bảng slot Worlds 2026 chính thức; không bao giờ điền từ trí nhớ. Các dữ kiện nền ghi ở [GAME_DESIGN.md](GAME_DESIGN.md) §4 (LCP 2027, Road to VCS, Predator League 2027) **chưa được kiểm chứng lại** từ 27/10/2026 (lần 03/11 chỉ đọc lại điều lệ cuộc thi): đối chiếu bằng liên kết chính thức ở trên trước khi nộp.
@@ -104,7 +107,7 @@ Dữ kiện đã dùng trong game: năm bản ghi Team Secret Whales 2026 (`veri
 | LCP 2027 nhận đội từ VCS/PCS/LJL theo split | thông báo chính thức | quy tắc thế giới cứng |
 | Slot LCP 2027 và bracket chính xác | chưa công bố | tham số hư cấu, không gắn nhãn chính thức |
 | Road to VCS grassroots 2026 | tham chiếu chính thức | cảm hứng, không phải quyền vào VCS |
-| Worlds 2026 Swiss 3W/3L | chính thức 2026 | template lấy cảm hứng 2026 |
+| Worlds 2026 Swiss 3W/3L, Play-In | chính thức 2026 | game **không** có Swiss/Play-In; Ch10–12 là tứ kết/bán kết/chung kết BO5 giả lập |
 | Format Worlds 2027 | chưa xác lập | chờ `rulesVersion` mới |
 | OVR thẻ, xác suất pack, rating boss | tham số game tự đặt | không phải sự thật lịch sử |
 | Predator cup là vòng loại Worlds | **sai** | không bao giờ làm |
@@ -117,3 +120,5 @@ Dữ kiện đã dùng trong game: năm bản ghi Team Secret Whales 2026 (`veri
 - Dòng ghi nguồn đang hiển thị ở footer. Câu hỏi bên cấp quyền có yêu cầu dòng ghi công cụ thể hay không (Q6) còn mở; mặc định đã áp dụng.
 - Tiểu sử tuyển thủ trong game: mỗi câu phải có nguồn ở §6 hoặc thay bằng mô tả lối chơi trung tính; không họ tên đời thực, tuổi, quê quán (DEC-6).
 - Điều khoản fan-project của Riot: xem §4; không mô tả chi tiết tên tuyển thủ/đội.
+- **Phạm vi quyền (rà 04/11/2026):** email Riot là lời khai của chủ dự án; kiểm toán UpdatePack chưa xem nội dung email nên không xác nhận phạm vi. Không suy ra quyền cho mọi artwork, logo giải đấu, chân dung tướng hay thương hiệu Acer/Predator (quyền Acer là vấn đề riêng, D3). Chủ dự án nên tự đọc lại email, ghi phạm vi vào `asset_license` (không đưa nội dung email vào repo) và báo BTC nếu nội dung thay đổi sau khi nộp.
+- **Nhãn thật/giả trong game (04/11):** đội Legacy là đội-năm lịch sử, không phải roster mùa 2026; GAM Ch5 là All-Star giả lập; chỉ năm bản Team Secret Whales 2026 là dữ liệu mùa 2026 (rating `derived`, không phải đánh giá thành tích). Chưa thêm thẻ danh hiệu BLG/HLE vì chưa xác minh roster tại thời điểm nhận cúp.

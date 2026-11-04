@@ -43,18 +43,19 @@ Tab trong `App.tsx`: Hub, Campaign, Lineup, Collection, Packs, Training, Transfe
 | 2 | 1 | Vua Sinh Viên | BO3 | Saigon Buffalo Young (62) | 600 cr, Scout, rep 50 |
 | 3 | 2 | Đường Tới VCS | BO3 | CERBERUS Esports (66) | 800 cr, Elite, rep 100 |
 | 4 | 2 | Chào Sân Chuyên Nghiệp | BO3 | Vikings Esports (72) | 1200 cr, Elite, rep 150 |
-| 5 | 2 | Vương Miện Việt Nam | BO5 | GAM Esports (77) | 2000 cr, Elite + Champion, rep 300 |
+| 5 | 2 | Vương Miện Việt Nam | BO5 | GAM Esports (77), **All-Star giả lập** | 2000 cr, Elite + Champion, rep 300 |
 | 6 | 3 | Đại Chiến Thái Bình Dương (LCP) | BO5 | Đội Legacy từ VCS/PCS/LMS/LJL | 2200 cr, Champion, rep 400 |
 | 7 | 3 | First Stand Quốc Tế | BO5 | Đội Legacy (mọi khu vực) | 2500 cr, Champion, rep 500 |
 | 8 | 3 | Bậc Thầy Giữa Mùa (MSI) | BO5 | Đội Legacy (mọi khu vực) | 3000 cr, Champion, rep 600 |
 | 9 | 3 | Tấm Vé Cuối Cùng | BO5 | Đội Legacy (mọi khu vực) | 3500 cr, Champion, rep 750 |
-| 10 | 3 | Đối Đầu Cả Thế Giới | BO5 | Đội Legacy (mọi khu vực) | 4000 cr, Champion, rep 900 |
+| 10 | 3 | Đối Đầu Cả Thế Giới (Tứ kết Worlds giả lập) | BO5 | Đội Legacy (mọi khu vực) | 4000 cr, Champion, rep 900 |
 | 11 | 3 | Bán Kết Sinh Tử | BO5 | Đội Legacy (mọi khu vực) | 5000 cr, 2 Champion, rep 1200 |
 | 12 | 3 | Khắc Tên Vào Lịch Sử | BO5 | **Gen.G (trùm cuối, mọi mùa)** | 10000 cr, 2 Champion, rep 2500 |
 
-- **Bracket mùa giải (DEC-15):** 12 chương được gom thành 7 giải để dễ nhìn (`COMPETITIONS` trong `src/data/season.ts`): Giải Sinh Viên (Ch1–2), Road to VCS (Ch3), VCS (Ch4–5), LCP (Ch6, Ch9), First Stand (Ch7), MSI (Ch8), Worlds (Ch10 Vòng bảng, Ch11 Bán kết, Ch12 Chung kết). **Mỗi vòng vẫn là một series của một chương**: bracket là cách hiển thị và đặt tên, chưa thêm trận mới.
+- **Bracket mùa giải (DEC-15):** 12 chương được gom thành 7 giải để dễ nhìn (`COMPETITIONS` trong `src/data/season.ts`): Giải Sinh Viên (Ch1–2), Road to VCS (Ch3), VCS (Ch4–5), LCP (Ch6, Ch9), First Stand (Ch7), MSI (Ch8), Worlds (Ch10 Tứ kết, Ch11 Bán kết, Ch12 Chung kết, đều BO5 giả lập; không có Play-In/Swiss). **Mỗi vòng vẫn là một series của một chương**: bracket là cách hiển thị và đặt tên, chưa thêm trận mới.
 - **Qua mùa:** thắng Ch12 → màn "Vô địch thế giới" → bước sang mùa sau (năm +1, giữ đội hình/thẻ/ví, +1000 credits, bắt đầu lại từ Ch3 với đối thủ mạnh hơn). Chi tiết số liệu ở [ECONOMY.md](ECONOMY.md) §8.
-- Ch1–5 là phạm vi **phải xong tốt**; OVR đối thủ 55/62/66/72/77 được hiệu chỉnh theo mục tiêu win-rate DEC-5 ([DECISIONS.md](DECISIONS.md)). Ch6–12 dùng `legacyOpponent()` ([legacyOpponents.ts](../src/data/legacyOpponents.ts)): mỗi chapter có OVR mục tiêu tăng dần (80, 84, 86, 88, 90, 93, 95), chọn tất định đội-năm lịch sử gần mục tiêu nhất, mỗi đội chỉ một lần, archetype theo seed; chỉ Ch6 giới hạn khu vực VCS/PCS/LMS/LJL. Khi pool không đủ mạnh có `difficultyBonus` hiển thị cho người chơi ([ECONOMY.md](ECONOMY.md) §8). Dạng **knockout đơn hư cấu có nhãn**, không cần engine riêng; tên đội trong các seed của `campaignData.ts` bị ghi đè bởi đội này. Người chơi xem được đội hình đối thủ (vai trò, tên, OVR) ở Hub, Campaign và màn Match Center, đặt cạnh đội hình của mình.
+- Ch1–5 là phạm vi **phải xong tốt**; OVR đối thủ 55/62/66/72/77 được hiệu chỉnh theo mục tiêu win-rate DEC-5 ([DECISIONS.md](DECISIONS.md)). Ch6–12 dùng `legacyOpponent()` ([legacyOpponents.ts](../src/data/legacyOpponents.ts)): mỗi chapter có OVR mục tiêu tăng dần (80, 84, 86, 88, 90, 93, 95), chọn tất định đội-năm lịch sử gần mục tiêu nhất, mỗi đội chỉ một lần, archetype theo seed; chỉ Ch6 giới hạn khu vực VCS/PCS/LMS/LJL. Khi pool không đủ mạnh có `difficultyBonus` hiển thị cho người chơi ([ECONOMY.md](ECONOMY.md) §8). Dạng **knockout đơn hư cấu có nhãn**, không cần engine riêng; đối thủ seed của Ch6–12 trong `campaignData.ts` bị thay bởi đội này.
+- **Copy theo chương (04/11):** subtitle, mô tả và epilogue của Ch3–12 nằm ở [campaignCopy.ts](../src/data/campaignCopy.ts), mỗi chương một bản riêng (trước đây Ch6–12 bị ghi đè bằng một câu chung). Copy Ch3–12 **không** nêu tên đối thủ vì đối thủ đổi theo seed và theo mùa; tên lấy từ object `opponent` khi hiển thị. ID, `code`, thể thức, thưởng, seed không đổi (`code` `CH_11_SWISS_SURVIVAL` là định danh nội bộ, giữ nguyên). Ch10 = tứ kết BO5 giả lập, giữ BO5. Người chơi xem được đội hình đối thủ (vai trò, tên, OVR) ở Hub, Campaign và màn Match Center, đặt cạnh đội hình của mình.
 - Swiss, double elimination, Play-In chỉ làm nếu còn thời gian và có test **[P2]**. Nếu làm Swiss-lite phải gắn nhãn hư cấu.
 - Chapter 1–2 (grassroots): thử lại tự do, first-clear chỉ nhận một lần. Giao hữu và thử lại không thưởng. Replay chapter đã clear không hứa thưởng.
 - **Anti-farm:** `completedChapterIds` + ledger append-only; không có vòng lặp pack vô hạn.
@@ -87,6 +88,20 @@ Road to VCS qualification → Elite; VCS title → Elite ×2 + reputation +200; 
 - First Stand/MSI/Worlds là sự kiện quốc tế theo điều kiện mùa; không viết "thắng LCP một lần là chắc chắn dự tất cả".
 - Mọi dữ liệu giải đấu mang `rulesBasisYear`, `isOfficialFormat` (mặc định `false`), `adaptationNote`, `realWorldReferenceUrl`. UI hiển thị disclaimer gọn (footer `App.tsx`).
 - Archetype đối thủ là mô hình AI của game, không khẳng định phong cách của một quốc gia hay khu vực; gắn với đội cụ thể hoặc dữ liệu lối chơi, không gắn quốc tịch.
+
+### Lớp tham chiếu thực tế (`src/data/esportsReference.ts`)
+
+Mỗi dữ kiện thật dùng trong copy/UI có `status` (`verified_real_world`, `secondary_confirmed`, `pending`...), `asOf` và nguồn đã đăng ký; chưa công bố thì `null`. Nhà vô địch Worlds 2026 và số suất LCP 2027 đang là `pending`. Chi tiết thẻ hiển thị nhãn: Legacy là roster lịch sử, thẻ Team Secret Whales 2026 mang danh hiệu LCP 2026 như metadata, mọi chỉ số do game suy ra. Danh hiệu không tạo thẻ mới (tránh đổi pool pack). Thẻ BLG/HLE chờ xác minh roster; không làm trước deadline.
+
+### Nhãn nguồn đối thủ (`Chapter.opponentOrigin`, không lưu vào save)
+
+| Giá trị | Chương | Ý nghĩa |
+|---|---|---|
+| `FICTIONAL_ROSTER` | 1–4 (mùa 1; 1–2 mọi mùa) | Đội và tuyển thủ viết tay cho game, không phải roster thật |
+| `LEGACY_ALLSTAR` | 5 (mùa 1) | GAM Esports là đội All-Star giả lập, không phải đội hình hay nhà vô địch VCS 2026 (VCS Finals 2026 do MVK Academy thắng 3–0, nguồn thứ cấp, xem [CONTEST_AND_RIGHTS.md](CONTEST_AND_RIGHTS.md) §6) |
+| `LEGACY_ROSTER` | 6–12; 3–12 từ mùa 2 | Đội-năm lịch sử trong dataset 2011–2025, chọn theo độ khó, kèm `difficultyBonus` nếu có; không phải roster mùa 2026 |
+
+`rulesBasisYear` của mọi chương là 2026 (năm career và năm tham chiếu thể thức), `isOfficialFormat=false`. Không dùng 2027 làm cơ sở thể thức vì Riot chưa công bố số suất LCP 2027; `adaptationNote` của Ch5 nói rõ game không mô phỏng và không trao suất LCP thật.
 
 ## 5. Thẻ và catalog
 

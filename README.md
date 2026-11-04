@@ -60,7 +60,7 @@ Tên CLB thật bật theo quyền chủ dự án đã ghi nhận, có alias cho
 
 ## Quy tắc mô phỏng
 
-- LCP, First Stand, MSI, Worlds là knockout hư cấu có nhãn và provenance; không coi là thể thức chính thức hoặc thông tin xác nhận mùa 2027.
+- LCP, First Stand, MSI, Worlds là knockout hư cấu có nhãn và provenance; không coi là thể thức chính thức hoặc thông tin xác nhận mùa 2027. Career bắt đầu năm 2026 nhưng là hành trình giả lập, không tái hiện lịch 2026. Worlds trong game chỉ có tứ kết, bán kết, chung kết BO5 (Ch10–12); Play-In và Swiss của giải thật không có. Đối thủ là đội hư cấu, All-Star giả lập (GAM, Ch5) hoặc đội-năm Legacy, không phải roster mùa 2026; xem [docs/GAME_DESIGN.md](docs/GAME_DESIGN.md) §4.
 - BO1/BO3/BO5 dùng cùng engine seeded. Ván đầu ba quyết định; các ván sau dùng FOCUS_1, có tùy chọn manualAll trong career. Watch/Fast/Skip chỉ đổi replay của ván đã tính.
 - BO3/BO5 dừng ở kết quả từng ván, hiển thị thắng/thua, tỷ số chuỗi, MVP và logs ba pha. Người chơi bấm "Ván Tiếp Theo" để chọn chiến thuật; ván cuối có nút "Xem Tổng Kết Chuỗi". Demo BO5 cũng theo luồng này.
 - Odds/pity v2.2 giữ nguyên. Scout tối đa 7 miss liên tiếp, lần thứ 8 Epic+; không có thanh toán tiền thật.

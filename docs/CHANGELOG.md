@@ -2,6 +2,22 @@
 
 `rulesVersion` hiện tại: **v1.2.0** (`docs/config/balance.initial.json`). Đổi luật gameplay phải tăng `rulesVersion`, ghi một mục ở đây và kiểm tra các nơi lặp số (pack odds/pity: `ECONOMY.md` + `balance.initial.json`; giới hạn simulator và chính sách quyết định: `MATCH_SIMULATOR.md` + `balance.initial.json` + `tactics.matrix.json`).
 
+## 2026-11-04 — căn chỉnh dữ kiện LMHT Esports (UpdatePack, chỉ copy và nhãn, không đổi luật)
+
+Không đổi `rulesVersion` (v1.5.0): không đổi ID chương, `code`, thể thức, thưởng, pack odds, công thức OVR, seed, `legacyOpponent()`, Gen.G trùm cuối, save.
+
+- Ch10 không còn ghi "Vòng Swiss": **Tứ Kết Worlds (BO5 giả lập)**, giữ BO5; nhãn stage "Tứ kết (giả lập)"; blurb Worlds nói rõ game lược bỏ Play-In và Swiss. Ch11/12 là Bán kết/Chung kết giả lập.
+- `src/data/campaignCopy.ts` (mới): copy riêng cho từng chương, thay đoạn `map` từng ghi đè description/subtitle/epilogue Ch6–12 bằng một câu chung. Copy Ch3–12 không nêu tên đối thủ (đối thủ đổi theo seed/mùa).
+- Ch5: bỏ "nhà vua GAM" và "vé chính thức tiến vào LCP 2027"; GAM là đội All-Star giả lập, không phải nhà vô địch VCS 2026. Ch3–4 đánh dấu giả lập.
+- `rulesBasisYear` 2027 → 2026 cho mọi chương; `realWorldReferenceUrl` trỏ handbook 2026 (Ch1–9) hoặc Worlds 2026 primer (Ch10–12); `adaptationNote` riêng từng chương.
+- `Chapter.opponentOrigin` (tùy chọn, dẫn xuất từ code, không lưu save) + nhãn trong Chiến Dịch và báo cáo trinh sát trước trận; mô tả chặng Chiến Dịch ghi "hành trình giả lập".
+- Test: `campaignCopy.test.ts` (11 test): khóa ID/code/format/thưởng, Ch10 không Swiss, Ch5 không hứa suất LCP, Ch6–12 copy riêng, không tên đối thủ cố định, nhãn nguồn, metadata, ID edition duy nhất, provenance thẻ 2026, tương thích save/qua mùa.
+- **P1 (cùng ngày):** `src/data/esportsReference.ts`, lớp metadata thật/giả (`verified_real_world`, `secondary_confirmed`, `fictional_campaign`, `historical_roster`, `game_derived`, `pending`) với registry nguồn và các fact có `asOf`; giá trị chưa công bố là `null` (nhà vô địch Worlds 2026, số suất LCP 2027). Không đụng simulator, economy hay save, không cần migration.
+- Chi tiết thẻ (Bộ Sưu Tập) hiện nhãn nguồn: thẻ Legacy ghi "Roster lịch sử {năm}, không phải mùa 2026"; năm thẻ Team Secret Whales ghi roster 2026, danh hiệu LCP 2026 (metadata, không tạo edition mới) và "chỉ số do game suy ra". Thẻ hand-written của `CURRENT_EDITIONS` không có provenance nên không hiện nhãn.
+- Test: `esportsReference.test.ts` (6 test): nguồn đã đăng ký, giá trị chưa công bố là `null`, nguồn thứ cấp không bị gắn nhãn Riot, Worlds thật khác shortcut của game, nhãn thẻ, không có edition danh hiệu bịa.
+- **Cố ý không làm:** thẻ First Stand Champion (BLG) và MSI Champion (HLE), vì chưa xác minh roster năm người tại thời điểm nhận cúp; thẻ Worlds 2026 Champion, vì chung kết chưa diễn ra. Không thêm edition TSW "Triple Champion": edition mới vào pool pack và làm đổi cơ cấu pack; danh hiệu được ghi như metadata của năm thẻ hiện có. Qualification 2027, Swiss/Play-In, Fearless Draft, thay roster Legacy vẫn là P2.
+- Thư mục `Esports_Manager_UpdatePack_2026-11-04/` đã được xóa sau khi nhập; nguồn và fact nằm trong `esportsReference.ts`, bản copy chương trong `campaignCopy.ts`.
+
 ## 2026-11-03 — thiên vị Chovy/Gen.G, Gen.G là trùm cuối (rulesVersion v1.5.0)
 
 - `favorites.ts`: trọng số chọn thẻ trong cùng độ hiếm (Chovy ×5, Gen.G ×2); odds độ hiếm và pity không đổi. Ngôi sao cạnh tên thẻ; ghi chú ở màn Pack.

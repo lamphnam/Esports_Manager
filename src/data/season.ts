@@ -1,6 +1,7 @@
 import {Chapter,ClubState} from '../types';
 import {CAMPAIGN_CHAPTERS} from './campaignData';
 import {campaignOpponentSeed,legacyOpponent} from './legacyOpponents';
+import {opponentOriginOf} from './campaignCopy';
 
 /** Season 1 is careerYear 2026; every later year is a new season. */
 export const FIRST_CAREER_YEAR=2026;
@@ -22,7 +23,7 @@ const cache=new Map<number,Chapter[]>();
 export function chaptersForSeason(season:number):Chapter[] {
  if(season<=1)return CAMPAIGN_CHAPTERS;
  let chapters=cache.get(season);
- if(!chapters){chapters=CAMPAIGN_CHAPTERS.map(chapter=>({...chapter,opponent:opponentForSeason(chapter,season)}));cache.set(season,chapters);}
+ if(!chapters){chapters=CAMPAIGN_CHAPTERS.map(chapter=>({...chapter,opponent:opponentForSeason(chapter,season),opponentOrigin:opponentOriginOf(chapter.id,season)}));cache.set(season,chapters);}
  return chapters;
 }
 
@@ -32,10 +33,10 @@ export const COMPETITIONS:Competition[]=[
  {id:'campus',name:'Giải Sinh Viên',blurb:'Campus District: từ giao hữu tới chung kết trường.',stages:[{chapterId:1,label:'Giao hữu khởi động'},{chapterId:2,label:'Chung kết Campus'}]},
  {id:'road',name:'Road to VCS',blurb:'Vòng loại để bước vào giải chuyên nghiệp.',stages:[{chapterId:3,label:'Vòng loại chuyên nghiệp'}]},
  {id:'vcs',name:'VCS',blurb:'Giải chuyên nghiệp Việt Nam.',stages:[{chapterId:4,label:'Vòng bảng'},{chapterId:5,label:'Chung kết VCS'}]},
- {id:'lcp',name:'LCP',blurb:'Đấu trường APAC theo từng split.',stages:[{chapterId:6,label:'Vòng bảng LCP'},{chapterId:9,label:'Chung kết LCP'}]},
- {id:'firststand',name:'First Stand',blurb:'Sự kiện quốc tế đầu mùa.',stages:[{chapterId:7,label:'Vòng loại trực tiếp'}]},
- {id:'msi',name:'MSI',blurb:'Sự kiện quốc tế giữa mùa.',stages:[{chapterId:8,label:'Vòng loại trực tiếp'}]},
- {id:'worlds',name:'Chung Kết Thế Giới (Worlds)',blurb:'Đỉnh cao mùa giải: vòng bảng, bán kết và chung kết.',stages:[{chapterId:10,label:'Vòng bảng (Swiss)'},{chapterId:11,label:'Bán kết'},{chapterId:12,label:'Chung kết'}]},
+ {id:'lcp',name:'LCP',blurb:'Đấu trường APAC (giả lập, rút gọn): đối thủ Legacy, không phải bracket chính thức.',stages:[{chapterId:6,label:'Vòng bảng LCP'},{chapterId:9,label:'Chung kết LCP'}]},
+ {id:'firststand',name:'First Stand',blurb:'Sự kiện quốc tế đầu mùa (giả lập, điều kiện tham dự giản lược).',stages:[{chapterId:7,label:'Vòng loại trực tiếp'}]},
+ {id:'msi',name:'MSI',blurb:'Sự kiện quốc tế giữa mùa (giả lập, điều kiện tham dự giản lược).',stages:[{chapterId:8,label:'Vòng loại trực tiếp'}]},
+ {id:'worlds',name:'Chung Kết Thế Giới (Worlds)',blurb:'Đỉnh cao mùa giải giả lập: tứ kết, bán kết và chung kết, đều BO5. Worlds thật có thêm Play-In và Swiss, game lược bỏ.',stages:[{chapterId:10,label:'Tứ kết (giả lập)'},{chapterId:11,label:'Bán kết'},{chapterId:12,label:'Chung kết'}]},
 ];
 
 /** The bracket and stage a chapter belongs to (for headings). */

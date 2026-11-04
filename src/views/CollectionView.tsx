@@ -4,6 +4,7 @@ import { PlayerCard } from '../components/PlayerCard';
 import { PageHeader, SegmentedControl } from '../components/ui';
 import { useGame } from '../context/GameContext';
 import { getEditionById, getPlayerById } from '../data/cardCatalog';
+import { editionDisclosure, factById } from '../data/esportsReference';
 import { AudioSynth } from '../lib/audioSynth';
 import {useDialog} from '../lib/useDialog';
 
@@ -178,6 +179,18 @@ export const CollectionView: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {(() => {
+                const disclosure = editionDisclosure(inspectedDetails.edition);
+                if (!disclosure) return null;
+                return (
+                  <div className="space-y-1 rounded-lg border border-line bg-bg p-3 text-xs text-fg-muted">
+                    <strong className="block text-fg">{disclosure.label}</strong>
+                    {disclosure.factIds.map((id) => <p key={id}>{factById(id)?.summary}</p>)}
+                    <p className="text-fg-subtle">{disclosure.ratingLabel}{disclosure.asOf ? ` Dữ liệu tính tới ${new Date(disclosure.asOf).toLocaleDateString('vi-VN')}.` : ''}</p>
+                  </div>
+                );
+              })()}
 
               <div className="text-xs text-fg-subtle pt-3 border-t border-line">
                 Nguồn gốc: {inspectedDetails.owned.acquiredFrom} · Sở hữu ngày:{' '}
